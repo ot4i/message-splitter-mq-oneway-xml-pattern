@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="en-us">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Use the Message Splitter for WebSphere MQ: one-way (for XML) pattern to accept requests from many client applications on a single queue, and to return responses to the correct client by using transactional flows and persistent WebSphere MQ messages."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+<title>Message Splitter for WebSphere MQ: one-way (for XML) pattern</title>
+<body id="mbi.mrrc.relmq.overview">
+<h1 class="topictitle1"><span>Message Splitter for WebSphere MQ: one-way (for XML)</span> pattern</h1>
+<div><p class="shortdesc">Use the <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> pattern
+to split a large XML message into smaller elements for processing by one or more targets, by using 
+transactional flows and persistent WebSphere MQ messages.</p>
+</div>
+<p>Use this pattern when
+you have applications that store information about a number of business transactions and transmit 
+this information to one or more target applications in batches.
+It can be used to handle large messages without excessive memory use. </p>
+<p>This pattern can be used when either the source application or target 
+applications cannot make or process
+near real-time service calls, or when batching of information is required for business
+reasons.
+</p>
+<div class="image"><img src="xmlmq.gif" 
+alt="A diagram showing the behavior of the pattern. XML messages are split into smaller elements for processing by one or more targets." />
+<div class="section"><h2 class="sectiontitle">Solution</h2></div>
+<p>The solution is to implement a message flow that uses a mutable message tree so that repeatable elements 
+can be deleted as they are processed. Partial parsing enables single elements to be parsed as required and, 
+because these elements are deleted on completion, the in-memory tree is prevented from growing linearly 
+with the number of elements.
+As each element is extracted it is routed to the appropriate target application.</p>
+<div><a href="requestflow.htm" title="Design information about the Request message flow.">Request flow</a></div>
+<div><a href="routeflow.htm" title="Design information about the Route subflow.">Route subflow</a></div>
+<div><a href="errorflow.htm" title="Design information about the Error subflow.">Error subflow</a></div>
+<div><a href="logflow.htm" title="Design information about the Log subflow.">Log subflow</a></div><div>
+<a name="anchor1"></a>
+<div class="section"><h2 class="sectiontitle">Related tasks</h2></div>
+<p>Read the following section for information about how to apply and use this pattern.</p>
+<div><a href="constraints.htm" title="Constraints on the use of the Message Splitter for WebSphere MQ: one-way (for XML) pattern">Constraints on the use of the pattern</a></div>
+<div><a href="prereq.htm" title="Details about what you need to know, and what resources you must have before you can use the Message Splitter for WebSphere MQ: one-way (for XML) pattern">Tasks to complete before applying the pattern</a></div>
+
+<div><a href="parameters.htm" title="Pattern parameters">Parameters for the pattern</a></div>
+<div><a href="postreq.htm" title="">Tasks to complete after generating the pattern</a></div>
+</div>
+</div></body>
+</html>

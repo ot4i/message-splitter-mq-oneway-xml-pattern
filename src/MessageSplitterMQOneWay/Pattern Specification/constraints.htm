@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Details about what you need to know, and what resources you must have before you can use the Message Splitter for WebSphere MQ: one-way (for XML) pattern"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+<title>Constraints on the use of the Message Splitter for WebSphere MQ: one-way (for XML) pattern</title>
+<body id="mbi.mrrc.relmq.constraints">
+<h1 class="topictitle1">Constraints on the use of the <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> pattern</h1>
+<p class="shortdesc">A number of constraints apply when you use this pattern.</p>
+<p>You can use the <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> pattern
+only if you are able to meet all of the following constraints:</p>
+<ul>
+<li>Your requester and provider applications use WebSphere MQ as the transport mechanism.</li>
+<li>The incoming messages are well formed XML; that is, XML that parses but does not necessarily validate.</li>
+<li>The messages conform to the expected structure. Each input message contains:
+	<ul>
+	<li>An enclosing envelope, the name of which is optionally identified by a pattern parameter</li>
+	<li>A series of repeated structures, with names optionally identified by a pattern parameter</li>
+	</ul></li>
+	
+<li>The incoming message is processed automatically in either of the following ways:
+	<ul>
+	<li>All of the elements are written to either the output or the bad message queue</li>
+	<li>No elements are written and the message is rolled back</li>
+	</ul>
+</li>
+</ul>
+<p>It is assumed that this pattern is for distribution of information that must not be lost.
+The message flow therefore runs as a transaction and uses persistent messages,
+ which has a significant impact on performance but is necessary because no loss of data is a requirement.</p>
+<p>It is assumed that the number of repeated elements is less than the maximum number of 
+uncommitted messages allowed on the
+output queue. It might be necessary to adjust this limit if large numbers of repeats are anticipated.</p>
+
+<a href="overview.htm#anchor1" title="Back">Back to the Message Splitter for WebSphere MQ: one-way (for XML) pattern specification</a>
+</body>
+</html>
