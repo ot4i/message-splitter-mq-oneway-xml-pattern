@@ -38,6 +38,10 @@ only if you are able to meet all of the following constraints:</p>
 	<li>No elements are written and the message is rolled back</li>
 	</ul>
 </li>
+<li>You can deploy and run the application generated from the pattern instance to a V10 Integration Node that is configured to use the default Queue Manager.
+	Select the target Integration Node in the <i>Integration Nodes</i> view and check if the value of the "Queue manager specified on the integration node" in the <i>Properties</i> view.
+	If the Queue Manager is not set then you can right-click on the target Integration Node and select "Change" menu to set the Queue Manager name.
+</li>
 </ul>
 <p>It is assumed that this pattern is for distribution of information that must not be lost.
 The message flow therefore runs as a transaction and uses persistent messages,
