@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de-de" xml:lang="de-de">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Verwenden Sie das Muster 'Message Correlator for WebSphere MQ: request-response without persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz) für die Annahme von Anforderungen von vielen Clientanwendungen in einer einzelnen Warteschlange und für die Rückgabe von Antworten an den richtigen Client mithilfe von transaktionsorientierten Nachrichtenflüssen und persistenten WebSphere MQ-Nachrichten."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Untergeordneter Fehlernachrichtenfluss für das Muster 'Message Correlator for WebSphere MQ: request-response without persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.synchmq.overview">
+<div><h1 class="topictitle1">Untergeordneter Fehlernachrichtenfluss für das Muster <span>Message Correlator for WebSphere MQ: request-response without persistence</span> (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz)</h1></div>
+<p class="shortdesc">Wenn während der Verarbeitung des Anforderungsnachrichtenflusses Fehler
+abgefangen werden, wird der untergeordnete Fehlernachrichtenfluss aufgerufen.</p>
+<p>Wenn Sie die Musterparameter auch für Fehlernachrichten konfiguriert haben und die
+benutzerdefinierte Eigenschaft <span class="msobjprop">ErrorLoggingOn</span> ausgewählt ist, werden
+folgende Aktionen ausgeführt:</p>
+<ol>
+<li>Wenn der Fehler während der Anforderungsverarbeitung auftritt, wird an den Client die
+Fehlerantwort zurückgegeben, dass die Nachricht nicht erfolgreich gesendet wurde. 
+<p>Wenn der Fehler während der Antwortverarbeitung auftritt, wird keine Fehlerantwort
+zurückgegeben, weil die Antwortadresse nicht bekannt ist.</p>
+<p>Die folgende Nachricht ist ein Beispiel für eine XML-Standardfehlernachricht:</p>
+<pre>&lt;Error&gt;&lt;Status&gt;-1&lt;/Status&gt;&lt;Text&gt;Nachricht konnte nicht gesendet werden&lt;/Text&gt;&lt;/Error&gt;</pre>
+</li>
+<li>Es wird eine Fehlernachricht erzeugt und in die Fehlerwarteschlange geschrieben. Details zur
+Ausnahmebedingung werden als XML-Nachricht geschrieben. Zu den Details gehören:
+	<ul>
+	<li>Brokername</li>
+	<li>Nachrichtenflussname</li>
+	<li>Zeitmarke</li>
+	<li>Zusammenfassung der Ausnahmedaten</li>
+	</ul>
+</li>
+</ol>
+<a href="overview.htm#anchor1" title="Zurück">Zurück zur Spezifikation des Musters 'Message Correlator for WebSphere MQ: request-response without persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz)</a>
+</body>
+</html>

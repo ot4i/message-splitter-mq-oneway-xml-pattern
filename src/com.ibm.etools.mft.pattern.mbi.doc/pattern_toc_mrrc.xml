@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?NLS  TYPE="org.eclipse.help.toc"?>
+<toc link_to="toc.xml#wmb_patterns_mbi" label="Message Correlator" topic="mbi/mrrc/overview.htm">
+    <topic label="Message Correlator" href="mbi/mrrc/overview.htm">
+      	<topic label="MQ request-response with persistence" href="mbi/mrrc/relmq/overview.htm">
+      		<topic label="Request flow" href="mbi/mrrc/relmq/requestflow.htm"/>
+      		<topic label="Response flow" href="mbi/mrrc/relmq/responseflow.htm"/>
+      		<topic label="Error subflow" href="mbi/mrrc/relmq/errorflow.htm"/>
+      		<topic label="Log subflow" href="mbi/mrrc/relmq/logflow.htm"/>  
+      		<topic label="Constraints" href="mbi/mrrc/relmq/constraints.htm"/>
+      		<topic label="Tasks to complete before applying the pattern" href="mbi/mrrc/relmq/prereq.htm"/>
+      		<topic label="Parameters" href="mbi/mrrc/relmq/parametertable.htm"/>
+      		<topic label="Tasks to complete after generating the pattern" href="mbi/mrrc/relmq/postreq.htm"/>
+      	</topic>
+	  	<topic label="MQ request-response without persistence" href="mbi/mrrc/synchmq/overview.htm">
+	  		<topic label="Request flow" href="mbi/mrrc/synchmq/requestflow.htm"/>
+	  		<topic label="Response flow" href="mbi/mrrc/synchmq/responseflow.htm"/>
+	  		<topic label="Error subflow" href="mbi/mrrc/synchmq/errorflow.htm"/>
+	  		<topic label="Log subflow" href="mbi/mrrc/synchmq/logflow.htm"/>  
+	  		<topic label="Constraints" href="mbi/mrrc/synchmq/constraints.htm"/>
+	  		<topic label="Tasks to complete before applying the pattern" href="mbi/mrrc/synchmq/prereq.htm"/>
+	  		<topic label="Parameters" href="mbi/mrrc/synchmq/parameters.htm"/>
+	  		<topic label="Tasks to complete after generating the pattern" href="mbi/mrrc/synchmq/postreq.htm"/>
+	  	</topic>
+	</topic>
+</toc>

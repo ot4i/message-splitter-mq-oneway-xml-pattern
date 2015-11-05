@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es-es" xml:lang="es-es">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Detalles sobre lo que necesita saber y qué recursos debe tener antes de poder utilizar el patrón Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta sin persistencia."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Tareas que deben completarse antes de aplicar el patrón Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta sin persistencia</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.synchmq.prereq">
+<h1 class="topictitle1">Tareas que deben completarse antes de aplicar el patrón <span>Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta sin persistencia</span></h1>
+<div><div class="section">
+<p class="shortdesc">Antes de aplicar el patrón para producir una instancia de patrón, debe determinar cuáles de las tareas siguientes son necesarias. Si es preciso, realice las tareas siguientes:</p>
+</div>
+<ul>
+<li>Seleccione un nombre exclusivo para la instancia de patrón.
+Puede utilizar el patrón varias veces y crear varias instancias distintas, que pueden distinguirse por sus nombres exclusivos. Identifique el fin de la instancia de patrón para que pueda decidir un nombre adecuado o significativo exclusivo.</li>
+<li>Seleccione las colas y los gestores de colas de <span>WebSphere MQ</span> que desee que utilice la instancia de patrón, por ejemplo, para acceder a la aplicación de proveedor. Si está utilizando colas existentes, deben estar registradas. 
+Si desea crear nuevos gestores de colas y colas, debe tomar una decisión sobre los nombres de estos recursos.</li>
+<li>Identifique cualquier cola y gestor de colas adicionales que este patrón necesite, y decida qué nombres desea utilizar. Tenga en cuenta las políticas, estándares o convenios de denominación que deben aplicarse.</li>
+<li>Decida si es necesaria la validación de los mensajes de solicitud entrantes o los mensajes de respuesta del proveedor. 
+Si las aplicaciones de solicitante y proveedor generan mensajes correctos, es posible que la validación no sea necesaria. 
+Si desea validar los mensajes, ya debe tener un conjunto de mensajes para proporcionar las definiciones de mensajes, o debe crear un conjunto de mensajes para proporcionar las definiciones de mensajes.</li>
+<li>Decida si necesita un registro de mensajes de solicitud, de mensajes de respuesta, o ambos. 
+Si el registro es necesario, debe decidir a qué gestor de colas y cola se enviarán los mensajes de registro.
+Puede enviar mensajes de registro a una cola de registro general que utilicen varios flujos de mensajes, o puede utilizar una cola específicamente para la instancia de patrón.</li>
+<li>Decida si desea producir mensajes de error para la instancia de patrón.  
+Si esta instancia de patrón maneja actualizaciones, utilice el manejo de errores para asegurarse de no perder datos. 
+Puede enviar mensajes de error a una cola de errores generales que utilizan varios flujos de mensajes, o puede utilizar una cola específicamente para la instancia de patrón. Si elige enviar mensajes de error en la instancia de patrón, puede activar o desactivar esta función configurando el archivo archivador de intermediario (BAR) antes del despliegue.</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="Volver">Volver a la especificación del patrón Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta sin persistencia</a>
+</body>
+</html>

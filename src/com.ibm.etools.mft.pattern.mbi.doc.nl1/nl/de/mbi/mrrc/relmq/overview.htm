@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de-de" xml:lang="de-de">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Verwenden Sie das Muster 'Message Correlator for WebSphere MQ: request-response with persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort mit Persistenz) für die Annahme von Anforderungen von vielen Clientanwendungen in einer einzelnen Warteschlange und für die Rückgabe von Antworten an den richtigen Client mithilfe von transaktionsorientierten Nachrichtenflüssen und persistenten WebSphere MQ-Nachrichten."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Muster 'Message Correlator for WebSphere MQ: request-response with persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort mit Persistenz)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<h1 class="topictitle1">Muster <span>Message Correlator for WebSphere MQ: request-response with persistence</span> (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort mit Persistenz)</h1>
+<div><p class="shortdesc">Verwenden Sie das Muster <span>Message Correlator for WebSphere MQ: request-response with persistence</span> (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort mit Persistenz) für die Annahme von Anforderungen von vielen Clientanwendungen in einer einzelnen Warteschlange und für die Rückgabe von Antworten an den richtigen Client mithilfe von transaktionsorientierten Nachrichtenflüssen und persistenten WebSphere MQ-Nachrichten.</p>
+<p>Da dieses Muster eine zuverlässige Datenübertragung mit persistenten Nachrichten und transaktionsorientierten Nachrichtenflüssen verwendet, sollte es verwendet werden, wenn der Nachrichtenaustausch zu Aktualisierungen führt, bei denen kein Datenverlust auftreten darf.</p>
+</div><div class="image"><img src="relmq.gif" 
+alt="Ein Diagramm, das das Verhalten des Musters zeigt. Eine Reihe von anfordernden Anwendungen senden Nachrichten an den Broker. Die Antwortadresse des Requesters wird gespeichert, bevor die Nachricht an den Provider weitergeleitet wird, und wird erneut gespeichert, wenn eine Antwort vom Provider empfangen wird." />
+<div class="section"><h2 class="sectiontitle">Lösung</h2></div> 
+<p>Die Lösung besteht in der Implementierung eines Mediationsflusses, der die MQMD-Headerinformationen aus jeder Anforderungsnachricht, nach Nachrichten-ID indexiert, speichert, bevor die Nachricht mit allen Headern an die Provideranwendung weitergeleitet wird. Diese Anforderungsnachricht an den Provider gibt die Antwortwarteschlange des Brokers im Teil für die Antwort des Nachrichtenheaders an.
+Es wird erwartet, dass die Provideranwendung, entsprechend dem herkömmlichen Verfahren, die Nachrichten-ID aus der Anforderungsnachricht in das Feld für die Korrelations-ID der Antwortnachricht kopiert. 
+Wenn eine Antwortnachricht empfangen wird, ruft der Brokernachrichtenfluss mithilfe der Korrelations-ID den zuvor gespeicherten MQMD-Header ab und aktualisiert den eingehenden MQMD-Header mit der Antwortadresse. 
+Durch diese Aktion wird gewährleistet, dass die ursprüngliche Antwortadresse aus dem Requester verwendet wird. 
+Anschließend wird die Antwortnachricht mit allen Headern an den Requester gesendet.</p>
+<p>Im folgenden Abschnitt finden Sie Informationen zur Gestaltung der Nachrichtenflüsse in diesem Muster.</p>
+<div><a href="requestflow.htm" title="Gestaltungsinformationen zum Anforderungsnachrichtenfluss">Anforderungsnachrichtenfluss</a></div>
+<div><a href="responseflow.htm" title="Gestaltungsinformationen zum Antwortnachrichtenfluss">Antwortnachrichtenfluss</a></div>
+<div><a href="errorflow.htm" title="Gestaltungsinformationen zum untergeordneten Fehlernachrichtenfluss">Untergeordneter Fehlernachrichtenfluss</a></div>
+<div><a href="logflow.htm" title="Gestaltungsinformationen zum untergeordneten Protokollnachrichtenfluss">Untergeordneter Protokollnachrichtenfluss</a></div>
+<div>
+<a name="anchor1"></a>
+<div class="section"><h2 class="sectiontitle">Verwandte Tasks</h2></div>
+<p>Im folgenden Abschnitt finden Sie Informationen zur Anwendung und Verwendung dieses Musters.</p>
+<div><a href="constraints.htm" title="Vorgaben für die Verwendung des Musters 'Message Correlator for WebSphere MQ: request-response with persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort mit Persistenz).">Vorgaben für die Verwendung des Musters</a></div>
+<div><a href="prereq.htm" title="Details zum notwendigen Know-how und den erforderlichen Ressourcen für die Verwendung des Musters 'Message Correlator for WebSphere MQ: request-response with persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort mit Persistenz).">Erforderliche Tasks vor der Anwendung des Musters</a></div>
+
+<div><a href="parametertable.htm" title="Muster anwenden und Parameter konfigurieren">Parameter für das Muster</a></div>
+<div><a href="postreq.htm" title="">Erforderliche Tasks nach der Generierung des Musters</a></div>
+</div>
+</div></body>
+</html>

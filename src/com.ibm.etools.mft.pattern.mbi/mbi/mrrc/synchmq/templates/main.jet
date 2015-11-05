@@ -1,0 +1,88 @@
+<%@taglib id="org.eclipse.jet.workspaceTags" prefix="ws"%>
+<%
+com.ibm.etools.mft.pattern.mbi.plugin.PatternPlugin pattern = com.ibm.etools.mft.pattern.mbi.plugin.PatternPlugin.getInstance();
+com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.PatternMessages messages = new com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.PatternMessages();
+%>
+
+<%-- Define variables the root element in the model --%>
+<c:setVariable select="/*" var="root"/>
+
+<c:if test="boolean($root/maximumResponseTime) = false">
+	<c:log severity="error">
+	    <%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.jet.1") %>
+	</c:log> 
+	<% if (true) return; %>
+</c:if>
+<c:set select="$root" name="mqmdExpiry"><c:get select="$root/maximumResponseTime"/></c:set>
+<c:choose>
+	<c:when test="$root/maximumResponseTime = 'MQEI_UNLIMITED'"></c:when>
+	<c:when test="$root/maximumResponseTime > 0">
+		<c:if test = "$root/maximumResponseTime > 9999999999">
+			<c:set select="$root" name="mqmdExpiry">999999999</c:set>
+		</c:if>
+	</c:when>
+<c:otherwise>
+	<c:log severity="error">
+	    <%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.jet.2") %>
+	</c:log> 
+	<% if (true) return; %>
+</c:otherwise>
+</c:choose>
+
+<% com.ibm.etools.mft.pattern.mbi.plugin.PatternUtility.checkMessageSetIsValidOrEmpty(context, "$root/responseMessageSet", "isMessageSetValid"); %>	
+<c:if test="boolean($isMessageSetValid) = false">
+	<c:log severity="error">
+	    <%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.jet.3") %>
+	</c:log> 
+	<% if (true) return; %>
+</c:if>
+
+<%-- Set top level pattern characteristics --%>
+<c:set select="$root" name="projectname"><c:get select="$root/instanceName"/>_Flows</c:set>
+<c:set select="$root" name="patternName"><c:get select="namespace-uri($root)"/></c:set>
+<c:set select="$root" name="patternVersion">1.0</c:set>
+
+<%-- Make a name for each message flow --%>
+<c:set select="$root" name="request"><c:get select="$root/flowPrefix"/>Request<c:get select="$root/flowSuffix"/></c:set>
+<c:set select="$root" name="requestprocessor"><c:get select="$root/flowPrefix"/>RequestProcessor<c:get select="$root/flowSuffix"/></c:set>
+<c:set select="$root" name="response"><c:get select="$root/flowPrefix"/>Response<c:get select="$root/flowSuffix"/></c:set>
+<c:set select="$root" name="responseprocessor"><c:get select="$root/flowPrefix"/>ResponseProcessor<c:get select="$root/flowSuffix"/></c:set>
+<c:set select="$root" name="error"><c:get select="$root/flowPrefix"/>Error<c:get select="$root/flowSuffix"/></c:set>
+<c:set select="$root" name="log"><c:get select="$root/flowPrefix"/>Log<c:get select="$root/flowSuffix"/></c:set>
+
+<% com.ibm.etools.mft.pattern.mbi.plugin.PatternUtility.getPatternConfigurationFolderName(context, "patternConfigurationFolderName"); %>	
+
+<ws:project name="{$root/instanceName}">
+	<ws:file encoding="UTF-8" path="{$patternConfigurationFolderName}/{$root/instanceName}_summary.html" 
+		replace="true" template="mbi/mrrc/synchmq/templates/root/summary.html.jet"/>
+	<ws:copyFile src="css/summary.css" srcContext="transform" 
+		target="{$patternConfigurationFolderName}/summary.css"/>
+
+	<ws:folder path="{$patternConfigurationFolderName}/icons">
+		<ws:copyFile src="icons/header-gradient.gif" binary="true"
+			srcContext="transform" target="header-gradient.gif" />
+		<ws:copyFile src="icons/section.gif" binary="true"
+			srcContext="transform" target="section.gif" />
+		<ws:copyFile src="icons/summary-title.gif" binary="true"
+			srcContext="transform" target="summary-title.gif" />
+		<ws:copyFile src="icons/title-gradient.gif" binary="true"
+			srcContext="transform" target="title-gradient.gif" />
+	</ws:folder>			
+</ws:project>
+
+<ws:project name="{$root/@projectname}">
+	<ws:file encoding="UTF-8" path=".project" replace="true" template="mbi/mrrc/synchmq/templates/root/project.jet"/>
+	  	<ws:file encoding="UTF-8" path="{$root/@brokerSchema2}Error.esql" replace="true" template="mbi/mrrc/synchmq/templates/root/Error.esql.jet"/>
+  	<ws:file encoding="UTF-8" path="{$root/@brokerSchema2}{$root/@error}.subflow" replace="true" template="mbi/mrrc/synchmq/templates/root/Error.subflow.jet"/>
+
+	<c:if test="$root/loggingRequired = 'true'" >
+		<ws:file encoding="UTF-8" path="{$root/@brokerSchema2}Log.esql" replace="true" template="mbi/mrrc/synchmq/templates/root/Log.esql.jet"/>   
+	  	<ws:file encoding="UTF-8" path="{$root/@brokerSchema2}{$root/@log}.subflow" replace="true" template="mbi/mrrc/synchmq/templates/root/Log.subflow.jet"/>
+	</c:if>
+
+	<ws:file encoding="UTF-8" path="{$root/@brokerSchema2}{$root/@request}.msgflow" replace="true" template="mbi/mrrc/synchmq/templates/root/Request.msgflow.jet"/>
+	<ws:file encoding="UTF-8" path="{$root/@brokerSchema2}{$root/@requestprocessor}.subflow" replace="true" template="mbi/mrrc/synchmq/templates/root/RequestProcessor.subflow.jet"/>
+	<ws:file encoding="UTF-8" path="{$root/@brokerSchema2}{$root/@response}.msgflow" replace="true" template="mbi/mrrc/synchmq/templates/root/Response.msgflow.jet"/>
+	<ws:file encoding="UTF-8" path="{$root/@brokerSchema2}{$root/@responseprocessor}.subflow" replace="true" template="mbi/mrrc/synchmq/templates/root/ResponseProcessor.subflow.jet"/>
+	<ws:file encoding="UTF-8" path="{$root/@brokerSchema2}Intermediary.esql" replace="true" template="mbi/mrrc/synchmq/templates/root/Intermediary.esql.jet"/>
+</ws:project>

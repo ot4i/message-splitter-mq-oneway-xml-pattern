@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="使用 Message Splitter for WebSphere MQ: one-way (for XML) 模式可在单个队列上接受来自多个客户机应用程序的请求，并使用事务流和持久 WebSphere MQ 消息将响应返回到正确的客户机。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Splitter for WebSphere MQ: one-way (for XML) 模式</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<h1 class="topictitle1"><span>Message Splitter for WebSphere MQ: one-way (for XML)</span> 模式</h1>
+<div><p class="shortdesc">使用 <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> 模式可将较大的 XML 消息拆分为较小元素，以供一个或多个目标通过使用事务流和持久 WebSphere MQ 消息进行处理。</p>
+</div>
+<p>当您的应用程序存储有关多个业务事务的信息并通过批处理的方式将该信息传送至一个或多个目标应用程序时，请使用此模式。它可用于处理大型消息，而不会占用过多内存。</p>
+<p>该模式可用于以下情况：源应用程序或目标应用程序无法执行或处理近乎实时的服务调用，或者出于业务的原因而要求批处理信息。</p>
+<div class="image"><img src="xmlmq.gif" 
+alt="此图显示此模式的行为。XML 消息拆分为较小的元素，以供一个或多个目标处理。" />
+<div class="section"><h2 class="sectiontitle">解决方案</h2></div>
+<p>解决方案用于实现使用可变消息树的消息流，以便能够在处理可重复元素对其进行删除。部分解析支持根据需求解析单个元素，并且，由于这些元素在完成时会被删除，从而避免了由于元素数量的增长而导致的内存树线性增长。在抽取每个元素时，会将其路由至适当的目标应用程序。</p>
+<div><a href="requestflow.htm" title="有关请求消息流的设计信息。">请求流</a></div>
+<div><a href="routeflow.htm" title="有关路由子流的设计信息。">路由子流</a>
+	</div>
+<div><a href="errorflow.htm" title="有关错误子流的设计信息。">错误子流</a></div>
+<div><a href="logflow.htm" title="有关日志子流的设计信息。">日志子流</a></div><div>
+<a name="anchor1"></a>
+<div class="section"><h2 class="sectiontitle">相关任务</h2></div>
+<p>请阅读以下部分以获取有关如何应用和使用此模式的信息。</p>
+<div><a href="constraints.htm" title="有关使用 Message Splitter for WebSphere MQ: one-way (for XML) 模式时的约束">有关使用此模式时的约束</a></div>
+<div><a href="prereq.htm" title="有关使用 Message Splitter for WebSphere MQ: one-way (for XML) 模式之前必须了解的内容和必须具备的资源的详细信息">应用模式之前要完成的任务</a></div>
+
+<div><a href="parametertable.htm" title="模式参数">模式的参数</a></div>
+<div><a href="postreq.htm" title="">生成模式之后要完成的任务</a></div>
+</div>
+</div></body>
+</html>

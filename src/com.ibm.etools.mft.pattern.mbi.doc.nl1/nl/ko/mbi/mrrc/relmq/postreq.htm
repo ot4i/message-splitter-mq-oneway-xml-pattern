@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ko-kr" xml:lang="ko-kr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Message Correlator for WebSphere MQ: 지속을 사용하는 요청-응답 패턴을 생성한 후 완료할 태스크"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Correlator for WebSphere MQ: 지속을 사용하는 요청-응답 패턴을 생성한 후 완료할 태스크</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.postreq">
+<h1 class="topictitle1"><span>Message Correlator for WebSphere MQ: 지속을 사용하는 요청-응답</span> 패턴을 생성한 후 완료할 태스크</h1>
+<div>
+<p class="shortdesc">해당 패턴을 생성한 후 완료해야 하는 태스크입니다.</p><ol>
+<li>브로커 아카이브(BAR) 파일을 작성하십시오. 메시지 플로우가 단일 브로커 아카이브 파일에 배치되어야 합니다.
+플로우에서 참조하는 메시지 세트도 배치되어야 합니다.
+</li>
+<li>브로커 아카이브 파일을 구성하십시오. <span>Message Correlator for WebSphere MQ: 지속을 사용하는 요청-응답</span> 패턴 인스턴스를 위한 메시지 플로우를 배치하기 전에 브로커 아카이브 파일에서 메시지 플로우를 추가 구성할 필요는 없지만, 몇 가지 기본 옵션을 검토하고 사용자 환경에 맞게 변경할 수 있습니다.
+</li>
+<li>큐를 작성하십시오. 패턴을 적용하면 큐 이름과 큐 관리자 이름을 포함한
+WebSphere MQ 큐 목록이 생성되며, WebSphere MQ 큐가 아직 없으면 WebSphere MQ 큐를
+작성해야 합니다. 패턴에 필요한 모든 메시지 설정은 메시지에 명시적으로
+설정되므로 큐 설정에 종속되지 않습니다.
+		<ol>
+		<li>요약 파일에서 작성해야 하는 큐 목록을 확인하십시오. 요약 파일은 <i>InstanceName</i> 패턴 인스턴스 프로젝트의
+패턴 구성 폴더에 있습니다.</li>
+		<li><span>WebSphere MQ</span> 자원을 작성하십시오. 명령행에서 <span class="cmdname">runmqsc</span>와 같은
+		 유틸리티와 프로그램을 사용하거나 <span>WebSphere MQ</span> 탐색기
+		그래픽 인터페이스를 사용하여 <span>WebSphere MQ</span> 자원을
+		작성할 수 있습니다.
+		<span>WebSphere MQ</span> 자원 작성에 대한 자세한 정보는
+				  <img src="../../../images/external_link.gif" alt="이 링크는 새 창에서 열립니다." class="external_link" />
+				<a href="http://www.ibm.com/software/integration/wmq/library/" target="_blank">WebSphere
+				MQ 라이브러리</a> 웹 페이지에 있는 <cite><span>WebSphere MQ</span> Intercommunication</cite>을 참조하십시오.
+</li>
+		<li>오류로 인해 메시지 플로우가 백아웃되는 경우 메시지를 보존하려면 입력 및 응답 큐에 백아웃 큐가 포함되도록 구성하십시오.</li>
+		</ol>
+</li>
+<li>오류를 모니터링하고 수정할 수 있는 방법을 구현하십시오.
+이를 위해서는 큐에서 오류 메시지를 모니터링하거나 이벤트 로그 및 백아웃 큐를 모니터링해야 할 수 있습니다.</li>  
+</ol>
+<a href="overview.htm#anchor1" title="이전">Message Correlator for WebSphere MQ: 지속을 사용하는 요청-응답 패턴 스펙으로 돌아가기</a>
+</div></body>
+</html>

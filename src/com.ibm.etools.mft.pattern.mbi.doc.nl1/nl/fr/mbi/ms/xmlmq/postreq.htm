@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="fr-fr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Tâches à exécuter après avoir généré le modèle d'utilitaire de Fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css" />
+<title>Tâches à exécuter après avoir généré le modèle d'utilitaire de Fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.postreq">
+<h1 class="topictitle1">Tâches à exécuter après avoir généré le modèle <span> d'utilitaire de Fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)</span></h1>
+<p class="shortdesc">Tâches que vous devez exécuter après avoir généré le modèle.</p>
+<ol>
+<li>Créez le fichier archive de courtier (BAR).
+Le flux de messages doit être ajouté à un fichier archive de courtier. 
+Les ensembles de messages référencés par le flux sont ajoutés automatiquement.
+<ol>
+
+<li>Cliquez sur <span class="uicontrol">Fichier &gt; Nouveau &gt; Fichier BAR</span>.</li>
+<li>Entrez le nom du projet de serveur ou sélectionnez-en un dans la liste affichée. 
+La liste est filtrée pour contenir uniquement les projets dans l'ensemble actif de projets. 
+</li>
+<li>Entrez le nom du fichier BAR à créer.</li>
+<li>Cliquez sur <span class="uicontrol">Terminer</span>.
+Un fichier portant l'extension <span class="filepath">.bar</span> est créé et s'affiche dans la vue Explorateur d'administration du courtier sous le dossier Archives de courtier. L'éditeur de contenu du fichier BAR s'affiche.</li>
+<li>Dans l'onglet Préparation, sélectionnez le fichier de flux de messages généré et ajoutez-le au fichier BAR.</li>
+<li>Sélectionnez <span class="uicontrol">Compiler et intégrer des ressources</span> et cliquez ensuite sur <span class="uicontrol">Générer et sauvegarder</span> pour créer le fichier BAR.</li>
+</ol></li>
+<li>Configurez le fichier archive du courtier.
+Il n'est pas nécessaire d'effectuer d'autres opérations de configuration au niveau du flux de messages dans le fichier archive de courtier avant de déployer les flux de messages de votre <span>Utilitaire de fractionnement de message WebSphere MQ</span>. Néanmoins, vous pouvez vérifier certaines options par défaut et configurer des modifications pour votre environnement.
+<p>Dans la page Gestion de l'éditeur d'archive de courtier :</p>
+<ol><li>Facultatif : utilisez la propriété
+	<span class="msobjprop">Consignation nécessaire</span> pour indiquer si la consignation est activée ou désactivée pour le flux de messages de l'utilitaire de fractionnement de message.
+</li>
+<li>Facultatif : utilisez la propriété <span class="msobjprop">Message d'erreur nécessaire</span> pour indiquer si des messages d'erreur sont générés pour le flux de messages de l'utilitaire de fractionnement de message.
+</li>
+<li>Facultatif : vous pouvez également modifier les propriétés configurables dans l'archive de courtier, telles que les propriétés de sécurité ou de création d'instances supplémentaires. Vous devez vérifier que les valeurs que vous changez n'affectent pas le comportement de l'instance de modèle.</li>
+</ol></li>
+<li>Créez les files d'attente. Lorsque vous appliquez le modèle, la liste des files d'attente WebSphere MQ est générée, avec les noms de file d'attente et de gestionnaire de file d'attente, que v vous devez créer s'ils n'existent pas. Tous les paramètres de message nécessaires au modèle sont définis explicitement dans les messages et ne dépendent pas des paramètres de file d'attente.
+<ol>
+<li>Dans le fichier récapitulatif, consultez la liste des files d'attente que vous devez créer. Ce fichier se trouve dans le dossier Configuration du modèle du projet d'instance de modèle <i>InstanceName</i>.</li>
+<li>Créez les ressources <span>WebSphere MQ</span>. Vous pouvez créer les ressources <span>WebSphere MQ</span> depuis la ligne de commande, en utilisant des programmes et des utilitaires, tels que <span class="cmdname">runmqsc</span>, ou en utilisant l'interface graphique <span>WebSphere MQ</span> Explorer.
+Pour plus d'informations sur la création des ressources <span>WebSphere MQ</span>, voir <cite><span>WebSphere MQ</span> Intercommunication</cite>, sur la page Web <img src="../../../images/external_link.gif" alt="Ce lien s'ouvre dans une nouvelle fenêtre" class="external_link" />
+<a href="http://www.ibm.com/software/integration/wmq/library/" target="_blank">Bibliothèque WebSphere MQ</a>.</li>
+<li>Si vous utilisez la valeur <span class="msobjpropval">Rechercher les routes</span> dans le paramètre <span class="msobjprop">Routage</span>, vous pouvez définir les routes dynamiquement dans la base de données, mais ces dernières ne figurent pas dans le fichier récapitulatif. Lorsque vous ajoutez des routes à la base de données, vous devez créer les files d'attente correspondantes.</li>
+</ol></li>
+<li>Configurez une base de données de routage, si nécessaire.
+Si la valeur <span class="msobjpropval">Rechercher les routes</span> est sélectionnée dans le paramètre <span class="msobjprop">Routage</span>, vous devez configurer la source de données avec une ROUTING_TABLE. Cette table doit contenir les colonnes suivantes :
+<ul>
+<li>ROUTING_CONTEXT
+<p>Utilisez une valeur qui identifie les entrées de routage du flux.</p>
+</li>
+<li>VARIABLE1
+<p>Valeur à laquelle la propriété <span class="msobjprop">KEY1</span> de l'élément de message doit correspondre.</p>
+</li>
+<li>VARIABLE2
+<p>Valeur à laquelle la propriété <span class="msobjprop">KEY2</span> de l'élément de message doit correspondre.</p>
+</li>
+<li>QUEUE_MANAGER
+<p>Gestionnaire de files d'attente de destination.</p>
+</li>
+<li>QUEUE
+<p>File d'attente de destination.</p>
+</li>
+</ul>
+</li>
+</ol>
+<div>
+</div>
+<a href="overview.htm#anchor1" title="Retour">Spécification du modèle d'Utilitaire de fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)</a>
+</body>
+</html>

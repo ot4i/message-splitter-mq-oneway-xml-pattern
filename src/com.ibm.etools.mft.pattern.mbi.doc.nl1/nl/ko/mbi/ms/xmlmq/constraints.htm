@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ko-kr" xml:lang="ko-kr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Message Splitter for WebSphere MQ: 단방향(XML용) 패턴을 사용하기 전에 알아야 하는 내용과 필요한 자원 세부사항"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Splitter for WebSphere MQ: 단방향(XML용) 패턴의 사용 제한조건</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.constraints">
+<h1 class="topictitle1"><span>Message Splitter for WebSphere MQ: 단방향(XML용)</span> 패턴의 사용 제한조건</h1>
+<p class="shortdesc">이 패턴을 사용할 때는 많은 제한조건이 존재합니다. </p>
+<p>다음과 같은 제한조건을 모두 충족하는 경우에만 <span>Message Splitter for WebSphere MQ: 단방향(XML용)</span> 패턴을
+사용할 수 있습니다.</p>
+<ul>
+<li>요청자 및 제공자 애플리케이션이 WebSphere MQ를 전송 메커니즘으로 사용합니다.</li>
+<li>수신되는 메시지가 구분 분석되며 유효성 검증이 불필요한 올바른 형식의 XML이어야 합니다.</li>
+<li>메시지가 예상 구조를 준수합니다. 각 입력 메시지는 다음을 포함합니다.
+	<ul>
+	<li>패턴 매개변수에 의해 선택적으로 식별되는 이름의 동봉 인벨로프</li>
+	<li>패턴 매개변수에 의해 선택적으로 식별되는 이름의 일련의 반복되는 구조</li>
+	</ul></li>
+	
+<li>수신되는 메시지는 다음 방법 중 하나를 통해 자동으로 처리됩니다.
+	<ul>
+	<li>모든 요소는 출력 또는 잘못된 메시지 큐에 기록됩니다.</li>
+	<li>요소가 기록되지 않으며 메시지가 롤백됩니다.</li>
+	</ul>
+</li>
+</ul>
+<p>이 패턴은 손실되지 않아야 하는 정보 분배를 위한 것으로 가정합니다.
+따라서 메시지 플로우가 트랜잭션으로 실행되고 지속 메시지를 사용합니다.
+ 이 작업은 성능에 상당한 영향을 줄 수 있지만 데이터 손실 방지가 요구사항이므로 필요합니다.</p>
+<p>반복되는 요소의 수가 출력 큐에 허용되는 커미트되지 않은 메시지의
+최대 수보다 작다고 가정합니다. 많은 반복이 예상되는 경우 이 한계를 조정해야 할 수 있습니다.</p>
+
+<a href="overview.htm#anchor1" title="이전">Message Splitter for WebSphere MQ: 단방향(XML용) 패턴 스펙으로 돌아가기</a>
+</body>
+</html>

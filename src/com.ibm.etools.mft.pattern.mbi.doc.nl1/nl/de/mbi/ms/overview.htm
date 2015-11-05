@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de-de" xml:lang="de-de">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="copyright" content="Copyright IBM Corporation 2008" />
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008" />
+<meta name="abstract" content="Verwenden Sie das Muster 'Message Splitter' (Nachrichtenverteiler) für die Annahme von Anforderungen von vielen Clientanwendungen in einer einzelnen Warteschlange und für die Rückgabe von Antworten an den richtigen Client."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../css/ibmdita.css" />
+<link rel="stylesheet" type="text/css" href="../../css/bip4.css" />
+<title>Muster 'Message Splitter' (Nachrichtenverteiler)</title>
+<script language="JavaScript" src="../../help/LiveHelp.js"> </script></head>
+<body id="mbi.mrrc.overview">
+<h1 class="topictitle1">Muster 'Message Splitter' (Nachrichtenverteiler)</h1>
+<div><p class="shortdesc">Verwenden Sie das Muster 'Message Splitter' (Nachrichtenverteiler) für die Aufteilung einer großen XML-Nachricht in kleinere Elemente zur Verarbeitung durch ein oder mehrere Ziele. </p>
+<div class="image"><img src="splitter.gif" alt="Diagramm, in dem das Verhalten des Musters dargestellt wird." align="middle"/></div></div>
+<div class="section"><h2 class="sectiontitle">Kontext</h2><p></p>
+<p class="MsoNormal">Sie möchten Informationen, die in einer Anwendung in einer gewissen Zeit aufgelaufen sind, mit anderen Anwendungen gemeinsam nutzen. 
+Typische Beispiele sind Umsatzdaten, die innerhalb eines Tages aufgelaufen sind, oder Informationsaktualisierungen, die von Partnern empfangen werden. Die Daten werden innerhalb eines bestimmten Zeitraums gesammelt und in einer einzigen großen Nachricht übertragen. Für die Tagesendverarbeitung der Zielanwendung oder der Zielanwendungen ist es erforderlich, dass jedes Element einzeln verarbeitet wird.</p>
+<p class="MsoNormal">Eine Anwendung kann auch eine Nachricht generieren, die eine Reihe von
+Datensätzen enthält, die verteilt werden müssen, z. B. wenn eine Anwendung Referenzdaten verwaltet
+und verteilt.<span 	style="mso-spacerun:yes"></span></p>
+</div>
+<div class="section"><h2 class="sectiontitle">Problem</h2>
+<p>Umfangreiche Nachrichten, die sich wiederholende und verarbeitende Strukturen enthalten, können
+einen übermäßigem Speicherbedarf verursachen, was möglicherweise Auswirkungen auf andere
+Nachrichtenprozesse hat und zu einem Brokerausfall führen kann. 
+Dieses Muster sorgt dafür, dass die
+Elemente einer großen Nachricht gemäß definierter Routing-Regeln an verschiedene Ziele
+weitergeleitet werden.</p>
+<div class="section"><h2 class="sectiontitle">Auswahlanleitung</h2>
+<p>Verwenden Sie dieses Muster für Anwendungen, die Informationen zu einer Reihe von Geschäftstransaktionen speichern und diese Informationen an eine oder mehrere Zielanwendungen in Batches übergeben.
+Es kann für die Verarbeitung großer Nachrichten ohne übermäßigen Speicherbedarf verwendet werden.</p>
+<p>Dieses Muster kann verwendet werden, wenn die Quellenanwendung oder die Zielanwendungen echtzeitnahe Serviceaufrufe nicht ausführen oder verarbeiten können oder wenn die Verarbeitung von Informationen im Stapelbetrieb aus geschäftlichen Gründen erforderlich ist.
+</p>
+</div>
+<div class="section"><h2 class="sectiontitle">Lösung</h2></div>
+<p> Die Lösung besteht in der Implementierung eines Nachrichtenflusses, der eine veränderliche
+Nachrichtenbaumstruktur verwendet, sodass wiederholt anwendbare Elemente gelöscht werden können,
+wenn sie verarbeitet werden. Mithilfe des partiellen Parsings können einzelne Elemente bei Bedarf syntaktisch analysiert werden und da diese Elemente nach Abschluss gelöscht werden, wird verhindert, dass die speicherinterne Baumstruktur linear mit der Anzahl der Elemente anwächst.
+Wenn die einzelnen Elemente extrahiert werden, werden sie an die entsprechende Zielanwendung weitergeleitet.
+</p>
+<p>Die Eingabenachricht und alle Ausgabenachrichten werden in einer einzigen Transaktion
+verarbeitet. Alle Ausgabenachrichten sind persistent. Wenn die XML-Eingabenachricht nicht gelesen
+werden kann, schlägt die gesamte Transaktion fehl, aber wenn Fehler bei der Verarbeitung eines
+einzelnen Elements auftreten, kann das fehlgeschlagene Element zur späteren Verarbeitung zu einer
+Warteschlange hinzugefügt werden oder die gesamte Transaktion schlägt fehl.
+</p>
+</div></body>
+</html>

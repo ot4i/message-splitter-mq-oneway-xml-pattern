@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<povs xmlns:patterns="http://www.ibm.com/patterns">
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.instanceName" name="instanceName"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.inputInformation" name="readRequestQueue"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.inputInformation" name="validationofRequest">
+        <master>
+            <slave handler="com.ibm.etools.patterns.dependency.Enable" id="inputDataType">
+                <argument type="master">None</argument>
+                <argument type="slave">false</argument>
+            </slave>
+            <slave handler="com.ibm.etools.patterns.dependency.Enable" id="inputMessageSet">
+                <argument type="master">None</argument>
+                <argument type="slave">false</argument>
+            </slave>
+        </master>
+    </simplePov>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.inputInformation" name="inputDataType">
+        <master>
+            <slave id="inputMessageSet" handler="com.ibm.etools.patterns.dependency.Select"/>
+            <slave id="inputMessageType" handler="com.ibm.etools.patterns.dependency.Select"/>
+            <slave id="inputMessageFormat" handler="com.ibm.etools.patterns.dependency.Select"/>
+
+        </master>
+    </simplePov>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.inputInformation" name="inputMessageSet" 
+    	povEditorId="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetName">
+        <master>
+            <slave id="inputMessageType" handler="com.ibm.etools.patterns.dependency.Select"/>
+            <slave id="inputMessageFormat" handler="com.ibm.etools.patterns.dependency.Select"/>
+        </master>
+    </simplePov>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.inputInformation" name="inputMessageType" 
+    	povEditorId="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetType"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.inputInformation" name="inputMessageFormat" 
+   		povEditorId="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetFormat"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.providerInformation" name="providerRequestQueueManager"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.providerInformation" name="providerRequestQueue"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.providerInformation" name="maximumResponseTime"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.providerInformation" name="storeQueue"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.responseInformation" name="responseQueue"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.responseInformation" name="validationofResponse">
+        <master>
+            <slave handler="com.ibm.etools.patterns.dependency.Enable" id="responseDataType">
+                <argument type="master">None</argument>
+                <argument type="slave">false</argument>
+            </slave>
+            <slave handler="com.ibm.etools.patterns.dependency.Enable" id="responseMessageSet">
+                <argument type="master">None</argument>
+                <argument type="slave">false</argument>
+            </slave>
+        </master>
+    </simplePov>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.responseInformation" name="responseDataType">
+        <master>
+            <slave id="responseMessageSet" handler="com.ibm.etools.patterns.dependency.Select"/>
+            <slave id="responseMessageType" handler="com.ibm.etools.patterns.dependency.Select"/>
+            <slave id="responseMessageFormat" handler="com.ibm.etools.patterns.dependency.Select"/>
+        </master>
+  	</simplePov>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.responseInformation" name="responseMessageSet" 
+    	povEditorId="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetName">
+        <master>
+            <slave id="responseMessageType" handler="com.ibm.etools.patterns.dependency.Select"/>
+            <slave id="responseMessageFormat" handler="com.ibm.etools.patterns.dependency.Select"/>
+        </master>
+    </simplePov>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.responseInformation" name="responseMessageType" 
+    	povEditorId="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetType"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.responseInformation" name="responseMessageFormat" 
+    	povEditorId="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetFormat"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.log" name="loggingRequired">
+        <master>
+            <slave handler="com.ibm.etools.patterns.dependency.Enable" id="logQueueManager">
+                <argument type="master">true</argument>
+                <argument type="slave">true</argument>
+            </slave>
+            <slave handler="com.ibm.etools.patterns.dependency.Enable" id="logQueue">
+                <argument type="master">true</argument>
+                <argument type="slave">true</argument>
+            </slave>
+        </master>
+    </simplePov>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.log" name="logQueueManager"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.log" name="logQueue"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.errorHandling" name="errorMessageRequired">
+        <master>
+            <slave handler="com.ibm.etools.patterns.dependency.Enable" id="errorQueueManager">
+                <argument type="master">true</argument>
+                <argument type="slave">true</argument>
+            </slave>
+            <slave handler="com.ibm.etools.patterns.dependency.Enable" id="errorQueue">
+                <argument type="master">true</argument>
+                <argument type="slave">true</argument>
+            </slave>
+        </master>
+    </simplePov>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.errorHandling" name="errorQueueManager"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.errorHandling" name="errorQueue"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.general" name="brokerSchema"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.general" name="flowPrefix"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.general" name="flowSuffix"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.general" name="queuePrefix"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.general" name="queueSuffix"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.general" name="shortDescription"/>
+    <simplePov groupId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.general" name="longDescription"/>
+    <Group description="description" expand="false" id="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.instanceName" name="instanceName" visible="false"/>
+    <Group description="description" expand="false" id="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.inputInformation" name="inputInformation" visible="true"/>
+    <Group description="description" expand="false" id="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.providerInformation" name="providerInformation" visible="true"/>
+    <Group description="description" expand="false" id="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.responseInformation" name="responseInformation" visible="true"/>
+    <Group description="description" expand="false" id="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.log" name="log" visible="true"/>
+    <Group description="description" expand="false" id="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.errorHandling" name="errorHandling" visible="true"/>
+    <Group description="description" expand="false" id="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.general" name="general" visible="true"/>
+	<ReferencedProject name="_Flows"/>
+</povs>

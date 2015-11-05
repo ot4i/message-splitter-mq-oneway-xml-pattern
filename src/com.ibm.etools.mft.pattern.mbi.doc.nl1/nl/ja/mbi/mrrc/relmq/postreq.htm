@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja-jp" xml:lang="ja-jp">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="「WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答」パターンを生成した後に完了するタスク"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>「WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答」パターンを生成した後に完了するタスク</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.postreq">
+<h1 class="topictitle1">「<span>WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答</span>」パターンを生成した後に完了するタスク</h1>
+<div>
+<p class="shortdesc">パターンを生成した後に完了する必要があるタスクです。</p><ol>
+<li>ブローカー・アーカイブ (BAR) ファイルを作成します。生成されたメッセージ・フローを BAR ファイルに追加します。BAR ファイルを作成する前に、「ブローカー・アーカイブ」エディターで、<span class="uicontrol">「リソースのコンパイルおよびインライン化」</span>オプションを選択しなければなりません。フローによって参照されるメッセージ・セットも追加しなければなりません。</li>
+<li>ブローカー・アーカイブ・ファイルを構成します。「<span>WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答</span>」パターン・インスタンス用のメッセージ・フローをデプロイする前は、ブローカー・アーカイブ・ファイル内のメッセージ・フローをこれ以上構成する必要はありませんが、いくつかのデフォルト・オプションを検討して、環境に応じて構成を変更することもできます。
+</li>
+<li>キューを作成します。
+パターンを適用するとき、キュー名とキュー・マネージャー名を使用して WebSphere MQ キューのリストが生成されます。
+これらがまだ存在しない場合は作成する必要があります。
+パターンで必要とされるすべてのメッセージ設定はメッセージで明示的に設定されます (キューの設定には依存しません)。
+		<ol>
+		<li>要約ファイルで、作成が必要なキューのリストを表示します。要約ファイルは、<i>InstanceName</i> パターン・インスタンス・プロジェクトのパターン構成フォルダーに配置されています。</li>
+		<li><span>WebSphere MQ</span> リソースを作成します。<span>WebSphere MQ</span> リソースは、<span class="cmdname">runmqsc</span> などのプログラムおよびユーティリティーを使用してコマンド行で作成したり、あるいは <span>WebSphere MQ</span> Explorer グラフィカル・インターフェースを使用して作成したりできます。
+<span>WebSphere MQ</span> リソースの作成に関する詳細は、<img src="../../../images/external_link.gif" alt="このリンクをクリックすると新しいウィンドウが開きます" class="external_link" /> <a href="http://www.ibm.com/software/integration/wmq/library/" target="_blank">WebSphere MQ ライブラリー</a> Web ページで「<cite><span>WebSphere MQ</span> Intercommunication</cite>」を参照してください。
+</li>
+		<li>入力キューおよび応答キューにバックアウト・キューが含まれるように構成します。こうして、エラーが原因でメッセージ・フローがバックアウトされる際にメッセージが保持されるようにします。</li>
+		</ol>
+</li>
+<li>エラーをモニターおよび修正するための手法を実装します。その際は、エラー・メッセージ用のキューのモニター、あるいはイベント・ログおよびバックアウト・キューのモニターが必要でしょう。</li>  
+</ol>
+<a href="overview.htm#anchor1" title="戻る">「WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答」パターンの仕様に戻る</a>
+</div></body>
+</html>

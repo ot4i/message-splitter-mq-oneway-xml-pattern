@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="de-de" xml:lang="de-de">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Details zum notwendigen Know-how und den erforderlichen Ressourcen für die Verwendung des Musters 'Message Correlator for WebSphere MQ: request-response with persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort mit Persistenz)."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Tasks, die vor der Anwendung des Musters 'Message Correlator for WebSphere MQ: request-response with persistence' Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort mit Persistenz) ausgeführt werden müssen</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.prereq">
+<h1 class="topictitle1">Tasks, die vor der Anwendung des Musters <span>Message Correlator for WebSphere MQ: request-response with persistence</span> Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort mit Persistenz) ausgeführt werden müssen</h1>
+<div><div class="section">
+<p class="shortdesc">Bevor Sie das Muster für die Erstellung einer Musterinstanz anwenden, müssen Sie bestimmen, welche der folgenden Tasks erforderlich sind. Führen Sie folgende Tasks aus, falls erforderlich:</p>
+</div>
+<ul><li>Wählen Sie einen eindeutigen Namen für die Musterinstanz aus.
+Sie können das Muster mehrmals verwenden und verschiedene Instanzen davon erstellen, die sich durch ihre eindeutigen Namen unterscheiden. Legen Sie einen aussagekräftigen eindeutigen Namen fest, der auf den Zweck der Musterinstanz hinweist.</li>
+<li>Wählen Sie die Warteschlangenmanager und Warteschlangen von <span>WebSphere MQ</span> aus, die die Musterinstanz zum Beispiel für den Zugriff auf die Provideranwendung verwenden soll. Wenn Sie vorhandene Warteschlangen verwenden, müssen diese erfasst werden. 
+Wenn Sie neue WS-Manager und Warteschlangen erstellen möchten, müssen Sie für diese Ressourcen Namen festlegen.</li>
+<li>Ermitteln Sie alle weiteren für dieses Muster erforderlichen Warteschlangenmanager und Warteschlangen und überlegen Sie sich geeignete eindeutige Namen. Berücksichtigen Sie alle Richtlinien, Standards oder Namenskonventionen, die beachtet werden müssen.</li>
+<li>Entscheiden Sie, ob eine Auswertung der eingehenden Anforderungsnachrichten oder der Providerantwortnachrichten erforderlich ist. 
+Wenn Ihre Requester- und Provideranwendungen korrekte Nachrichten generieren, ist die Auswertung möglicherweise nicht erforderlich. 
+Wenn Sie Ihre Nachrichten auswerten möchten, müssen Sie zur Bereitstellung der Nachrichtendefinitionen bereits über einen Nachrichtensatz verfügen oder Sie müssen einen Nachrichtensatz erstellen.</li>
+<li>Entscheiden Sie, ob die Protokollierung von Anforderungsnachrichten und/oder Antwortnachrichten erforderlich ist. 
+Falls ja, bestimmen Sie den Warteschlangenmanager und die Warteschlange für die Protokollnachrichten.
+Die Protokollnachrichten können an eine allgemeine Protokollwarteschlange gesendet werden, die von mehreren Nachrichtenflüssen verwendet wird, oder an eine speziell für die Musterinstanz eingerichtete Warteschlange.</li>
+<li>Entscheiden Sie, ob Sie Fehlernachrichten für die Musterinstanz erstellen möchten.  
+Wenn diese Musterinstanz Aktualisierungen ausführt, verwenden Sie die Fehlerbehandlung, damit gewährleistet ist, dass keine Daten verloren gehen. 
+Sie können Fehlernachrichten an eine allgemeine Fehlerwarteschlange senden, die von mehreren Nachrichtenflüssen verwendet wird, oder Sie können eine spezielle Warteschlange für die Musterinstanz verwenden. Wenn Sie Fehlernachrichten in der Musterinstanz senden möchten, können Sie diese Funktion aktivieren oder inaktivieren, indem Sie die Brokerarchivdatei (BAR-Datei) vor der Implementierung konfigurieren.</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="Zurück">Zurück zur Spezifikation des Musters 'Message Correlator for WebSphere MQ: request-response with persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort mit Persistenz)</a>
+</body>
+</html>

@@ -1,0 +1,873 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-tw" xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-tw">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="copyright" content="Copyright IBM Corporation 2009"/>
+	<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2009"/>
+	<meta name="security" content="public"/>
+	<meta name="Robots" content="index,follow"/>
+	<meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+	<meta name="DC.Type" content="reference"/>
+	<meta name="DC.Title" content="Message Correlator for WebSphere MQ: request-response without persistence 型樣的型樣參數"/>
+	<meta name="abstract" content="包含 Message Correlator for WebSphere MQ: request-response without persistence 型樣的型樣參數詳細資料的表格"/>
+	<meta name="description" content="包含 Message Correlator for WebSphere MQ: request-response without persistence 型樣的型樣參數詳細資料的表格"/>
+	<meta name="DC.Format" content="XHTML"/>
+	<meta name="DC.Language" content="zh-tw"/>
+	<!-- Licensed Materials Property of IBM -->
+	<!-- US Government Users Restricted Rights -->
+	<!-- Use, duplication or disclosure restricted by -->
+	<!-- GSA ADP Schedule Contract with IBM Corp. -->	
+	<link rel="stylesheet" type="text/css" href="../../../css/style2.css" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+	<title>Message Correlator for WebSphere MQ: request-response without persistence 型樣的型樣參數</title>	
+	<script language="JavaScript" src="../../../help/LiveHelp.js"></script>
+	 <!-- START NON-TRANSLATABLE -->
+	<script language="JavaScript">
+	<!--
+
+	function getParameter(location, name) {
+		name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+		var search = "[\\?&]" + name + "=([^&#]*)";
+		var regex = new RegExp(search);
+		var results = regex.exec(location);
+		return (results == null ? true : (results[1] == "false" ? false : true));
+	}
+	
+	function addStyleSheet() {
+		if (getParameter(window.location.href, "everything") == false) {
+			var headId = document.getElementsByTagName("head")[0];         
+			var cssNode = document.createElement("link");
+			cssNode.type = "text/css";
+			cssNode.rel = "stylesheet";
+			cssNode.href = "../../../css/patterns.css";
+			cssNode.media = "screen";
+			headId.appendChild(cssNode);
+		}
+	}
+		
+	addStyleSheet(); // Depends on the query string!
+	
+	function getElementsByStyleClass (className) {
+  		var all = document.all ? document.all :
+    	document.getElementsByTagName('*');
+  		var elements = new Array();
+  		
+  		for (var e = 0; e < all.length; e++) {
+    		if (all[e].className == className) {
+      			elements[elements.length] = all[e];
+      		}
+      	}
+ 		return elements;
+	}
+	
+	function collapseAll() {
+		var elements = getElementsByStyleClass('twisty');
+		for (var e = 0; e < elements.length; e++) {
+			changeTwisty(elements[e], 'TWISTIE.COLLAPSEALL');
+		}
+	}
+	
+	function expandAll() {
+		var elements = getElementsByStyleClass('twisty');
+		for (var e = 0; e < elements.length; e++) {
+			changeTwisty(elements[e], 'TWISTIE.EXPANDALL');
+		}
+	}
+	
+	function toggleTwisty(group) {
+		changeTwisty(group, 'TWISTIE.TOGGLE');
+		if (typeof kc === "object" && typeof kc.resize === "function") kc.resize();
+	}
+
+	function changeTwisty(group, mode) {		
+		whichGroupId = group.parentNode.id;
+
+		whichGroupContainerId = whichGroupId + "Container";
+		whichGroupTwistyId = whichGroupId + "Twisty";
+		whichGroupTwistyImageId = whichGroupId + "Arrow";
+		groupContainerObj = document.getElementById(whichGroupContainerId);
+		twistyArrowContainerObj = document.getElementById(whichGroupTwistyId);
+		twistyArrowImageObj = document.getElementById(whichGroupTwistyImageId);
+		group.parentNode.style.height = "auto";
+
+		var toShow = false;
+		
+		if (mode == 'TWISTIE.TOGGLE') {
+			if (groupContainerObj.style.display == "none" || groupContainerObj.style.display == "") {
+				toShow = true;
+			} else {
+				toShow = false;
+			}
+		} else if (mode == 'TWISTIE.EXPANDALL') {
+			toShow = true;
+		}
+		
+		if (toShow) {
+			groupContainerObj.style.visibility = "visible";
+			groupContainerObj.style.display = "block";
+			twistyArrowImageObj.src = '../../../images/twisty-open.png'
+			group.parentNode.style.height = (groupContainerObj.offsetHeight + 30) +'px'; 
+	
+		} else {
+			groupContainerObj.style.visibility = "hidden";
+			groupContainerObj.style.display = "none";
+			twistyArrowImageObj.src = '../../../images/twisty-closed.png'
+		}
+	
+	}
+	//-->
+	</script>
+	
+ <!-- END NON-TRANSLATABLE -->
+</head>
+<body id="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.parametertable">
+	<!-- Page main title -->
+  	<div id="title" class="invisible">
+		<h1 class="patterns-title"><span>Message Correlator for WebSphere MQ: request-response without persistence</span> 型樣的參數</h1>
+  	</div>		
+			<div class="box first">
+				<div class="TitleBox"><!-- --></div>
+				<div class="FooterBox"><!-- --></div>
+				<div class="TL"><!-- --></div>
+				<div class="TR"><!-- --></div>
+				<div class="BL"><!-- --></div>
+				<div class="BR"><!-- --></div>
+				<div class="ContentBox">
+					<div class="border">
+						<div class="groupBox" id="inputInformation">
+							<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="inputInformationTwisty">
+								<img src="../../../images/twisty-closed.png"
+									name="b" id="inputInformationArrow" alt=""></img>
+							</div>
+							<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">輸入資訊
+</div>							
+							<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="inputInformationContainer">
+									<div class="tablenoborder">
+										<table summary="" width="100%" border="1" cellpadding="4" cellspacing="0" frame="border" rules="all">
+											<thead align="left">
+												<tr>
+													  <th class="firstcol" align="left" valign="top" width="*">型樣參數</th>
+													  <th class="invisible" valign="top" width="*">M</th>
+													  <th class="invisible" valign="top" width="*">C</th>
+													  <th class="invisible" valign="top" width="*">預設值</th>
+													  <th valign="top" width="*">說明</th>
+												</tr>
+											</thead>
+											<tbody>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																輸入佇列</th>
+															<td valign="top" width="*" class="invisible">
+																		是</td>
+															<td valign="top" width="*" class="invisible">
+																		是</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">IN</span></td>
+															<td valign="top" width="*">此型樣參數識別在其上接收用戶端要求的分配管理系統佇列。															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																輸入訊息的驗證</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		是</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">無</span></td>
+															<td valign="top" width="*">此型樣參數識別輸入訊息所需的驗證層次。
+									有效值為：<ul>
+											<li>
+												<span class="msobjpropval">無</span></li>
+											<li>
+												<span class="msobjpropval">內容</span></li>
+											<li>
+												<span class="msobjpropval">內容和值</span></li>
+										</ul>
+										如果驗證設為<span class="msobjpropval">無</span>，則會將訊息視為不透明 BLOB。
+										<p>如果驗證指定為<span class="msobjpropval">內容</span>或<span class="msobjpropval">內容和值</span>，則需要進一步輸入資訊，用來配置	MQInput 節點。</p>
+										<p> 此內容可以在 BAR 檔案中進行配置。										您可以配置此內容來關閉驗證功能。</p>
+										<p>除非已定義要求訊息參數，否則您不得使用此內容來開啟驗證功能。</p></td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																輸入資料類型</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="2*" class="invisible">
+																<span class="msobjpropval">XML</span></td>
+															<td valign="top" width="*">
+																
+										只有在<span class="msobjprop">輸入訊息的驗證</span>值是<span class="msobjpropval">內容</span>或<span class="msobjpropval">內容和值</span>時，才需要此型樣參數。
+										有效值為：<ul>
+											<li><span class="msobjpropval">XML</span></li>
+											<li><span class="msobjpropval">二進位資料</span>（例如，C 或 COBOL 結構）</li>
+											<li><span class="msobjpropval">文字資料</span>（例如，CSV、SWIFT 或 HL7）</li>
+											</ul></td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																輸入訊息集</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="2*" class="invisible">
+																		&nbsp;
+															</td>
+															<td valign="top" width="*">只有在<span class="msobjprop">輸入訊息的驗證</span>值是<span class="msobjpropval">內容</span>或<span class="msobjpropval">內容和值</span>時，才需要此型樣參數。
+															
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																輸入訊息類型</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="2*" class="invisible">
+																		&nbsp;
+															</td>
+															<td valign="top" width="*">只有在<span class="msobjprop">輸入訊息的驗證</span>值是<span class="msobjpropval">內容</span>或<span class="msobjpropval">內容和值</span>且<span class="msobjprop">要求資料類型</span>值是<span class="msobjpropval">二進位資料</span>或<span class="msobjpropval">文字資料</span>時，才需要此型樣參數。															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																輸入訊息格式</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="2*" class="invisible">
+																		&nbsp;
+															</td>
+															<td valign="top" width="*">只有在<span class="msobjprop">輸入訊息的驗證</span>值是<span class="msobjpropval">內容</span>或<span class="msobjpropval">內容和值</span>且<span class="msobjprop">輸入資料類型</span>值是<span class="msobjpropval">二進位資料</span>或<span class="msobjpropval">文字資料</span>時，才需要此型樣參數。																									</td>
+														</tr>
+											</tbody>
+										</table>
+								  	</div>
+								
+						  	</div>
+				  		</div>
+			  		</div>
+				</div>
+			</div>
+			<div class="box first">
+				<div class="TitleBox"><!-- --></div>
+				<div class="FooterBox"><!-- --></div>
+				<div class="TL"><!-- --></div>
+				<div class="TR"><!-- --></div>
+				<div class="BL"><!-- --></div>
+				<div class="BR"><!-- --></div>
+				<div class="ContentBox">
+					<div class="border">
+						<div class="groupBox" id="providerInformation">
+							<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="providerInformationTwisty">
+								<img src="../../../images/twisty-closed.png"
+									name="b" id="providerInformationArrow" alt=""></img>
+							</div>
+							<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">提供者資訊</div>
+							<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="providerInformationContainer">
+									<div class="tablenoborder">
+										<table summary="" width="100%" border="1" cellpadding="4" cellspacing="0" frame="border" rules="all">
+											<thead align="left">
+												<tr>
+													  <th class="firstcol" align="left" valign="top" width="*">型樣參數</th>
+													  <th class="invisible" valign="top" width="*">M</th>
+													  <th class="invisible" valign="top" width="*">C</th>
+													  <th class="invisible" valign="top" width="*">預設值</th>
+													  <th valign="top" width="*">說明</th>
+												</tr>
+											</thead>
+											<tbody>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																提供者要求佇列管理程式</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		是</td>
+															<td valign="top" width="2*" class="invisible">
+																				
+															</td>
+															<td valign="top" width="*">
+																
+    												<p>此參數定義要傳送提供者的所有要求的目標佇列管理程式。</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																提供者要求佇列</th>
+															<td valign="top" width="*" class="invisible">
+																		是</td>
+															<td valign="top" width="*" class="invisible">
+																		是</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">PROVIDER</span></td>
+															<td valign="top" width="*">
+																
+   												 <p>此參數定義要傳送提供者的要求訊息的目標佇列。</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																回應時間上限（以十分之一秒為單位）</th>
+															<td valign="top" width="*" class="invisible">
+																		是</td>
+															<td valign="top" width="*" class="invisible">
+																		是</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">不逾時</span></td>
+															<td valign="top" width="*">
+																
+    												<p>此型樣參數定義等待回應的時間上限。</p>
+									<p>
+									預設值是<span class="msobjpropval">不逾時</span>；不過，您可以輸入正整數作為相同欄位中逾時期間的值。逾時期間的測量單位是十分之一秒，而且保留所儲存 MQMD 標頭的訊息會與此期限時間一起儲存。
+									</p>
+									<p>
+									如果值是<span class="msobjpropval">不逾時</span>，則傳回給分配管理系統的回應一律會傳回給用戶端。
+									</p>
+									<p>
+									此型樣參數針對保留在佇列中的訊息提供自動內部管理功能，但會避免回應在過了該時段之後與用戶端相符。
+									</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																儲存佇列</th>
+															<td valign="top" width="*" class="invisible">
+																		是</td>
+															<td valign="top" width="*" class="invisible">
+																		是</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">STORE</span></td>
+															<td valign="top" width="*">
+																
+    							<p>此型樣參數定義在等待提供者回應時用來儲存 MQMD 標頭的佇列。</p>
+								<p>這是分配管理系統的本端佇列。</p>
+		                        
+															</td>
+														</tr>
+											</tbody>
+										</table>
+								  	</div>
+								
+						  	</div>
+				  		</div>
+			  		</div>
+				</div>
+			</div>
+			<div class="box first">
+				<div class="TitleBox"><!-- --></div>
+				<div class="FooterBox"><!-- --></div>
+				<div class="TL"><!-- --></div>
+				<div class="TR"><!-- --></div>
+				<div class="BL"><!-- --></div>
+				<div class="BR"><!-- --></div>
+				<div class="ContentBox">
+					<div class="border">
+						<div class="groupBox" id="responseInformation">
+							<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="responseInformationTwisty">
+								<img src="../../../images/twisty-closed.png"
+									name="b" id="responseInformationArrow" alt=""></img>
+							</div>
+							<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">回應資訊</div>
+								<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="responseInformationContainer">
+									<div class="tablenoborder">
+										<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+											<thead align="left">
+												<tr>
+													  <th class="firstcol" align="left" valign="top" width="*">型樣參數</th>
+													  <th class="invisible" valign="top" width="*">M</th>
+													  <th class="invisible" valign="top" width="*">C</th>
+													  <th class="invisible" valign="top" width="*">預設值</th>
+													  <th valign="top" width="2*">說明</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<th align="left" valign="top" width="*" class="firstcol">回應佇列</th>
+													<td valign="top" class="invisible">是</td>
+													<td valign="top" width="*" class="invisible">是</td>
+													<td valign="top" width="*" class="invisible">
+														<span class="msobjpropval">RESPONSE</span></td>
+													<td valign="top" width="*">此型樣參數識別在其上接收提供者回應的分配管理系統佇列。</td>
+												</tr>
+												<tr>
+													<th align="left" valign="top" width="*" class="firstcol">回應訊息的驗證
+</th>
+															<td valign="top" width="*" class="invisible">否</td>
+															<td valign="top" width="*" class="invisible">是</td>
+															<td valign="top" width="*" class="invisible">
+																				<span class="msobjpropval">無</span></td>
+															<td valign="top" width="*">此型樣參數識別回應訊息所需的驗證層次。															有效值為：<ul>
+																	<li><span class="msobjpropval">無</span></li>
+																	<li><span class="msobjpropval">內容</span></li>
+																	<li><span class="msobjpropval">內容和值</span></li>
+																</ul>
+									
+															<p>此內容可以在 BAR 檔案中進行配置。															您可以配置此內容來關閉驗證功能。</p>
+															<p>除非已定義回應訊息參數，否則您不得使用此內容來開啟驗證功能。</p></td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																回應資料類型</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">XML</span></td>
+															<td valign="top" width="*">
+																
+										<p>只有在<span class="msobjprop">回應的驗證</span>值是<span class="msobjpropval">內容</span>或<span class="msobjpropval">內容和值</span>時，才需要此型樣參數。
+										</p>
+										有效值為：<ul>
+											<li><span class="msobjpropval">XML</span></li>
+											<li><span class="msobjpropval">二進位資料</span>（例如，C 或 COBOL 結構）</li>
+											<li><span class="msobjpropval">文字資料</span>（例如，CSV、SWIFT 或 HL7）</li>
+										</ul>
+										
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																回應訊息集</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="2*" class="invisible">
+																		&nbsp;
+															</td>
+															<td valign="top" width="*">只有在<span class="msobjprop">回應的驗證</span>值是<span class="msobjpropval">內容</span>或<span class="msobjpropval">內容和值</span>時，才需要此型樣參數。
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																回應訊息類型</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="2*" class="invisible">
+																		&nbsp;
+															</td>
+															<td valign="top" width="*">只有在<span class="msobjprop">回應的驗證</span>值是<span class="msobjpropval">內容</span>或<span class="msobjpropval">內容和值</span>且<span class="msobjprop">回應資料類型</span>值是<span class="msobjpropval">二進位資料</span>或<span class="msobjpropval">文字資料</span>時，才需要此型樣參數。						
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																回應訊息格式</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="2*" class="invisible">
+																		&nbsp;
+															</td>
+															<td valign="top" width="*">只有在<span class="msobjprop">回應的驗證</span>值是<span class="msobjpropval">內容</span>或<span class="msobjpropval">內容和值</span>且<span class="msobjprop">回應資料類型</span>值是<span class="msobjpropval">二進位資料</span>或<span class="msobjpropval">文字資料</span>時，才需要此型樣參數。															</td>
+														</tr>
+											</tbody>
+										</table>
+								  	</div>
+								
+						  	</div>
+				  		</div>
+			  		</div>
+				</div>
+			</div>
+			<div class="box first">
+				<div class="TitleBox"><!-- --></div>
+				<div class="FooterBox"><!-- --></div>
+				<div class="TL"><!-- --></div>
+				<div class="TR"><!-- --></div>
+				<div class="BL"><!-- --></div>
+				<div class="BR"><!-- --></div>
+				<div class="ContentBox">
+					<div class="border">
+						<div class="groupBox" id="log">
+							<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="logTwisty">
+								<img src="../../../images/twisty-closed.png"
+									name="b" id="logArrow" alt=""></img>
+							</div>
+							<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">記載</div>
+							
+							
+									
+									
+									
+							
+							<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="logContainer">
+									<div class="tablenoborder">
+										<table summary="" width="100%" border="1" cellpadding="4" cellspacing="0" frame="border" rules="all">
+											<thead align="left">
+												<tr>
+													  <th class="firstcol" align="left" valign="top" width="*">型樣參數</th>
+													  <th class="invisible" valign="top" width="*">M</th>
+													  <th class="invisible" valign="top" width="*">C</th>
+													  <th class="invisible" valign="top" width="*">預設值</th>
+													  <th valign="top" width="*">說明</th>
+												</tr>
+											</thead>
+											<tbody>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																需要記載</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="2*" class="invisible">
+																				已清除</td>
+															<td valign="top" width="*">
+																
+		                        <p>此型樣參數決定型樣實例是否包括用於記載的程式碼。</p>
+		                        <p>如果清除<span class="msobjprop">需要記載</span>，則不會包括「日誌」子流程。</p>
+		                        <p>如果選取<span class="msobjprop">需要記載</span>，則「日誌」子流程會併入訊息流程中，而且必須設定<span class="msobjprop">日誌佇列管理程式</span>及<span class="msobjprop">日誌佇列</span>的值。</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																日誌佇列管理程式</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		是</td>
+															<td valign="top" width="2*" class="invisible">
+																				
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>此型樣參數定義佇列管理程式以進行記載。
+		                        如果使用分配管理系統佇列管理程式以進行記載，則可以將它保留為空白。</p>
+		                        <p>只有在選取<span class="msobjprop">需要記載</span>時，才需要此參數。		                        </p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																日誌佇列</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		是</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">LOG</span></td>
+															<td valign="top" width="*">
+																
+								<p>此型樣參數定義佇列以進行記載。</p>
+								<p>只有在選取<span class="msobjprop">需要記載</span>時，才需要此參數。</p>
+		                        
+															</td>
+														</tr>
+											</tbody>
+										</table>
+								  	</div>
+								
+						  	</div>
+				  		</div>
+			  		</div>
+				</div>
+			</div>
+	
+		
+			<div class="box first">
+				<div class="TitleBox"><!-- --></div>
+				<div class="FooterBox"><!-- --></div>
+				<div class="TL"><!-- --></div>
+				<div class="TR"><!-- --></div>
+				<div class="BL"><!-- --></div>
+				<div class="BR"><!-- --></div>
+				<div class="ContentBox">
+					<div class="border">
+						<div class="groupBox" id="errorHandling">
+							<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="errorHandlingTwisty">
+								<img src="../../../images/twisty-closed.png"
+									name="b" id="errorHandlingArrow" alt=""></img>
+							</div>
+							<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">錯誤處理</div>
+							
+							
+									
+									
+									
+							
+							<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="errorHandlingContainer">
+									<div class="tablenoborder">
+										<table summary="" width="100%" border="1" cellpadding="4" cellspacing="0" frame="border" rules="all">
+											<thead align="left">
+												<tr>
+													  <th class="firstcol" align="left" valign="top" width="*">型樣參數</th>
+													  <th class="invisible" valign="top" width="*">M</th>
+													  <th class="invisible" valign="top" width="*">C</th>
+													  <th class="invisible" valign="top" width="*">預設值</th>
+													  <th valign="top" width="*">說明</th>
+												</tr>
+											</thead>
+											<tbody>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																需要錯誤訊息</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="2*" class="invisible">
+																				已選取</td>
+															<td valign="top" width="*">
+																
+		                        <p>此型樣參數定義型樣應用程式是否建立訊息流程元素，以建立錯誤訊息。</p>
+		                        <p>如果選取<span class="msobjprop">需要錯誤訊息</span>，則必須設定<span class="msobjprop">錯誤佇列管理程式</span>及<span class="msobjprop">錯誤佇列</span>的值。</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																錯誤佇列管理程式</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		是</td>
+															<td valign="top" width="2*" class="invisible">
+																		&nbsp;
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>此型樣參數定義錯誤訊息的佇列管理程式。
+		                        如果使用分配管理系統佇列管理程式以進行記載，則可以將它保留為空白。</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																錯誤佇列</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		是</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">ERROR</span></td>
+															<td valign="top" width="*">
+																
+		                        <p>此型樣參數定義錯誤訊息的佇列。</p>
+		                        <p>只有在選取<span class="msobjprop">需要錯誤訊息</span>時，才需要此參數。
+		                        </p>
+		                        
+															</td>
+														</tr>
+											</tbody>
+										</table>
+								  	</div>
+								
+						  	</div>
+				  		</div>
+			  		</div>
+				</div>
+			</div>
+	
+		
+			<div class="box first">
+				<div class="TitleBox"><!-- --></div>
+				<div class="FooterBox"><!-- --></div>
+				<div class="TL"><!-- --></div>
+				<div class="TR"><!-- --></div>
+				<div class="BL"><!-- --></div>
+				<div class="BR"><!-- --></div>
+				<div class="ContentBox">
+					<div class="border">
+						<div class="groupBox" id="general">
+							<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="generalTwisty">
+								<img src="../../../images/twisty-closed.png"
+									name="b" id="generalArrow" alt=""></img>
+							</div>
+							<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">一般
+</div>
+							
+							
+									
+									
+									
+									
+									
+									
+									
+							
+							<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="generalContainer">
+									<div class="tablenoborder">
+										<table summary="" width="100%" border="1" cellpadding="4" cellspacing="0" frame="border" rules="all">
+											<thead align="left">
+												<tr>
+													  <th class="firstcol" align="left" valign="top" width="*">型樣參數</th>
+													  <th class="invisible" valign="top" width="*">M</th>
+													  <th class="invisible" valign="top" width="*">C</th>
+													  <th class="invisible" valign="top" width="*">預設值</th>
+													  <th valign="top" width="*">說明</th>
+												</tr>
+											</thead>
+											<tbody>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																分配管理系統綱目</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">mqsi</span></td>
+															<td valign="top" width="*">
+																
+		                        <p>如果指定分配管理系統綱目，則會在該綱目內建立所有訊息流程及 ESQL 檔案。如果未指定任何綱目，則會使用預設分配管理系統綱目。</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																流程字首</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="2*" class="invisible">
+																				
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>如果已設定，則會將此字首新增至所有訊息流程名稱的開頭。</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																流程字尾</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="2*" class="invisible">
+																				
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>如果已設定，則會將此字尾新增至所有訊息流程名稱的結尾。</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																佇列字首</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="2*" class="invisible">
+																				
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>如果已設定，則會將此字首新增至所有佇列名稱的開頭。
+		                        </p>
+		                        <p>如果使用預設佇列名稱，則必須設定字首及（或）字尾，才能識別每一個型樣實例的佇列名稱。
+		                        </p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																佇列字尾</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="2*" class="invisible">
+																				
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>如果已設定，則會將此字尾新增至所有佇列名稱的結尾。</p>
+								<p>如果使用預設佇列名稱，則必須設定字首及（或）字尾，才能識別每一個型樣實例的佇列名稱。
+		                        </p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																簡要說明</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="2*" class="invisible">
+																				
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>此說明會新增至所有產生的訊息流程的<span class="msobjprop">簡要說明</span>內容。</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																詳細說明</th>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="*" class="invisible">
+																		否</td>
+															<td valign="top" width="2*" class="invisible">
+																				
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>此說明會新增至所有產生的訊息流程的<span class="msobjprop">詳細說明</span>內容。</p>
+		                        
+															</td>
+														</tr>
+											</tbody>
+										</table>
+								  	</div>
+								
+						  	</div>
+				  		</div>
+			  		</div>
+				</div>
+			</div>
+
+	<div id="footnotes" class="invisible">
+	<div class="box first">
+		<div class="TitleBox"><!-- --></div>
+		<div class="FooterBox"><!-- --></div>
+		<div class="TL"><!-- --></div>
+		<div class="TR"><!-- --></div>
+		<div class="BL"><!-- --></div>
+		<div class="BR"><!-- --></div>
+		<div class="ContentBox">
+			<div class="invisible">
+					<p class="shortdesc">
+						所有型樣參數會與其預設值一起列出。
+					</p>
+					<p>
+					標頭為 <b>M</b> 的直欄指出內容是否為<dfn class="term">必要的</dfn>。
+					標頭為 <b>C</b> 的直欄指出內容是否為<dfn class="term">可配置的</dfn>，這表示您可以在將訊息流程新增至分配管理系統保存檔 (BAR) 時變更值。
+					</p>
+					<p>
+						如果未指出任何預設值，則預設值是空字串。
+					</p>
+				</div>
+				<a href="overview.htm#anchorBack" title="上一步">回到 Message Correlator for WebSphere MQ: request-response without persistence 型樣規格</a>
+<p></p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

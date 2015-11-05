@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="fr-fr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Utilisation du modèle d'utilitaire de Fractionnement de message pour WebSphere MQ :  unidirectionnel (pour XML) afin d'accepter les demandes d'un grand nombre d'applications client dans une seule file d'attente et répondre au client approprié via des flux transactionnels et des messages WebSphere MQ persistants."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Flux secondaire Erreur pour le modèle d'utilitaire de fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.errorflow">
+<div><h1 class="topictitle1">Flux secondaire Erreur pour le modèle <span>d'utilitaire de Fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)</span></h1>
+<div>
+<p class="shortdesc">Si une erreur se produit, utilisez le flux secondaire Erreur pour router le message d'erreur.</p>
+<p>Pour acheminer le message d'erreur, effectuez l'une des actions suivantes :</p>
+<ul>
+<li>Enregistrez les éléments de message qui ne peuvent pas être routés vers une file d'attente de messages incorrects distincte et poursuivez le traitement des autres éléments.</li>
+<li>Annulez la transaction et le message d'entrée.</li>
+</ul>
+</div>
+<p>Tout incident dans le flow Routage dirige le message propagé, contenant un élément de message, vers le terminal Echec du flux secondaire Route. L'état d'erreur est enregistré dans <span class="filepath">Environment.PatternVariables.FailureStatus</span>
+et le nombre d'éléments incorrect est augmenté.</p>
+<p>Sélectionnez une <span class="msobjprop">Action Message erroné</span> afin de déterminer l'action à effectuer après un incident :</p>
+<ul>
+<li><span class="msobjpropval">Enregistrer</span>
+<ol>
+<li>Le noeud Failure est connecté à un noeud MQOutput et l'élément de message est écrit dans la file des messages incorrects. La boucle de traitement reprend le contrôle dans le noeud Message Splitter Compute et le traitement se poursuit.</li>
+<li>Lorsque tous les enregistrements sont traités, le noeud Message Splitter Compute transmet le contrôle au flux secondaire Erreur, lorsqu'une vérification est faite afin de déterminer si des éléments de message erroné sont enregistrés. Si des éléments de message erroné sont enregistrés et que des messages d'erreur sont requis, un message d'erreur est produit indiquant le nombre d'éléments erronés.</li>
+</ol>
+</li>
+<li><span class="msobjpropval">Annuler</span>
+<ol>
+<li>Le noeud Failure du flux secondaire Route n'est pas connecté et les erreurs de routage sont retransmises au noeud Message Splitter Compute, qui détecte l'état d'incident et génère une exception. Toute exception, autre que les incidents de routage, provoque une action <span class="msobjpropval">Annuler</span>. On suppose que toutes ces exceptions sont irrécupérables et qu'il n'est pas sûr de poursuivre le traitement.</li>
+<li>Si des messages d'erreur sont requis, un message d'erreur est rédigé et écrit dans la file d'attente des erreurs.
+Les détails de l'exception sont écrits sous forme de message XML. Les détails comprennent :
+	<ul>
+	<li>Nom du courtier</li>
+	<li>Nom du flux</li>
+	<li>Horodatage</li>
+	<li>Récapitulatif des données de l'exception</li>
+	</ul>
+</li>
+<li>Une erreur utilisateur est générée pour annuler le message d'entrée et les éléments de message qui ont déjà été traités. Dans ce cas, il est essentiel d'avoir mis en place la gestion des annulations dans l'infrastructure WebSphere MQ en utilisant; par exemple, en utilisant une file d'attente d'annulation.
+<p>L'annulation ne se produit pas pour des exceptions qui ont lieu après que tous les éléments de messages ont été écrits avec succès. Ce type d'exception peut se produire sur des messages d'erreur ou des messages de journal.</p></li>
+</ol>
+</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="Retour">Spécification du modèle d'Utilitaire de fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)</a>
+</body></html>

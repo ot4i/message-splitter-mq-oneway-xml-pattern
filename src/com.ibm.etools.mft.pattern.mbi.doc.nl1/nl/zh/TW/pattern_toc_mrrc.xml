@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?NLS  TYPE="org.eclipse.help.toc"?>
+<toc link_to="toc.xml#wmb_patterns_mbi" label="Message Correlator" topic="mbi/mrrc/overview.htm">
+    <topic label="Message Correlator" href="mbi/mrrc/overview.htm">
+      	<topic label="MQ request-response with persistence" href="mbi/mrrc/relmq/overview.htm">
+      		<topic label="要求流程" href="mbi/mrrc/relmq/requestflow.htm"/>
+      		<topic label="回應流程" href="mbi/mrrc/relmq/responseflow.htm"/>
+      		<topic label="錯誤子流程" href="mbi/mrrc/relmq/errorflow.htm"/>
+      		<topic label="日誌子流程" href="mbi/mrrc/relmq/logflow.htm"/>  
+      		<topic label="限制" href="mbi/mrrc/relmq/constraints.htm"/>
+      		<topic label="套用型樣之前要完成的作業" href="mbi/mrrc/relmq/prereq.htm"/>
+      		<topic label="參數" href="mbi/mrrc/relmq/parametertable.htm"/>
+      		<topic label="產生型樣之後要完成的作業" href="mbi/mrrc/relmq/postreq.htm"/>
+      	</topic>
+	  	<topic label="MQ request-response without persistence" href="mbi/mrrc/synchmq/overview.htm">
+	  		<topic label="要求流程" href="mbi/mrrc/synchmq/requestflow.htm"/>
+	  		<topic label="回應流程" href="mbi/mrrc/synchmq/responseflow.htm"/>
+	  		<topic label="錯誤子流程" href="mbi/mrrc/synchmq/errorflow.htm"/>
+	  		<topic label="日誌子流程" href="mbi/mrrc/synchmq/logflow.htm"/>  
+	  		<topic label="限制" href="mbi/mrrc/synchmq/constraints.htm"/>
+	  		<topic label="套用型樣之前要完成的作業" href="mbi/mrrc/synchmq/prereq.htm"/>
+	  		<topic label="參數" href="mbi/mrrc/synchmq/parameters.htm"/>
+	  		<topic label="產生型樣之後要完成的作業" href="mbi/mrrc/synchmq/postreq.htm"/>
+	  	</topic>
+	</topic>
+</toc>

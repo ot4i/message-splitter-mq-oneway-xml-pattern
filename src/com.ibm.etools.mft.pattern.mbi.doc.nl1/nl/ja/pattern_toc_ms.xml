@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?NLS  TYPE="org.eclipse.help.toc"?>
+<toc link_to="toc.xml#wmb_patterns_mbi" label="メッセージ・スプリッター" topic="mbi/ms/overview.htm">
+    <topic label="メッセージ・スプリッター" href="mbi/ms/overview.htm">
+      	<topic label="MQ 一方向 (XML)" href="mbi/ms/xmlmq/overview.htm">
+      		<topic label="要求フロー" href="mbi/ms/xmlmq/requestflow.htm"/>
+      		<topic label="経路サブフロー" href="mbi/ms/xmlmq/routeflow.htm"/>
+      		<topic label="エラー・サブフロー" href="mbi/ms/xmlmq/errorflow.htm"/>
+      		<topic label="ログ・サブフロー" href="mbi/ms/xmlmq/logflow.htm"/>
+      		<topic label="制約" href="mbi/ms/xmlmq/constraints.htm"/>
+      		<topic label="パターンを適用する前に完了するタスク" href="mbi/ms/xmlmq/prereq.htm"/>
+      		
+      		<topic label="パラメーター" href="mbi/ms/xmlmq/parametertable.htm"/>
+      		<topic label="パターンを生成した後に完了するタスク" href="mbi/ms/xmlmq/postreq.htm"/>
+      	</topic>
+    </topic>
+</toc>

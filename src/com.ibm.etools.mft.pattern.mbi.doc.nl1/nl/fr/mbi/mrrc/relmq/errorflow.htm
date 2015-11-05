@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="fr-fr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Utilisez le modèle du Corrélateur de message pour WebSphere MQ :  question-réponse avec persistance afin d'accepter les demandes d'un grand nombre d'applications client dans une seule file d'attente et répondre au client approprié via des flux transactionnels et des messages WebSphere MQ persistants."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Flux secondaire Erreur pour le modèle Corrélateur de message pour WebSphere MQ : question-réponse avec persistance</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<div><h1 class="topictitle1">Flux secondaire Erreur pour le modèle <span>Corrélateur de message pour WebSphere MQ : question-réponse avec persistance</span></h1></div>
+<p class="shortdesc">Si une erreur est interceptée lors du traitement de la requête de flux de messages, le flux secondaire Erreur est appelé.</p>
+<p>Si vous avez configuré les paramètres du modèle pour inclure des messages d'erreur et que la propriété définie par l'utilisateur
+	<span class="msobjprop">ErrorLoggingOn</span> est sélectionnée, les actions suivantes sont effectuées:</p>
+<ol>
+<li>Si l'erreur se produit pendant le traitement de la requête, une réponse d'erreur est renvoyée au client, indiquant que le message n'a pas pu être envoyé. 
+<p>Si l'erreur se produit pendant le traitement de la réponse, aucune réponse d'erreur n'est renvoyée car l'adresse de réponse est inconnue.</p>
+<p>Le message suivant est un exemple de message d'erreur XML standard :</p>
+<pre>&lt;Erreur&gt;&lt;Etat&gt;-1&lt;/Etat&gt;&lt;Texte&gt;Echec de l'envoi du message&lt;/Texte&gt;&lt;/Erreur&gt;</pre>
+</li>
+<li>Un message d'erreur est écrit dans la file d'attente des erreurs. Les détails de l'exception sont écrits sous forme de message XML. Les détails comprennent :
+	<ul>
+	<li>Nom du courtier</li>
+	<li>Nom du flux</li>
+	<li>Horodatage</li>
+	<li>Récapitulatif des données de l'exception</li>
+	</ul>
+</li>
+<li>Le flux de messages est annulé afin de préserver les données.</li>
+<li>Les informations requises pour la détection et la correction des erreurs sont contenues dans le message d'erreur.</li>
+</ol>
+
+<a href="overview.htm#anchor1" title="Retour">Spécification du modèle Corrélateur de message pour WebSphere MQ : question-réponse avec persistance </a>
+</body>
+</html>

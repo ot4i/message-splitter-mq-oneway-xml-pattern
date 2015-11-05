@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="pt-br">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Tarefas para Concluir Após Gerar o Padrão de Message Correlator para WebSphere MQ: Pedido-Resposta com Persistência"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Tarefas para Concluir Após Gerar o Padrão de Message Correlator para WebSphere MQ: Pedido-Resposta com Persistência</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.postreq">
+<h1 class="topictitle1">Tarefas para Concluir Após Gerar o Padrão de
+<span>Message Correlator para WebSphere MQ: Pedido-Resposta com Persistência</span></h1>
+<div>
+<p class="shortdesc">As tarefas que você deve concluir após ter gerado o padrão.</p><ol>
+<li>Crie o arquivo broker archive (BAR). 
+Inclua o fluxo de mensagens gerado em seu arquivo BAR. No editor do Broker Archive, você deve selecionar a
+opção <span class="uicontrol">Compilar e Sequenciar Recursos</span> antes de construir o arquivo BAR.
+Os conjuntos de mensagens que são referenciados pelo fluxo também devem ser inclusos.
+</li>
+<li>Configure o arquivo broker archive. A configuração adicional do fluxo de mensagens no arquivo bar
+não é necessária
+antes de implementar os fluxos de mensagens para sua instância padrão do
+<span>Message Correlator para WebSphere MQ: Pedido-Resposta com Persistência</span>,
+mas talvez você deseje revisar algumas das opções padrão e configurar alterações para seu ambiente. 
+</li>
+<li>Crie filas. Quando aplicar o padrão, uma lista de filas do WebSphere MQ é gerada, com
+nomes de filas e nomes do gerenciador de filas, que devem ser criados se ainda
+não existirem. Todas as configurações de mensagem que são necessárias para o
+			padrão são configuradas explicitamente nas mensagens e não são dependentes das
+			configurações de filas.
+		<ol>
+		<li>No arquivo de resumo, visualize a lista de filas que você deve criar. O arquivo de resumo
+ 				está localizado na pasta Configuração de Padrão do
+ 				projeto de instância padrão <i>InstanceName</i>.</li>
+		<li>Crie recursos do <span>WebSphere MQ</span>. É possível criar recursos do <span>WebSphere MQ</span>
+		 na linha de comandos
+		usando programas e utilitários como <span class="cmdname">runmqsc</span> ou usando a
+		interface gráfica do <span>WebSphere MQ</span> Explorer.
+		Para obter informações adicionais sobre a criação de recursos do <span>WebSphere MQ</span>,
+		consulte <cite><span>WebSphere MQ</span> Intercommunication</cite>,
+		disponível na página da Web da <img src="../../../images/external_link.gif" alt="Esse link é aberto em uma nova janela" class="external_link" />
+		<a href="http://www.ibm.com/software/integration/wmq/library/" target="_blank">biblioteca do
+		WebSphere MQ</a>.</li>
+		<li>Configure as filas de entrada e de resposta para ter filas de
+		restauração para preservação de mensagens quando erros causarem a restauração do fluxo de mensagens.</li>
+		</ol>
+</li>
+<li>Implemente sua abordagem monitorando e corrigindo erros.
+Isto pode requerer o monitoramento da fila para mensagens de erro ou o monitoramento do log de eventos e das filas de restauração.</li>  
+</ol>
+<a href="overview.htm#anchor1" title="Voltar">Voltar para a especificação de padrão do Message Correlator para WebSphere MQ: Pedido-Resposta com Persistência</a>
+</div></body>
+</html>

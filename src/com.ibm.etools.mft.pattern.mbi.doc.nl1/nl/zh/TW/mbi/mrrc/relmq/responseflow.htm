@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="使用 Message Correlator for WebSphere MQ: request-response with persistence 型樣，可以接受單一佇列上多個用戶端應用程式的要求，以及使用交易式流程及持續 WebSphere MQ 訊息，將回應傳回給正確的用戶端。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Correlator for WebSphere MQ: request-response with persistence 型樣的回應流程</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<div><h1 class="topictitle1"><span>Message Correlator for WebSphere MQ: request-response with persistence</span> 型樣的回應流程</h1>
+<p class="shortdesc">「回應」流程是以交易式流程的形式執行。</p>
+<p>接收到來自提供者應用程式的回應時，會採取下列動作：</p>
+<ol>
+<li>訊息流程包括稱為 ResponseProcessor 的子流程。此子流程只包含 <span>Passthrough</span> 節點，因此，不會執行任何處理。
+您可以在型樣實例中自訂此子流程，以新增您自己的處理，而不需要變更型樣的結構。</li>
+<li>儲存的 MQMD 標頭是擷取自儲存體佇列，並新增至回應訊息，因此它包含正確的位址以回應要求者。</li>
+<li>回應會傳回給要求者。</li>
+<li>訊息流程可能包含稱為「日誌」的記載子流程。您可以配置型樣以包括或排除記載。如果包括記載，則會呼叫「日誌」子流程。
+		</li>
+<li>如果不包括記載，則訊息流程會順利結束，並確定交易。</li>
+<li>訊息流程也包含錯誤處理的子流程。</li>
+<li>如果您已針對型樣實例配置此選項，則會將錯誤訊息寫入錯誤佇列。</li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="上一步">回到 <span>Message Correlator for WebSphere MQ: request-response with persistence</span> 型樣規格</a></body>
+</html>

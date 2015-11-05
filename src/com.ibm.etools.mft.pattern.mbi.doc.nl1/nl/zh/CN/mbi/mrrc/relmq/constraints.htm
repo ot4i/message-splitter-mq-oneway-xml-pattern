@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-cn" xml:lang="zh-cn">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="有关使用 WebSphere MQ: request-response with persistence 模式之前必须了解的内容和必须具备的资源的详细信息。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>使用 WebSphere MQ: request-response with persistence 模式时的约束</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.constrainsts">
+<h1 class="topictitle1">使用 <span>Message Correlator for WebSphere MQ: request-response with persistence</span> 模式时的约束</h1>
+<div>
+<p class="shortdesc">使用此模式时会有若干约束。</p>
+<p>只有在满足以下所有约束时，才可以使用 <span>Message Correlator for WebSphere MQ: request-response with persistence</span> 模式：</p>
+<ul>
+<li>请求者和提供者应用程序必须使用 <span>WebSphere MQ</span> 作为传输机制。</li>
+<li>提供者应用程序必须遵循将消息标识复制到相关标识的惯例，从而使代理能够将响应与其原始请求相匹配。</li>
+<li>除非可定制的 RequestProcessor 子流中包含变换功能，否则请求者应用程序和提供者应用程序必须发送和接受可兼容消息。</li>
+<li>如果选择在该模式中启用记录，那么会将日志消息发送到队列。这些日志消息的处理超出此模式的范围，必须以最适合您组织的方式来处理记录消息。如果选择记录，日志消息将作为持久消息写入日志队列，这将对性能产生影响。使用持久消息是因为假定将记录用于审计。如果记录仅用于测试或参考，那么可以通过配置以下用户定义的属性 (UDP) 在生产系统中关闭记录：<span class="msobjprop">RequestLoggingOn</span> and <span class="msobjprop">ResponseLoggingOn</span>。</li>
+<li>如果选择在该模式中启用错误消息，那么在发生异常时会向队列发送错误消息。
+监视错误和执行更正操作超出该模式的范围，必须以最适合您组织的方式来处理错误消息。</li>
+<li>该模式针对记录和错误消息定义自己的格式，并且假定这些能够满足您环境的需求。</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="返回">返回至 <span>Message Correlator for WebSphere MQ: request-response with persistence</span> 模式规范</a>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="pt-br">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Detalhes sobre o que é necessário saber e quais recursos você deve ter antes de poder usar o padrão do Message Correlator for WebSphere MQ: Pedido-Resposta com Persistência."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Tarefas para Concluir Antes de Aplicar o Padrão de Message Correlator para WebSphere MQ: Pedido-Resposta com Persistência</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.prereq">
+<h1 class="topictitle1">Tarefas para Concluir Antes de Aplicar o Padrão do <span>Message Correlator para WebSphere MQ: Pedido-Resposta com Persistência</span></h1>
+<div><div class="section">
+<p class="shortdesc">Antes de aplicar o padrão para produzir uma instância padrão, é necessário determinar
+		quais das tarefas a seguir são necessárias. Se necessário, conclua as tarefas a seguir:</p>
+</div>
+<ul><li>Selecione um nome exclusivo para a instância padrão.
+É possível usar o padrão várias vezes e criar múltiplas instâncias diferentes que podem ser distinguidas por
+seus nomes exclusivos. Identifique o propósito da instância padrão para que você possa decidir sobre um nome exclusivo apropriado
+ou significativo.</li>
+<li>Selecione os gerenciadores de filas e filas do <span>WebSphere MQ</span> que você deseja que a instância padrão use,
+por exemplo, para acessar o aplicativo do provedor. Se você estiver usando filas existentes, elas devem ser registradas. 
+Se você desejar criar novos gerenciadores de filas e filas, deverá decidir sobre os nomes para estes recursos.</li>
+<li>Identifique quaisquer gerenciadores de filas e filas adicionais que sejam necessários para este padrão e decida
+sobre os nomes exclusivos que você deseja usar. Leve em conta quaisquer políticas, normas ou convenções de nomenclatura
+		  que devem ser aplicadas.</li>
+<li>Decida se a validação das mensagens de pedidos recebidos ou as mensagens de resposta do provedor são necessárias. 
+Se seus aplicativos do solicitante e do provedor gerarem mensagens corretas, a validação poderá não ser necessária. 
+Se você desejar validar suas mensagens, deverá já ter um conjunto de mensagens para fornecer as definições de mensagem
+ou deverá criar um conjunto de mensagens para fornecer as definições de mensagem.</li>
+<li>Decida se você requer a criação de log das mensagens de pedido, mensagens de resposta, ou ambas. 
+Se a criação de log for necessária, é preciso decidir
+		  para qual gerenciador de filas e fila as mensagens de criação de log são enviadas.
+É possível enviar mensagens de criação de log para uma fila de log geral que é usada por múltiplos fluxos de mensagens
+ou você pode usar uma fila especificamente para a instância padrão.</li>
+<li>Decida se você deseja produzir mensagens de erro para a instância padrão.  
+Se esta instância padrão
+		  tratar atualizações, use a manipulação de erros para assegurar que você não perca nenhum dado. 
+É possível enviar mensagens de erro para uma fila de erros geral que é usada por múltiplos fluxos de mensagens
+ou você pode usar uma fila especificamente para a instância padrão. Se escolher enviar mensagens de erro na instância padrão, é possível ativar esta função ou
+		  desativá-la configurando o arquivo broker archive (BAR) antes da implementação.</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="Voltar">Voltar para a especificação de padrão do Message Correlator para WebSphere MQ: Pedido-Resposta com Persistência</a>
+</body>
+</html>

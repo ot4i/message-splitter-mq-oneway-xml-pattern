@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="fr-fr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Informations dont vous devez avoir connaissance et ressources dont vous devez disposer pour pouvoir utiliser le modèle d'utilitaire de Corrélation de message WebSphere MQ : unidirectionnel (pour XML)."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Tâches à exécuter avant d'appliquer le modèle d'utilitaire de Fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.prereq">
+<h1 class="topictitle1">Tâches à exécuter avant d'appliquer le modèle <span> d'utilitaire de Fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)</span></h1>
+<div>
+<div class="section">
+<p class="shortdesc">Avant d'appliquer le modèle pour produire une instance du modèle, vous devez déterminer les tâches à exécuter parmi les tâches suivantes. Si nécessaire, exécutez les tâches suivantes :</p>
+</div>
+<ul><li>Sélectionnez un nom unique pour l'instance du modèle.
+Vous pouvez utiliser le modèle plusieurs fois et créer plusieurs instances différentes, qui se distinguent par leur nom unique. Identifiez l'objectif de l'application de modèle, afin de déterminer un nom unique approprié ou significatif.</li>
+<li>Sélectionnez les gestionnaires de files d'attente et les files d'attente WebSphere MQ que doit utiliser l'instance du modèle, par exemple, pour recevoir le message XML. Si vous utilisez des files d'attente existantes, vous devez les enregistrer. 
+Si vous voulez créer des gestionnaires de files d'attente et des files d'attente, vous devez définir le nom de ces ressources.</li>
+<li> Indiquez si la validation est nécessaire et définissez un ensemble de messages ou définissez le nom de l'ensemble de messages. Lorsque le modèle a été généré, terminez la tâche de création de l'ensemble de messages.</li>
+<li>Identifiez les gestionnaires de files d'attente et les files d'attente supplémentaires nécessaires aux modèles et définissez les noms à utiliser. Tenez compte des règles, des normes ou des conventions d'attribution de nom qui s'appliquent.</li>
+<li>Déterminez s'il est nécessaire de consigner les messages entrants. 
+Si vous devez les consigner, vous devez définir le gestionnaire de files d'attente et la file d'attente auxquels les messages de consignation sont envoyés.
+Vous pouvez envoyer les messages de consignation vers une file d'attente de consignation générale utilisée par plusieurs flux de messages ou utiliser une file d'attente spécifique pour l'instance du modèle.</li>
+<li>Indiquez s'il existe plusieurs destinations possibles. Si tel est le cas, sélectionnez le mode de routage à utiliser.
+	<ul><li>Si vous disposez d'un nombre limité de routes dans lesquelles les destinations ne changent pas souvent, affectez au paramètre <span class="msobjprop">Routage</span> la valeur
+	<span class="msobjpropval">Indiquer les routes</span>.</li>
+	<li>Si le groupe de routes cible n'est pas complètement déterminé ou peut changer fréquemment, affectez au paramètre <span class="msobjprop">Routage</span> la valeur
+	<span class="msobjpropval">Rechercher les routes</span>. Si vous sélectionnez cette valeur, le nom de la source de données doit être connu.</li>
+	</ul></li>
+<li>Définissez le mode de gestion des erreurs. Indiquez si les éléments de message qui ne peuvent pas être routés correctement doivent déclencher une annulation complète ou qu'il suffit d'écrire l'élément ayant échoué dans une file d'attente pour traiter l'exception.</li>
+<li>Indiquez si vous voulez générer des messages d'erreur pour l'instance du modèle. 
+Toutes les données sont conservées sans messages d'erreur, car les actions d'erreur laissent les éléments dans une file d'attente à cet effet ou annulent le flux de messages. le message entrant est soit renvoyé à la file d'attente entrante, soit envoyé dans une file d'attente d'annulation. Toutefois, si ces files d'attente ne sont pas contrôlées, des messages d'erreur peuvent être nécessaires comme notifications.
+<p>Si décidez d'envoyer les messages d'erreur dans l'instance du modèle, vous pouvez activer ou désactiver cette fonction en configurant le fichier archive de courtier (BAR) avant le déploiement.</p></li>
+</ul>
+<a href="overview.htm#anchor1" title="Retour">Spécification du modèle d'Utilitaire de fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)</a>
+</div></body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-tw" xml:lang="zh-tw">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="產生 Message Correlator for WebSphere MQ: request-response with persistence 型樣之後要完成的作業"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>產生 Message Correlator for WebSphere MQ: request-response with persistence 型樣之後要完成的作業</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.postreq">
+<h1 class="topictitle1">產生 <span>Message Correlator for WebSphere MQ: request-response with persistence</span> 型樣之後要完成的作業</h1>
+<div>
+<p class="shortdesc">在您產生此型樣之後必須完成的作業。</p><ol>
+<li>建立分配管理系統保存檔 (BAR)。將產生的訊息流程新增至 BAR 檔。在「分配管理系統保存檔」編輯器中，您必須先選取<span class="uicontrol">編譯及行內資源</span>選項，然後再建置 BAR 檔。
+同時必須新增流程所參照的訊息集。
+</li>
+<li>配置分配管理系統保存檔。在您部署 <span>Message Correlator for WebSphere MQ: request-response with persistence</span> 型樣實例的訊息流程之前，並不需要進一步配置分配管理系統保存檔中的訊息流程，但是您可能會想要檢閱一些預設選項，以及配置環境的變更。</li>
+<li>建立佇列。當您套用型樣時，會產生具有佇列名稱及佇列管理程式名稱的 WebSphere MQ 佇列清單，如果這些 WebSphere MQ 佇列尚未存在，則必須加以建立。此型樣需要的所有訊息設定都是明確設定於訊息上，而且與佇列設定無關。<ol>
+		<li>在摘要檔中，檢視您必須建立的佇列清單。摘要檔位於 <i>InstanceName</i> 型樣實例專案的「型樣配置」資料夾中。</li>
+		<li>建立 <span>WebSphere MQ</span> 資源。您可以在指令行上使用程式及公用程式（例如 <span class="cmdname">runmqsc</span>），或使用「<span>WebSphere MQ</span> 探險家」圖形介面，以建立 <span>WebSphere MQ</span> 資源。
+如需建立 <span>WebSphere MQ</span> 資源的相關資訊，請參閱位於 <img src="../../../images/external_link.gif" alt="此鏈結將在新視窗中開啟" class="external_link" /><a href="http://www.ibm.com/software/integration/wmq/library/" target="_blank">WebSphere MQ Library</a> 網頁上的 <cite><span>WebSphere MQ</span> Intercommunication</cite>。</li>
+		<li>配置輸入及回應佇列，以作為錯誤導致取消訊息流程時用來保留訊息的取消佇列。</li>
+		</ol>
+</li>
+<li>實作用來監視及更正錯誤的方式。這可能需要監視佇列中的錯誤訊息，或監視事件日誌及取消佇列。</li>  
+</ol>
+<a href="overview.htm#anchor1" title="上一步">回到 Message Correlator for WebSphere MQ: request-response with persistence 型樣規格</a>
+</div></body>
+</html>

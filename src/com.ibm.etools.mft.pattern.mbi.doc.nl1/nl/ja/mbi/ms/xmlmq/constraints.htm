@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja-jp" xml:lang="ja-jp">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターンを使用する前に知っておくべき事柄や、必要なリソースについての詳細。"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターンの使用に関する制約</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.constraints">
+<h1 class="topictitle1">「<span>WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)</span>」パターンの使用に関する制約</h1>
+<p class="shortdesc">このパターンを使用する場合に適用される制約は多数あります。</p>
+<p>以下のすべての制約を満たすことが可能な場合にのみ、「<span>WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)</span>」パターンを使用できます。</p>
+<ul>
+<li>要求側およびプロバイダー・アプリケーションはトランスポート・メカニズムとして WebSphere MQ を使用します。</li>
+<li>着信メッセージは整形式の XML です。つまり正常に構文解析される XML ですが、必ずしも正常に妥当性検査される必要はありません。</li>
+<li>メッセージは想定される構造に従う必要があります。
+それぞれの入力メッセージには、以下のものが含まれます。<ul>
+	<li>内包するエンベロープ (オプションで、パターン・パラメーターによってその名前を識別することができます)</li>
+	<li>反復される一連の構造 (オプションで、パターン・パラメーターによってそれらの名前を識別することができます)</li>
+	</ul></li>
+	
+<li>着信メッセージは、次のいずれかの方法で自動的に処理されます。<ul>
+	<li>すべてのエレメントが出力キューまたは正しくないメッセージ・キューのどちらかに書き込まれる</li>
+	<li>どのエレメントも書き込まれず、メッセージがロールバックされる</li>
+	</ul>
+</li>
+</ul>
+<p>このパターンは、逸失してはならない情報の配布用であることが想定されています。
+したがってメッセージ・フローはトランザクションとして実行され、永続メッセージを使用します。これはパフォーマンスに大きな影響を与えますが、データを逸失しないという要件のためには、これが必要です。</p>
+<p>繰り返されるエレメントの数は、出力キューで許容されるコミットされていないメッセージの最大数より少ないことが想定されています。
+繰り返しの回数が多いと予想される場合には、この制限を調整する必要があります。</p>
+
+<a href="overview.htm#anchor1" title="戻る">「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターンの仕様に戻る</a>
+</body>
+</html>

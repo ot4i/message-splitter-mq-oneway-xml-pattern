@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="de-de" xml:lang="de-de">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Details zum notwendigen Know-how und den erforderlichen Ressourcen für die Verwendung des Musters 'Message Correlator for WebSphere MQ: request-response without persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz)."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Vorgaben für die Verwendung des Musters 'Message Correlator for WebSphere MQ: request-response without persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.synchmq.constrainsts">
+<h1 class="topictitle1">Vorgaben für die Verwendung des Musters <span>Message Correlator for WebSphere MQ: request-response without persistence</span> (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz)</h1>
+<div>
+<p class="shortdesc">Wenn Sie dieses Muster verwenden, gelten eine Reihe von Vorgaben.</p>
+<p>Sie können das Muster <span>Message Correlator for WebSphere MQ: request-response without persistence</span> (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz) nur verwenden, wenn alle der folgenden Vorgaben erfüllt sind:</p>
+<ul>
+<li>Ihre Requester- und Provideranwendungen müssen <span>WebSphere MQ</span> als Transportmechanismus verwenden.</li>
+<li>Ihre Provideranwendungen müssen der Konvention entsprechen, dass die Nachrichten-ID in die Korrelations-ID kopiert wird, sodass der Broker die Antworten ihrer ursprünglichen Anforderung zuordnen kann.</li>
+<li>Ihre Requester- und Provideranwendungen müssen kompatible Nachrichten senden und annehmen, wenn
+Sie keine Umsetzungsfunktion in den anpassbaren untergeordneten
+Anforderungsprozessor-Nachrichtenfluss einfügen.</li>
+<li>Der Geschäftszweck, für den Sie dieses Muster verwenden, muss Zeitlimits und das Risiko, dass infolgedessen keine Antwort empfangen wird, zulassen. </li>
+<li>Wenn Sie die Protokollierung im Muster aktivieren, werden die Protokollnachrichten an eine Warteschlange gesendet.
+Die Verarbeitung dieser Protokollnachrichten ist im Umfang dieses Musters nicht enthalten und Sie müssen die Protokollnachrichten den Anforderungen Ihres Unternehmens entsprechend verarbeiten. 
+Wenn die Protokollierung aktiviert ist, werden Protokollnachrichten als persistente Nachrichten in die Protokollwarteschlange geschrieben, was die Leistung beeinträchtigt. 
+Persistente Nachrichten werden verwendet, da vorausgesetzt wird, dass die Protokollierung zu Prüfzwecken verwendet wird. 
+Wenn die Protokollierung nur zum Testen oder zur Information verwendet wird, kann die Protokollierung in Produktionssystemen inaktiviert werden, indem die folgenden benutzerdefinierte Eigenschaften konfiguriert werden: <span class="msobjprop">RequestLoggingOn</span> und <span class="msobjprop">ResponseLoggingOn</span>.</li>
+<li>Wenn Sie Fehlernachrichten im Muster aktivieren, werden Fehlernachrichten an eine Warteschlange gesendet, wenn eine Ausnahmebedingung auftritt.
+Die Überwachung von Fehlern und die Problembehebung sind im Umfang dieses Musters nicht enthalten und Sie müssen die Fehlernachrichten den Anforderungen Ihres Unternehmens entsprechend verarbeiten.</li>
+<li>Das Muster definiert ein eigenes Format für die Protokollierungs- und Fehlernachrichten und es wird vorausgesetzt, dass diese ausreichen, um den Anforderungen Ihrer Umgebung gerecht zu werden.</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="Zurück">Zurück zur Spezifikation des Musters 'Message Correlator for WebSphere MQ: request-response without persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz)</a>
+</body>
+</html>

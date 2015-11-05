@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="fr-fr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="copyright" content="Copyright IBM Corporation 2008" />
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008" />
+<meta name="abstract" content="Utilisation du modèle Utilitaire de fractionnement de message pour accepter les demandes d'un grand nombre d'applications client dans une seule file d'attente et répondre au client approprié."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../css/ibmdita.css" />
+<link rel="stylesheet" type="text/css" href="../../css/bip4.css" />
+<title>Modèle Utilitaire de fractionnement de message</title>
+<script language="JavaScript" src="../../help/LiveHelp.js"> </script></head>
+<body id="mbi.mrrc.overview">
+<h1 class="topictitle1">Modèle Utilitaire de fractionnement de message</h1>
+<div><p class="shortdesc">Utilisez le modèle Utilitaire de fractionnement de message pour diviser un message XML volumineux en petits éléments traités par une ou plusieurs cibles. </p>
+<div class="image"><img src="splitter.gif" alt="Diagramme montrant le comportement du modèle." align="middle"/></div></div>
+<div class="section"><h2 class="sectiontitle">Contexte</h2><p></p>
+<p class="MsoNormal">Vous voulez partager avec d'autres applications des informations, accumulées dans une application pendant une période. 
+Des données de vente sur une période donnée ou des mises à jour d'informations de partenaires sont des exemples types. Les données s'accumulent pendant une période donnée et elles sont transmises sous la forme d'un message volumineux. Le traitement de fin de journée dans l'application ou les applications cible impose de traiter individuellement chaque élément.</p>
+<p class="MsoNormal">Une application peut également générer un message contenant un certain nombre d'enregistrements devant être distribués ; lorsque, par exemple, une application gère et distribue des données de référence.<span
+	style="mso-spacerun:yes"></span></p>
+</div>
+<div class="section"><h2 class="sectiontitle">Problème</h2>
+<p>Les messages volumineux qui contiennent des structures répétitives et de traitement susceptibles d'utiliser une trop grande quantité de mémoire, ce qui a un impact potentiel sur les autres traitements de messages, et peut se traduire par une défaillance du courtier. 
+Ce modèle permet de résoudre le problème du routage des éléments d'un message volumineux vers différentes cibles en fonction de règles de routage définies.</p>
+<div class="section"><h2 class="sectiontitle">Aide à la sélection</h2>
+<p>Utilisez ce modèle pour les applications qui stockent des informations sur des transactions métier et transmettent ces informations à une ou plusieurs applications cibles dans des lots.
+Vous pouvez l'utiliser pour gérer les messages volumineux sans utiliser excessivement la mémoire.</p>
+<p>Vous pouvez utiliser ce modèle lorsque l'application source ou les applications cible ne peuvent pas créer ou traiter des appels de service quasi temps réel ou lorsque la répartition en lots des informations s'impose pour des raisons professionnelles.
+</p>
+</div>
+<div class="section"><h2 class="sectiontitle">Solution</h2></div>
+<p> La solution consiste à implémenter un flux de messages qui utilise une arborescence de messages modifiable, permettant de supprimer les éléments reproductibles au fur et à mesure de leur traitement. L'analyse partielle permet d'analyser des éléments individuels en fonction des besoins et, du fait que ces éléments sont supprimés à la fin, l'arborescence dans la mémoire interne ne croît pas de manière linéaire avec le nombre d'éléments.
+Lorsque chaque élément est extrait, il est routé vers l'application cible appropriée.
+</p>
+<p>Le message d'entrée et tous les messages de sortie sont traités dans une seule et unique transaction, tous les messages de sortie étant persistants. L'échec de la lecture du message d'entrée XML entraîne l'échec de l'ensemble de la transaction, mais les erreurs qui se produisent lors du traitement d'un élément peuvent ajouter l'élément erroné à une file d'attente pour un traitement ultérieur ou provoquer l'échec de l'ensemble de la transaction.
+</p>
+</div></body>
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de-de" xml:lang="de-de">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="copyright" content="Copyright IBM Corporation 2008" />
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008" />
+<meta name="abstract" content="Verwenden Sie das Muster 'Message Request Response Correlator' (Antwortkorrelator für Nachrichtenanforderungen) für die Annahme von Anforderungen von vielen Clientanwendungen in einer einzelnen Warteschlange und für die Rückgabe von Antworten an den richtigen Client."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../css/ibmdita.css" />
+<link rel="stylesheet" type="text/css" href="../../css/bip4.css" />
+<title>Muster 'Message Request Response Correlator' (Antwortkorrelator für Nachrichtenanforderungen)</title>
+<script language="JavaScript" src="../../help/LiveHelp.js"> </script></head>
+<body id="mbi.mrrc.overview">
+<h1 class="topictitle1">Muster <span>Message Request Response Correlator</span> (Antwortkorrelator für Nachrichtenanforderungen)</h1>
+<div><p class="shortdesc">Verwenden Sie das Muster <span>Message Request Response Correlator</span> (Antwortkorrelator für Nachrichtenanforderungen) für die Annahme von Anforderungen von vielen Clientanwendungen in einer einzelnen Warteschlange und für die Rückgabe von Antworten an den richtigen Client. </p>
+<div class="image"><img src="correlator.gif" alt="Ein Diagramm, das das Verhalten des Musters zeigt. Eine Reihe von Requesteranwendungen senden Nachrichten an den Broker. Die Antwortadresse des Requesters wird gespeichert, bevor die Nachricht an den Provider weitergeleitet wird, und wird erneut gespeichert, wenn eine Antwort vom Provider empfangen wird." /></div></div>
+<div class="section"><h2 class="sectiontitle">Kontext</h2>
+<p>Clientanwendungen müssen oft auf eine Serveranwendung zugreifen. Die Anforderungen von den
+Clientanwendungen und die Antworten vom Server können jeweils vermittelt werden, indem sie durch
+einen Mittler oder einen Enterprise Service Bus (ESB) wie IBM Integration Bus geleitet werden. Die Clientanwendungen geben in ihrer Anforderung an, in welcher Antwortwarteschlange die Antwort erwartet wird.</p>
+<p>Messaging-Systeme stellen einen Mechanismus bereit, mit dem sichergestellt wird, dass die
+Antwortnachricht in einer Anforderung/Antwort-Interaktion an die richtige anfordernde Anwendung
+oder Clientinstanz weitergeleitet werden kann. Normalerweise gehört zu dieser Lösung auch die
+Übergabe einer 'Adresse für Antwort' als Teil des Nachrichtenheaders. Die empfangende Anwendung kann dann diese Informationen extrahieren und die Antwort an die entsprechende Warteschlange senden. Wenn eine Mediation in die Interaktion einbezogen wird, werden zwei separate Anforderung/Antwort-Interaktionen eingerichtet und Sie müssen sicherstellen, dass die Antwortnachrichten in den einzelnen Fällen an das richtige Ziel gesendet werden.</p>
+<p>Wenn viele dieser Clients mit einer einzelnen Serveranwendung interagieren, wird normalerweise nur eine Mediation verwendet. Standardmäßig stellen die Serveranwendung und die Mediation jeweils eine Anforderungswarteschlange bereit. Die Mediation verwendet auch eine Antwortwarteschlange für die Verarbeitung von Antwortnachrichten von der Serveranwendung. Wenn jeder Client seine eigene Antwortwarteschlange bereitstellt, ist ein Mechanismus erforderlich, mit dem sichergestellt wird, dass jede Antwortnachricht an die richtige Warteschlange gesendet wird.</p>
+</div>
+<div class="section"><h2 class="sectiontitle">Problem</h2>
+<p>Ein IBM Integration-Nachrichtenfluss vermittelt zwischen einem Requester und einem Provider. 
+Die eingehende
+Nachricht enthält die Antwortadresse des Requesters, die Nachricht, die an die Provideranwendung
+weitergeleitet wird, muss jedoch die Antwortadresse des Nachrichtenflusses enthalten. Wenn die
+Provideranwendung dem Nachrichtenfluss antwortet, muss sie jede Antwort der Anforderung zuordnen,
+die vom Client gesendet wurde. </p>
+</div>
+<div class="section"><h2 class="sectiontitle">Auswahlanleitung</h2>
+<p>Verwenden Sie dieses Muster,
+wenn eine Reihe von Requestern vorhanden sind, die Nachrichten an einen Provider senden müssen und
+Antworten in einer Warteschlange empfangen, die für den Requester spezifisch ist, und wenn sowohl
+Anforderungen als auch Antworten durch den Broker vermittelt werden. 
+Sie können das Muster für die
+Übergabe von Nachrichten eines beliebigen Typs verwenden und Sie haben die Möglichkeit, die
+Nachricht zu überprüfen, um beispielsweise zu verhindern, dass Provider falsch formatierte
+Nachrichten empfangen. </p>
+</div>
+<div class="section"><h2 class="sectiontitle">Lösung</h2></div>
+<p> Die Antwortinformationen von jeder Clientanforderung im Mediationsfluss werden gespeichert, bevor die Nachricht an den Provider weitergeleitet wird.
+Wenn Antworten vom Provider empfangen werden, werden die Korrelationsinformationen für den Abruf
+und die Wiederherstellung der richtigen Antwortadresse des ursprünglichen Requesters und zum
+Speichern dieser Informationen verwendet, um sie später abzurufen.</p>
+</body>
+</html>

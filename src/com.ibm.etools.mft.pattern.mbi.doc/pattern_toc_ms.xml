@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?NLS  TYPE="org.eclipse.help.toc"?>
+<toc link_to="toc.xml#wmb_patterns_mbi" label="Message Splitter" topic="mbi/ms/overview.htm">
+    <topic label="Message Splitter" href="mbi/ms/overview.htm">
+      	<topic label="MQ one-way (XML)" href="mbi/ms/xmlmq/overview.htm">
+      		<topic label="Request flow" href="mbi/ms/xmlmq/requestflow.htm"/>
+      		<topic label="Route subflow" href="mbi/ms/xmlmq/routeflow.htm"/>
+      		<topic label="Error subflow" href="mbi/ms/xmlmq/errorflow.htm"/>
+      		<topic label="Log subflow" href="mbi/ms/xmlmq/logflow.htm"/>
+      		<topic label="Constraints" href="mbi/ms/xmlmq/constraints.htm"/>
+      		<topic label="Tasks to complete before applying the pattern" href="mbi/ms/xmlmq/prereq.htm"/>
+      		
+      		<topic label="Parameters" href="mbi/ms/xmlmq/parametertable.htm"/>
+      		<topic label="Tasks to complete after generating the pattern" href="mbi/ms/xmlmq/postreq.htm"/>
+      	</topic>
+    </topic>
+</toc>

@@ -1,0 +1,1032 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-kr" xml:lang="ko-kr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="copyright" content="Copyright IBM Corporation 2008" />
+	<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008" />
+	<meta name="security" content="public" />
+	<meta name="Robots" content="index,follow" />
+	<meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+	<meta name="DC.Type" content="reference" />
+	<meta name="DC.Title" content="Message Splitter for WebSphere MQ: 단방향(XML용) 패턴의 패턴 매개변수" />
+	<meta name="abstract" content="Message Splitter for WebSphere MQ: 단방향(XML용) 패턴의 패턴 매개변수 세부사항을 제공하는 테이블입니다." />
+	<meta name="description" content="Message Splitter for WebSphere MQ: 단방향(XML용) 패턴의 패턴 매개변수 세부사항을 제공하는 테이블입니다." />
+	<meta name="DC.Format" content="XHTML" />
+	<meta name="DC.Identifier" content="ac68090_" />
+	<meta name="DC.Language" content="ko-kr" />
+	<!-- Licensed Materials Property of IBM -->
+	<!-- US Government Users Restricted Rights -->
+	<!-- Use, duplication or disclosure restricted by -->
+	<!-- GSA ADP Schedule Contract with IBM Corp. -->
+	<link rel="stylesheet" type="text/css" href="../../../css/style2.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/bip4.css" />
+	<title>Message Splitter for WebSphere MQ: 단방향(XML용) 패턴의 매개변수</title>
+	<script language="JavaScript" src="../../../help/LiveHelp.js"></script>
+ <!-- START NON-TRANSLATABLE -->
+	<script language="JavaScript">
+	<!--
+
+	function getParameter(location, name) {
+		name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+		var search = "[\\?&]" + name + "=([^&#]*)";
+		var regex = new RegExp(search);
+		var results = regex.exec(location);
+		return (results == null ? true : (results[1] == "false" ? false : true));
+	}
+	
+	function addStyleSheet() {
+		if (getParameter(window.location.href, "everything") == false) {
+			var headId = document.getElementsByTagName("head")[0];         
+			var cssNode = document.createElement("link");
+			cssNode.type = "text/css";
+			cssNode.rel = "stylesheet";
+			cssNode.href = "../../../css/patterns.css";
+			cssNode.media = "screen";
+			headId.appendChild(cssNode);
+		}
+	}
+		
+	addStyleSheet(); // Depends on the query string!
+	
+	function getElementsByStyleClass (className) {
+  		var all = document.all ? document.all :
+    	document.getElementsByTagName('*');
+  		var elements = new Array();
+  		
+  		for (var e = 0; e < all.length; e++) {
+    		if (all[e].className == className) {
+      			elements[elements.length] = all[e];
+      		}
+      	}
+ 		return elements;
+	}
+	
+	function collapseAll() {
+		var elements = getElementsByStyleClass('twisty');
+		for (var e = 0; e < elements.length; e++) {
+			changeTwisty(elements[e], 'TWISTIE.COLLAPSEALL');
+		}
+	}
+	
+	function expandAll() {
+		var elements = getElementsByStyleClass('twisty');
+		for (var e = 0; e < elements.length; e++) {
+			changeTwisty(elements[e], 'TWISTIE.EXPANDALL');
+		}
+	}
+	
+	function toggleTwisty(group) {
+		changeTwisty(group, 'TWISTIE.TOGGLE');
+	}
+
+	function changeTwisty(group, mode) {		
+		whichGroupId = group.parentNode.id;
+
+		whichGroupContainerId = whichGroupId + "Container";
+		whichGroupTwistyId = whichGroupId + "Twisty";
+		whichGroupTwistyImageId = whichGroupId + "Arrow";
+		groupContainerObj = document.getElementById(whichGroupContainerId);
+		twistyArrowContainerObj = document.getElementById(whichGroupTwistyId);
+		twistyArrowImageObj = document.getElementById(whichGroupTwistyImageId);
+		group.parentNode.style.height = "auto";
+
+		var toShow = false;
+		
+		if (mode == 'TWISTIE.TOGGLE') {
+			if (groupContainerObj.style.display == "none" || groupContainerObj.style.display == "") {
+				toShow = true;
+			} else {
+				toShow = false;
+			}
+		} else if (mode == 'TWISTIE.EXPANDALL') {
+			toShow = true;
+		}
+		
+		if (toShow) {
+			groupContainerObj.style.visibility = "visible";
+			groupContainerObj.style.display = "block";
+			twistyArrowImageObj.src = '../../../images/twisty-open.png'
+			group.parentNode.style.height = (groupContainerObj.offsetHeight + 30) +'px'; 
+	
+		} else {
+			groupContainerObj.style.visibility = "hidden";
+			groupContainerObj.style.display = "none";
+			twistyArrowImageObj.src = '../../../images/twisty-closed.png'
+		}
+	
+	}
+	//-->
+	</script>
+	
+ <!-- END NON-TRANSLATABLE -->
+</head>
+<body id="msxmlq.parametertable">
+<div id="title" class="invisible">
+	<h1 class="patterns-title"><span>Message Splitter for WebSphere MQ: 단방향(XML용)</span> 패턴의 매개변수</h1>
+</div>
+<div class="box first">
+	<div class="TitleBox"><!-- --></div>
+	<div class="FooterBox"><!-- --></div>
+	<div class="TL"><!-- --></div>
+	<div class="TR"><!-- --></div>
+	<div class="BL"><!-- --></div>
+	<div class="BR"><!-- --></div>
+	<div class="ContentBox">
+		<div class="border">
+			<div class="groupBox" id="inputInformation">
+				<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="inputInformationTwisty">
+					<img src="../../../images/twisty-closed.png" 
+						name="b" id="inputInformationArrow" alt=""/>
+				</div>
+				<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">입력 정보
+</div>
+				<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="inputInformationContainer">
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">패턴 매개변수</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">기본값
+</th>
+									<th valign="top" width="*">설명
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">입력 큐
+</th>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">
+										<span class="msobjpropval">IN</span></td>
+									<td valign="top" width="*">이 패턴 매개변수는 XML 메시지가 수신되는
+										브로커 큐를 식별합니다.</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">컨테이너 이름
+</th>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">
+										<span class="msobjpropval">*:*</span></td>
+									<td valign="top" width="*">추출할 요소를 보관한 수신되는
+										XML 메시지에 있는 컨테이너 요소의 경로입니다. 이 경로는
+										ESQL와 같은 구문으로 지정되고, XML의 요소만 포함하고 있습니다(예:
+										<tt>SalesData.Invoices</tt>).
+										<p>
+										네임스페이스를 전체 제공할 수 있지만, 이름이 동일하고 네임스페이스가 다른
+										두 컨테이너 요소를 구별해야 하는 경우를 제외하고 네임스페이스를
+										와일드카드로 제공할 수도 있습니다(예: <tt>*:SalesData.*:Invoices</tt>).
+										</p>
+										<p>
+										기본값
+										<span class="msobjpropval">*:*</span>가 사용되면
+										XML 메시지의 루트 요소를 가정하고 아무 이름을 지정할 수 있습니다.
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">메시지 요소 이름 </th>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible"><span class="msobjpropval">*:*</span></td>
+									<td valign="top" width="*">수신되는 메시지에서 추출된 요소의 이름입니다.
+										<p>
+										기본값
+										<span class="msobjpropval">*:*</span>가 사용되면
+										컨테이너의 하위 항목이 승인됩니다.
+										</p>
+										<p>
+										네임스페이스에 상관없이 주어진 이름의 요소가 필요하다고 가정하므로
+										네임스페이스를 지정하지 않아야 합니다.
+										</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="box first">
+	<div class="TitleBox"><!-- --></div>
+	<div class="FooterBox"><!-- --></div>
+	<div class="TL"><!-- --></div>
+	<div class="TR"><!-- --></div>
+	<div class="BL"><!-- --></div>
+	<div class="BR"><!-- --></div>
+	<div class="ContentBox">
+		<div class="border">
+			<div class="groupBox" id="routingInformation">
+				<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="routingInformationTwisty">
+					<img src="../../../images/twisty-closed.png" 
+						name="b" id="routingInformationArrow" alt=""/>
+				</div>
+				<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">라우팅
+</div>
+				<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="routingInformationContainer">
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">패턴 매개변수</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">기본값
+</th>
+									<th valign="top" width="*">설명
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">라우팅
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">
+										<span class="msobjpropval">라우팅하지 않음</span>
+									</td>
+									<td valign="top" width="*">올바른 값은 다음과 같습니다.
+										<ul>
+											<li>
+												<span class="msobjpropval">라우팅하지 않음</span>
+											</li>
+											<li>
+												<span class="msobjpropval">라우트 지정</span>
+											</li>
+											<li>
+												<span class="msobjpropval">라우트 찾아보기</span>
+											</li>
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="box first">
+	<div class="TitleBox"><!-- --></div>
+	<div class="FooterBox"><!-- --></div>
+	<div class="TL"><!-- --></div>
+	<div class="TR"><!-- --></div>
+	<div class="BL"><!-- --></div>
+	<div class="BR"><!-- --></div>
+	<div class="ContentBox">
+		<div class="border">
+			<div class="groupBox" id="noRoutingInformation">
+				<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="noRoutingInformationTwisty">
+					<img src="../../../images/twisty-closed.png" 
+						name="b" id="noRoutingInformationArrow" alt=""/>
+				</div>
+				<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">라우팅하지 않음
+</div>
+				<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="noRoutingInformationContainer">
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">패턴 매개변수</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">기본값
+</th>
+									<th valign="top" width="*">설명
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">출력 큐 관리자
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">이 매개변수는 모든 출력 메시지가 송신되는 큐 관리자를 정의합니다. 공백으로 남아 있으면 기본값은 브로커 큐 관리자입니다.
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">출력 큐
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">
+										<span class="msobjpropval">OUT</span>
+									</td>
+									<td valign="top" width="*" >이 매개변수는 목적지 큐를 정의합니다.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="box first">
+	<div class="TitleBox"><!-- --></div>
+	<div class="FooterBox"><!-- --></div>
+	<div class="TL"><!-- --></div>
+	<div class="TR"><!-- --></div>
+	<div class="BL"><!-- --></div>
+	<div class="BR"><!-- --></div>
+	<div class="ContentBox">
+		<div class="border">
+			<div class="groupBox" id="specifyRoutingInformation">
+				<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="specifyRoutingInformationTwisty">
+					<img src="../../../images/twisty-closed.png" 
+						name="b" id="specifyRoutingInformationArrow" alt=""/>
+				</div>
+				<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">라우트 지정
+</div>
+				<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="specifyRoutingInformationContainer">
+					<p>
+					다음 선택적 <span class="msobjprop">네임스페이스 테이블</span>에 있는 매개변수는 XPath 표현식에 라우트의
+키 위치를 정의하는 데 사용할 수 있는 네임스페이스 접두부 및 네임스페이스 URI를 정의합니다. 행이 포함되어 있으면 두 매개변수가 모두 있어야 합니다.테이블에서 값을 추가, 편집 및 삭제하고 순서를 변경할 수 있습니다.
+					</p>
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">패턴 매개변수</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">기본값
+</th>
+									<th valign="top" width="*">설명
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">네임스페이스 접두부
+</th>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">적용할 수 없음</td>
+									<td valign="top" width="*"><span class="msobjprop">네임스페이스 접두부</span> 매개변수는 라우트 정의에 있는
+XPath <span class="msobjprop">키 위치</span>	매개변수에 포함되어 있습니다.</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">네임스페이스 URI
+</th>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">적용할 수 없음</td>
+									<td valign="top" width="*"><span class="msobjprop">네임스페이스 URI</span>는 지정된 접두부와 연관된
+										네임스페이스입니다.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<p>
+다음 <span class="msobjprop">라우팅 테이블</span>에 있는 매개변수는
+<span class="msobjprop">라우팅</span>
+매개변수 값이
+<span class="msobjpropval">라우트 지정</span>인 경우 출력 목적지 및 규칙을
+정의합니다. 
+라우트를 정의할 때는 4개의 매개변수를 사용하며, 필요한 라우트 수만큼 매개변수를
+반복할 수 있습니다. 테이블에서 값을 추가, 편집 및 삭제하고 순서를 변경할 수 있습니다.
+					</p>
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">패턴 매개변수</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">기본값
+</th>
+									<th valign="top" width="*">설명
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">키 위치
+</th>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">적용할 수 없음</td>
+									<td valign="top" width="*">
+								        <p>키 위치는 전파 중인 레코드 내에서 위치를 정의하는 XPath 표현식입니다(예: <tt>$Root/XMLNSC/submitPORequest/partNo</tt>). </p>
+										<p>사용할 표현식 유형에 대한 자세한 내용은 WebSphere Message Broker 문서에서 "라우트 노드" 및 "XPath 사용"을 참조하십시오.</p>
+										<p>
+선택적 <span class="msobjprop">네임스페이스 테이블</span>에 지정된 경우
+네임스페이스를 포함할 수 있습니다.
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">키 값
+</th>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">적용할 수 없음</td>
+									<td valign="top" width="*">
+이 매개변수는 이 라우트를 선택하기 위해 수신되는 메시지의 <span class="msobjprop">키 위치</span> 필드가
+일치해야 하는 값을 포함하고 있습니다.
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">큐 관리자
+</th>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">
+										이 매개변수는 이 라우팅 목적지의 큐 관리자를
+										정의합니다. 공백으로 남아 있으면 기본값은 브로커 큐 관리자입니다.
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">큐
+</th>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">적용할 수 없음</td>
+									<td valign="top" width="*">
+										이 매개변수는 이 라우팅 목적지의 큐를 정의합니다.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="box first">
+	<div class="TitleBox"><!-- --></div>
+	<div class="FooterBox"><!-- --></div>
+	<div class="TL"><!-- --></div>
+	<div class="TR"><!-- --></div>
+	<div class="BL"><!-- --></div>
+	<div class="BR"><!-- --></div>
+	<div class="ContentBox">
+		<div class="border">
+			<div class="groupBox" id="lookupRoutingInformation">
+				<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="lookupRoutingInformationTwisty">
+					<img src="../../../images/twisty-closed.png"
+						name="b" id="lookupRoutingInformationArrow" alt=""></img>
+				</div>
+				<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">라우트 검색
+</div>
+				<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="lookupRoutingInformationContainer">
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">패턴 매개변수</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">기본값
+</th>
+									<th valign="top" width="*">설명
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">라우팅 데이터 소스 </th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">적용할 수 없음</td>
+									<td valign="top" width="*">
+										이 매개변수는 라우트를 선택할 수 있는 데이터 소스를
+										정의합니다. 
+    <tt>ROUTING_TABLE</tt> 테이블에서 라우팅 정보를
+						찾아봅니다. 									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">라우팅 컨텍스트
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">적용할 수 없음</td>
+									<td valign="top" width="*">
+										이 매개변수는 둘 이상의 중개 플로우에
+										<tt>ROUTING_TABLE</tt>을 사용할 수 있도록
+										라우팅 컨텍스트를 정의합니다.
+										<p><tt>ROUTING_CONTEXT</tt> 필드가 <span class="msobjprop">라우팅 데이터 컨텍스트</span> 값과 일치하는 행만
+라우팅 검색에 선택되며 인메모리 캐시에 추가됩니다.</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">키 위치 1
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">적용할 수 없음</td>
+									<td valign="top" width="*">
+										이 매개변수는 전파된 메시지 요소에서 첫 번째 키를
+										추출하는 방식을 정의합니다. 이 매개변수는 ESQL 표현식으로
+										정의됩니다. 
+										<p>첫 번째 키는 데이터 소스 라우팅 항목의 <tt>VARIABLE1</tt>에서 선택하는 데 사용됩니다. 
+										이 키는 <tt>InputBody</tt> 또는 <tt>InputRoot</tt> 양식 내에 있어야 합니다.</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">키 위치 2
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">적용할 수 없음</td>
+									<td valign="top" width="*">
+이 매개변수는 전파된 메시지 요소에서 두 번째 키를
+						추출하는 방식을 정의합니다. 이 매개변수는 ESQL 필드 참조 표현식으로
+										정의됩니다. 
+										<p>두 번째 키는 데이터 소스 라우팅 항목의 <tt>VARIABLE2</tt>에서 선택하는 데 사용됩니다. 
+										이 키는 <tt>InputBody</tt> 또는 <tt>InputRoot</tt> 양식 내에 있어야 합니다.</p></td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">캐시 새로 고치기
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">해제됨</td>
+									<td valign="top" width="*">
+										이 매개변수가 선택되면, 새로 고치기 메시지를 수신할 때
+										데이터 소스에서 라우팅 데이터의 인-메모리 캐시를
+										새로 고칩니다.
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">큐 새로 고치기
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">
+										<span class="msobjpropval">REFRESH</span>
+									</td>
+									<td valign="top" width="*">
+										<span class="msobjprop">캐시 새로 고치기</span>가
+										선택되면 이 큐로 송신된 메시지가 인-메모리 라우팅
+										데이터의 새로 고치기를 트리거합니다.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+				  	</div>
+			  	</div>
+		  	</div>
+  		</div>
+	</div>
+</div>
+<div class="box first">
+	<div class="TitleBox"><!-- --></div>
+	<div class="FooterBox"><!-- --></div>
+	<div class="TL"><!-- --></div>
+	<div class="TR"><!-- --></div>
+	<div class="BL"><!-- --></div>
+	<div class="BR"><!-- --></div>
+	<div class="ContentBox">
+		<div class="border">
+			<div class="groupBox" id="log">
+				<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="logTwisty">
+					<img src="../../../images/twisty-closed.png"
+						name="b" id="logArrow" alt=""></img>
+				</div>
+				<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">로그 기록
+</div>
+				<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="logContainer">
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">패턴 매개변수</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">기본값
+</th>
+									<th valign="top" width="*">설명
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol" >로그 기록 필수
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">해제됨</td>
+									<td valign="top" width="*">
+										이 패턴 매개변수는 패턴 인스턴스가 로그 기록 코드를
+										포함하는지 여부를 판별합니다.
+										<p>
+										해제되면 로그 서브플로우가 포함되지 않습니다.
+										</p>
+										<p>
+									선택되면
+									<span class="msobjprop">로그 큐 관리자</span>
+									및
+									<span class="msobjprop">로그 큐</span>에 대한 값이 설정되어야 합니다.
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol" >로그 큐 관리자
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">
+										이 패턴 매개변수는 로그 기록의 큐 관리자를 정의합니다.
+										로그 기록에 브로커 큐 관리자가 사용되면 공백으로 남겨 둘 수 있습니다.
+										<p>
+										<span class="msobjprop">오류 메시지 필수</span>가 선택된 경우에만 필요합니다.
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol" >로그 큐
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible"><span class="msobjpropval">LOG</span></td>
+									<td valign="top" width="*">
+										이 패턴 매개변수는 로그 기록의 큐를 정의합니다.
+										<p>
+										<span class="msobjprop">오류 메시지 필수</span>가 선택된 경우에만 필요합니다.
+										</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+				  	</div>
+			  	</div>
+	  		</div>
+  		</div>
+	</div>
+</div>
+<div class="box first">
+	<div class="TitleBox"><!-- --></div>
+	<div class="FooterBox"><!-- --></div>
+	<div class="TL"><!-- --></div>
+	<div class="TR"><!-- --></div>
+	<div class="BL"><!-- --></div>
+	<div class="BR"><!-- --></div>
+	<div class="ContentBox">
+		<div class="border">
+			<div class="groupBox" id="errorInformation">
+				<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="errorInformationTwisty">
+					<img src="../../../images/twisty-closed.png"
+						name="b" id="errorInformationArrow" alt=""></img>
+				</div>
+				<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">오류 핸들링</div>
+				<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="errorInformationContainer">
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">패턴 매개변수</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">기본값
+</th>
+									<th valign="top" width="*">설명
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">오류 메시지 필수
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">선택됨</td>
+									<td valign="top" width="*">
+										이 패턴 매개변수는 패턴 인스턴스가 큐에 오류 메시지 배치 코드를
+										포함하는지 여부를 판별합니다.
+										<p>
+									선택되면
+									<span class="msobjprop">오류 큐 관리자</span>
+									및
+									<span class="msobjprop">오류 큐</span>에 대한 값이 설정되어야 합니다.
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">오류 큐 관리자
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">
+										이 패턴 매개변수는 오류 로그 기록의 큐 관리자를 정의합니다.
+										<p>
+										<span class="msobjprop">오류 메시지 필수</span>가 선택된 경우에만 필요합니다.
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">오류 큐
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible"><span class="msobjpropval">ERROR</span></td>
+									<td valign="top" width="*">
+										이 패턴 매개변수는 오류 메시지의 큐를 정의합니다.
+										<p>
+										<span class="msobjprop">오류 메시지 필수</span>가 선택된 경우에만 필요합니다.
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">잘못된 메시지 조치
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">
+										<span class="msobjpropval">저장</span>
+									</td>
+									<td valign="top" width="*">
+										이 매개변수는 메시지 요소를 라우팅할 수 없을 때
+										수행하는 조치를 정의합니다. 올바른 값은 다음과 같습니다.
+										<ul>
+											<li>
+												<span class="msobjpropval">저장</span>
+											</li>
+											<li>
+												<span class="msobjpropval">취소</span>
+											</li>
+										</ul>
+										<p>
+										<span class="msobjpropval">저장</span>이 선택되면
+										라우팅할 수 없는 메시지 요소가
+										<span class="msobjprop">잘못된 메시지 큐</span>에 배치됩니다.
+										</p>
+										<p>
+										<span class="msobjpropval">취소</span>가 선택되고
+										메시지 요소를 라우팅할 수 없으면 전체 메시지 플로우가
+										롤백됩니다.
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">잘못된 메시지 큐 관리자
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">
+										이 패턴 매개변수는 라우팅할 수 없는 메시지 요소를 저장하는
+										큐 관리자를 정의합니다.공백으로 남아 있으면 기본값은 브로커 큐 관리자입니다.
+										<p>
+										이 매개변수는
+										<span class="msobjprop">잘못된 메시지 조치</span>
+										매개변수 값이
+										<span class="msobjpropval">저장</span>인 경우에만 필요합니다.
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">잘못된 메시지 큐
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">예
+</td>
+									<td valign="top" width="*" class="invisible">
+										<span class="msobjpropval">BAD</span>
+									</td>
+									<td valign="top" width="*">
+										이 패턴 매개변수는 라우팅할 수 없는 메시지 요소를 저장하는
+										큐를 정의합니다.
+										<p>
+										이 매개변수는
+										<span class="msobjprop">잘못된 메시지 조치</span>
+										매개변수 값이
+										<span class="msobjpropval">저장</span>인 경우에만 필요합니다.
+										</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+				  	</div>
+			  	</div>
+	  		</div>
+  		</div>
+	</div>
+</div>
+<div class="box first">
+	<div class="TitleBox"><!-- --></div>
+	<div class="FooterBox"><!-- --></div>
+	<div class="TL"><!-- --></div>
+	<div class="TR"><!-- --></div>
+	<div class="BL"><!-- --></div>
+	<div class="BR"><!-- --></div>
+	<div class="ContentBox">
+		<div class="border">
+			<div class="groupBox" id="patternLevel">
+				<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="patternLevelTwisty">
+					<img src="../../../images/twisty-closed.png"
+						name="b" id="patternLevelArrow" alt=""></img>
+				</div>
+				<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">일반
+</div>
+				<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="patternLevelContainer">
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">패턴 매개변수</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">기본값
+</th>
+									<th valign="top" width="*">설명
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">브로커 스키마
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible"><span class="msobjpropval">mqsi</span></td>
+									<td valign="top" width="*">
+										설정되면 모든 메시지 플로우 및 ESQL 파일이 이름 지정된 브로커 스키마에
+										작성됩니다. 설정되지 않으면 기본 스키마가 사용됩니다.</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">플로우 접두부
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">
+										설정되면 이 접두부가 모든 메시지 플로우 이름 시작 부분에 추가됩니다.</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">플로우 접미부
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">
+										설정되면 이 접미부가 모든 메시지 플로우 이름 끝 부분에 추가됩니다.</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">큐 접두부
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">
+										설정되면 이 접두부가 모든 큐 이름 시작 부분에 추가됩니다.
+										<p>
+										기본 큐 이름이 사용되면 각 패턴 인스턴스의 큐 이름을 식별하기 위해
+										접두부, 접미부 또는 둘 다를 설정해야 합니다.
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">큐 접미부
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">
+										설정되면 이 접미부가 모든 큐 이름 끝 부분에 추가됩니다.</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">간단한 설명
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">이 설명이 생성되는 모든 메시지 플로우의
+										<span class="msobjprop">간단한 설명</span>
+										특성에 추가됩니다.</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">자세한 설명
+</th>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">아니오
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">이 설명이 생성되는 모든 메시지 플로우의
+										<span class="msobjprop">자세한 설명</span>
+										특성에 추가됩니다.</td>
+								</tr>
+							</tbody>
+						</table>
+				  	</div>
+			  	</div>
+	  		</div>
+  		</div>
+	</div>
+</div>
+<div id="footnotes" class="invisible">
+		<div class="box first">
+		<div class="TitleBox"><!-- --></div>
+		<div class="FooterBox"><!-- --></div>
+		<div class="TL"><!-- --></div>
+		<div class="TR"><!-- --></div>
+		<div class="BL"><!-- --></div>
+		<div class="BR"><!-- --></div>
+		<div class="ContentBox">
+			<div class="invisible" >
+				<p class="shortdesc">
+				모든 패턴 매개변수가 기본값과 함께 나열됩니다.
+				</p>
+				<p>
+    <b>M</b> 열은 특성이 <dfn class="term">필수</dfn>인지 여부를 표시합니다. 
+				<b>C</b> 열은 특성이 <dfn class="term">구성 가능</dfn>한지, 즉 메시지 플로우를 브로커 아카이브(BAR) 파일에 추가할 때
+값을 변경할 수 있는지 여부를 표시합니다.
+				</p>
+				<p>
+				기본값이 지정되어 있지 않은 경우, 기본값은 빈 문자열입니다.
+				</p>
+			</div>
+			<a href="overview.htm#anchor1" title="이전" class="invisible">Message Splitter for WebSphere MQ: 단방향(XML용) 패턴 스펙으로 돌아가기</a>
+		</div>
+	</div>
+</div>
+</body>
+</html>

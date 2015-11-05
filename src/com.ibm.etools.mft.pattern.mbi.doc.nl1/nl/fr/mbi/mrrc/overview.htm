@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="fr-fr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="copyright" content="Copyright IBM Corporation 2008" />
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008" />
+<meta name="abstract" content="Utilisation du modèle Corrélateur de réponse à la demande d'un message pour accepter les demandes d'un grand nombre d'applications dans une seule file d'attente et répondre au client approprié."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../css/ibmdita.css" />
+<link rel="stylesheet" type="text/css" href="../../css/bip4.css" />
+<title>Modèle Corrélateur de réponse à la demande d'un message</title>
+<script language="JavaScript" src="../../help/LiveHelp.js"> </script></head>
+<body id="mbi.mrrc.overview">
+<h1 class="topictitle1">Modèle <span>Corrélateur de réponse à la demande d'un message</span></h1>
+<div><p class="shortdesc">Utilisez le modèle <span>Corrélateur de réponse à la demande d'un message</span> pour accepter les demandes d'un grand nombre d'applications dans une seule file d'attente et répondre au client approprié. </p>
+<div class="image"><img src="correlator.gif" alt="Un diagramme montrant le comportement du modèle. Les applications demandeurs envoient des messages au courtier. L'adresse de réponse du demandeur est stockée avant l'envoi du message au fournisseur et elle restaurée lorsque le fournisseur envoie une réponse." /></div></div>
+<div class="section"><h2 class="sectiontitle">Contexte</h2>
+<p>Les applications client doivent souvent accéder à une application serveur. Les demandes des applications client et les réponses du serveur peuvent faire l'objet d'une médiation en étant transmises via un intermédiaire ou un bus de service d'entreprise, tel que IBM Integration Bus. Les applications client définissent dans leur demande la file d'attente de réponses dans laquelle doit être placée la réponse.</p>
+<p>Les systèmes de messagerie fournissent un mécanisme qui permet de router le message de réponse dans une interaction demande-réponse vers l'application d'origine ou une instance du client. Généralement, cette solution implique l'envoi d'une &quot;adresse de réponse&quot; dans l'en-tête de message. L'application réceptrice peut alors extraire cette information et envoyer la réponse à la file d'attente appropriée. Si une médiation est introduite dans l'interaction, deux interactions demande-réponse distinctes sont établies, et vous devez vérifier que les messages de réponse sont envoyés à la destination appropriée dans chaque cas.</p>
+<p>Si un grand nombre de ces clients interagissent avec une seule application serveur, une seule médiation est généralement utilisée. La pratique standard consiste pour l'application serveur et la médiation à fournir chacune une seule file d'attente de demandes. La médiation utilise également une seule file d'attente de réponses pour traiter les messages de réponse de l'application serveur. Si chaque client fournit sa propre file d'attente de réponses, un mécanisme est nécessaire pour envoyer chaque message de réponse à la file d'attente appropriée.</p>
+</div>
+<div class="section"><h2 class="sectiontitle">Problème</h2>
+<p>Un flux IBM Integration établit une médiation entre un demandeur et un fournisseur. 
+Le message entrant contient l'adresse de réponse du demandeur, mais le message envoyé à l'application fournisseur doit contenir l'adresse de réponse du flux de messages. Lorsque l'application fournisseur répond au flux de messages, elle doit faire correspondre chaque réponse à la demande envoyée par le client. </p>
+</div>
+<div class="section"><h2 class="sectiontitle">Aide à la sélection</h2>
+<p>Utilisez ce modèle lorsque vous disposez d'un certain nombre de demandeurs qui doivent envoyer des messages à un fournisseur et recevoir les réponses dans une file d'attente spécifique du demandeur et lorsque les demandes et les réponses font l'objet d'une médiation via le courtier. 
+Vous pouvez utiliser le modèle pour envoyer des messages de tout type et lorsque vous pouvez valider le message, par exemple, pour protéger les fournisseurs contre les messages mal formatés. </p>
+</div>
+<div class="section"><h2 class="sectiontitle">Solution</h2></div>
+<p> Les informations d'adresse de réponse de chaque demande de client dans le flux de médiation sont stockées avant l'envoi du message au fournisseur.
+Lorsque les réponses sont reçues du fournisseur, les informations de corrélation sont utilisées pour extraire et restituer l'adresse de réponse correcte du demandeur d'origine et stocker ces informations pour les extractions suivantes.</p>
+</body>
+</html>

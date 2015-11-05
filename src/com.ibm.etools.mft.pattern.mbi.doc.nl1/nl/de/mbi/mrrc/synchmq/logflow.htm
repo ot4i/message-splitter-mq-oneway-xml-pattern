@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de-de" xml:lang="de-de">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Verwenden Sie das Muster 'Message Correlator for WebSphere MQ: request-response without persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz) für die Annahme von Anforderungen von vielen Clientanwendungen in einer einzelnen Warteschlange und für die Rückgabe von Antworten an den richtigen Client mithilfe von transaktionsorientierten Nachrichtenflüssen und persistenten WebSphere MQ-Nachrichten."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Untergeordneter Protokollnachrichtenfluss für das Muster 'Message Correlator for WebSphere MQ: request-response without persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.synchmq.overview">
+<div><h1 class="topictitle1">Untergeordneter Protokollnachrichtenfluss für das Muster <span>Message Correlator for WebSphere MQ: request-response without persistence</span> (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz)</h1>
+<p class="shortdesc">Wenn der untergeordnete Protokollnachrichtenfluss im Anforderungsnachrichtenfluss enthalten ist, wird die Protokollierung der Anforderungen durch die benutzerdefinierte Eigenschaft <span class="msobjprop">RequestLoggingOn</span> gesteuert. Wenn der untergeordnete Protokollnachrichtenfluss im Antwortnachrichtenfluss enthalten ist, wird die Protokollierung der Antworten durch die benutzerdefinierte Eigenschaft <span class="msobjprop">ResponseLoggingOn</span> gesteuert.</p>
+<p>Wenn die Eigenschaft <span class="msobjprop">RequestLoggingOn</span> ausgewählt ist, ist die Protokollierung erforderlich. Der untergeordnete Protokollnachrichtenfluss wird in diesem Fall aufgerufen und er beendet den Nachrichtenfluss. Wenn die Protokollierung fehlschlägt, wird die Ausnahmebedingung im Nachrichtenfluss abgefangen und die Informationen werden in einen <span>Trace</span>knoten geschrieben.</p>
+<p>Wenn die Protokollierung im Antwortnachrichtenfluss enthalten ist, wird der untergeordnete Protokollnachrichtenfluss aufgerufen. Alle Fehler in der Protokollierung werden abgefangen, der Nachrichtenfluss wird erfolgreich beendet und die Nachrichtenflusstransaktion wird festgeschrieben.</p>
+<p>Protokollnachrichten werden als persistente WebSphere MQ-Nachrichten in eine <span>WebSphere MQ</span>-Warteschlange geschrieben. 
+Diese Protokollnachrichten werden dann gemäß den Standardverfahren in Ihrem Unternehmen gesondert bearbeitet.</p>
+Das Nachrichtenprotokoll enthält die ursprüngliche Nachricht und die folgenden Informationen in einem MQRFH2-Header: 
+<ul>
+<li>Zeitmarke</li>
+<li>Brokername</li>
+<li>Nachrichtenflussname</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="Zurück">Zurück zur Spezifikation des Musters <span>Message Correlator for WebSphere MQ:
+request-response without persistence</span> (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz)</a>
+</body>
+</html>

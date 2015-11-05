@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="pt-br">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Detalhes sobre o que é necessário saber e quais recursos você deve ter antes de poder usar o padrão de Message Splitter para WebSphere MQ: Unidirecional (para XML)"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Restrições no Uso do Padrão de Message Splitter para WebSphere MQ: Unidirecional (para XML)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.constraints">
+<h1 class="topictitle1">Restrições no Uso do Padrão de <span>Message Splitter para WebSphere MQ: Unidirecional (para XML)</span></h1>
+<p class="shortdesc">Várias restrições se aplicam quando este padrão é usado.</p>
+<p>É possível usar o padrão de <span>Message Splitter para WebSphere MQ: Unidirecional (para XML)</span>
+apenas se você puder atender a todas as restrições a seguir:</p>
+<ul>
+<li>Seus aplicativos de solicitante e do provedor usam o WebSphere MQ como o mecanismo de transporte.</li>
+<li>As mensagens recebidas são XML bem-formado; ou seja, XML que analisa mas não necessariamente valida.</li>
+<li>As mensagens estão em conformidade com a estrutura esperada. Cada mensagem de entrada contém:
+	<ul>
+	<li>Um envelope anexo, com o nome pelo qual é identificado opcionalmente por um parâmetro padrão</li>
+	<li>Uma série de estruturas repetidas, com nomes identificardos opcionalmente por um parâmetro padrão</li>
+	</ul></li>
+	
+<li>A mensagem recebida é processada automaticamente das seguintes maneiras:
+	<ul>
+	<li>Todos os elementos são gravados na saída ou na fila de mensagens inválidas</li>
+	<li>Nenhum elemento é gravado e a mensagem é revertida</li>
+	</ul>
+</li>
+</ul>
+<p>Assume-se que este padrão é para distribuição de informações que não devem ser perdidas.
+O fluxo de mensagens, portanto, é executado como uma transação e usa mensagens persistentes,
+ o que tem um impacto significativo no desempenho mas é necessário porque nenhuma perda de dados é um requisito.</p>
+<p>Assume-se que o número de elementos repetidos é menor que o número máximo de
+mensagens não confirmadas permitidas na
+fila de saída. Pode ser necessário ajustar este limite de números grandes de repetições forem antecipados.</p>
+
+<a href="overview.htm#anchor1" title="Voltar">Voltar para a especificação do padrão do Message Splitter para WebSphere MQ: Unidirecional (para XML)</a>
+</body>
+</html>

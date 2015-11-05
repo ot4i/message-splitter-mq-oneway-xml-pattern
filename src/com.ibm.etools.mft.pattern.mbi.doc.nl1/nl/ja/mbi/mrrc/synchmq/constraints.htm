@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja-jp" xml:lang="ja-jp">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="「WebSphere MQ のメッセージ相関関係子: 持続性のない要求/応答」パターンを使用する前に知っておくべき事柄や、必要なリソースについての詳細。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>「WebSphere MQ のメッセージ相関関係子: 持続性のない要求/応答」パターンの使用に関する制約</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.synchmq.constrainsts">
+<h1 class="topictitle1">「<span>WebSphere MQ のメッセージ相関関係子: 持続性のない要求/応答</span>」パターンの使用に関する制約</h1>
+<div>
+<p class="shortdesc">このパターンを使用する場合に適用される制約は多数あります。</p>
+<p>以下のすべての制約を満たす場合にのみ、「<span>WebSphere MQ のメッセージ相関関係子: 持続性のない要求/応答</span>」パターンを使用できます。</p>
+<ul>
+<li>要求側およびプロバイダー・アプリケーションはトランスポート・メカニズムとして <span>WebSphere MQ</span> を使用する必要があります。</li>
+<li>ブローカーが元の要求に応答をマッチングできるようにするために、プロバイダー・アプリケーションはメッセージ ID を相関 ID にコピーするという規則に従う必要があります。</li>
+<li>カスタマイズ可能な RequestProcessor サブフローの中に変換機能を含める場合を除き、要求側およびプロバイダー・アプリケーションは互換性のあるメッセージを送信して受け入れる必要があります。</li>
+<li>このパターンを使用する業務目的においては、タイムアウトが許容され、その結果として応答の受信が失敗した場合でも対処できる必要があります。</li>
+<li>パターンでロギング可能化を選択した場合、ログ・メッセージがキューに送られます。
+これらのログ・メッセージの処理はこのパターンのスコープ外であるため、実際の組織にとって最も適切な方法でロギング・メッセージを処理する必要があります。
+ロギングを選択した場合、ログ・メッセージは永続メッセージとしてログ・キューに書き込まれるため、パフォーマンスに影響を与えます。
+永続メッセージが使われる理由は、監査の目的でロギングが使用されることが想定されるためです。
+テスト用または通知用としてのみロギングを使用する場合は、ユーザー定義プロパティー (UDP) <span class="msobjprop">RequestLoggingOn</span> および <span class="msobjprop">ResponseLoggingOn</span> を構成することにより、実動システムでのロギングをオフに切り替えることができます。</li>
+<li>パターンでエラー・メッセージの使用可能化を選択した場合、例外の発生時にエラー・メッセージがキューに送られます。
+エラーの監視と修正アクションの実行はこのパターンのスコープ外であるため、実際の組織にとって最も適切な方法でエラー・メッセージを処理する必要があります。</li>
+<li>パターンはロギングおよびエラー・メッセージ用の独自のフォーマットを定義しています。これらは実際の環境での要件を十分に満たすと想定されます。</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="戻る">「WebSphere MQ のメッセージ相関関係子: 持続性のない要求/応答」パターンの仕様に戻る</a>
+</body>
+</html>

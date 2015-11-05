@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja-jp" xml:lang="ja-jp">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターンを生成した後に完了するタスク"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css" />
+<title>「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターンを生成した後に完了するタスク</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.postreq">
+<h1 class="topictitle1">「<span>WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)</span>」パターンを生成した後に完了するタスク</h1>
+<p class="shortdesc">パターンを生成した後に完了する必要があるタスクです。</p>
+<ol>
+<li>ブローカー・アーカイブ (BAR) ファイルを作成します。メッセージ・フローをブローカー・アーカイブ・ファイルに追加する必要があります。
+フローによって参照されるメッセージ・セットは自動的に追加されます。
+<ol>
+
+<li><span class="uicontrol">「ファイル」&gt;「新規」&gt;「BAR ファイル」</span>をクリックします。</li>
+<li>サーバー・プロジェクトの名前を入力するか、あるいは表示されているリストから 1 つを選択します。
+リストは、アクティブ作業セットのプロジェクトのみを表示するようにフィルタリングされています。
+</li>
+<li>作成する BAR ファイルの名前を入力します。</li>
+<li><span class="uicontrol">「終了」</span>をクリックします。
+拡張子が <span class="filepath">.bar</span> のファイルが作成され、「ブローカー管理ナビゲーター」ビューで「ブローカー・アーカイブ」フォルダーの下に表示されます。
+BAR ファイルの「内容」エディターが開きます。</li>
+<li>「準備」タブで、生成されたメッセージ・フロー・ファイルを選択し、BAR ファイルに追加します。</li>
+<li><span class="uicontrol">「リソースのコンパイルおよびインライン化」</span>を選択してから、<span class="uicontrol">「ビルドして保存」</span>をクリックして、BAR ファイルを作成します。</li>
+</ol></li>
+<li>ブローカー・アーカイブ・ファイルを構成します。「<span>WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)</span>」パターン・インスタンス用のメッセージ・フローをデプロイする前は、ブローカー・アーカイブ・ファイル内のメッセージ・フローをこれ以上構成する必要はありませんが、いくつかのデフォルト・オプションを検討して、環境に応じて構成を変更することもできます。
+<p>「ブローカー・アーカイブ」エディターの「管理」ページで、次のようにします。</p>
+<ol><li>オプション: メッセージ・スプリッター・メッセージ・フローでロギングをオンまたはオフにするかどうかを選択するには、「<span class="msobjprop">必要なロギング</span>」プロパティーを使用します。
+</li>
+<li>オプション: メッセージ・スプリッター・メッセージ・フローでエラー・メッセージの生成をオンまたはオフにするかどうかを選択するには、「<span class="msobjprop">必要なエラー・メッセージ</span>」プロパティーを使用します。
+</li>
+<li>オプション: ブローカー・アーカイブの中の構成可能な任意のプロパティーを変更することもできます (例えばセキュリティーや追加のインスタンス作成に関するプロパティー)。
+値の変更によってパターン・インスタンスの動作が影響を受けないことを確認する必要があります。</li>
+</ol></li>
+<li>キューを作成します。
+パターンを適用するとき、キュー名とキュー・マネージャー名を使用して WebSphere MQ キューのリストが生成されます。
+これらがまだ存在しない場合は作成する必要があります。
+パターンで必要とされるすべてのメッセージ設定はメッセージで明示的に設定されます (キューの設定には依存しません)。
+		<ol>
+<li>要約ファイルで、作成が必要なキューのリストを表示します。要約ファイルは、<i>InstanceName</i> パターン・インスタンス・プロジェクトのパターン構成フォルダーに配置されています。</li>
+<li><span>WebSphere MQ</span> リソースを作成します。<span>WebSphere MQ</span> リソースを作成するには、コマンド行または (<span class="cmdname">runmqsc</span> などの) プログラムやユーティリティーを使用するか、<span>WebSphere MQ</span> Explorer グラフィカル・インターフェースを使用できます。
+<span>WebSphere MQ</span> リソースの作成に関する詳細は、<img src="../../../images/external_link.gif" alt="このリンクをクリックすると新しいウィンドウが開きます" class="external_link" /> <a href="http://www.ibm.com/software/integration/wmq/library/" target="_blank">WebSphere MQ ライブラリー</a> Web ページで「<cite><span>WebSphere MQ</span> Intercommunication</cite>」を参照してください。
+</li>
+<li>「<span class="msobjprop">ルーティング</span>」パラメーターで「<span class="msobjpropval">経路の検索</span>」値を使用する場合、経路は動的に定義することができ、要約ファイルにはリストされません。
+経路をデータベースに追加する場合、対応するキューを作成する必要があります。</li>
+</ol></li>
+<li>必要に応じてルーティング・データベースをセットアップします。
+「<span class="msobjprop">ルーティング</span>」パラメーターで「<span class="msobjpropval">経路の検索</span>」値を選択した場合、
+ROUTING_TABLE テーブルでデータ・ソースをセットアップする必要があります。
+このテーブルには、以下のような列を含める必要があります。
+<ul>
+<li>ROUTING_CONTEXT
+<p>このフローのルーティング項目を識別する値を使用します。</p>
+</li>
+<li>VARIABLE1
+<p>メッセージ・エレメントの <span class="msobjprop">KEY1</span> プロパティーにマッチする必要のある値。</p>
+</li>
+<li>VARIABLE2
+<p>メッセージ・エレメントの <span class="msobjprop">KEY2</span> プロパティーにマッチする必要のある値。</p>
+</li>
+<li>QUEUE_MANAGER
+<p>宛先のキュー・マネージャー。</p>
+</li>
+<li>QUEUE
+<p>宛先キュー。</p>
+</li>
+</ul>
+</li>
+</ol>
+<div>
+</div>
+<a href="overview.htm#anchor1" title="戻る">「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターンの仕様に戻る</a>
+</body>
+</html>

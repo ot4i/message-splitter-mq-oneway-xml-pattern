@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es-es" xml:lang="es-es">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Detalles sobre lo que necesita saber y qué recursos debe tener antes de poder utilizar el patrón Correlacionador de mensajes para WebSphere MQ."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Restricciones en el uso del patrón Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta con persistencia</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.constrainsts">
+<h1 class="topictitle1">Restricciones en el uso del patrón <span>Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta con persistencia</span></h1>
+<div>
+<p class="shortdesc">Se aplican una serie de restricciones cuando se utiliza este patrón.</p>
+<p>Puede utilizar el patrón <span>Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta con persistencia</span> sólo si se cumplen todas las restricciones siguientes:</p>
+<ul>
+<li>Las aplicaciones de solicitante y proveedor deben utilizar <span>WebSphere MQ</span> como mecanismo de transporte.</li>
+<li>Las aplicaciones de proveedor deben seguir el convenio de copiar el identificador de mensaje al identificador de correlación para que el intermediario pueda hacer coincidir las respuestas con su solicitud original.</li>
+<li>Las aplicaciones de solicitante y proveedor deben enviar y aceptar mensajes compatibles, a menos que incluya la prestación de transformación en el subflujo RequestProcessor personalizable.</li>
+<li>Si elige permitir el registro en el patrón, los mensajes de registro se envían a una cola.
+El proceso de estos mensajes de registro está fuera del ámbito de este patrón y debe procesar los mensajes de registro de la manera más adecuada para la organización. Cuando se selecciona el registro, los mensajes de registro se graban en la cola de registro como mensajes permanentes, hecho que afecta al rendimiento. Se utilizan mensajes persistentes porque se supone que el registro se utiliza para fines de auditoría. Si el registro se realiza sólo como prueba o a título informativo, éste se puede desactivar en los sistemas de producción, configurando las siguientes propiedades definidas por el usuario (UDP): <span class="msobjprop">RequestLoggingOn</span> y <span class="msobjprop">ResponseLoggingOn</span>.</li>
+<li>Si elige habilitar mensajes de error en el patrón, los mensajes de error se envían a una cola cuando se produce una excepción. Supervisar errores y emprender acciones correctivas está fuera del ámbito del patrón y debe procesar los mensajes de error de la manera más adecuada para la organización.</li>
+<li>El patrón define su propio formato para los mensajes de registro y error y se supone que estos mensajes son suficientes para satisfacer los requisitos del propio entorno del usuario.</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="Volver">Volver a la especificación del patrón <span>Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta con persistencia</span></a>
+</body>
+</html>

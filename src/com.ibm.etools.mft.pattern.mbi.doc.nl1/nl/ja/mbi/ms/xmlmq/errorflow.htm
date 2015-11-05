@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja-jp" xml:lang="ja-jp">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターンを使用して、多数のクライアント・アプリケーションからの要求を単一のキューで受け入れ、正しいクライアントに応答を返します。その際、トランザクション・フローおよび永続 WebSphere MQ メッセージを使用します。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターンのエラー・サブフロー</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.errorflow">
+<div><h1 class="topictitle1">「<span>WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)</span>」パターンのエラー・サブフロー</h1>
+<div>
+<p class="shortdesc">エラーが発生した場合には、エラー・サブフローを使ってエラー・メッセージをルーティングします。</p>
+<p>エラー・メッセージをルーティングするには、以下のいずれかのアクションを使用します。</p>
+<ul>
+<li>ルーティングできないすべてのメッセージ・エレメントを、別個の正しくないメッセージ・キューに保存して、後続のエレメントの処理を続ける</li>
+<li>トランザクションを取り消して入力メッセージをロールバックする</li>
+</ul>
+</div>
+<p>Routing フローで失敗が発生した場合、(1 つのメッセージ・エレメントを含む) 伝搬されるメッセージは、Route サブフローの Failure ターミナルに送信されます。
+エラー状況が <span class="filepath">Environment.PatternVariables.FailureStatus</span> に記録され、正しくないエレメントの数が増分されます。
+</p>
+<p>「<span class="msobjprop">正しくないメッセージ・アクション</span>」を選択して、失敗後に実行するアクションを以下のように指定します。</p>
+<ul>
+<li><span class="msobjpropval">保管</span>
+<ol>
+<li>Failure ノードが MQOutput ノードに接続され、メッセージ・エレメントは正しくないメッセージ・キューに書き込まれます。
+Message Splitter Compute ノード内の処理ループに制御が戻されて処理が続きます。
+</li>
+<li>すべてのレコードが処理されると、Message Splitter Compute ノードは Error サブフローに制御を渡し、そこでは正しくないメッセージ・エレメントが保存されているかどうか検査されます。
+正しくないメッセージ・エレメントが保存されており、エラー・メッセージが必要な場合には、エラー状態のエレメントの数を示すエラー・メッセージが生成されます。</li>
+</ol>
+</li>
+<li><span class="msobjpropval">キャンセル</span>
+<ol>
+<li>Route サブフローの Failure ノードは接続されず、ルーティング・エラーが Message Splitter Compute ノードに返されます。ここでは、失敗状況が検出されて、例外が生成されます。
+ルーティング障害以外のすべての例外では、「<span class="msobjpropval">キャンセル</span>」アクションが実行されます。これらの例外はすべてリカバリー不能で、処理を続けることは安全ではないと想定されています。
+</li>
+<li>エラー・メッセージが必要な場合、エラー・メッセージが作成されてエラー・キューに書き込まれます。例外の詳細は XML メッセージとして書き込まれます。この詳細には、以下の内容が含まれます。<ul>
+	<li>ブローカー名</li>
+	<li>フロー名</li>
+	<li>タイム・スタンプ</li>
+	<li>例外データの要約</li>
+	</ul>
+</li>
+<li>入力メッセージおよび処理済みのすべてのメッセージ・エレメントをロールバックするユーザー・エラーが生成されます。
+この場合、例えばバックアウト・キューを使用して、WebSphere MQ インフラストラクチャーの中にバックアウト処理を実装する必要があります。<p>すべてのメッセージ・エレメントが正常に書き込まれた後に発生する例外では、バックアウトは行われません。このタイプの例外は、エラー・メッセージまたはログ・メッセージで発生する可能性があります。</p></li>
+</ol>
+</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="戻る">「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターンの仕様に戻る</a>
+</body></html>

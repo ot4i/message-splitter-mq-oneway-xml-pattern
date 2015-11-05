@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="使用 Message Splitter for WebSphere MQ: one-way (for XML) 模式可在单个队列上接受来自多个客户机应用程序的请求，并使用事务流和持久 WebSphere MQ 消息将响应返回到正确的客户机。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Splitter for WebSphere MQ: one-way (for XML) 模式的路由子流</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.log">
+<div><h1 class="topictitle1"><span>Message Splitter for WebSphere MQ: one-way (for XML)</span> 模式的路由子流</h1>
+
+
+<p class="shortdesc">路由子流的行为取决于<span class="msobjprop">路由</span>模式参数的值。</p>
+<ul>
+<li> <span class="msobjpropval">无路由</span>
+<p>如果选择了“<span class="msobjpropval">无路由</span>”，那么将创建单个 MQOutput 节点并根据<span class="msobjprop">输出队列管理器</span>和<span class="msobjprop">输出队列</span>模式参数的值对其进行配置。路由流是包含 Passthrough 节点的子流。
+将包含 Failure 节点，从而使此子流与所有其他类型的路由子流保持一致。
+</p></li>
+<li><span class="msobjpropval">指定路由</span>
+<p> 路由定义包括以下四个参数：</p>
+<ul>
+<li><span class="msobjprop">键位置</span>是一个 XPATH 表达式，其定义当前消息元素中的键位置。</li>
+<li><span class="msobjprop">键值</span>定义在采用此路由时键位置必须匹配的值。</li>
+<li><span class="msobjprop">队列管理器</span>将路由定义为队列管理器。</li>
+<li><span class="msobjprop">队列</span>将路由定义为队列。</li>
+</ul>
+<p>对于定义的每个路由，将创建并连接路由子流和 MQOutput 节点的 Output 终端。</p>
+<p>路由子流包含配置了过滤器的 Route 节点，如果满足<tt>键位置 = 键值</tt>条件，该过滤器将路由到 Output 终端。如果消息元素与任何路由都不匹配，那么将在环境变量中记录错误，并将消息传递至 Failure 终端。</p>
+<p>可使用<span class="msobjpropval">指定路由</span>来指定多个路由。</p></li>
+<li><span class="msobjpropval">查找路由</span>
+<p>如果选择此值，那么将针对路由子流创建单个 Output 终端，并且此终端将连接到配置为获取目标列表的单个 MQOutput 节点。</p>
+<p>路由子流通过检查 <span class="filepath">CacheQueueTable.valid</span> 共享行变量值是否设置为 <tt>NULL</tt>，来检查高速缓存是否需要进行刷新。在以下情况下，该变量设置为 <tt>NULL</tt>：流启动时；启用了<span class="msobjprop">高速缓存刷新</span>且刷新消息已发送到<span class="msobjprop">刷新队列</span>时。
+刷新消息将值设置为 <tt>NULL</tt>。</p>
+<p>如果高速缓存要求刷新，那么将搜索在<span class="msobjprop">路由数据源</span>模式参数中指定的数据源的 ROUTING_TABLE 表，以查找与此流的路由上下文匹配的所有行。
+路由上下文由<span class="msobjprop">路由上下文</span>模式参数定义，并且会将 ROUTING_CONTEXT 字段匹配此参数的行读取到内存高速缓存，此操作将自动完成以避免当高速缓存处于不一致状态时进行查找。</p>
+<p>高速缓存数据的结构是：</p>
+<pre>VARIABLE1, VARIABLE2, QUEUE_MANAGER, QUEUE_NAME </pre>
+<p>执行查找时，将使用定义为模式参数的 ESQL 表达式从消息元素中抽取一、两个键值。将使用以下格式的语句来定义模式参数：</p>
+<pre>SET KEY = &lt;pattern parameter&gt;</pre>
+<p>如果指定单个键从路由数据中选择一行或多行，那么请使用 WHERE 子句：</p>
+<pre>WHERE S.VARIABLE1 = KEY1</pre> 
+<p>如果指定了第二个键，那么用于选择的 WHERE 子句为：</p>
+<pre>WHERE S.VARIABLE1 = KEY1 and S.VARIABLE2 = KEY2</pre>
+<p>此选项将队列管理器和队列设置到 MQOutput 节点中使用的本地环境。可返回多行，并且目标数据包含所有选中的目标。如果未找到任何匹配，那么将发生路由错误，并且消息将传递至路由子流的 Failure 终端。</p></li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="返回">返回至 Message Splitter for WebSphere MQ: one-way (for XML) 模式规范</a>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="de-de" xml:lang="de-de">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Tasks, die nach der Generierung des Musters 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ: unidirektional (bei XML)) ausgeführt werden müssen"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css" />
+<title>Tasks, die nach der Generierung des Musters 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML)) ausgeführt werden müssen</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.postreq">
+<h1 class="topictitle1">Tasks, die nach der Generierung des Musters <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML)) ausgeführt werden müssen</h1>
+<p class="shortdesc">Tasks, die Sie nach der Generierung des Musters ausführen müssen.</p>
+<ol>
+<li>Erstellen Sie die Brokerarchivdatei (BAR-Datei).
+Der Nachrichtenfluss muss einer Brokerarchivdatei hinzugefügt werden. 
+Alle im Nachrichtenfluss referenzierten Nachrichtensätze werden dabei
+				automatisch hinzugefügt.
+<ol>
+
+<li>Klicken Sie auf <span class="uicontrol">Datei &gt; Neu &gt; BAR-Datei</span>.</li>
+<li>Geben Sie den Namen Ihres Serverprojekts ein oder wählen Sie ein Projekt aus der Liste aus. 
+Die Liste ist gefiltert. Sie zeigt nur die Projekte des aktiven Arbeitsbereichs an. 
+</li>
+<li>Geben Sie einen Namen für die BAR-Datei ein, die erstellt werden soll.</li>
+<li>Klicken Sie auf <span class="uicontrol">Fertigstellen</span>.
+Eine Datei mit der Erweiterung <span class="filepath">.bar</span> wird erstellt und in der Ansicht 'Navigator zur Brokerverwaltung' im Ordner 'Brokerarchive' angezeigt. Der Inhaltseditor für die Brokerarchivdatei wird geöffnet.</li>
+<li>Wählen Sie auf der Registerkarte 'Prepare' (Vorbereiten) die generierte Nachrichtenflussdatei aus, um sie Ihrer BAR-Datei hinzuzufügen.</li>
+<li>Wählen Sie <span class="uicontrol">Ressourcen kompilieren und integrieren</span> aus und klicken Sie anschließend auf <span class="uicontrol">Build and Save</span> (Erstellen und speichern), um Ihre BAR-Datei zu erstellen.</li>
+</ol></li>
+<li>Konfigurieren Sie die Brokerarchivdatei.
+Eine weitere Konfiguration des
+			in der Brokerarchivdatei enthaltenen Nachrichtenflusses ist vor der Implementierung
+			der Nachrichtenflüsse für Ihre Instanz des Musters <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML)) nicht
+			erforderlich. Eventuell sollten Sie jedoch die Standardoptionen überprüfen und
+			die Konfiguration an Ihre Umgebung anpassen.
+<p>Auf der Seite 'Verwalten' des Brokerarchiv-Editors:</p>
+<ol><li>Optional: Legen Sie mit der Eigenschaft <span class="msobjprop">Protokollierung erforderlich</span> fest, ob die Protokollierung für den Nachrichtenfluss des Nachrichtenverteilers aktiviert werden soll.
+</li>
+<li>Optional: Legen Sie mit der Eigenschaft <span class="msobjprop">Fehlernachricht erforderlich</span> fest, ob für den Nachrichtenfluss des Nachrichtenverteilers Fehlernachrichten generiert werden sollen.
+</li>
+<li>Optional: Sie können auch die konfigurierbaren Eigenschaften im Brokerarchiv ändern, zum Beispiel Sicherheitseigenschaften oder Eigenschaften zur Erstellung weiterer Instanzen. Allerdings müssen Sie sicherstellen, dass sich die von Ihnen geänderten Werte nicht auf das Verhalten der Musterinstanz auswirken.</li>
+</ol></li>
+<li>Erstellen Sie Warteschlangen. Wenn Sie das Muster anwenden, wird eine Liste mit WebSphere MQ-Warteschlangen mit Warteschlangennamen und WS-Managernamen generiert, die erstellt werden müssen, wenn sie noch nicht vorhanden sind. Sämtliche für das Muster erforderlichen Nachrichteneinstellungen werden explizit in den Nachrichten definiert und sind nicht abhängig von den Warteschlangeneinstellungen.
+<ol>
+<li>Die zu erstellenden Warteschlangen entnehmen Sie bitte der
+ 				Zusammenfassungsdatei. Die Summendatei befindet sich im Projektverweisordner des Musterinstanzprojektes <i>Instanzname</i>.</li>
+<li>Erstellen Sie <span>WebSphere MQ</span>-Ressourcen. Sie können <span>WebSphere MQ</span>-Ressourcen entweder über die Befehlszeile mithilfe von Programmen und Dienstprogrammen wie
+<span class="cmdname">runmqsc</span> oder mithilfe der grafischen Oberfläche von <span>WebSphere MQ</span> Explorer erstellen.
+Weitere Informationen zur Erstellung von
+    				<span>WebSphere MQ</span>-Ressourcen finden Sie unter <cite><span>WebSphere MQ</span> Intercommunication</cite>,         verfügbar auf der <img src="../../../images/external_link.gif" alt="Dieser Link öffnet sich in einem neuen Fenster" class="external_link" />	<a href="http://www.ibm.com/software/integration/wmq/library/" target="_blank">WebSphere
+    				MQ-Bibliotheks</a>webseite.</li>
+<li>Wenn für den Parameter <span class="msobjprop">Routing</span> die Option <span class="msobjpropval">Routen suchen</span> ausgewählt ist, können die Routen dynamisch definiert werden. Sie werden daher nicht in der Zusammenfassungsdatei aufgeführt. Die zugehörigen Warteschlangen müssen erstellt werden, wenn die Routen der Datenbank hinzugefügt werden.</li>
+</ol></li>
+<li>Richten Sie bei Bedarf eine Routing-Datenbank ein.
+Wenn der Wert <span class="msobjpropval">Routen suchen</span> im Parameter
+<span class="msobjprop">Routing</span> ausgewählt ist, muss die Datenquelle mit der Tabelle 'ROUTING_TABLE' konfiguriert werden. Diese Tabelle muss die folgenden Spalten enthalten:
+<ul>
+<li>ROUTING_CONTEXT
+<p>Geben Sie einen Wert ein, der die Routing-Einträge für diesen Nachrichtenfluss identifiziert.</p>
+</li>
+<li>VARIABLE1
+<p>Der Wert, mit dem die Eigenschaft <span class="msobjprop">KEY1</span> des Nachrichtenelements übereinstimmen muss.</p>
+</li>
+<li>VARIABLE2
+<p>Der Wert, mit dem die Eigenschaft <span class="msobjprop">KEY2</span> des Nachrichtenelements übereinstimmen muss.</p>
+</li>
+<li>QUEUE_MANAGER
+<p>Der Warteschlangenmanager des Ziels.</p>
+</li>
+<li>QUEUE
+<p>Die Zielwarteschlange.</p>
+</li>
+</ul>
+</li>
+</ol>
+<div>
+</div>
+<a href="overview.htm#anchor1" title="Back">Zurück zur Spezifikation des Musters 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML))</a>
+</body>
+</html>

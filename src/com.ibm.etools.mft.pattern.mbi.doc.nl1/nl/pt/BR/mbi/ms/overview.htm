@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="pt-br">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="copyright" content="Copyright IBM Corporation 2008" />
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008" />
+<meta name="abstract" content="Use o padrão do Message Splitter para aceitar pedidos de vários aplicativos clientes em uma única fila e para retornar respostas ao cliente correto."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../css/ibmdita.css" />
+<link rel="stylesheet" type="text/css" href="../../css/bip4.css" />
+<title>Padrão do Message Splitter</title>
+<script language="JavaScript" src="../../help/LiveHelp.js"> </script></head>
+<body id="mbi.mrrc.overview">
+<h1 class="topictitle1">Padrão do Message Splitter</h1>
+<div><p class="shortdesc">Use um padrão do Message Splitter para dividir uma mensagem XML grande
+em elementos menores para processamento por um ou mais destinos. </p>
+<div class="image"><img src="splitter.gif" alt="Diagrama mostrando o comportamento do padrão." align="middle"/></div></div>
+<div class="section"><h2 class="sectiontitle">O Contexto</h2><p></p>
+<p class="MsoNormal">Você deseja compartilhar informações que se acumularam em um
+aplicativo durante um período de tempo com outros aplicativos. 
+Exemplos típicos podem ser dados de vendas que se acumularam durante um dia
+ou atualizações de informações que são recebidas de parceiros. Os dados são acumulados durante
+um determinado período de tempo e transmitidos como uma única mensagem grande. No final do
+dia, o processamento no aplicativo de destino, ou aplicativos de destino, requer que cada elemento
+seja processado individualmente.</p>
+<p class="MsoNormal">Alternativamente, um aplicativo pode gerar uma
+mensagem contendo vários registros que devem ser distribuídos; por exemplo, onde um aplicativo
+mantém e distribui dados de referência.<span
+	style="mso-spacerun:yes"></span></p>
+</div>
+<div class="section"><h2 class="sectiontitle">O Problema</h2>
+<p>Mensagens grandes que contêm estruturas repetitivas de processamento podem causar uso de memória
+excessivo, o que tem um impacto em potencial em outros processos de mensagens e pode resultar em falha do broker. 
+Este padrão aborda o problema de roteamento dos elementos de uma mensagem
+grande para diferentes destinos de acordo com as regras de roteamento definidas.</p>
+<div class="section"><h2 class="sectiontitle">Orientação de Seleção</h2>
+<p>Use este padrão para aplicativos que armazenam informações sobre várias transações de negócios
+e transmitem estas informações para um ou mais aplicativos de destino nos lotes.
+Isto pode ser usado para manipular mensagens grandes sem uso de memória excessivo.</p>
+<p>Este padrão pode ser usado quando o aplicativo de origem ou aplicativos
+de destino não podem fazer ou processar
+chamadas de serviço quase em tempo real ou quando o armazenamento em lote de informações é necessário por
+motivos comerciais.
+</p>
+</div>
+<div class="section"><h2 class="sectiontitle">Solução</h2></div>
+<p> A solução é implementar um fluxo de mensagens que usa uma árvore de mensagens mutável, para que elementos repetíveis
+possam ser excluídos conforme são processados. A análise parcial permite que elementos únicos sejam analisados conforme necessário e,
+como estes elementos são excluídos na conclusão, a árvore na memória é impedida de crescer de forma linear
+com o número de elementos.
+Conforme cada elemento é extraído, ele é roteado para o aplicativo de destino apropriado.
+</p>
+<p>A mensagem de entrada e todas as mensagens de saída são processadas em uma única transação; todas as mensagens de saída são
+persistentes. Uma falha na leitura da mensagem de entrada XML faz com que a transação inteira falhe, mas erros
+ao processar um único elemento podem incluir o elemento com falha em uma fila para processamento posterior ou
+fazer com que a transação inteira falhe.
+</p>
+</div></body>
+</html>

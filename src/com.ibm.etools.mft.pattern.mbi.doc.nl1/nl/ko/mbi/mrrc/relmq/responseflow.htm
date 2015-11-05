@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-kr" xml:lang="ko-kr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Message Correlator for WebSphere MQ: 지속을 사용하는 요청-응답 패턴을 사용하면 단일 큐에 있는 많은 클라이언트 애플리케이션의 요청을 승인하고 트랜잭션 플로우와 지속 WebSphere MQ 메시지를 사용하여 올바른 클라이언트로 응답을 리턴할 수 있습니다."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Correlator for WebSphere MQ: 지속을 사용하는 요청-응답 패턴의 응답 플로우</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<div><h1 class="topictitle1"><span>Message Correlator for WebSphere MQ: 지속을 사용하는 요청-응답</span> 패턴의 응답 플로우</h1>
+<p class="shortdesc">응답 플로우는 트랜잭션 플로우로 실행됩니다.</p>
+<p>제공자 애플리케이션으로부터 응답을 수신하면
+다음과 같은 조치가 수행됩니다.</p>
+<ol>
+<li>메시지 플로우는 ResponseProcessor라는 서브플로우를 포함하고 있습니다.
+이 서브플로우는 <span>Passthrough</span> 노드만 포함하므로
+처리가 수행되지 않습니다.
+패턴의 구조를 변경하지 않고 고유 처리를 추가하도록 패턴 인스턴스에서
+이 서브플로우를 사용자 정의할 수 있습니다. </li>
+<li>저장된 MQMD 헤더를 스토리지 큐에서 검색하고 요청자에 응답하기 위해 올바른 주소를 포함할 수 있도록
+응답 메시지에 추가합니다.</li>
+<li>응답이 요청자로 리턴됩니다.</li>
+<li>메시지 플로우는 로그라는 로그 기록을 위한 서브플로우를 포함하고 있을 수 있습니다.
+로그 기록을 포함하거나 제외하도록 패턴을 구성할 수 있습니다.
+로그 기록이 포함되어 있으면 로그 서브플로우가 호출됩니다.
+
+		</li>
+<li>로그 기록이 포함되어 있지 않으면 메시지 플로우가 성공적으로 종료되고 트랜잭션이 커미트됩니다.</li>
+<li>메시지 플로우는 오류 핸들링을 위한 서브플로우도 포함하고 있습니다.
+</li>
+<li>패턴 인스턴스에 대해 이 옵션을 구성한 경우, 오류 메시지가 오류 큐에 기록됩니다.</li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="이전"><span>Message Correlator for WebSphere MQ: 지속을 사용하는 요청-응답</span>
+패턴 스펙으로 돌아가기</a>
+</body>
+</html>

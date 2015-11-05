@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-tw" xml:lang="zh-tw">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="在您可以使用 Message Correlator for WebSphere MQ: request-response with persistence 型樣之前，必須知道及必須具有的資源的明細。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>套用 Message Correlator for WebSphere MQ: request-response with persistence 型樣之前要完成的作業</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.prereq">
+<h1 class="topictitle1">套用 <span>Message Correlator for WebSphere MQ: request-response with persistence</span> 型樣之前要完成的作業</h1>
+<div><div class="section">
+<p class="shortdesc">套用型樣以產生型樣實例之前，您必須決定需要下列哪一項作業。必要的話，請完成下列作業：</p>
+</div>
+<ul><li>選取型樣實例的唯一名稱。
+您可以多次使用型樣，以及建立多個不同的實例，而這些實例可以透過其唯一名稱加以識別。識別型樣實例的用途，讓您可以決定適當或有意義的唯一名稱。</li>
+<li>選取想要型樣實例使用的 <span>WebSphere MQ</span> 佇列管理程式及佇列，例如，以存取提供者應用程式。如果您使用現有佇列，則必須記錄這些項目。
+如果您想要建立新的佇列管理程式及佇列，則必須決定這些資源的名稱。</li>
+<li>識別此型樣所需的任何其他佇列管理程式及佇列，以及決定想要使用的唯一名稱。請考量必須套用的任何原則、標準或命名慣例。</li>
+<li>決定是否需要驗證送入的要求訊息或提供者回應訊息。如果您的要求者及提供者應用程式產生正確的訊息，則可能不需要進行驗證。
+如果您想要驗證訊息，則必須已有訊息集以提供訊息定義，或必須建立訊息集以提供訊息定義。</li>
+<li>決定您是否需要記載要求訊息及（或）回應訊息。如果需要記載，則您必須決定傳送記載訊息的目標佇列管理程式及佇列。
+您可以將記載訊息傳送至多個訊息流程所使用的一般日誌佇列，也可以使用特別針對型樣實例的佇列。</li>
+<li>決定您是否想要產生型樣實例的錯誤訊息。
+如果此型樣實例處理更新項目，請使用錯誤處理以確保您未遺失任何資料。您可以將錯誤訊息傳送至多個訊息流程所使用的一般錯誤佇列，也可以使用特別針對型樣實例的佇列。如果您選擇傳送型樣實例中的錯誤訊息，則可以在部署之前配置分配管理系統保存檔 (BAR)，以開啟或關閉此功能。</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="上一步">回到 Message Correlator for WebSphere MQ: request-response with persistence 型樣規格</a>
+</body>
+</html>

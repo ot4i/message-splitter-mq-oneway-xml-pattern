@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-es" xml:lang="es-es">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Utilice el patrón Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta con persistencia para aceptar solicitudes de muchas aplicaciones clientes en una sola cola y devolver respuestas al cliente correcto mediante flujos transaccionales y mensajes persistentes de WebSphere MQ."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Flujo Request para el patrón Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta con persistencia</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<div><h1 class="topictitle1">Flujo Request para el patrón <span>Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta con persistencia</span></h1>
+<p class="shortdesc">El flujo Request se ejecuta como un flujo transaccional.</p>
+<p>Los mensajes recibidos por el flujo Request se procesan de la manera siguiente:</p>
+<ol>
+<li>Cuando el flujo de mensajes recibe un mensaje, se comprueba para asegurarse de que la cabecera MQMD contiene una cola de respuesta.
+Se produce un error si este campo está en blanco.</li>
+<li>Cuando el flujo de mensajes recibe un mensaje, se toma una copia de la cabecera
+MQMD del mensaje y se modifica estableciendo el identificador de correlación como identificador de mensaje. El contenido de la cabecera del mensaje se guarda en una cola para conservar la dirección de respuesta original. Establecer el identificador de correlación en la cabecera guardada asegura que, cuando la cabecera se recupera y se añade a la respuesta del solicitante, el valor es correcto y habilita la recuperación del solicitante mediante la utilización del identificador de correlación. 
+</li>
+<li>El flujo de mensajes incluye un subflujo llamado RequestProcessor.
+Este subflujo sólo contiene un nodo <span>Passthrough</span>, por lo que no se realiza ningún proceso. 
+Puede personalizar este subflujo en la instancia del patrón para añadir su propio proceso sin cambiar la estructura del patrón.</li>
+<li>La cabecera MQMD del mensaje entrante se modifica para sustituir el gestor de colas de respuesta y la cola de respuesta del solicitante con la dirección del nodo de entrada del flujo de mensajes Response.</li>
+<li>El mensaje se reenvía a la aplicación de proveedor.</li>
+<li>El flujo de mensajes puede contener un subflujo para realizar el registro denominado Log.
+Puede configurar el patrón para incluir o excluir el subflujo Log.
+</li>
+	<li>Si el registro no es necesario, el flujo de mensajes finaliza satisfactoriamente después de escribir el mensaje en la cola de proveedor y la transacción se confirma.</li>
+	<li>El flujo de mensajes también contiene un subflujo de manejo de errores, llamado Error. </li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="Volver">Volver a la especificación del patrón Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta con persistencia</a>
+</body>
+</html>

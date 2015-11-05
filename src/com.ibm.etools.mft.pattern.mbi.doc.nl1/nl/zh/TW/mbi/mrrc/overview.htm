@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="copyright" content="Copyright IBM Corporation 2008" />
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008" />
+<meta name="abstract" content="使用 Message Request Response Correlator 型樣，可以接受單一佇列上多個用戶端應用程式的要求，以及將回應傳回給正確的用戶端。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../css/ibmdita.css" />
+<link rel="stylesheet" type="text/css" href="../../css/bip4.css" />
+<title>Message Request Response Correlator 型樣</title>
+<script language="JavaScript" src="../../help/LiveHelp.js"> </script></head>
+<body id="mbi.mrrc.overview">
+<h1 class="topictitle1"><span>Message Request Response Correlator</span> 型樣</h1>
+<div><p class="shortdesc">使用 <span>Message Request Response Correlator</span> 型樣，可以接受單一佇列上多個用戶端應用程式的要求，以及將回應傳回給正確的用戶端。</p>
+<div class="image"><img src="correlator.gif" alt="顯示型樣行為的圖表。多個要求者應用程式會將訊息傳送給分配管理系統。會在將訊息轉遞給提供者之前儲存要求者的回覆位址，並在接收來自提供者的回應時進行還原。" /></div></div>
+<div class="section"><h2 class="sectiontitle">環境定義</h2>
+<p>用戶端應用程式通常必須存取伺服器應用程式。透過媒介或「企業服務匯流排 (ESB)」（例如 IBM Integration Bus）進行傳遞，可以調解來自用戶端應用程式的要求及來自伺服器的回應。用戶端應用程式在其要求中指定預期要在其上接收回應的特定回應佇列。</p>
+<p>傳訊系統提供機制，以確保要求-回覆互動中的回應訊息可以遞送至正確的起源應用程式或用戶端實例。一般而言，此解決方案包含將「回覆目的地位址」傳遞為訊息標頭的一部分。然後，接收端應用程式可以取出此資訊，並將回應傳送給適當佇列。如果將調解引進互動，則會建立兩個不同的要求-回覆互動，而且在每一種案例下，您都必須確保將回應訊息傳送給正確的目的地。</p>
+<p>如果多個這類用戶端與單一伺服器應用程式互動，則一般只會使用單一調解。標準實務適用於伺服器應用程式，而每一個伺服器應用程式的調解都會提供單一要求佇列。此調解也會使用單一回應佇列，以處理來自伺服器應用程式的回覆訊息。如果每一個用戶端都提供它自己的回應佇列，則需要機制來確保每一個回覆訊息都已傳送給正確的佇列。</p>
+</div>
+<div class="section"><h2 class="sectiontitle">問題</h2>
+<p>IBM Integration 流程會在要求者與提供者之間進行調解。送入訊息包含要求者的回覆位址，但是轉遞給提供者應用程式的訊息必須包含訊息流程的回覆位址。提供者應用程式回應訊息流程時，必須符合用戶端所傳送要求的每一個回應。</p>
+</div>
+<div class="section"><h2 class="sectiontitle">選擇指引</h2>
+<p>如果您有多個要求者必須將訊息傳送給提供者、接收佇列上要求者特定的回應，以及透過分配管理系統調解要求及回應，請使用此型樣。
+您可以使用此型樣來傳遞任何類型的訊息，而且可以選擇驗證訊息，例如，以保護提供者免於取得格式不正確的訊息。</p>
+</div>
+<div class="section"><h2 class="sectiontitle">解決方案</h2></div>
+<p> 將訊息轉遞給提供者之前，儲存調解流程中每一個用戶端要求的回覆目的地資訊。
+接收來自提供者的回應時，會使用相關性資訊來擷取及還原原始要求者的正確回覆位址，以及儲存此資訊以進行後續擷取。</p>
+</body>
+</html>

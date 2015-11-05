@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="pt-br">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Detalhes sobre o que é necessário saber e quais recursos você deve ter antes de poder usar o padrão do Message Splitter para WebSphere MQ: Unidirecional (para XML)."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Tarefas para Concluir Antes de Aplicar o Padrão de Message Splitter para WebSphere MQ: Unidirecional (para XML)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.prereq">
+<h1 class="topictitle1">Tarefas para Concluir Antes de Aplicar o Padrão de <span>Message Splitter para WebSphere MQ: Unidirecional (para XML)</span></h1>
+<div>
+<div class="section">
+<p class="shortdesc">Antes de aplicar o padrão para produzir uma instância padrão, é necessário determinar
+		quais das tarefas a seguir são necessárias. Se necessário, conclua as tarefas a seguir:</p>
+</div>
+<ul><li>Selecione um nome exclusivo para a instância padrão.
+É possível usar o padrão várias vezes e criar várias instâncias diferentes, que podem ser distinguidas por
+seus nomes exclusivos. Identifique o propósito do aplicativo padrão para que você possa decidir sobre um
+nome exclusivo apropriado ou significativo.</li>
+<li>Selecione os gerenciadores de filas e filas do WebSphere MQ que você deseja que a instância padrão use,
+por exemplo, para receber a mensagem XML. Se você estiver usando filas existentes, elas devem ser registradas. 
+Se você desejar criar novos gerenciadores de filas e filas, deverá decidir sobre os nomes para estes recursos.</li>
+<li> Decida se a validação é necessária e defina um conjunto de mensagens ou determine o nome do
+conjunto de mensagens. Após o padrão ter sido gerado, conclua a tarefa de criação do conjunto de mensagens.</li>
+<li>Identifique quaisquer gerenciadores de filas e fila adicionais que sejam necessários para este padrão e decida
+sobre os nomes que você deseja usar. Leve em conta quaisquer políticas, normas ou convenções de nomenclatura
+		  que devem ser aplicadas.</li>
+<li>Decida se você requer a criação de log de mensagens recebidas. 
+Se a criação de log for necessária, é preciso decidir
+		  para qual gerenciador de filas e fila as mensagens de criação de log são enviadas.
+É possível enviar mensagens de criação de log para uma fila de log geral que é usada por múltiplos fluxos de mensagens
+ou você pode usar uma fila especificamente para a instância padrão.</li>
+<li>Decida se há múltiplos destinos possíveis e, se houver, selecione a abordagem de roteamento a usar.
+	<ul><li>Configure o parâmetro <span class="msobjprop">Roteamento</span> como
+	<span class="msobjpropval">Especificar rotas</span>, se você tiver um número limitado de rotas em que
+	os destinos não são alterados frequentemente.</li>
+	<li>Configure o parâmetro <span class="msobjprop">Roteamento</span> como <span class="msobjpropval">Consultar rotas</span>,
+	se o conjunto de rotas de destino não estiver totalmente determinado ou puder ser alterado
+	frequentemente. Se este valor for selecionado, o nome da origem de dados deverá ser conhecido.</li>
+	</ul></li>
+<li>Decida a abordagem de manipulação de erros. Decida se você deseja elementos de mensagem que não podem ser roteados
+corretamente para causar uma reversão completa ou se é suficiente gravar o elemento com falha em uma
+fila para processamento da exceção.</li>
+<li>Decida se você deseja produzir mensagens de erro para a instância padrão. 
+Todos os dados são preservados sem mensagens de erro porque as ações de erro preservam elementos em uma
+fila para este propósito ou revertem o fluxo de mensagens. A mensagem recebida é retornada para a
+fila recebida ou é enviada para uma fila de restauração. Entretanto, se estas filas não forem monitoradas,
+mensagens de erro poderão ser requeridas como um mecanismo de notificação.
+<p>Se escolher enviar mensagens de erro na instância padrão, é possível ativar esta função ou
+		  desativá-la configurando o arquivo broker archive (BAR) antes da implementação.</p></li>
+</ul>
+<a href="overview.htm#anchor1" title="Voltar">Voltar para a especificação do padrão do Message Splitter para WebSphere MQ: Unidirecional (para XML)</a>
+</div></body>
+</html>

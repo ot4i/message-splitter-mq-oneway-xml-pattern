@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-tw" xml:lang="zh-tw">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="在您可以使用 Message Splitter for WebSphere MQ: one-way (for XML) 型樣之前，必須知道及必須具有的資源的明細。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>套用 Message Splitter for WebSphere MQ: one-way (for XML) 型樣之前要完成的作業</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.prereq">
+<h1 class="topictitle1">套用 <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> 型樣之前要完成的作業</h1>
+<div>
+<div class="section">
+<p class="shortdesc">套用型樣以產生型樣實例之前，您必須決定需要下列哪一項作業。必要的話，請完成下列作業：</p>
+</div>
+<ul><li>選取型樣實例的唯一名稱。
+您可以多次使用型樣，以及建立多個不同的實例，而這些實例可以透過其唯一名稱加以識別。識別型樣應用程式的用途，讓您可以決定適當或有意義的唯一名稱。</li>
+<li>選取想要型樣實例使用的 WebSphere MQ 佇列管理程式及佇列，例如，以接收 XML 訊息。如果您使用現有佇列，則必須記錄這些項目。
+如果您想要建立新的佇列管理程式及佇列，則必須決定這些資源的名稱。</li>
+<li> 決定是否需要驗證，以及定義訊息集，或判斷訊息集的名稱。產生型樣之後，請完成訊息集建立作業。</li>
+<li>識別此型樣所需的任何其他佇列管理程式及佇列，以及決定想要使用的名稱。請考量必須套用的任何原則、標準或命名慣例。</li>
+<li>決定您是否需要記載送入訊息。如果需要記載，則您必須決定傳送記載訊息的目標佇列管理程式及佇列。
+您可以將記載訊息傳送至多個訊息流程所使用的一般日誌佇列，也可以使用特別針對型樣實例的佇列。</li>
+<li>決定是否有多個可能的目的地，如果是，請選取要使用的遞送方式。<ul><li>將<span class="msobjprop">遞送</span>參數設為<span class="msobjpropval">指定路徑</span>（如果您具有未頻繁變更目的地的有限數目路徑）。</li>
+	<li>將<span class="msobjprop">遞送</span>參數設為<span class="msobjpropval">查閱路徑</span>（如果這組目標路徑未完整判定或可能頻繁變更）。如果選取此值，則資料來源的名稱必須為已知。</li>
+	</ul></li>
+<li>決定錯誤處理方式。決定您是否想要無法正確遞送的訊息元素導致完整回復，或是否足以將失敗的元素寫入佇列以進行異常狀況處理。</li>
+<li>決定您是否想要產生型樣實例的錯誤訊息。
+會保留沒有錯誤訊息的所有資料，因為錯誤動作會基於此用途而將元素保留在佇列，或回復訊息流程。送入訊息會傳回給送入佇列，或傳送至取消佇列。不過，如果未監視這些佇列，則可能需要錯誤訊息以作為通知機制。
+<p>如果您選擇傳送型樣實例中的錯誤訊息，則可以在部署之前配置分配管理系統保存檔 (BAR)，以開啟或關閉此功能。</p></li>
+</ul>
+<a href="overview.htm#anchor1" title="上一步">回到 Message Splitter for WebSphere MQ: one-way (for XML) 型樣規格</a>
+</div></body>
+</html>

@@ -1,0 +1,1075 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="copyright" content="Copyright IBM Corporation 2009"/>
+	<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2009"/>
+	<meta name="security" content="público"/>
+	<meta name="Robots" content="index,follow"/>
+	<meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1)"http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+	<meta name="DC.Type" content="referência"/>
+	<meta name="DC.Title" content="Parâmetros Padrão para o Padrão de Message Correlator para WebSphere MQ: Pedido-Resposta sem Persistência"/>
+	<meta name="abstract" content="Tabelas contendo os detalhes dos parâmetros padrão para o padrão de Message Correlator para WebSphere MQ: Pedido-Resposta sem Persistência"/>
+	<meta name="description" content="Tabelas contendo os detalhes dos parâmetros padrão para o padrão de Message Correlator para WebSphere MQ: Pedido-Resposta sem Persistência"/>
+	<meta name="DC.Format" content="XHTML"/>
+	<meta name="DC.Language" content="en-us"/>
+	<!-- Licensed Materials Property of IBM -->
+	<!-- US Government Users Restricted Rights -->
+	<!-- Use, duplication or disclosure restricted by -->
+	<!-- GSA ADP Schedule Contract with IBM Corp. -->	
+	<link rel="stylesheet" type="text/css" href="../../../css/style2.css" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+	<title>Parâmetros Padrão para o Padrão de Message Correlator para WebSphere MQ: Pedido-Resposta sem Persistência</title>	
+	<script language="JavaScript" src="../../../help/LiveHelp.js"></script>
+	 <!-- START NON-TRANSLATABLE -->
+	<script language="JavaScript">
+	<!--
+
+	function getParameter(location, name) {
+		name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+		var search = "[\\?&]" + name + "=([^&#]*)";
+		var regex = new RegExp(search);
+		var results = regex.exec(location);
+		return (results == null ? true : (results[1] == "false" ? false : true));
+	}
+	
+	function addStyleSheet() {
+		if (getParameter(window.location.href, "everything") == false) {
+			var headId = document.getElementsByTagName("head")[0];         
+			var cssNode = document.createElement("link");
+			cssNode.type = "text/css";
+			cssNode.rel = "stylesheet";
+			cssNode.href = "../../../css/patterns.css";
+			cssNode.media = "screen";
+			headId.appendChild(cssNode);
+		}
+	}
+		
+	addStyleSheet(); // Depends on the query string!
+	
+	function getElementsByStyleClass (className) {
+  		var all = document.all ? document.all :
+    	document.getElementsByTagName('*');
+  		var elements = new Array();
+  		
+  		for (var e = 0; e < all.length; e++) {
+    		if (all[e].className == className) {
+      			elements[elements.length] = all[e];
+      		}
+      	}
+ 		return elements;
+	}
+	
+	function collapseAll() {
+		var elements = getElementsByStyleClass('twisty');
+		for (var e = 0; e < elements.length; e++) {
+			changeTwisty(elements[e], 'TWISTIE.COLLAPSEALL');
+		}
+	}
+	
+	function expandAll() {
+		var elements = getElementsByStyleClass('twisty');
+		for (var e = 0; e < elements.length; e++) {
+			changeTwisty(elements[e], 'TWISTIE.EXPANDALL');
+		}
+	}
+	
+	function toggleTwisty(group) {
+		changeTwisty(group, 'TWISTIE.TOGGLE');
+		if (typeof kc === "object" && typeof kc.resize === "function") kc.resize();
+	}
+
+	function changeTwisty(group, mode) {		
+		whichGroupId = group.parentNode.id;
+
+		whichGroupContainerId = whichGroupId + "Container";
+		whichGroupTwistyId = whichGroupId + "Twisty";
+		whichGroupTwistyImageId = whichGroupId + "Arrow";
+		groupContainerObj = document.getElementById(whichGroupContainerId);
+		twistyArrowContainerObj = document.getElementById(whichGroupTwistyId);
+		twistyArrowImageObj = document.getElementById(whichGroupTwistyImageId);
+		group.parentNode.style.height = "auto";
+
+		var toShow = false;
+		
+		if (mode == 'TWISTIE.TOGGLE') {
+			if (groupContainerObj.style.display == "none" || groupContainerObj.style.display == "") {
+				toShow = true;
+			} else {
+				toShow = false;
+			}
+		} else if (mode == 'TWISTIE.EXPANDALL') {
+			toShow = true;
+		}
+		
+		if (toShow) {
+			groupContainerObj.style.visibility = "visible";
+			groupContainerObj.style.display = "block";
+			twistyArrowImageObj.src = '../../../images/twisty-open.png'
+			group.parentNode.style.height = (groupContainerObj.offsetHeight + 30) +'px'; 
+	
+		} else {
+			groupContainerObj.style.visibility = "hidden";
+			groupContainerObj.style.display = "none";
+			twistyArrowImageObj.src = '../../../images/twisty-closed.png'
+		}
+	
+	}
+	//-->
+	</script>
+	
+ <!-- END NON-TRANSLATABLE -->
+</head>
+<body id="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.parametertable">
+	<!-- Page main title -->
+  	<div id="title" class="invisible">
+		<h1 class="patterns-title">Parâmetros para o padrão de <span>Message Correlator para WebSphere MQ: Pedido-Resposta sem Persistência</span></h1>
+  	</div>		
+			<div class="box first">
+				<div class="TitleBox"><!-- --></div>
+				<div class="FooterBox"><!-- --></div>
+				<div class="TL"><!-- --></div>
+				<div class="TR"><!-- --></div>
+				<div class="BL"><!-- --></div>
+				<div class="BR"><!-- --></div>
+				<div class="ContentBox">
+					<div class="border">
+						<div class="groupBox" id="inputInformation">
+							<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="inputInformationTwisty">
+								<img src="../../../images/twisty-closed.png"
+									name="b" id="inputInformationArrow" alt=""></img>
+							</div>
+							<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">Informações de entrada</div>							
+							<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="inputInformationContainer">
+									<div class="tablenoborder">
+										<table summary="" width="100%" border="1" cellpadding="4" cellspacing="0" frame="border" rules="all">
+											<thead align="left">
+												<tr>
+													  <th class="firstcol" align="left" valign="top" width="*">Parâmetro de padrão</th>
+													  <th class="invisible" valign="top" width="*">M</th>
+													  <th class="invisible" valign="top" width="*">C</th>
+													  <th class="invisible" valign="top" width="*">Default</th>
+													  <th valign="top" width="*">Descrição</th>
+												</tr>
+											</thead>
+											<tbody>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Fila de entrada</th>
+															<td valign="top" width="*" class="invisible">
+																		Sim
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Sim
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">IN</span>
+															</td>
+															<td valign="top" width="*">Este
+									parâmetro padrão identifica a fila do broker na qual pedidos do cliente são
+									recebidos.
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Validação de mensagens de entrada</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Sim
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">Nenhum</span>
+															</td>
+															<td valign="top" width="*">Este parâmetro do padrão identifica o nível de validação
+									necessário para mensagens de entrada. 
+									Os valores
+válidos são:
+										<ul>
+											<li>
+												<span class="msobjpropval">Nenhum</span>
+											</li>
+											<li>
+												<span class="msobjpropval">Conteúdo</span>
+											</li>
+											<li>
+												<span class="msobjpropval">Conteúdo e Valor</span>
+											</li>
+										</ul>
+										Se a validação for configurada como
+										<span class="msobjpropval">Nenhum</span>, a mensagem será tratada como um BLOB opaco.
+										<p>Se a validação for especificada como
+										<span class="msobjpropval">Conteúdo</span>
+										ou
+										<span class="msobjpropval">Conteúdo e Valor</span>,
+										informações de entrada adicionais serão necessárias, as quais são usadas para configurar o
+										nó MQInput.</p>
+										<p> Esta propriedade é configurável no arquivo BAR.
+										É possível configurar esta propriedade para desativar a validação.</p>
+										<p>Você não deve usar esta propriedade para ativar a validação, a menos que os parâmetros
+										da mensagem de pedido tenham sido definidos.</p></td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Tipo de dados de entrada</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																<span class="msobjpropval">XML</span>
+															</td>
+															<td valign="top" width="*">
+																
+										Este
+									 parâmetro do padrão será necessário apenas se o valor de
+										<span class="msobjprop">Validação de Mensagens de Entrada
+										</span>
+										for
+										<span class="msobjpropval">Conteúdo</span>
+										ou
+										<span class="msobjpropval">Conteúdo e Valor</span>.
+										Os valores
+válidos são:
+											<ul>
+											<li><span class="msobjpropval">XML</span></li>
+											<li><span class="msobjpropval">Dados binários</span> (por exemplo, estruturas C ou COBOL)</li>
+											<li><span class="msobjpropval">Dados de texto</span>  (por exemplo, CSV, SWIFT ou HL7)</li>
+											</ul></td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Conjunto de mensagens de entrada</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																		&nbsp;
+															</td>
+															<td valign="top" width="*">Este
+									 parâmetro do padrão será necessário apenas se o valor de
+										<span class="msobjprop">Validação de Mensagens de Entrada
+										</span>
+										for
+										<span class="msobjpropval">Conteúdo</span>
+										ou
+										<span class="msobjpropval">Conteúdo e Valor</span>.																
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Tipo de mensagem de entrada</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																		&nbsp;
+															</td>
+															<td valign="top" width="*">Este parâmetro do padrão será necessário apenas se o valor de
+										<span class="msobjprop">Validação de Mensagens de Entrada</span>
+										for
+										<span class="msobjpropval">Conteúdo</span>
+										ou
+										<span class="msobjpropval">Conteúdo e Valor</span>
+										e o valor de
+										<span class="msobjprop">Tipo de Dados do Pedido</span>
+										for
+										<span class="msobjpropval">Dados Binários</span>
+										ou
+										<span class="msobjpropval">Dados de Texto</span>.
+																										
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Formato da mensagem de entrada</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																		&nbsp;
+															</td>
+															<td valign="top" width="*">Este parâmetro do padrão será necessário apenas se o valor de
+										<span class="msobjprop">Validação de Mensagens de Entrada</span>
+										for
+										<span class="msobjpropval">Conteúdo</span>
+										ou
+										<span class="msobjpropval">Conteúdo e Valor</span>
+										e o valor de
+										<span class="msobjprop">Tipo de Dados de Entrada</span>
+										for
+										<span class="msobjpropval">Dados Binários</span>
+										ou
+										<span class="msobjpropval">Dados de Texto</span>.
+																									</td>
+														</tr>
+											</tbody>
+										</table>
+								  	</div>
+								
+						  	</div>
+				  		</div>
+			  		</div>
+				</div>
+			</div>
+			<div class="box first">
+				<div class="TitleBox"><!-- --></div>
+				<div class="FooterBox"><!-- --></div>
+				<div class="TL"><!-- --></div>
+				<div class="TR"><!-- --></div>
+				<div class="BL"><!-- --></div>
+				<div class="BR"><!-- --></div>
+				<div class="ContentBox">
+					<div class="border">
+						<div class="groupBox" id="providerInformation">
+							<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="providerInformationTwisty">
+								<img src="../../../images/twisty-closed.png"
+									name="b" id="providerInformationArrow" alt=""></img>
+							</div>
+							<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">Informações do Provedor</div>
+							<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="providerInformationContainer">
+									<div class="tablenoborder">
+										<table summary="" width="100%" border="1" cellpadding="4" cellspacing="0" frame="border" rules="all">
+											<thead align="left">
+												<tr>
+													  <th class="firstcol" align="left" valign="top" width="*">Parâmetro de padrão</th>
+													  <th class="invisible" valign="top" width="*">M</th>
+													  <th class="invisible" valign="top" width="*">C</th>
+													  <th class="invisible" valign="top" width="*">Default</th>
+													  <th valign="top" width="*">Descrição</th>
+												</tr>
+											</thead>
+											<tbody>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Gerenciador de filas de pedidos do provedor</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Sim
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				
+															</td>
+															<td valign="top" width="*">
+																
+    												<p>Este parâmetro define o gerenciador de filas para o qual todos os pedidos para o provedor são enviados.</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Fila de pedidos do provedor</th>
+															<td valign="top" width="*" class="invisible">
+																		Sim
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Sim
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">PROVIDER</span>
+															</td>
+															<td valign="top" width="*">
+																
+   												 <p>Este parâmetro define a fila para a qual as mensagens de pedido para o provedor são enviadas.</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Tempo máximo de resposta em décimos de um segundo</th>
+															<td valign="top" width="*" class="invisible">
+																		Sim
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Sim
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">Sem tempo limite</span>
+															</td>
+															<td valign="top" width="*">
+																
+    												<p>Este
+								parâmetro padrão define o tempo máximo a aguardar por uma resposta.</p>
+									<p>
+									O valor-padrão é
+									<span class="msobjpropval">Sem tempo limite</span>;
+									entretanto, é possível inserir um número inteiro positivo como o valor para o período de tempo limite
+									no mesmo campo. O período de tempo limite é medido em décimos de um segundo e as
+									mensagens que contêm cabeçalhos MQMD salvos são salvas com este tempo de expiração.
+									</p>
+									<p>
+									Se o valor for
+									<span class="msobjpropval">Sem tempo limite</span>, as respostas que são retornadas ao
+									broker serão sempre retornadas ao cliente.
+									</p>
+									<p>
+									Este parâmetro padrão fornece manutenção automática para as mensagens que são
+									deixadas na fila, mas evita que respostas sejam correspondidas com um cliente após
+									o período de tempo ter decorrido.
+									</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Fila de armazenamento</th>
+															<td valign="top" width="*" class="invisible">
+																		Sim
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Sim
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">STORE</span>
+															</td>
+															<td valign="top" width="*">
+																
+    							<p>este
+								parâmetro padrão define a fila que é usada para armazenar cabeçalhos MQMD enquanto
+								aguarda uma resposta do provedor.</p>
+								<p>Esta fila é local para o broker.</p>
+		                        
+															</td>
+														</tr>
+											</tbody>
+										</table>
+								  	</div>
+								
+						  	</div>
+				  		</div>
+			  		</div>
+				</div>
+			</div>
+			<div class="box first">
+				<div class="TitleBox"><!-- --></div>
+				<div class="FooterBox"><!-- --></div>
+				<div class="TL"><!-- --></div>
+				<div class="TR"><!-- --></div>
+				<div class="BL"><!-- --></div>
+				<div class="BR"><!-- --></div>
+				<div class="ContentBox">
+					<div class="border">
+						<div class="groupBox" id="responseInformation">
+							<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="responseInformationTwisty">
+								<img src="../../../images/twisty-closed.png"
+									name="b" id="responseInformationArrow" alt=""></img>
+							</div>
+							<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">Informações de resposta</div>
+								<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="responseInformationContainer">
+									<div class="tablenoborder">
+										<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+											<thead align="left">
+												<tr>
+													  <th class="firstcol" align="left" valign="top" width="*">Parâmetro de padrão</th>
+													  <th class="invisible" valign="top" width="*">M</th>
+													  <th class="invisible" valign="top" width="*">C</th>
+													  <th class="invisible" valign="top" width="*">Default</th>
+													  <th valign="top" width="2*">Descrição</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<th align="left" valign="top" width="*" class="firstcol">Fila de Respostas</th>
+													<td valign="top" class="invisible">sim</td>
+													<td valign="top" width="*" class="invisible">sim</td>
+													<td valign="top" width="*" class="invisible">
+														<span class="msobjpropval">RESPONSE</span></td>
+													<td valign="top" width="*">Este parâmetro padrão identifica a fila do broker
+													 na qual as respostas do provedor são recebidas.</td>
+												</tr>
+												<tr>
+													<th align="left" valign="top" width="*" class="firstcol">Validação das mensagens de resposta</th>
+															<td valign="top" width="*" class="invisible">Não</td>
+															<td valign="top" width="*" class="invisible">sim</td>
+															<td valign="top" width="*" class="invisible">
+																				<span class="msobjpropval">Nenhum</span>
+															</td>
+															<td valign="top" width="*">Este parâmetro padrão identifica o nível de validação
+									necessário para mensagens de resposta.
+															Os valores válidos são:
+																<ul>
+																	<li><span class="msobjpropval">Nenhum</span></li>
+																	<li><span class="msobjpropval">Conteúdo</span></li>
+																	<li><span class="msobjpropval">Conteúdo e
+Valor</span></li>
+																</ul>
+									
+															<p>Esta propriedade é configurável no arquivo BAR.
+															É possível configurar esta propriedade para desativar a validação.</p>
+															<p>Você não deve usar esta propriedade para ativar a validação, a menos
+															que os parâmetros de mensagem de resposta tenham sido definidos.</p></td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Tipo de dado de resposta</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">XML</span>
+															</td>
+															<td valign="top" width="*">
+																
+										<p>Este
+									parâmetro padrão é necessário apenas se o valor de
+										<span class="msobjprop">Validação de resposta
+										</span>
+										é
+										<span class="msobjpropval">Conteúdo</span>
+										ou
+										<span class="msobjpropval">Conteúdo e Valor</span>.
+										</p>
+										Os valores
+válidos são:
+										<ul>
+											<li><span class="msobjpropval">XML</span></li>
+											<li><span class="msobjpropval">Dados binários</span> (por exemplo, estruturas C ou COBOL)</li>
+											<li><span class="msobjpropval">Dados de texto</span>  (por exemplo, CSV, SWIFT ou HL7)</li>
+										</ul>
+										
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Conjunto de mensagens de resposta</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																		&nbsp;
+															</td>
+															<td valign="top" width="*">Este
+									parâmetro padrão é necessário apenas se o valor de
+										<span class="msobjprop">Validação de resposta
+										</span>
+										é
+										<span class="msobjpropval">Conteúdo</span>
+										ou
+										<span class="msobjpropval">Conteúdo e Valor</span>.
+																
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Tipo de mensagem de resposta</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																		&nbsp;
+															</td>
+															<td valign="top" width="*">Este parâmetro padrão é necessário apenas se o valor de
+										<span class="msobjprop">Validação de resposta</span>
+										é
+										<span class="msobjpropval">Conteúdo</span>
+										ou
+										<span class="msobjpropval">Conteúdo e Valor</span>
+										e o valor de
+										<span class="msobjprop">Tipo de dado de resposta</span>
+										é
+										<span class="msobjpropval">Dados Binários</span>
+										ou
+										<span class="msobjpropval">Dados de Texto</span>.							
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Formato da mensagem de resposta</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																		&nbsp;
+															</td>
+															<td valign="top" width="*">Este parâmetro padrão é necessário apenas se o valor de
+										<span class="msobjprop">Validação de resposta</span>
+										é
+										<span class="msobjpropval">Conteúdo</span>
+										ou
+										<span class="msobjpropval">Conteúdo e Valor</span>
+										e o valor de
+										<span class="msobjprop">Tipo de dado de resposta</span>
+										é
+										<span class="msobjpropval">Dados Binários</span>
+										ou
+										<span class="msobjpropval">Dados de Texto</span>.
+															</td>
+														</tr>
+											</tbody>
+										</table>
+								  	</div>
+								
+						  	</div>
+				  		</div>
+			  		</div>
+				</div>
+			</div>
+			<div class="box first">
+				<div class="TitleBox"><!-- --></div>
+				<div class="FooterBox"><!-- --></div>
+				<div class="TL"><!-- --></div>
+				<div class="TR"><!-- --></div>
+				<div class="BL"><!-- --></div>
+				<div class="BR"><!-- --></div>
+				<div class="ContentBox">
+					<div class="border">
+						<div class="groupBox" id="log">
+							<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="logTwisty">
+								<img src="../../../images/twisty-closed.png"
+									name="b" id="logArrow" alt=""></img>
+							</div>
+							<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">Criação de log</div>
+							
+							
+									
+									
+									
+							
+							<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="logContainer">
+									<div class="tablenoborder">
+										<table summary="" width="100%" border="1" cellpadding="4" cellspacing="0" frame="border" rules="all">
+											<thead align="left">
+												<tr>
+													  <th class="firstcol" align="left" valign="top" width="*">Parâmetro de padrão</th>
+													  <th class="invisible" valign="top" width="*">M</th>
+													  <th class="invisible" valign="top" width="*">C</th>
+													  <th class="invisible" valign="top" width="*">Padrão</th>
+													  <th valign="top" width="*">Descrição</th>
+												</tr>
+											</thead>
+											<tbody>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Criação de log requerida</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				Limpo
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>Este parâmetro padrão determina se a
+										instância padrão inclui o código para criação de log.</p>
+		                        <p>Se <span class="msobjprop">Criação de log requerida</span> estiver limpo,
+                    o subfluxo de Log não será incluído.</p>
+		                        <p>Se <span class="msobjprop">Criação de log requerida</span> estiver selecionado,
+                    um subfluxo de Log será incluído no
+                    fluxo de mensagens e os valores deverão ser configurados para <span class="msobjprop">Gerenciador de filas de log</span>
+                    e <span class="msobjprop">Fila de Logs</span>.</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Gerenciador de filas de log</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Sim
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>Este parâmetro padrão define o gerenciador de filas para criação de log. 
+		                        Ele poderá ser deixado em branco se o gerenciador de filas do broker for usado para criação de log.</p>
+		                        <p>Este parâmetro é necessário apenas se <span class="msobjprop">Criação de log requerida</span>
+     é selecionado.
+		                        </p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Fila de Logs</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Sim
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">LOG</span>
+															</td>
+															<td valign="top" width="*">
+																
+								<p>Este parâmetro padrão define a fila para criação de log.</p>
+								<p>Este parâmetro é necessário apenas se <span class="msobjprop">Criação de log requerida</span>
+     é selecionado.</p>
+		                        
+															</td>
+														</tr>
+											</tbody>
+										</table>
+								  	</div>
+								
+						  	</div>
+				  		</div>
+			  		</div>
+				</div>
+			</div>
+	
+		
+			<div class="box first">
+				<div class="TitleBox"><!-- --></div>
+				<div class="FooterBox"><!-- --></div>
+				<div class="TL"><!-- --></div>
+				<div class="TR"><!-- --></div>
+				<div class="BL"><!-- --></div>
+				<div class="BR"><!-- --></div>
+				<div class="ContentBox">
+					<div class="border">
+						<div class="groupBox" id="errorHandling">
+							<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="errorHandlingTwisty">
+								<img src="../../../images/twisty-closed.png"
+									name="b" id="errorHandlingArrow" alt=""></img>
+							</div>
+							<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">Tratamento de erro</div>
+							
+							
+									
+									
+									
+							
+							<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="errorHandlingContainer">
+									<div class="tablenoborder">
+										<table summary="" width="100%" border="1" cellpadding="4" cellspacing="0" frame="border" rules="all">
+											<thead align="left">
+												<tr>
+													  <th class="firstcol" align="left" valign="top" width="*">Parâmetro de padrão</th>
+													  <th class="invisible" valign="top" width="*">M</th>
+													  <th class="invisible" valign="top" width="*">C</th>
+													  <th class="invisible" valign="top" width="*">Default</th>
+													  <th valign="top" width="*">Descrição</th>
+												</tr>
+											</thead>
+											<tbody>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Mensagem de erro necessária</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				Selecionado
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>Este parâmetro padrão define se o aplicativo padrão cria
+                    os elementos de fluxo de mensagens para criar mensagens de erro.</p>
+		                        <p>Se <span class="msobjprop">Mensagem de erro requerida</span> for selecionado,
+                    os valores deverão ser configurados para <span class="msobjprop">Gerenciador de filas de erros</span>
+                    e <span class="msobjprop">Fila de erros</span>.</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Gerenciador de filas de erros</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Sim
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																		&nbsp;
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>Este parâmetro padrão define o gerenciador de filas para mensagens de erro. 
+		                        Ele poderá ser deixado em branco se o gerenciador de filas do broker for usado para criação de log.</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Fila de erros</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Sim
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">ERROR</span>
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>Este parâmetro padrão define a fila para mensagens de erro.</p>
+		                        <p>Este parâmetro é necessário apenas se <span class="msobjprop">Mensagem de erro requerida</span>
+                    é selecionado.
+		                        </p>
+		                        
+															</td>
+														</tr>
+											</tbody>
+										</table>
+								  	</div>
+								
+						  	</div>
+				  		</div>
+			  		</div>
+				</div>
+			</div>
+	
+		
+			<div class="box first">
+				<div class="TitleBox"><!-- --></div>
+				<div class="FooterBox"><!-- --></div>
+				<div class="TL"><!-- --></div>
+				<div class="TR"><!-- --></div>
+				<div class="BL"><!-- --></div>
+				<div class="BR"><!-- --></div>
+				<div class="ContentBox">
+					<div class="border">
+						<div class="groupBox" id="general">
+							<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="generalTwisty">
+								<img src="../../../images/twisty-closed.png"
+									name="b" id="generalArrow" alt=""></img>
+							</div>
+							<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">Gerais</div>
+							
+							
+									
+									
+									
+									
+									
+									
+									
+							
+							<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="generalContainer">
+									<div class="tablenoborder">
+										<table summary="" width="100%" border="1" cellpadding="4" cellspacing="0" frame="border" rules="all">
+											<thead align="left">
+												<tr>
+													  <th class="firstcol" align="left" valign="top" width="*">Parâmetro de padrão</th>
+													  <th class="invisible" valign="top" width="*">M</th>
+													  <th class="invisible" valign="top" width="*">C</th>
+													  <th class="invisible" valign="top" width="*">Default</th>
+													  <th valign="top" width="*">Descrição</th>
+												</tr>
+											</thead>
+											<tbody>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Esquema do broker</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				<span class="msobjpropval">mqsi</span>
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>Se um esquema do broker é especificado, todos os fluxos de mensagens e arquivos ESQL
+		                        são criados nesse esquema. Se nenhum esquema for especificado,
+		                        o esquema do broker padrão será usado.</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Prefixo do fluxo</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>Se configurado, este prefixo é incluído no início de todos os nomes de fluxo de mensagens.</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Sufixo do fluxo</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>Se configurado, este sufixo é incluído no final de
+									todos os nomes de fluxo de mensagens.</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Prefixo de Fila</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>Se configurado, este prefixo é incluído no início de todos os nomes da fila.
+		                        </p>
+		                        <p>Se os nomes de fila padrão forem usados, o prefixo, o sufixo, ou ambos, deverão ser configurados para
+										identificar nomes de fila para cada instância padrão. 
+		                        </p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Sufixo da Fila</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>Se configurado, este sufixo é incluído no final de todos os nomes de fila.</p>
+								<p>Se os nomes de fila padrão forem usados, o prefixo, o sufixo, ou ambos, deverão ser configurados para
+										identificar nomes de fila para cada instância padrão. 
+		                        </p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Descrição resumida</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>Esta descrição é incluída na
+										propriedade <span class="msobjprop">Descrição Resumida</span>
+										de todos os fluxos de mensagens que são gerados.</p>
+		                        
+															</td>
+														</tr>
+														<tr>
+															<th align="left" valign="top" width="*" class="firstcol">
+																Descrição detalhada</th>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="*" class="invisible">
+																		Não
+															</td>
+															<td valign="top" width="2*" class="invisible">
+																				
+															</td>
+															<td valign="top" width="*">
+																
+		                        <p>Esta descrição é incluída na
+										propriedade <span class="msobjprop">Descrição Detalhada</span>
+										de todos os fluxos de mensagens que são gerados.</p>
+		                        
+															</td>
+														</tr>
+											</tbody>
+										</table>
+								  	</div>
+								
+						  	</div>
+				  		</div>
+			  		</div>
+				</div>
+			</div>
+
+	<div id="footnotes" class="invisible">
+	<div class="box first">
+		<div class="TitleBox"><!-- --></div>
+		<div class="FooterBox"><!-- --></div>
+		<div class="TL"><!-- --></div>
+		<div class="TR"><!-- --></div>
+		<div class="BL"><!-- --></div>
+		<div class="BR"><!-- --></div>
+		<div class="ContentBox">
+			<div class="invisible">
+					<p class="shortdesc">
+						Todos os parâmetros padrão são listados com seus valores-padrão.
+					</p>
+					<p>
+					A coluna intitulada <b>O</b> indica se a propriedade é <dfn class="term">obrigatória</dfn>. 
+					A coluna intitulada <b>C</b> indica se a propriedade é <dfn class="term">configurável</dfn>,
+				significando que é possível alterar o valor quando você inclui o fluxo de mensagens no
+				arquivo broker archive (BAR).
+					</p>
+					<p>
+						Onde nenhum padrão é indicado, o valor-padrão é uma cadeia vazia.
+					</p>
+				</div>
+				<a href="overview.htm#anchorBack" title="Voltar">Voltar para a especificação padrão de Message Correlator para WebSphere MQ: Pedido-Resposta sem Persistência</a>
+				<p></p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

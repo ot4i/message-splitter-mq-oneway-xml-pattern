@@ -1,0 +1,191 @@
+<%
+com.ibm.etools.mft.pattern.mbi.plugin.PatternPlugin pattern = com.ibm.etools.mft.pattern.mbi.plugin.PatternPlugin.getInstance();
+com.ibm.etools.mft.pattern.mbi.mrrc.relmq.PatternMessages messages = new com.ibm.etools.mft.pattern.mbi.mrrc.relmq.PatternMessages();
+%>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title><c:get select="$root/instanceName"/>_summary.html</title>
+	<link rel="stylesheet" href="summary.css" media="screen">
+</head>
+
+<script type="text/javascript">
+	function setStatus(txt){
+		window.status = txt;
+		window.status = "";
+	}
+</script>
+
+<body>
+<a name="NoPlace"></a>
+
+<div id="banner">
+	<h2><%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.25", new Object[] { "$root/instanceName" }) %></h2>
+	<p><%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.1", new Object[] { "$root/instanceName" }) %></p>
+</div>	
+
+<div class="section">
+	<div class="tl">
+		<h2><%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.2") %></h2>
+	</div>
+	<div class="content">
+		<p>
+			<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.103") %>
+			<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.104") %>
+		</p>
+		<p>
+			<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.22", new Object[] { "$root/@projectname" }) %>
+		</p>
+		<ul>
+			<li>
+				<a href="#NoPlace" onclick="setStatus('/<c:get select="$root/instanceName"/>_Flows/<c:get select = "$root/@brokerSchema2"/><c:get select="$root/@request"/>.msgflow')">
+				<c:get select="$root/@request"/>
+				</a>
+			</li>
+			<li>
+				<a href="#NoPlace" onclick="setStatus('/<c:get select="$root/instanceName"/>_Flows/<c:get select = "$root/@brokerSchema2"/><c:get select="$root/@response"/>.msgflow')">
+				<c:get select="$root/@response"/>
+				</a>
+			</li>
+		</ul>
+		<p>
+			<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.23") %>
+		</p>
+		<ul>
+			<li>
+				<a href="#NoPlace" onclick="setStatus('/<c:get select="$root/instanceName"/>_Flows/<c:get select = "$root/@brokerSchema2"/><c:get select="$root/@error"/>.subflow')">
+				<c:get select="$root/@error"/>
+				</a>
+			</li>
+			<li>
+				<a href="#NoPlace" onclick="setStatus('/<c:get select="$root/instanceName"/>_Flows/<c:get select = "$root/@brokerSchema2"/><c:get select="$root/@requestprocessor"/>.subflow')">
+				<c:get select="$root/@requestprocessor"/>
+				</a>
+			</li>
+			<li>
+				<a href="#NoPlace" onclick="setStatus('/<c:get select="$root/instanceName"/>_Flows/<c:get select = "$root/@brokerSchema2"/><c:get select="$root/@responseprocessor"/>.subflow')">
+				<c:get select="$root/@responseprocessor"/>
+				</a>
+			</li>
+			<c:if test="$root/loggingRequired='true'">
+			<li>
+				<a href="#NoPlace" onclick="setStatus('/<c:get select="$root/instanceName"/>_Flows/<c:get select = "$root/@brokerSchema2"/><c:get select="$root/@log"/>.subflow')">
+				<c:get select="$root/@log"/>
+				</a>
+			</li>
+			</c:if>
+		</ul>
+	</div>
+</div>
+
+<div class="section">
+	<div class="tl">
+		<h2><%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.102") %></h2>
+	</div>
+	<div class="content">
+		<p>
+			<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.4") %>
+		</p>
+		<p>
+			<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.5") %>
+		</p>
+		<ul>
+			<li>
+				<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.6", new Object[] { "$root/queueprefix", "$root/readRequestQueue", "$root/queuesuffix" }) %>
+			</li>
+			<li>
+				<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.7", new Object[] { "$root/queueprefix", "$root/storeQueue", "$root/queuesuffix" }) %>
+			</li>
+			<li>
+				<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.8", new Object[] { "$root/queueprefix", "$root/responseQueue", "$root/queuesuffix" }) %>
+			</li>
+		</ul>
+		<p>
+			<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.9") %>
+		</p>
+		<ul>
+			<c:if test="$root/loggingRequired='true'">
+				<li>
+					<c:choose>
+						<c:when test="string-length($root/logQueueManager) > 0">
+							<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.10.queueManager", new Object[] { "$root/queueprefix", "$root/logQueue", "$root/queuesuffix", "$root/logQueueManager" }) %>
+						</c:when>
+						<c:otherwise>
+							<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.10", new Object[] { "$root/queueprefix", "$root/logQueue", "$root/queuesuffix" }) %>
+						</c:otherwise>
+					</c:choose>				
+				</li>
+			</c:if>
+			<c:if test="$root/errorMessageRequired='true'">
+				<li>
+					<c:choose>
+						<c:when test="string-length($root/errorQueueManager) > 0">
+							<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.11.queueManager", new Object[] { "$root/queueprefix", "$root/errorQueue", "$root/queuesuffix", "$root/errorQueueManager" }) %> 
+						</c:when>
+						<c:otherwise>
+							<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.11", new Object[] { "$root/queueprefix", "$root/errorQueue", "$root/queuesuffix" }) %> 
+						</c:otherwise>
+					</c:choose>				
+				</li>
+			</c:if>
+			<li>
+				<c:choose>
+					<c:when test="string-length($root/providerRequestQueueManager) > 0">
+						<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.12.queueManager", new Object[] { "$root/queueprefix", "$root/providerRequestQueue", "$root/queuesuffix", "$root/providerRequestQueueManager" }) %>
+					</c:when>
+					<c:otherwise>
+						<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.12", new Object[] { "$root/queueprefix", "$root/providerRequestQueue", "$root/queuesuffix" }) %>
+					</c:otherwise>
+				</c:choose>				
+			</li>
+		</ul>
+		<h3><%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.24") %></h3>
+		<p>
+			<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.14") %>
+		</p>
+	</div>
+</div>
+
+
+<div class="section">
+	<div class="tl">
+		<h2><%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.105") %></h2>
+	</div>
+	<div class="content">
+		<c:choose>
+			<c:when test="$root/loggingRequired='true'">
+				<p>
+					<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.15") %>
+				</p>				
+				<br>
+				<p>
+					<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.16") %> 
+				</p>
+			</c:when>
+			<c:otherwise>
+				<p>
+					<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.17") %>
+				</p>
+			</c:otherwise>
+		</c:choose>
+		<br>
+		<c:choose>
+			<c:when test="$root/errorMessageRequired='true'">
+				<p>
+					<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.18") %>
+				</p>
+				<br>
+				<p>
+					<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.19") %>
+				</p>
+			</c:when>
+			<c:otherwise>
+				<p>
+					<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.mrrc.relmq.summary.20") %>
+				</p>
+			</c:otherwise>
+		</c:choose>
+	</div>
+</div>
+</body>
+</html>

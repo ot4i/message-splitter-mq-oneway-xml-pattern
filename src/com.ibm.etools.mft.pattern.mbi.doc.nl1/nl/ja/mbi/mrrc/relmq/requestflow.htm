@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja-jp" xml:lang="ja-jp">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="「WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答」パターンを使用して、多数のクライアント・アプリケーションからの要求を 1 つのキューで受け入れ、正しいクライアントに応答を返します。その際、トランザクション・フローと永続的 WebSphere MQ メッセージを使用します。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>「WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答」パターンの要求フロー</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<div><h1 class="topictitle1">「<span>WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答</span>」パターンの要求フロー</h1>
+<p class="shortdesc">要求フローはトランザクション・フローとして実行されます。</p>
+<p>要求フローで受信されるメッセージは、次のような方法で処理されます。</p>
+<ol>
+<li>メッセージ・フローでメッセージを受け取ったとき、MQMD ヘッダーに応答先キューが含まれているかどうか検査されます。
+このフィールドがブランクの場合はエラーが生成されます。</li>
+<li>メッセージ・フローがメッセージを受け取ると、メッセージの MQMD ヘッダーのコピーが作成され、それが変更されて相関 ID がメッセージ ID に設定されます。
+元の応答アドレスを保持するために、メッセージ・ヘッダーの内容がキューに保存されます。
+保存済みヘッダーの中で相関 ID を設定することにより、ヘッダーが検索されて要求側の応答に追加されるときに、正しい値が確実に設定されるようになり、相関 ID を使用しての要求側の検索が可能になります。
+</li>
+<li>メッセージ・フローには RequestProcessor というサブフローが含まれています。
+このサブフローには <span>Passthrough</span> ノードだけが含まれるため、どんな処理も実行されません。
+パターン・インスタンスでこのサブフローをカスタマイズして、パターンの構造を変えずに独自の処理を追加することができます。</li>
+<li>着信メッセージの MQMD ヘッダーが変更されて、要求側の応答先キュー・マネージャーと応答先キューが、応答メッセージ・フローの入力ノードのアドレスに置き換えられます。</li>
+<li>メッセージがプロバイダー・アプリケーションに転送されます。</li>
+<li>ロギング用のログ・サブフローをメッセージ・フローに含めることができます。
+ログ・サブフローを含めるように (または除外するように) パターンを構成できます。
+</li>
+	<li>ロギングが必要ではない場合、プロバイダー・キューにメッセージを書き込んだ後にメッセージ・フローが正常に終了し、トランザクションがコミットされます。</li>
+	<li>また、メッセージ・フローには、エラー処理用のエラー・サブフローも含まれます。
+</li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="戻る">「WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答」パターンの仕様に戻る</a>
+</body>
+</html>

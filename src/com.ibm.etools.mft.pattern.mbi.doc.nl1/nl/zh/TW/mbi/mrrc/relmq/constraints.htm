@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-tw" xml:lang="zh-tw">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="在您可以使用 Message Correlator for WebSphere MQ: request-response with persistence 型樣之前，必須知道及必須具有的資源的明細。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>使用 Message Correlator for WebSphere MQ: request-response with persistence 型樣的限制</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.constrainsts">
+<h1 class="topictitle1">使用 <span>Message Correlator for WebSphere MQ: request-response with persistence</span> 型樣的限制</h1>
+<div>
+<p class="shortdesc">當您使用此型樣時，將適用一些限制。</p>
+<p>只有在符合下列所有限制時，才能使用 <span>Message Correlator for WebSphere MQ: request-response with persistence</span> 型樣：</p>
+<ul>
+<li>您的要求者及提供者應用程式必須使用 <span>WebSphere MQ</span> 作為傳輸機制。</li>
+<li>您的提供者應用程式必須遵循將訊息 ID 複製至相關性 ID 的慣例，讓分配管理系統可以符合其原始要求的回應。</li>
+<li>除非您在可自訂的 RequestProcessor 子流程中併入轉換功能，否則您的要求者及提供者應用程式必須傳送及接受相容的訊息。</li>
+<li>如果您選擇在型樣中啟用記載功能，則會將日誌訊息傳送至佇列。這些日誌訊息的處理超出此型樣的範圍，而且您必須使用最適合組織的方式來處理記載訊息。
+選取記載時，會將日誌訊息寫入日誌佇列，以作為持續訊息，而這樣會影響效能。
+使用持續訊息的原因是假設已基於審核目的使用記載。如果記載僅供測試或參考之用，則可以配置下列使用者定義的內容 (UDP) <span class="msobjprop">RequestLoggingOn</span> 及 <span class="msobjprop">ResponseLoggingOn</span>，以在正式作業系統中關閉記載功能。</li>
+<li>如果您選擇在型樣中啟用錯誤訊息，則會在發生異常狀況時將錯誤訊息傳送至佇列。監視錯誤以及採取更正動作超出型樣的範圍，而且您必須使用最適合組織的方式來處理錯誤訊息。</li>
+<li>此型樣定義它自己的格式以用於記載及錯誤訊息，而且假設這些訊息足以符合您自己環境中的需求。</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="上一步">回到 <span>Message Correlator for WebSphere MQ: request-response with persistence</span> 型樣規格</a></body>
+</html>

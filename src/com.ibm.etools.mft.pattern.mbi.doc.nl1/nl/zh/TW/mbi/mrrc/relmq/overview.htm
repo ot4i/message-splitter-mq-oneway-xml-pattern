@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="使用 Message Correlator for WebSphere MQ: request-response with persistence 型樣，可以接受單一佇列上多個用戶端應用程式的要求，以及使用交易式流程及持續 WebSphere MQ 訊息，將回應傳回給正確的用戶端。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Correlator for WebSphere MQ: request-response with persistence 型樣</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<h1 class="topictitle1"><span>Message Correlator for WebSphere MQ: request-response with persistence</span> 型樣</h1>
+<div><p class="shortdesc">使用 <span>Message Correlator for WebSphere MQ: request-response with persistence</span> 型樣，可以接受單一佇列上多個用戶端應用程式的要求，以及使用交易式流程及持續 WebSphere MQ 訊息，將回應傳回給正確的用戶端。</p>
+<p>因為此型樣使用持續訊息與交易式流程的可靠通訊，所以適合在訊息交換導致不能遺失資料的更新項目時使用此型樣。</p>
+</div><div class="image"><img src="relmq.gif" 
+alt="顯示型樣行為的圖表。多個「要求端應用程式」會將訊息傳送給分配管理系統。會在將訊息轉遞給提供者之前儲存要求者的回覆位址，並在接收來自提供者的回應時進行還原。" />
+<div class="section"><h2 class="sectiontitle">解決方案</h2></div> 
+<p>解決方案是實作調解流程，而此調解流程會在將含有其所有標頭的訊息轉遞給提供者應用程式之前，儲存來自每一個要求訊息的 MQMD 標頭資訊（依訊息 ID 進行檢索）。提供者的這個要求訊息會在訊息標頭的回覆目的地部分中指定分配管理系統的回應佇列。
+遵循慣用實務，預期提供者應用程式將訊息 ID 從要求訊息複製至回應訊息的相關性 ID 欄位。
+在接收到回應訊息時，分配管理系統流程會使用相關性 ID 來擷取先前儲存的 MQMD 標頭，並使用回覆位址以更新送入的 MQMD 標頭。
+此動作可確保使用要求者的原始回覆目的地位址。然後，將具有其所有標頭的回應訊息傳回給要求者。</p>
+<p>如需此型樣中訊息流程設計的相關資訊，請閱讀下節。</p>
+<div><a href="requestflow.htm" title="「要求」訊息流程的相關設計資訊。">要求流程</a></div>
+<div><a href="responseflow.htm" title="「回應」訊息流程的相關設計資訊。">回應流程</a></div>
+<div><a href="errorflow.htm" title="「錯誤」子流程的相關設計資訊。">錯誤子流程</a></div>
+<div><a href="logflow.htm" title="「日誌」子流程的相關設計資訊。">日誌子流程</a></div>
+<div>
+<a name="anchor1"></a>
+<div class="section"><h2 class="sectiontitle">相關作業</h2></div>
+<p>如需如何套用及使用此型樣的相關資訊，請閱讀下節。</p>
+<div><a href="constraints.htm" title="使用 Message Correlator for WebSphere MQ: request-response with persistence 的限制。">使用型樣的限制</a></div>
+<div><a href="prereq.htm" title="在您可以使用 Message Correlator for WebSphere MQ: request-response with persistence 之前，必須知道及必須具有的資源的明細。">套用型樣之前要完成的作業</a></div>
+
+<div><a href="parametertable.htm" title="套用型樣及配置參數">型樣的參數</a></div>
+<div><a href="postreq.htm" title="">產生型樣之後要完成的作業</a></div>
+</div>
+</div></body>
+</html>

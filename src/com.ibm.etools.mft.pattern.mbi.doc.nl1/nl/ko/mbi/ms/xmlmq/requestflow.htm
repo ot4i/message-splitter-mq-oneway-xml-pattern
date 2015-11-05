@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-kr" xml:lang="ko-kr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Message Splitter for WebSphere MQ: 단방향(XML용) 패턴을 사용하면 단일 큐에 있는 많은 클라이언트 애플리케이션의 요청을 승인하고 트랜잭션 플로우와 지속 WebSphere MQ 메시지를 사용하여 올바른 클라이언트로 응답을 리턴할 수 있습니다."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Splitter for WebSphere MQ: 단방향(XML용) 패턴의 요청 플로우</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.requestflow">
+<div><h1 class="topictitle1"><span>Message Splitter for WebSphere MQ: 단방향(XML용)</span> 패턴의 요청 플로우</h1>
+<p class="shortdesc">이 패턴은 단일 메시지 플로우를 사용합니다. </p>
+
+<ol>
+<li>Input 노드에서는 XML 메시지가 올바른 형식이어야 하고
+XMLNSC 구문 분석기를 사용하도록 구성됩니다. 수신되는 메시지에 도메인을 변경하는 MQRFH2 헤더가
+포함되어 있으면 오류가 발생하고 메시지가 백아웃됩니다. </li>
+<li><span class="msobjprop">유효성 검증 필수</span>
+패턴 매개변수에 메시지의 유효성 검증이 선택사항으로 지정되어 있습니다.
+유효성 검증은 즉각 실행되지 않고 각 요소를 추출할 때 수행됩니다.
+</li>
+<li>메시지 플로우는 트랜잭션으로 실행되며 모든 필수 요소가 추출되고 큐에
+기록될 때까지 커미트되지 않습니다. </li>
+<li>이 플로우의 기본 제어는 Propagate Element Compute 노드입니다. 이 노드는 입력사항 사본인
+변하기 쉬운 트리를 보관하기 위한 로컬 변수를 작성합니다. 이 플로우는 메시지 트리를 통해 루프하여
+컨테이너 태그 내의 하위 요소로 이동하고 이를 안쪽으로 전파합니다.
+메모리 사용률을 줄이기 위해 각 요소를 선택할 때 이전 요소는 삭제됩니다.</li>
+<li>패턴 매개변수에 의해 메시지의 구조가 판별되고
+메시지가 이 구조를 준수하지 않으면 오류가 생성됩니다.</li>
+<li>메시지에 처리할 모든 요소의 컨테이너인 컨테이너 경로가 있는지
+	확인합니다. 이 컨테이너 경로가 <span class="msobjpropval">*:*</span>로 지정되면
+컨테이너가 루트 태그인 것으로 간주되고 이름과 루트의 하위 요소인
+메시지 요소가 추출됩니다. </li>
+<li><span class="msobjprop">메시지 요소 이름</span> 패턴 매개변수가
+	<span class="msobjpropval">*:*</span>이면 컨테이너의 하위 요소인 모든
+	요소가 처리됩니다.
+	다른 값이 지정되면 <span class="msobjprop">메시지 요소 이름</span>과
+	일치하는 태그가 있는 메시지 요소만 추출됩니다.
+추출된 메시지 요소는 이후 처리를 위해 전달됩니다. </li>
+<li>메시지 플로우는 MessageProcessor 서브플로우를 포함하고 있는데, 이것은
+Passthrough 노드만 있으므로 기본적으로 어떠한 영향을 주지 않습니다. 이 서브플로우는 패턴 구조를 변경하지 않고
+표준 도구를 사용하여 패턴 인스턴스를 사용자 정의할 수 있는 지점을 제공하기 위해 포함되어 있습니다.</li>
+<li>메시지가 라우트 서브플로우로 전달되며 여기서 메시지를 올바른 WebSphere MQ 큐로 전달합니다.
+	라우트 또는 예외를 찾지 못하면, 장애 상태가 설정되고 제어권이 Failure 노드로 이동합니다.
+	<ul><li><span class="msobjprop">잘못된 메시지 조치</span>가 <span class="msobjpropval">저장</span>이면
+	Failure 노드가 MQOutput 노드에 연결되어 메시지를
+	저장합니다. 제어권이 Compute 노드로 되돌아가 다음 요소를 추출합니다.</li>
+	<li><span class="msobjprop">잘못된 메시지 조치</span>가 <span class="msobjpropval">취소</span>이면
+	Failure 노드가 연결되지 않고 Compute 노드에서 플로우 백아웃을 일으키는 사용자 오류를
+	생성합니다.</li></ul>
+	</li>
+<li>모든 요소가 처리되어 다음 요소로 이동하지 못하는 경우,
+패턴 매개변수에서 로그 기록을 필요로 하면 로그 서브플로우가 호출됩니다.
+이때는 메시지 플로우가 항상 성공적으로 중지되고
+	트랜잭션이 커미트됩니다. 로그 기록 오류가 있으면 해당 오류가 포착되어
+	Trace 노드에 기록하는 방식으로 처리됩니다.</li>
+<li><span class="msobjprop">라우팅</span> 매개변수가
+	<span class="msobjpropval">라우트 찾아보기</span>로 설정되고
+	<span class="msobjprop">캐시 새로 고치기</span>
+	패턴 매개변수가 캐시 새로 고치기가 필요하다고 지정하면 기본 플로우에 <span class="msobjprop">큐 새로 고치기</span>
+	패턴 매개변수에 의해 정의되는 큐에서
+	읽는 두 번째 Input 노드가 포함되어 있습니다.
+	이 큐로 송신한 메시지는 공유 변수
+	<span class="filepath">CacheQueueTable.valid</span>를 해제하여 다음 찾아보기 전에
+	캐시를 새로 고치도록 합니다.</li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="이전">Message Splitter for WebSphere MQ: 단방향(XML용) 패턴 스펙으로 돌아가기</a>
+</body>
+</html>

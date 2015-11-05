@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-cn" xml:lang="zh-cn">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="有关使用 Message Splitter for WebSphere MQ: one-way (for XML) 模式之前必须了解的内容和必须具备的资源的详细信息"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>使用 Message Splitter for WebSphere MQ: one-way (for XML) 模式时的约束</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.constraints">
+<h1 class="topictitle1">使用 <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> 模式时的约束</h1>
+<p class="shortdesc">使用此模式时会有若干约束。</p>
+<p>只有在满足以下所有约束时，才可以使用 <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> 模式：</p>
+<ul>
+<li>请求者和提供者应用程序使用 WebSphere MQ 作为传输机制。</li>
+<li>入局消息是格式正确的 XML；即，可解析但不必进行验证的 XML。</li>
+<li>消息遵循预期的结构。每个输入消息包含：<ul>
+	<li>外层包络，其名称可由模式参数标识</li>
+	<li>一系列重复的结构，其名称可由模式参数标识</li>
+	</ul></li>
+	
+<li>采用以下一种方式自动处理入局消息：<ul>
+	<li>将所有元素写入到输出或不正确消息队列</li>
+	<li>不写入任何元素并回滚消息</li>
+	</ul>
+</li>
+</ul>
+<p>假设该模式要分发的信息不得丢失。因此，消息流作为事务运行并且使用持久消息，这对性能会有非常明显的影响，但却是必需的，因为要求不得丢失数据。</p>
+<p>假设重复元素的数目少于输出队列所允许的未落实消息的最大数目。如果预测到重复的数目非常大，那么可能需要调整该限制。</p>
+
+<a href="overview.htm#anchor1" title="返回">返回至 Message Splitter for WebSphere MQ: one-way (for XML) 模式规范</a>
+</body>
+</html>

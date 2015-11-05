@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="pt-br">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Use o padrão de Message Correlator para WebSphere MQ: Pedido-Resposta com Persistência para aceitar pedidos de quaisquer aplicativos clientes em uma única fila e para retornar respostas ao cliente correto usando fluxos transacionais e mensagens do WebSphere MQ persistentes."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Fluxo de Pedido para o Padrão de Message Correlator para WebSphere MQ: Pedido-Resposta com Persistência</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<div><h1 class="topictitle1">Fluxo de Pedido para o Padrão de <span>Message Correlator para WebSphere MQ: Pedido-Resposta com Persistência</span></h1>
+<p class="shortdesc">O fluxo de Pedido é executado como um fluxo transacional.</p>
+<p>As mensagens recebidas pelo fluxo de pedido
+são processadas da seguinte maneira:</p>
+<ol>
+<li>Quando uma mensagem é recebida pelo fluxo de mensagens, uma verificação é feita para assegurar que o cabeçalho MQMD contém
+uma fila de resposta.
+Um erro será produzido se este campo estiver em branco.</li>
+<li>Quando uma mensagem é recebida pelo fluxo de mensagens, uma cópia do cabeçalho
+MQMD da mensagem é obtida e modificada configurando o identificador de
+correlação para o identificador de mensagem. O conteúdo do cabeçalho da mensagem é salvo em
+uma fila para preservar o endereço de resposta original. Configurar o identificador
+de correlação no cabeçalho salvo assegura que, quando o cabeçalho for
+recuperado e incluído na resposta do solicitante, o valor esteja correto
+e permite a recuperação do solicitante usando o identificador de correlação. 
+</li>
+<li>O fluxo de mensagens inclui um subfluxo chamado RequestProcessor.
+Este subfluxo contém apenas um nó de <span>Passagem</span>, portanto,
+nenhum processamento é executado. 
+É possível customizar este subfluxo em sua instância padrão para incluir seu próprio processamento
+sem alterar a estrutura do padrão.</li>
+<li>O cabeçalho MQMD da mensagem recebida é modificado para substituir o gerenciador de filas de resposta
+e a fila de resposta do solicitante com o endereço do nó de entrada do fluxo de mensagens
+de Resposta.</li>
+<li>A mensagem é encaminhada para o aplicativo do provedor.</li>
+<li>O fluxo de mensagens pode conter um subfluxo para criação de log, chamado Log.
+É possível configurar o padrão para incluir, ou excluir, o subfluxo de Log.
+</li>
+	<li>Se a criação de log não for necessária, o fluxo de mensagens finalizará com êxito após gravar a mensagem na
+	fila do provedor e a transação for confirmada.</li>
+	<li>O fluxo de mensagens também contém um subfluxo para manipulação de erros, chamado Erro. </li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="Voltar">Voltar para a especificação de padrão do Message Correlator para WebSphere MQ: Pedido-Resposta com Persistência</a>
+</body>
+</html>

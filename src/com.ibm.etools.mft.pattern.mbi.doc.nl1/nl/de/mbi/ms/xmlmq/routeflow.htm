@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de-de" xml:lang="de-de">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Verwenden Sie das Muster 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ: unidirektional (bei XML)) für die Annahme von Anforderungen von vielen Clientanwendungen in einer einzelnen Warteschlange und für die Rückgabe von Antworten an den richtigen Client mithilfe von transaktionsorientierten Nachrichtenflüssen und persistenten WebSphere MQ-Nachrichten."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Untergeordneter Routing-Nachrichtenfluss für das Muster 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML))</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.log">
+<div><h1 class="topictitle1">Untergeordneter Routing-Nachrichtenfluss für das Muster <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML))</h1>
+
+
+<p class="shortdesc">Das Verhalten des untergeordneten Routing-Nachrichtenflusses wird durch den Wert des Musterparameters <span class="msobjprop">Routing</span> bestimmt.</p>
+<ul>
+<li> <span class="msobjpropval">Kein Routing</span>
+<p>Wenn <span class="msobjpropval">Kein Routing</span> ausgewählt ist, wird ein einziger MQOutput-Knoten erstellt und mit den Werten der Musterparameter <span class="msobjprop">Ausgabe-WS-Manager</span> und <span class="msobjprop">Ausgabewarteschlange</span> konfiguriert. Der Routing-Nachrichtenfluss ist ein untergeordneter Nachrichtenfluss, der einen Pass-through-Knoten enthält. 
+Der Failure-Knoten wurde lediglich aus Konsistenzgründen mit anderen Typen des untergeordneten Routing-Nachrichtenflusses hinzugefügt.
+</p></li>
+<li><span class="msobjpropval">Routen angeben</span>
+<p> Eine Gruppe von vier Parametern, die eine Route definieren:</p>
+<ul>
+<li><span class="msobjprop">Schlüsselposition</span> ist ein XPATH-Ausdruck, der eine Schlüsselposition innerhalb des aktuellen Nachrichtenelements definiert.</li>
+<li><span class="msobjprop">Schlüsselwert</span> definiert einen Wert, mit dem die Schlüsselposition übereinstimmen muss, damit die jeweilige Route verwendet wird.</li>
+<li><span class="msobjprop">WS-Manager</span> definiert die Route als Warteschlangenmanager.</li>
+<li><span class="msobjprop">Warteschlange</span> definiert die Route als Warteschlange.</li>
+</ul>
+<p>Für jede Route, die definiert ist, wird ein Ausgabeterminal für den untergeordneten Routing-Nachrichtenfluss und ein MQOutput-Knoten erstellt und verbunden. </p>
+<p>Der untergeordnete Routing-Nachrichtenfluss enthält einen Route-Knoten, der mit einem Filter konfiguriert ist, der die Weiterleitung an das Ausgabeterminal ausführt, wenn die Bedingung <tt>KeyLocation = Key Value</tt> erfüllt ist.
+Wenn ein Nachrichtenelement mit keiner dieser Routen übereinstimmt, wird dieser Fehler in einer
+Umgebungsvariablen aufgezeichnet und die Nachricht an das Failure-Terminal weitergeleitet.</p>
+<p>Mit <span class="msobjpropval">Routen angeben</span> können verschiedene Routen angegeben werden.</p></li>
+<li><span class="msobjpropval">Routen suchen</span>
+<p>Wenn dieser Wert ausgewählt ist, wird für den untergeordneten Routing-Nachrichtenfluss ein einziges Ausgabeterminal erstellt, das mit einem einzigen MQOutput-Knoten verbunden wird, der für eine Zielliste konfiguriert ist.</p>
+<p>Der untergeordnete Routing-Nachrichtenfluss überprüft, ob der Cache aktualisiert werden muss. Dies ist der Fall, wenn der Wert der gemeinsamen Zeilenvariablen <span class="filepath">CacheQueueTable.valid</span> auf <tt>NULL</tt> gesetzt ist. Die Variable ist beim Start des Nachrichtenflusses auf <tt>NULL</tt> gesetzt, aber auch wenn <span class="msobjprop">Cache-Aktualisierung</span> aktiviert ist und eine Aktualisierungsnachricht an die <span class="msobjprop">Aktualisierungswarteschlange</span> gesendet wurde.
+Aktualisierungsnachrichten setzen den Wert auf <tt>NULL</tt>.</p>
+<p>Wenn der Cache aktualisiert werden muss, wird die Tabelle ROUTING_TABLE der Datenquelle (angegeben im Musterparameter <span class="msobjprop">Routing-Datenquelle</span>) nach allen Zeilen durchsucht, die dem Routing-Kontext dieses Nachrichtenflusses entsprechen. 
+Der Routing-Kontext wird durch den Musterparameter <span class="msobjprop">Routing-Kontext</span>
+definiert. Zeilen, deren ROUTING_CONTEXT-Feld mit diesem Parameter übereinstimmt, werden
+automatisch in einen Speichercache gelesen, um Suchen während eines inkonsistenten Cache-Status zu
+verhindern.</p>
+<p>Die zwischengespeicherten Daten haben folgende Struktur:</p>
+<pre>VARIABLE1, VARIABLE2, QUEUE_MANAGER, QUEUE_NAME </pre>
+<p>Die Suche wird ausgeführt, indem mithilfe von ESQL-Ausdrücken, die als Musterparameter definiert
+sind, ein oder zwei Schlüsselwerte aus dem Nachrichtenelement extrahiert werden. Definieren Sie
+Musterparameter mithilfe einer Anweisung im folgenden Format: </p>
+<pre>SET KEY = &lt;Musterparameter&gt;</pre>
+<p>Wenn nur ein Schlüssel angegeben ist, verwenden Sie zur Auswahl einer oder mehrerer Zeilen aus den Routing-Daten folgende WHERE-Klausel: </p>
+<pre>WHERE S.VARIABLE1 = KEY1</pre> 
+<p>Wenn ein zweiter Schlüssel angegeben ist, verwenden Sie zur Auswahl folgende WHERE-Klausel: </p>
+<pre>WHERE S.VARIABLE1 = KEY1 and S.VARIABLE2 = KEY2</pre>
+<p>Durch diese Auswahl werden der WS-Manager und die Warteschlange in der lokalen Umgebung festgelegt, die im MQOutput-Knoten verwendet wird. Es können auch mehrere Zeilen zurückgegeben werden. Die Zieldaten beinhalten dann alle ausgewählten Ziele. Wenn keine Übereinstimmung gefunden wird, wird ein Routing-Fehler zurückgegeben und die Nachricht wird an das Failure-Terminal des untergeordneten Routing-Nachrichtenflusses weitergeleitet.</p></li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="Back">Zurück zur Spezifikation des Musters 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML))</a>
+</body>
+</html>

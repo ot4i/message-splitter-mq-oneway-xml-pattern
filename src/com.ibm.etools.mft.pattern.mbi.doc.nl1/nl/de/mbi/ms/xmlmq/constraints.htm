@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="de-de" xml:lang="de-de">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Details zum notwendigen Know-how und den erforderlichen Ressourcen für die Verwendung des Musters 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ: unidirektional (bei XML))"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Vorgaben für die Verwendung des Musters 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ: unidirektional (bei XML))</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.constraints">
+<h1 class="topictitle1">Vorgaben für die Verwendung des Musters <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> (Nachrichtenverteiler für WebSphere MQ: unidirektional (bei XML))</h1>
+<p class="shortdesc">Wenn Sie dieses Muster verwenden, gelten eine Reihe von Vorgaben.</p>
+<p>Sie können das Muster <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML)) nur verwenden, wenn alle der folgenden Vorgaben erfüllt sind:</p>
+<ul>
+<li>Ihre Requester- und Provideranwendungen verwenden WebSphere MQ als Transportmechanismus.</li>
+<li>Die eingehenden Nachrichten bestehen aus richtig formatiertem XML-Code, d. h. XML-Code, der
+syntaktisch analysiert, jedoch nicht unbedingt ausgewertet werden kann.</li>
+<li>Die Nachrichten entsprechen der erwarteten Struktur. Jede Eingabenachricht enthält Folgendes:
+	<ul>
+	<li>Eine umschließende Rahmenanweisung, deren Name optional durch einen Musterparameter identifiziert wird</li>
+	<li>Eine Reihe sich wiederholender Strukturen, deren Namen optional durch einen Musterparameter identifiziert werden</li>
+	</ul></li>
+	
+<li>Die eingehende Nachricht wird auf eine der folgenden Arten automatisch verarbeitet:
+	<ul>
+	<li>Alle Elemente werden in die Ausgabewarteschlange oder in die Warteschlange für fehlerhafte Nachrichten geschrieben</li>
+	<li>Keine Elemente werden geschrieben und die Nachricht wird zurückgesetzt</li>
+	</ul>
+</li>
+</ul>
+<p>Es wird vorausgesetzt, dass dieses Muster der Verteilung von Informationen dienen soll, die nicht verloren gehen dürfen.
+Der Nachrichtenfluss wird deshalb als Transaktion ausgeführt und verwendet persistente Nachrichten, was beträchtliche Auswirkungen auf die Leistung hat, jedoch notwendig ist, da die Vermeidung von Datenverlust eine Voraussetzung ist.</p>
+<p>Es wird vorausgesetzt, dass die Anzahl der sich wiederholenden Elemente kleiner ist als die maximal zulässige Anzahl nicht festgeschriebener Nachrichten in der Ausgabewarteschlange. Dieser Grenzwert muss möglicherweise angepasst werden, wenn eine große Anzahl von Wiederholungen erwartet wird.</p>
+
+<a href="overview.htm#anchor1" title="Back">Zurück zur Spezifikation des Musters 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML))</a>
+</body>
+</html>

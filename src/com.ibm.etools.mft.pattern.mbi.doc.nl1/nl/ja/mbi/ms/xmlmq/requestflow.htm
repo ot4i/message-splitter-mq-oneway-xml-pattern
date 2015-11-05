@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja-jp" xml:lang="ja-jp">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターンを使用して、多数のクライアント・アプリケーションからの要求を単一のキューで受け入れ、正しいクライアントに応答を返します。その際、トランザクション・フローおよび永続 WebSphere MQ メッセージを使用します。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターンの要求フロー</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.requestflow">
+<div><h1 class="topictitle1">「<span>WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)</span>」パターンの要求フロー</h1>
+<p class="shortdesc">このパターンは単一のメッセージ・フローを使用します。</p>
+
+<ol>
+<li>入力ノードには整形式の XML メッセージが必要であり、XMLNSC パーサーを使用するように構成されています。着信メッセージにドメインを変更する MQRFH2 ヘッダーが含まれている場合、エラーが発生し、メッセージがバックアウトされます。
+</li>
+<li>メッセージの妥当性検査はオプションであり、「<span class="msobjprop">必要な妥当性検査</span>」パターン・パラメーターで指定されます。
+妥当性検査はすぐに行われるのではなく、各エレメントが抽出されるときに実行されます。
+</li>
+<li>メッセージ・フローはトランザクションとして実行され、すべての必要なエレメントが正常に抽出されてキューに書き込まれない限り、コミットされません。
+</li>
+<li>このフローの主な制御は、Propagate Element Compute ノードで行われます。このノードは、ローカル変数を作成し、入力のコピーである可変ツリーを保持します。
+このフローは、メッセージ・ツリー全体をループ処理して、コンテナー・タグ内の子エレメントに達すると、これを先の方へ伝搬します。
+各エレメントが選択されると、メモリー使用量を減らすために前のエレメントは削除されます。</li>
+<li>メッセージの構造はパターン・パラメーターによって決定され、メッセージがこの構造に準拠していない場合、エラーが生成されます。
+</li>
+<li>メッセージにコンテナー・パス、つまり、処理するすべてのエレメント用のコンテナーが含まれているかどうか検査が行われます。
+このコンテナー・パスが <span class="msobjpropval">*:*</span> として指定されている場合、コンテナーはその名前に関係なくルート・タグであると見なされ、ルートの子であるメッセージ・エレメントは抽出されます。</li>
+<li>「<span class="msobjprop">メッセージ・エレメント名</span>」パターン・パラメーターが	<span class="msobjpropval">*:*</span> である場合、コンテナーの子であるすべてのエレメントが処理されます。
+その他の値が指定されている場合、「<span class="msobjprop">メッセージ・エレメント名</span>」と一致するタグを持つメッセージ・エレメントのみが抽出されます。
+抽出されたメッセージ・エレメントはさらに処理するために渡されます。</li>
+<li>メッセージ・フローには MessageProcessor サブフローが含まれていますが、これにはデフォルトで Passthrough ノードしか含まれていないため、何も影響はありません。
+サブフローが含まれているのは、標準ツールを使用することによって、パターンの構造を全く変更せずにパターン・インスタンスをカスタマイズできる場所を提供するためです。
+</li>
+<li>メッセージは経路サブフローに渡され、経路サブフローはそれを正しい WebSphere MQ キューに送信します。
+経路の検出に失敗したり、例外が発生したりした場合、失敗状況が設定され、制御は Failure ノードに送られます。
+<ul><li>「<span class="msobjprop">正しくないメッセージ・アクション</span>」が「<span class="msobjpropval">保管</span>」である場合、Failure ノードは MQOutput ノードに接続され、メッセージを保存します。
+制御は Compute ノードに戻され、次のエレメントを抽出します。</li>
+	<li>「<span class="msobjprop">正しくないメッセージ・アクション</span>」が「<span class="msobjpropval">キャンセル</span>」である場合、Failure ノードは接続されず、Compute ノードはユーザー・エラーを生成して、フローがバックアウトします。
+</li></ul>
+	</li>
+<li>すべてのエレメントが処理されたために次のエレメントに移動できず、パターン・パラメーターによりロギングが必要とされている場合には、ログ・サブフローが呼び出されます。
+この時点で、メッセージ・フローは常に正常に停止し、トランザクションがコミットされます。
+ロギングで発生したエラーはキャッチされ、Trace ノードに書き込むことによって処理されます。</li>
+<li>「<span class="msobjprop">ルーティング</span>」パラメーターが「<span class="msobjpropval">経路の検索</span>」に設定され、「<span class="msobjprop">キャッシュの最新表示</span>」パターン・パラメーターがキャッシュの最新表示が必要であることを指定している場合、メイン・フローには、「<span class="msobjprop">キューの最新表示</span>」パターン・パラメーターで定義されるキューから読み取る 2 番目の Input ノードが含まれます。
+このキューに送信されるメッセージは、共有変数 <span class="filepath">CacheQueueTable.valid</span> をクリアするため、キャッシュは次の検索の前に最新表示されます。
+</li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="戻る">「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターンの仕様に戻る</a>
+</body>
+</html>

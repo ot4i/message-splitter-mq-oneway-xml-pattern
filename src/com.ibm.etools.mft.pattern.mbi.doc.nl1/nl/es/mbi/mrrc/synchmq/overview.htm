@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-es" xml:lang="es-es">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Utilice el patrón Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta sin persistencia para aceptar solicitudes de muchas aplicaciones clientes en una sola cola y devolver respuestas al cliente correcto mediante flujos transaccionales y mensajes persistentes de WebSphere MQ."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Patrón Correlacionador de mensajes para WebSphere MQ: petición-respuesta sin persistencia</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.synchmq.overview">
+<h1 class="topictitle1">Patrón <span>Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta sin persistencia</span></h1>
+<div><p class="shortdesc">Utilice el patrón <span>Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta sin persistencia</span> para aceptar solicitudes de muchas aplicaciones clientes en una sola cola y devolver respuestas al cliente correcto mediante flujos no transaccionales y mensajes no persistentes de WebSphere MQ.</p>
+<p>Dado que este patrón utiliza mensajes no persistentes y flujos no transaccionales, no es adecuado utilizarlo cuando los intercambios de mensajes hayan actualizado resultados que requieran que no haya pérdida de datos.</p>
+<p>Este flujo debe utilizarse para las solicitudes de información en que un rendimiento más rápido es más importante que garantizar que no haya ninguna pérdida de datos.</p>
+</div><div class="image"><img src="synchmqmc.gif" 
+alt="Un diagrama que muestra el comportamiento del patrón. Varias aplicaciones solicitantes envían mensajes al intermediario. La dirección de respuesta del solicitante se almacena antes de reenviar el mensaje al proveedor y se vuelve a almacenar cuando se recibe una respuesta del proveedor." />
+
+
+<div class="section"><h2 class="sectiontitle">Solución</h2></div> 
+<p>La solución es implementar un flujo de mediación que almacena la información de cabecera MQMD de cada mensaje de solicitud, indexada según el identificador de mensaje, antes de reenviar el mensaje, con todas sus cabeceras, a la aplicación de proveedor. 
+Este mensaje de solicitud al proveedor especifica la cola de respuesta del intermediario en la parte de respuesta de la cabecera de mensaje.
+Se espera que la aplicación de proveedor, según la práctica convencional, copie el identificador de mensaje del mensaje de solicitud en el campo de identificador de correlación del mensaje de respuesta. 
+Al recibir un mensaje de respuesta, el flujo del intermediario utiliza el identificador de correlación para recuperar la cabecera MQMD almacenada anteriormente y utiliza la dirección de respuesta para actualizar la cabecera MQMD entrante. 
+Esta acción asegura que se utilice la dirección de respuesta original del solicitante. 
+A continuación, el mensaje de respuesta se devuelve al solicitante con todas sus cabeceras.</p>
+<p>Consulte la sección siguiente para obtener información sobre el diseño de los flujos de mensajes en este patrón.</p>
+<div><a href="requestflow.htm" title="Información de diseño sobre el flujo de mensajes Request.">Flujo Request </a></div>
+<div><a href="responseflow.htm" title="Información de diseño sobre el flujo de mensajes Response.">Flujo Response</a></div>
+<div><a href="errorflow.htm" title="Información de diseño sobre el subflujo Error.">Subflujo Error</a></div>
+<div><a href="logflow.htm" title="Información de diseño sobre el subflujo Log.">Subflujo Log</a></div><div>
+<a name="anchor1"></a>
+<div class="section"><h2 class="sectiontitle">Tareas relacionadas</h2></div>
+<p>Consulte la sección siguiente para obtener información sobre cómo aplicar y utilizar este patrón.</p>
+<div><a href="constraints.htm" title="Restricciones en el uso del patrón Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta sin persistencia.">Restricciones en el uso del patrón</a></div>
+<div><a href="prereq.htm" title="Detalles sobre lo que necesita saber y qué recursos debe tener antes de que pueda utilizar el patrón Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta sin persistencia">Tareas que deben completarse antes de aplicar el patrón</a></div>
+
+<div><a href="parameters.htm" title="Aplique el patrón y configure los parámetros">Parámetros para el patrón</a></div>
+<div><a href="postreq.htm" title="">Tareas que deben completarse después de generar el patrón</a></div>
+</div>
+</div></body>
+</html>

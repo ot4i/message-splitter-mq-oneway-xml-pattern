@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Tasks to complete after generating the Message Splitter for WebSphere MQ: one-way (for XML) pattern"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css" />
+<title>Tasks to complete after generating the Message Splitter for WebSphere MQ: one-way (for XML) pattern</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.postreq">
+<h1 class="topictitle1">Tasks to complete after generating the <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> 
+pattern</h1>
+<p class="shortdesc">Tasks that you must complete after you have generated the pattern.</p>
+<ol>
+<li>Create the broker archive (BAR) file.
+The message flow must be added to a broker archive file. 
+Any message sets that are referenced by the flow are automatically added.
+<ol>
+
+<li>Click <span class="uicontrol">File &gt; New &gt; BAR File</span>.</li>
+<li>Enter the name of your server project or select one from the displayed list. 
+The list is filtered to show only projects in the active working set. 
+</li>
+<li>Enter a name for the BAR file that you are creating.</li>
+<li>Click <span class="uicontrol">Finish</span>.
+A file with a <span class="filepath">.bar</span> extension is created and is displayed in the 
+Broker Administration Navigator view, 
+under the Broker Archives folder. The Content editor for the BAR file opens.</li>
+<li>On the Prepare tab, select the generated message flow file to add it to your BAR file.</li>
+<li>Select <span class="uicontrol">Compile and in-line resources</span> and then click <span class="uicontrol">Build and Save</span> to create your BAR file.</li>
+</ol></li>
+<li>Configure the broker archive file.
+Further configuration of the message flow in the broker archive file is not required
+before you deploy the message flows for your 
+<span>Message Splitter for WebSphere MQ: one-way (for XML)</span> pattern instance, 
+but you might want to review some of the default options and configure changes for the your environment.
+<p>In the Manage page of the Broker Archive editor:</p>
+<ol><li>Optional: Use the <span class="msobjprop">Logging required</span> property to select 
+whether logging is on or off for the message splitter message flow.
+</li>
+<li>Optional: Use the <span class="msobjprop">Error message required</span> property to select whether
+error messages are generated for the message splitter message flow.
+</li>
+<li>Optional: You can also change any of the configurable properties
+in the broker archive, for example, properties for security or creating
+additional instances. You must ensure that any values you
+change do not impact the behavior of the pattern instance.</li>
+</ol></li>
+<li>Create queues. When you apply the pattern, a list of WebSphere MQ queues is generated, with
+queue names and queue manager names, which must be created if they do
+not already exist. All of the message settings that are required by the pattern are
+set explicitly on the messages and are not dependent on queue settings.
+<ol>
+<li>In the summary file, view the list of queues that you must create. The summary file 
+ 		is located in the Pattern Configuration folder of the 
+ 		<i>InstanceName</i> pattern instance project.</li>
+<li>Create <span>WebSphere MQ</span> resources. You can create <span>WebSphere MQ</span> resources 
+either on the command
+line, by using programs and utilities such as <span class="cmdname">runmqsc</span>, or by using the 
+<span>WebSphere MQ</span> Explorer graphical interface.
+For more information about creating <span>WebSphere MQ</span> resources,
+see <cite><span>WebSphere MQ</span> Intercommunication</cite>,
+available on the <img src="../../../images/external_link.gif" alt="This link opens in a new window" class="external_link" />
+<a href="http://www.ibm.com/software/integration/wmq/library/" target="_blank">WebSphere MQ
+library</a> web page.</li>
+<li>If you use the <span class="msobjpropval">Lookup routes</span> value in the 
+<span class="msobjprop">Routing</span> parameter, routes can be defined dynamically and are not 
+listed in the summary file. When routes are added to the database, the corresponding queues must be created.</li>
+</ol></li>
+<li>Set up a routing database if required.
+If the <span class="msobjpropval">Lookup routes</span> value is selected in the 
+<span class="msobjprop">Routing</span> parameter, the data source
+must be set up with a ROUTING_TABLE table. This table must include the following columns:
+<ul>
+<li>ROUTING_CONTEXT
+<p>Use a value that identifies the routing entries for this flow.</p>
+</li>
+<li>VARIABLE1
+<p>The value that the <span class="msobjprop">KEY1</span> property 
+from the message element must match.</p>
+</li>
+<li>VARIABLE2
+<p>The value that the <span class="msobjprop">KEY2</span> property 
+from the message element must match.</p>
+</li>
+<li>QUEUE_MANAGER
+<p>The queue manager of the destination.</p>
+</li>
+<li>QUEUE
+<p>The destination queue.</p>
+</li>
+</ul>
+</li>
+</ol>
+<div>
+</div>
+<a href="overview.htm#anchor1" title="Back">Back to the Message Splitter for WebSphere MQ: one-way (for XML) pattern specification</a>
+</body>
+</html>

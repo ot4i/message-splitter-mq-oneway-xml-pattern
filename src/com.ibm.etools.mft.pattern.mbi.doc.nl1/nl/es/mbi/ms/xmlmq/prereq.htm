@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es-es" xml:lang="es-es">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Detalles sobre lo que necesita saber y qué recursos debe tener antes de poder utilizar el patrón Divisor de mensajes para WebSphere MQ: unidireccional (para XML)."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Tareas que deben completarse antes de aplicar el patrón Divisor de mensajes para WebSphere MQ: unidireccional (para XML)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.prereq">
+<h1 class="topictitle1">Tareas que deben completarse antes de aplicar el patrón <span>Divisor de mensajes para
+WebSphere MQ: unidireccional (para XML)</span></h1>
+<div>
+<div class="section">
+<p class="shortdesc">Antes de aplicar el patrón para producir una instancia de patrón, debe determinar cuáles de las tareas siguientes son necesarias. Si es preciso, realice las tareas siguientes:</p>
+</div>
+<ul><li>Seleccione un nombre exclusivo para la instancia de patrón.
+Puede utilizar el patrón muchas veces y crear diversas instancias diferentes, que se pueden distinguir por sus nombres exclusivos. Identifique el fin de la aplicación de patrón para que pueda decidir un nombre exclusivo adecuado o significativo.</li>
+<li>Seleccione las colas y los gestores de colas de WebSphere MQ que desee que utilice la instancia de patrón, por ejemplo, para recibir el mensaje XML. Si está utilizando colas existentes, deben estar registradas. 
+Si desea crear nuevos gestores de colas y colas, debe tomar una decisión sobre los nombres de estos recursos.</li>
+<li> Decida si es necesaria la validación y defina un conjunto de mensajes o determine el nombre del conjunto de mensajes. Después de generar el patrón, lleve a cabo la tarea de creación del conjunto de mensajes.</li>
+<li>Identifique cualquier cola y gestor de colas adicionales que este patrón necesite, y decida qué nombres desea utilizar. Tenga en cuenta las políticas, estándares o convenios de denominación que deben aplicarse.</li>
+<li>Decida si necesita un registro de mensajes entrantes. 
+Si el registro es necesario, debe decidir a qué gestor de colas y cola se enviarán los mensajes de registro.
+Puede enviar mensajes de registro a una cola de registro general que utilicen varios flujos de mensajes, o puede utilizar una cola específicamente para la instancia de patrón.</li>
+<li>Decida si hay varios destinos posibles y, si es así, seleccione el enfoque de direccionamiento que va a utilizar.
+	<ul><li>Establezca el parámetro <span class="msobjprop">Direccionamiento</span> en <span class="msobjpropval">Especificar rutas</span> si tiene un número limitado de rutas en que los destinos no cambian con frecuencia.</li>
+	<li>Establezca el parámetro <span class="msobjprop">Direccionamiento</span> en <span class="msobjpropval">Buscar rutas</span>
+si el conjunto de rutas de destino no está totalmente determinado o puede cambiar a menudo. Si este valor es seleccionado, el nombre del origen de datos debe ser conocido.</li>
+	</ul></li>
+<li>Decida el enfoque del manejo de errores. Decida si desea elementos de mensaje que no se puedan direccionar correctamente para una retrotracción completa o si basta con escribir el elemento erróneo en una cola para realizar un proceso de excepciones.</li>
+<li>Decida si desea producir mensajes de error para la instancia de patrón. 
+Todos los datos se conservan sin mensajes de error porque las acciones de error conservan los elementos en una cola para este fin, o retrotraen el flujo de mensajes. El mensaje de entrada se devuelve a la cola de entrada o se envía a una cola de restitución. No obstante, si estas colas no están supervisadas, los mensajes de error pueden ser necesarios como mecanismo de notificación.
+<p>Si elige enviar mensajes de error en la instancia de patrón, puede activar o desactivar esta función configurando el archivo archivador de intermediario (BAR) antes del despliegue.</p></li>
+</ul>
+<a href="overview.htm#anchor1" title="Volver">Volver a la especificación del patrón Divisor de mensajes para WebSphere MQ: unidireccional (para XML)</a>
+</div></body>
+</html>

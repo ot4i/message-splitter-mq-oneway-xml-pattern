@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-kr" xml:lang="ko-kr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Message Splitter for WebSphere MQ: 단방향(XML용) 패턴을 사용하면 단일 큐에 있는 많은 클라이언트 애플리케이션의 요청을 승인하고 트랜잭션 플로우와 지속 WebSphere MQ 메시지를 사용하여 올바른 클라이언트로 응답을 리턴할 수 있습니다."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Splitter for WebSphere MQ: 단방향(XML용) 패턴
+</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<h1 class="topictitle1"><span>Message Splitter for WebSphere MQ: 단방향(XML용)</span> 패턴</h1>
+<div><p class="shortdesc"><span>Message Splitter for WebSphere MQ: 단방향(XML용)</span> 패턴을 사용하면
+트랜잭션 플로우와 지속 WebSphere MQ 메시지를 사용하여 대규모 XML 메시지를 하나 이상의 대상에서 처리하는 작은 요소로 분리할 수 있습니다.</p>
+</div>
+<p>많은 비즈니스 트랙잭션 정보를 저장하며 이러한 정보를 하나 이상의
+대상 애플리케이션에 배치로 전송하는 애플리케이션이 있으면
+이 패턴을 사용하십시오.
+과도한 메모리 사용 없이 대규모 메시지를 핸들링하는 데 사용할 수 있습니다.</p>
+<p>이 패턴은 소스 애플리케이션 또는 대상 애플리케이션이 거의 실시간 서비스 호출을
+작성 또는 처리할 수 없거나 비즈니스상의 이유로 정보 배치 처리가 필요한 경우 사용할 수 있습니다.
+</p>
+<div class="image"><img src="xmlmq.gif" 
+alt="패턴의 작동을 보여주는 다이어그램입니다. XML 메시지를 하나 이상의 대상에서 처리하는 작은 요소로 분리합니다." />
+<div class="section"><h2 class="sectiontitle">솔루션</h2></div>
+<p>해결책은 반복 가능한 요소를 처리 시 삭제할 수 있도록 변하기 쉬운 메시지 트리를
+사용하는 메시지 플로우를 구현하는 것입니다. 부분적 구문 분석으로 단일 요소를 필수로 구문 분석할 수 있으며
+완료 시 해당 요소가 삭제되므로 인-메모리 트리가 요소 수에 비례하여 확장되지 않습니다.
+각 요소는 추출할 때 적합한 대상 애플리케이션으로 라우팅됩니다. </p>
+<div><a href="requestflow.htm" title="요청 메시지 플로우의 설계 정보입니다.">요청 플로우</a></div>
+<div>		<a href="routeflow.htm" title="라우트 서브플로우의 설계 정보입니다.">라우트 서브플로우</a></div>
+<div><a href="errorflow.htm" title="오류 서브플로우의 설계 정보입니다.">오류 서브플로우</a></div>
+<div><a href="logflow.htm" title="로그 서브플로우의 설계 정보입니다.">로그 서브플로우</a></div><div>
+<a name="anchor1"></a>
+<div class="section"><h2 class="sectiontitle">관련 태스크</h2></div>
+<p>			이 패턴의 적용 및 사용 방법에 대한 정보는 다음 절을 읽어 보십시오. </p>
+<div><a href="constraints.htm" title="Message Splitter for WebSphere MQ: 단방향(XML용) 패턴의 사용 제한조건">패턴의 사용 제한조건</a></div>
+<div><a href="prereq.htm" title="Message Splitter for WebSphere MQ: 단방향(XML용) 패턴을 사용하기 전에 알아야 하는 내용과 필요한 자원 세부사항">패턴을 적용하기 전 완료할 태스크</a></div>
+
+<div><a href="parametertable.htm" title="패턴 매개변수">패턴 매개변수</a></div>
+<div><a href="postreq.htm" title="">패턴 생성 후에 완료할 태스크</a></div>
+</div>
+</div></body>
+</html>

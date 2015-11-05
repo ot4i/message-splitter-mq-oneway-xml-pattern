@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?NLS  TYPE="org.eclipse.help.toc"?>
+<toc link_to="toc.xml#wmb_patterns_mbi" label="メッセージ相関関係子" topic="mbi/mrrc/overview.htm">
+    <topic label="メッセージ相関関係子" href="mbi/mrrc/overview.htm">
+      	<topic label="持続性のある MQ 要求/応答" href="mbi/mrrc/relmq/overview.htm">
+      		<topic label="要求フロー" href="mbi/mrrc/relmq/requestflow.htm"/>
+      		<topic label="応答フロー" href="mbi/mrrc/relmq/responseflow.htm"/>
+      		<topic label="エラー・サブフロー" href="mbi/mrrc/relmq/errorflow.htm"/>
+      		<topic label="ログ・サブフロー" href="mbi/mrrc/relmq/logflow.htm"/>  
+      		<topic label="制約" href="mbi/mrrc/relmq/constraints.htm"/>
+      		<topic label="パターンを適用する前に完了するタスク" href="mbi/mrrc/relmq/prereq.htm"/>
+      		<topic label="パラメーター" href="mbi/mrrc/relmq/parametertable.htm"/>
+      		<topic label="パターンを生成した後に完了するタスク" href="mbi/mrrc/relmq/postreq.htm"/>
+      	</topic>
+	  	<topic label="持続性のない MQ 要求/応答" href="mbi/mrrc/synchmq/overview.htm">
+	  		<topic label="要求フロー" href="mbi/mrrc/synchmq/requestflow.htm"/>
+	  		<topic label="応答フロー" href="mbi/mrrc/synchmq/responseflow.htm"/>
+	  		<topic label="エラー・サブフロー" href="mbi/mrrc/synchmq/errorflow.htm"/>
+	  		<topic label="ログ・サブフロー" href="mbi/mrrc/synchmq/logflow.htm"/>  
+	  		<topic label="制約" href="mbi/mrrc/synchmq/constraints.htm"/>
+	  		<topic label="パターンを適用する前に完了するタスク" href="mbi/mrrc/synchmq/prereq.htm"/>
+	  		<topic label="パラメーター" href="mbi/mrrc/synchmq/parameters.htm"/>
+	  		<topic label="パターンを生成した後に完了するタスク" href="mbi/mrrc/synchmq/postreq.htm"/>
+	  	</topic>
+	</topic>
+</toc>

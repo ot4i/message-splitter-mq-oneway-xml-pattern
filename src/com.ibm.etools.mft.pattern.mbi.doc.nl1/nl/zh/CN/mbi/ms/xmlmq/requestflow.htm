@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="使用 Message Splitter for WebSphere MQ: one-way (for XML) 模式可在单个队列上接受来自多个客户机应用程序的请求，并使用事务流和持久 WebSphere MQ 消息将响应返回到正确的客户机。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Splitter for WebSphere MQ: one-way (for XML) 模式的请求流</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.requestflow">
+<div><h1 class="topictitle1"><span>Message Splitter for WebSphere MQ: one-way (for XML)</span> 模式的请求流</h1>
+<p class="shortdesc">此模式使用单个消息流。</p>
+
+<ol>
+<li>Input 节点要求格式正确的 XML 消息，并且配置为使用 XMLNSC 解析器。如果有入局消息包含可更改域的 MQRFH2 头，那么将导致错误，并且会将消息回退。</li>
+<li>消息验证是可选的，在<span class="msobjprop">需要验证</span>模式参数中指定。
+验证并非立即执行，而是在抽取各个元素时执行。
+</li>
+<li>消息流作为事务运行，并且在成功抽取所有必需元素且将其写入队列之前不会落实。</li>
+<li>此流中的主控制是 Propagate Element Compute 节点。此节点创建一个局部变量，以保存作为输入副本的可变树。此流在消息树中进行循环，移动到容器标记中的子元素并向前传播。在选择各个元素时，将删除前一个元素以减少内存使用量。</li>
+<li>消息结构由模式参数确定，并且如果消息不符合此结构，那么将生成错误。</li>
+<li>将进行检查，确认消息是否包含容器路径，即要处理的所有元素的容器。如果将此容器路径指定为 <span class="msobjpropval">*:*</span>，那么将认为容器是根标记（任意名称）以及要抽取的根的子消息元素。</li>
+<li>如果<span class="msobjprop">消息元素名称</span>模式参数为 <span class="msobjpropval">*:*</span>，那么将处理容器的所有子元素。如果指定了任何其他值，那么将只抽取其标记匹配<span class="msobjprop">消息元素名称</span>的消息元素。
+将传递抽取的消息元素以供进一步处理。</li>
+<li>消息流包含的 MessageProcessor 子流在缺省情况下不受影响，因为它只包含 Passthrough 节点。包含该子流是为了提供一个场所，可在其中使用标准工具来定制模式实例，而不必更改模式结构。</li>
+<li>消息将传递至路由子流，该子流会将消息定向至正确的 WebSphere MQ 队列。路由查找故障或任何异常会设置故障状态，并将控制定向至 Failure 节点。<ul><li>如果<span class="msobjprop">不正确消息操作</span>为“<span class="msobjpropval">保存</span>”，那么 Failure 节点将连接到 MQOutput 节点以保存消息。控制将返回至 Compute 节点以抽取下一个元素。</li>
+	<li>如果<span class="msobjprop">不正确错误消息操作</span>为“<span class="msobjpropval">取消</span>”，那么将无法连接	Failure 节点，并且 Compute 节点将生成导致流回退的用户错误。</li></ul>
+	</li>
+<li>由于已处理所有元素而导致进入下一个元素失败时，如果模式参数需要记录，那么将调用日志子流。此时，消息流总是成功停止，并落实事务。将通过写入 Trace 节点来捕获和处理记录中发生的任何错误。</li>
+<li>如果<span class="msobjprop">路由</span>参数设置为<span class="msobjpropval">查找路径</span>，并且<span class="msobjprop">高速缓存刷新</span>模式参数指定需要高速缓存刷新，那么主流将包含第二个 Input 节点，该节点从由<span class="msobjprop">刷新队列</span>模式参数定义的队列读取。发送至该队列的任何消息都会清除共享变量 <span class="filepath">CacheQueueTable.valid</span>，因此高速缓存会在下一次查找前刷新。</li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="返回">返回至 Message Splitter for WebSphere MQ: one-way (for XML) 模式规范</a>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-es" xml:lang="es-es">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Utilice el patrón Divisor de mensajes para WebSphere MQ: unidireccional (para XML) para aceptar solicitudes de muchas aplicaciones clientes en una sola cola y devolver respuestas al cliente correcto mediante flujos transaccionales y mensajes persistentes de WebSphere MQ."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Flujo Request para el patrón Divisor de mensajes para WebSphere MQ: unidireccional (para XML)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.requestflow">
+<div><h1 class="topictitle1">Flujo Request para el patrón <span>Divisor de mensajes para WebSphere MQ: unidireccional (para XML)</span></h1>
+<p class="shortdesc">Este patrón utiliza un solo flujo de mensajes. </p>
+
+<ol>
+<li>El nodo Input espera un mensaje XML bien formado y se ha configurado para utilizar el analizador XMLNSC. Si un mensaje entrante cualquiera contiene una cabecera MQRFH2 que cambia el dominio, se produce un error y el mensaje se retrotrae. </li>
+<li>La validación del mensaje es opcional y se especifica en el parámetro de patrón <span class="msobjprop">Validación necesaria</span>.
+La validación no es inmediata y se realiza a medida que se extrae cada elemento.
+</li>
+<li>El flujo de mensajes se ejecuta como una transacción y no se confirma a menos que todos los elementos necesarios se hayan extraído y escrito satisfactoriamente en una cola. </li>
+<li>El control principal de este flujo es el nodo Propagate Element Compute. 
+Este nodo crea una variable local para contener un árbol variable que es una copia de la entrada. 
+Este flujo recorre el árbol de mensajes y se mueve a un elemento hijo en un código de contenedor y se propaga hacia delante.
+A medida que se selecciona cada elemento, el elemento anterior se elimina para reducir el uso de memoria.</li>
+<li>La estructura del mensaje se determina mediante los parámetros de patrón y si un mensaje no se ajusta a esta estructura, se produce un error.</li>
+<li>Se comprueba que el mensaje incluye la vía de acceso del contenedor, es decir, el contenedor para todos los elementos que deben procesarse. Si esta vía de acceso de contenedor se especifica como <span class="msobjpropval">*:*</span>, el contenedor se considera como código raíz, sea cual sea su nombre, y se extraen los elementos del mensaje que son hijos del elemento raíz.</li>
+<li>Si el parámetro de patrón <span class="msobjprop">Nombre de elemento de mensaje</span> es <span class="msobjpropval">*:*</span>, se procesan todos los elementos que son hijos del contenedor.
+Si se especifica cualquier otro valor, sólo se extraen los elementos del mensaje que tengan códigos que coincidan con el <span class="msobjprop">nombre de elemento de mensaje</span>.
+El elemento de mensaje extraído se pasa para continuar su proceso. </li>
+<li>El flujo de mensajes incluye el subflujo MessageProcessor, que de forma predeterminada no tiene ningún efecto porque sólo contiene un nodo Passthrough. El subflujo está incluido para proporcionar un lugar que una instancia de patrón se puede personalizar utilizando herramientas estándar sin efectuar cambios en la estructura del patrón.</li>
+<li>El mensaje se pasa al subflujo Route, que lo dirige a la cola correcta de WebSphere MQ. 
+Una anomalía al buscar una ruta o alguna excepción, define el estado de anomalía y dirige el control al nodo Failure.
+	<ul><li>Si la <span class="msobjprop">Acción de mensaje erróneo</span> es <span class="msobjpropval">Guardar</span>,
+	el nodo Failure se conecta a un nodo MQOutput para guardar el mensaje. El control se devuelve al nodo Compute para extraer el siguiente elemento.</li>
+	<li>Si la <span class="msobjprop">Acción de mensaje erróneo</span> es <span class="msobjpropval">Cancelar</span>, el nodo Failure no se conecta y el nodo Compute genera un error de usuario que causa la retrotracción del flujo.</li></ul>
+	</li>
+<li>Cuando falla una acción de mover al elemento siguiente, porque todos los elementos ya se han procesado, se invoca al subflujo
+Log, si los parámetros de patrón necesitan el inicio de sesión. 
+En ese momento, el flujo de mensajes se detiene siempre satisfactoriamente y la transacción se confirma. Los errores que se produzcan en el registro se detectan y se procesan escribiéndolos en un nodo Trace.</li>
+<li>Si el parámetro <span class="msobjprop">Routing</span> se establece en <span class="msobjpropval">Buscar rutas</span> y el parámetro de patrón <span class="msobjprop">Renovación de memoria caché</span> especifica que se necesita la renovación de la memoria caché, el flujo principal contiene un segundo nodo Input que lee de la cola definida por el parámetro de patrón <span class="msobjprop">Renovar cola</span>. Cualquier mensaje que se envía a esta cola borra la variable compartida <span class="filepath">CacheQueueTable.valid</span>, de forma que la memoria caché se renueva antes de la siguiente búsqueda.</li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="Volver">Volver a la especificación del patrón Divisor de mensajes para WebSphere MQ: unidireccional (para XML)</a>
+</body>
+</html>

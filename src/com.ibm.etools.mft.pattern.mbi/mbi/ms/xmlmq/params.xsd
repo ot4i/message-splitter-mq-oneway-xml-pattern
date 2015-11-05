@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns="com.ibm.etools.mft.pattern.mbi.ms.xmlmq" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="com.ibm.etools.mft.pattern.mbi.ms.xmlmq">
+
+    <!-- Action on bad record  -->
+    <xsd:simpleType name="badMsgEnum">
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="Cancel"/>
+            <xsd:enumeration value="Save"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    
+    <xsd:complexType name="routeConfig">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="row">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="1" name="keyLocation" type="xsd:string"/>
+                        <xsd:element maxOccurs="1" minOccurs="1" name="keyValue" type="xsd:string"/>
+                        <xsd:element maxOccurs="1" minOccurs="0" name="queueManager" type="xsd:string"/>
+                        <xsd:element maxOccurs="1" minOccurs="1" name="queue" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    
+    <!--  Namespace table -->
+    <xsd:complexType name="namespaceTableType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="row">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="1" minOccurs="1" name="nsPrefix" type="xsd:string"/>
+                        <xsd:element maxOccurs="1" minOccurs="1" name="nsURI" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    	
+    <!-- routing subflow -->
+    <xsd:simpleType name="routingEnum">
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="routeDefault"/>
+            <xsd:enumeration value="routeRoute"/>
+            <xsd:enumeration value="destinationCache"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+			
+    <xsd:element name="root" type="Root"/>
+    <xsd:complexType name="Root">
+        <xsd:sequence>
+            <!-- Instance -->
+            <xsd:element default="default" maxOccurs="1" minOccurs="1" name="instanceName" type="xsd:string"/>
+            
+            <!--  Input -->
+            <xsd:element default="IN" maxOccurs="1" minOccurs="1" name="inputQueue" type="xsd:string"/>
+            <xsd:element default="*:*" maxOccurs="1" minOccurs="1" name="containerTag" type="xsd:string"/>
+            <xsd:element default="*:*" maxOccurs="1" minOccurs="1" name="elementName" type="xsd:string"/>
+            
+            <!-- Routing configuration -->
+            <xsd:element default="routeDefault" name="routingSubflow" type="routingEnum"/>
+            
+            <!-- routeRoute -->
+            <xsd:element maxOccurs="1" minOccurs="0" name="namespaceTable" type="namespaceTableType"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="route" type="routeConfig"/>
+            
+            <!-- destinationCache -->
+            <xsd:element maxOccurs="1" minOccurs="1" name="routingDB" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="routingcontext" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="key1" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="key2" type="xsd:string"/>
+            <xsd:element default="false" maxOccurs="1" minOccurs="1" name="cacheRefresh" type="xsd:boolean"/>
+            <xsd:element default="REFRESH" maxOccurs="1" minOccurs="1" name="refreshQueue" type="xsd:string"/>
+            
+            <!-- routeDefault -->
+            <xsd:element default="" maxOccurs="1" minOccurs="0" name="outputQueueManager" type="xsd:string"/>
+            <xsd:element default="OUT" maxOccurs="1" minOccurs="1" name="outputQueue" type="xsd:string"/>
+            
+            <!-- Log details -->
+            <xsd:element default="false" name="loggingRequired" type="xsd:boolean"/>
+            <xsd:element default="" maxOccurs="1" minOccurs="0" name="logQueueManager" type="xsd:string"/>
+            <xsd:element default="LOG" maxOccurs="1" minOccurs="1" name="logQueue" type="xsd:string"/>
+            
+            <!-- Transactionality and error handling -->
+            <xsd:element default="true" name="errorMessageRequired" type="xsd:boolean"/>
+            <xsd:element default="" maxOccurs="1" minOccurs="0" name="errorQueueManager" type="xsd:string"/>
+            <xsd:element default="ERROR" maxOccurs="1" minOccurs="1" name="errorQueue" type="xsd:string"/>
+            <xsd:element default="Save" name="badMsgAction" type="badMsgEnum"/>
+            <xsd:element default="" maxOccurs="1" minOccurs="0" name="badMsgQueueManager" type="xsd:string"/>
+            <xsd:element default="BAD" maxOccurs="1" minOccurs="1" name="badMsgQueue" type="xsd:string"/>
+            
+            <!-- General -->
+            <xsd:element default="mqsi" maxOccurs="1" minOccurs="0" name="brokerSchema" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="flowprefix" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="flowsuffix" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="queueprefix" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="queuesuffix" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="shortDescription" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="longDescription" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

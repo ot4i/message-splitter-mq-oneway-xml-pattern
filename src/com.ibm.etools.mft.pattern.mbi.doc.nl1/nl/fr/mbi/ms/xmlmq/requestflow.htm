@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="fr-fr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Utilisation de l'utilitaire de Fractionnement de message pour WebSphere MQ :  modèle unidirectionnel (pour XML) afin d'accepter les demandes d'un grand nombre d'applications client dans une seule file d'attente et répondre au client approprié via des flux transactionnels et des messages WebSphere MQ persistants."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Flux de demandes pour le modèle d'utilitaire de Fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.requestflow">
+<div><h1 class="topictitle1">Flux de demandes pour le modèle d'<span>utilitaire de Fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)</span></h1>
+<p class="shortdesc">Ce modèle utilise un seul flux de message. </p>
+
+<ol>
+<li>Le noeud Input attend un message XML correctement formaté et il est configuré pour utiliser l'analyseur XMLNSC. Si un message entrant contient un en-tête MQRFH2 qui change le domaine, il génère une erreur et le message est annulé. </li>
+<li>La validation du message est facultative et définie dans le paramètre <span class="msobjprop">Validation nécessaire</span> du modèle.
+La validation n'est pas immédiate et elle est exécutée chaque fois qu'un élément est extrait.
+</li>
+<li>Le flux de messages est exécuté sous la forme d'une transaction et il n'est pas validé si tous les éléments nécessaires sont extraits correctement et écrits dans une file d'attente. </li>
+<li>Le contrôle principal dans ce flux est le noeud Propagate Element Compute. 
+Ce noeud crée une variable locale pour y placer une arborescence modifiable qui est une copie de l'entrée. 
+Ce flux exécute une boucle dans l'arborescence de messages en accédant à un élément enfant dans une balise de conteneur et en le propageant.
+Chaque fois qu'un élément est sélectionné, l'élément précédent est supprimé pour réduire l'utilisation de la mémoire.</li>
+<li>La structure du message est déterminée par les paramètre du modèle et une erreur est générée si un message n'est pas conforme à cette dernière.</li>
+<li>Le système vérifie que le message contient le chemin du conteneur, à savoir le conteneur de tous les éléments à traiter. Si le chemin du conteneur est défini sous la forme <span class="msobjpropval">*:*</span>, le conteneur est considéré correspondre au marquage de la racine, quel que soit son nom, et les éléments de message qui sont des enfants de la racine sont extraits.</li>
+<li>Si le paramètre <span class="msobjprop">Nom d'élément de message</span> est <span class="msobjpropval">*:*</span>, tous les éléments qui sont des enfants du conteneur sont traités.
+Si d'autres valeurs sont définies, seuls les éléments de message ayant des marquages correspondant au <span class="msobjprop">nom d'élément de message</span> sont extraits.
+L'élément de message extrait est envoyé pour subir d'autres opérations de traitement. </li>
+<li>Le flux de messages contient le flux secondaire Processeur de messages qui, par défaut, n'a pas d'impact, car il content uniquement un noeud Passthrough. Le flux secondaire est inclus pour fournir un emplacement dans lequel une instance du modèle peut être personnalisée en utilisant des outils standard sans changer la structure du modèle.</li>
+<li>Le message est envoyé au flux secondaire Route qui l'envoie vers la file d'attente WebSphere MQ appropriée. 
+Un échec de recherche de route, ou une exception, définit l'état d'échec et donne le contrôle au noeud Echec.
+	<ul><li>Si le paramètre <span class="msobjprop">Action de message incorrect</span> est affecté de la valeur <span class="msobjpropval">Enregistrer</span>, le noeud Failure est connecté à un noeud MQOutput pour enregistrer le message. Le noeud Compute prend le contrôle pour extraire l'élément suivant.</li>
+	<li>Si le paramètre <span class="msobjprop">Action de message incorrect</span> est affecté de la valeur <span class="msobjpropval">Annuler</span>, le noeud Failure n'est pas connecté et le noeud Compute génère une erreur utilisateur qui provoque l'annulation du flux.</li></ul>
+	</li>
+<li>Lorsque le passage à l'élément suivant échoue parce que tous les éléments ont été traités, le flux secondaire Journal est appelé si les paramètres du modèle imposent la journalisation. 
+A ce stade, le flux de messages se termine correctement et la transaction est validée. Les erreurs qui se produisent dans la consignation sont interceptées et traitées en écrivant dans un noeud Trace.</li>
+<li>Si le paramètre <span class="msobjprop">Routage</span> est affecté de la valeur <span class="msobjpropval">Rechercher les routes</span> et que le paramètre
+ <span class="msobjprop">Régénérer le cache</span> du modèle indique que le cache doit être régénéré, le flux principal contient un second noeud Input qui lit la file d'attente définie par le paramètre <span class="msobjprop">File d'attente de régénération</span> du modèle. Un message envoyé à cette file d'attente efface la variable partagée <span class="filepath">CacheQueueTable.valid</span> pour que le cache soit régénéré avant la recherche suivante.</li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="Retour">Spécification du modèle d'Utilitaire de fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)</a>
+</body>
+</html>

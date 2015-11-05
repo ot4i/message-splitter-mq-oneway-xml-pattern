@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="使用 Message Splitter for WebSphere MQ: one-way (for XML) 型樣，可以接受單一佇列上多個用戶端應用程式的要求，以及使用交易式流程及持續 WebSphere MQ 訊息，將回應傳回給正確的用戶端。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Splitter for WebSphere MQ: one-way (for XML) 型樣的要求流程</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.requestflow">
+<div><h1 class="topictitle1"><span>Message Splitter for WebSphere MQ: one-way (for XML)</span> 型樣的要求流程</h1>
+<p class="shortdesc">此型樣使用單一訊息流程。</p>
+
+<ol>
+<li>Input 節點預期為形式完整的 XML 訊息，而且已配置成使用 XMLNSC 剖析器。如果任何送入訊息包含會變更網域的 MQRFH2 標頭，則會導致錯誤，並取消訊息。</li>
+<li>訊息的驗證是選用作業，而且指定於<span class="msobjprop">需要驗證</span>型樣參數中。驗證並不會立即進行，而是在取出每一個元素時執行。</li>
+<li>訊息流程會以交易形式執行，而且除非所有必要元素都已順利取出並寫入佇列，否則不會加以確定。</li>
+<li>此流程中的主要控制項是 Propagate Element Compute 節點。此節點會建立區域變數，以保留本身為輸入副本的可變樹狀結構。
+此流程會重複執行訊息樹狀結構，以移至儲存器標籤內的子元素，並將它往前傳播。選取每一個元素時，會刪除前一個元素，以減少記憶體用量。</li>
+<li>訊息的結構是透過型樣參數加以決定，而且如果訊息不符合此結構，則會產生錯誤。</li>
+<li>檢查訊息是否包括儲存器路徑，即要處理的所有元素的儲存器。如果此儲存器路徑指定為 <span class="msobjpropval">*:*</span>，則會將儲存器視為根標籤（不論其名稱為何），並取出本身為根的子項的訊息元素。</li>
+<li>如果<span class="msobjprop">訊息元素名稱</span>型樣參數是 <span class="msobjpropval">*:*</span>，則會處理本身為儲存器子項的所有元素。
+如果指定任何其他值，則只會取出其標籤符合<span class="msobjprop">訊息元素名稱</span>的訊息元素。會傳遞取出的訊息元素，以供進一步處理。</li>
+<li>訊息流程包括 MessageProcessor 子流程，而此子流程依預設不會造成任何影響，因為它只包含 Passthrough 節點。包括的子流程提供可以使用標準工具自訂型樣實例的位置，而不需要對型樣結構進行任何變更。</li>
+<li>訊息會傳遞給路徑子流程，以將它導向正確的 WebSphere MQ 佇列。
+找不到路徑或任何異常狀況都會設定失敗狀態，並將控制權導向 Failure 節點。<ul><li>如果<span class="msobjprop">不正確訊息動作</span>是<span class="msobjpropval">儲存</span>，則 Failure 節點會連接至 MQOutput 節點，以儲存訊息。控制權會回到 Compute 節點，以取出下一個元素。</li>
+	<li>如果<span class="msobjprop">不正確訊息動作</span>是<span class="msobjpropval">取消</span>，則不會連接	Failure 節點，而且 Compute 節點會產生導致流程取消的使用者錯誤。</li></ul>
+	</li>
+<li>移至下一個元素失敗時，因為已處理所有元素，所以會呼叫「日誌」子流程（如果型樣參數需要記載）。
+此時，訊息流程一律會順利停止，並確定交易。會捕捉並處理任何在記載中發生的錯誤，方法是寫入 Trace 節點。</li>
+<li>如果<span class="msobjprop">遞送</span>參數設為<span class="msobjpropval">查閱路徑</span>，而<span class="msobjprop">快取重新整理</span>型樣參數指定需要快取重新整理，則主要流程會包含第二個 Input 節點，以讀取<span class="msobjprop">重新整理佇列</span>型樣參數所定義的佇列。任何傳送至此佇列的訊息都會清除共用變數 <span class="filepath">CacheQueueTable.valid</span>，以在下一次查閱之前重新整理快取。</li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="上一步">回到 Message Splitter for WebSphere MQ: one-way (for XML) 型樣規格</a>
+</body>
+</html>

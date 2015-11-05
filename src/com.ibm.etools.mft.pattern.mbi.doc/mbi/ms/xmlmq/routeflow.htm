@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="en-us">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Use the Message Splitter for WebSphere MQ: one-way (for XML) pattern to accept requests from many client applications on a single queue, and to return responses to the correct client by using transactional flows and persistent WebSphere MQ messages."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Route subflow for the Message Splitter for WebSphere MQ: one-way (for XML) pattern</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.log">
+<div><h1 class="topictitle1">Route subflow for the <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> pattern</h1>
+
+
+<p class="shortdesc">The behavior of the Route subflow depends on the value of the 
+<span class="msobjprop">Routing</span> pattern 
+parameter.</p>
+<ul>
+<li> <span class="msobjpropval">No Routing</span>
+<p>If <span class="msobjpropval">No Routing</span> is selected, a single MQOutput node is created and 
+configured with the values of the <span class="msobjprop">Output queue manager</span> and 
+<span class="msobjprop">Output queue</span> 
+pattern parameters. The routing flow is a subflow that includes a Passthrough node. 
+The Failure node is included so that this subflow is consistent with all other types of routing subflow.
+</p></li>
+<li><span class="msobjpropval">Specify Routes</span>
+<p> A group of four parameters that define a route:</p>
+<ul>
+<li><span class="msobjprop">Key location</span> is an XPATH expression that defines a key location within the current message element.</li>
+<li><span class="msobjprop">Key value</span> defines a value that the key location must match if this route is taken.</li>
+<li><span class="msobjprop">Queue manager</span> defines the route as a queue manager.</li>
+<li><span class="msobjprop">Queue</span> defines the route as a queue.</li>
+</ul>
+<p>For each route that is defined, an Output terminal for the Route subflow and an MQOutput node
+are created and connected. </p>
+<p>The Route subflow contains a Route node that is configured with a filter that routes 
+to the Output terminal if the condition <tt>KeyLocation = Key Value</tt> is fulfilled.
+If a message element does not match any of the routes, the error is noted in an environment variable
+and the message is passed to the Failure terminal.</p>
+<p>A number of routes can be specified by using <span class="msobjpropval">Specify Routes</span>.</p></li>
+<li><span class="msobjpropval">Lookup routes</span>
+<p>If this value is selected, a single Output terminal is created for the Route subflow
+and this terminal is connected to a single MQOutput node that is configured to take a destination list.</p>
+<p>The routing subflow checks if the cache requires refreshing by checking whether the 
+value of the <span class="filepath">CacheQueueTable.valid</span> shared row variable is set
+to <tt>NULL</tt>. It is set to <tt>NULL</tt> when the flow starts and 
+also if <span class="msobjprop">Cache refresh</span> 
+is enabled and a
+refresh message has been sent to <span class="msobjprop">Refresh queue</span>.
+Refresh messages set the value to <tt>NULL</tt>.</p>
+<p>If the cache requires refreshing, the
+ROUTING_TABLE table of the data source, specified in the <span class="msobjprop">Routing data source</span> 
+pattern parameter, is searched to find all
+of the rows that match the routing context for this flow. 
+The routing context is defined by the <span class="msobjprop">Routing context</span> 
+pattern parameter, and rows where the ROUTING_CONTEXT field matches this
+parameter are read into an in-memory cache,  which is done automatically to prevent lookups
+while the cache is in an inconsistent state.</p>
+<p>The structure of the cached data is:</p>
+<pre>VARIABLE1, VARIABLE2, QUEUE_MANAGER, QUEUE_NAME </pre>
+<p>The lookup is performed by extracting one, or two,
+key values from the message element, by using ESQL expressions that are defined as
+pattern parameters. Define pattern parameters by using a statement in the following form: </p>
+<pre>SET KEY = &lt;pattern parameter&gt;</pre>
+<p>If a single key is specified to select a row, or rows,
+from the routing data, use a WHERE clause: </p>
+<pre>WHERE S.VARIABLE1 = KEY1</pre> 
+<p>If a second key is specified, the WHERE clause used
+for selection is: </p>
+<pre>WHERE S.VARIABLE1 = KEY1 and S.VARIABLE2 = KEY2</pre>
+<p>This selection sets the queue manager and queue into the local environment
+that is used in the MQOutput node. Multiple rows can
+be returned, and the destination data includes all selected
+destinations. If no match is found, a routing error occurs and the
+message is passed to the Failure terminal of the Route subflow.</p></li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="Back">Back to the Message Splitter for WebSphere MQ: one-way (for XML) pattern specification</a>
+</body>
+</html>

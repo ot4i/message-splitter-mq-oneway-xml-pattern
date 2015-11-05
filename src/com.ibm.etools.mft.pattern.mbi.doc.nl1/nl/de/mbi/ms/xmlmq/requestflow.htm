@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de-de" xml:lang="de-de">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Verwenden Sie das Muster 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ: unidirektional (bei XML)) für die Annahme von Anforderungen von vielen Clientanwendungen in einer einzelnen Warteschlange und für die Rückgabe von Antworten an den richtigen Client mithilfe von transaktionsorientierten Nachrichtenflüssen und persistenten WebSphere MQ-Nachrichten."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Anforderungsnachrichtenfluss für das Muster 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML))</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.requestflow">
+<div><h1 class="topictitle1">Anforderungsnachrichtenfluss für das Muster <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML))</h1>
+<p class="shortdesc">Dieses Muster verwendet einen einzigen Nachrichtenfluss. </p>
+
+<ol>
+<li>Der Empfangsknoten erwartet eine korrekt formatierte XML-Nachricht und ist für den XMLNSC-Parser konfiguriert. Eingehende Nachrichten mit MQRFH2-Header, der die Domäne ändert, verursachen einen Fehler und werden zurückgesetzt. </li>
+<li>Die Nachrichtenvalidierung ist optional und kann mit dem Musterparameter <span class="msobjprop">Auswertung erforderlich</span> aktiviert werden.
+Die Validierung findet nicht sofort statt, sondern bei der Extraktion jedes Elements.
+</li>
+<li>Der Nachrichtenfluss wird als Transaktion ausgeführt und erst festgeschrieben, nachdem alle erforderlichen Elemente erfolgreich extrahiert und in eine Warteschlange geschrieben wurden. </li>
+<li>Die Hauptsteuerung dieses Nachrichtenflusses ist der Compute-Knoten 'Propagate Element'. 
+Dieser Knoten erstellt eine lokale Variable für eine veränderliche Baumstruktur, die eine Kopie der Eingabe ist. 
+Der Nachrichtenfluss durchläuft die Nachrichtenbaumstruktur in einer Schleife. Dabei durchläuft er
+die einzelnen untergeordneten Elemente innerhalb von Containerkennungen und leitet sie weiter.
+Sobald ein neues Element ausgewählt wird, wird das vorherige Element gelöscht, um den Speicherbedarf zu verringern.</li>
+<li>Die Struktur der Nachrichten wird durch die Musterparameter bestimmt; entspricht eine Nachricht nicht dieser Struktur, wird ein Fehler generiert.</li>
+<li>Es wird überprüft, ob die Nachricht den Containerpfad enthält, d. h., den Pfad des Containers für alle zu verarbeitenden Elemente. Wenn der Containerpfad mit <span class="msobjpropval">*:*</span> angegeben ist, wird die Kennung der höchsten Ebene (unabhängig von ihrem Namen) als Container verwendet und dieser Ebene untergeordnete Nachrichtenelemente werden extrahiert.</li>
+<li>Wenn der Musterparameter <span class="msobjprop">Name des Nachrichtenelements</span> auf <span class="msobjpropval">*:*</span> gesetzt ist, werden alle dem Container untergeordneten Elemente verarbeitet.
+Bei einem anderen Wert werden nur die Nachrichtenelemente extrahiert, deren Kennungen mit dem Wert von	<span class="msobjprop">Name des Nachrichtenelements</span> übereinstimmen.
+Das extrahierte Nachrichtenelement wird zur Verarbeitung weitergeleitet. </li>
+<li>Der Nachrichtenfluss enthält den untergeordneten Nachrichtenprozessor-Nachrichtenfluss
+'MessageProcessor', der standardmäßig keine Auswirkung hat, da er nur einen Passthrough-Knoten
+enthält. Dieser untergeordnete Nachrichtenfluss wurde hinzugefügt, um die Möglichkeit zur Anpassung
+der Musterinstanz mittels Standardtools zu bieten, ohne die Musterstruktur ändern zu müssen.</li>
+<li>Die Nachricht wird an den untergeordneten Routing-Nachrichtenfluss weitergeleitet, der die
+Nachricht an die richtige WebSphere MQ-Warteschlange weiterleitet. 
+Wenn die Route nicht gefunden
+wird oder eine andere Ausnahme auftritt, wird der Fehlerstatus gesetzt und die Kontrolle an den
+Failure-Knoten übergeben.
+	<ul><li>Wenn <span class="msobjprop">Aktion für fehlerhafte Nachrichten</span> auf <span class="msobjpropval">Speichern</span> gesetzt ist, wird der Failure-Knoten mit einem MQOutput-Knoten verbunden, durch den die Nachricht gespeichert wird. Danach wird die Kontrolle wieder an den Compute-Knoten übergeben, damit das nächste Element extrahiert werden kann.</li>
+	<li>Wenn <span class="msobjprop">Aktion für fehlerhafte Nachrichten</span> auf <span class="msobjpropval">Abbrechen</span> gesetzt ist, wird der Failure-Knoten nicht verbunden und der Compute-Knoten generiert einen Benutzerfehler, der zu einem Rollback des Nachrichtenflusses führt.</li></ul>
+	</li>
+<li>Wenn der Übergang zum nächsten Element fehlschlägt, weil alle Elemente verarbeitet wurden, und
+die Protokollierung in den Musterparametern aktiviert wurde, wird der untergeordnete
+Protokollnachrichtenfluss aufgerufen. 
+An dieser Stelle wird der Nachrichtenfluss mit Erfolg beendet und die Transaktion wird festgeschrieben. Fehler, die bei der anschließenden Protokollierung auftreten, werden abgefangen und an einen Trace-Knoten weitergeleitet.</li>
+<li>Wenn der Parameter <span class="msobjprop">Routing</span> auf <span class="msobjpropval">Routen suchen</span> gesetzt ist und durch den Parameter <span class="msobjprop">Cache-Aktualisierung</span> die Aktualisierung des Cache aktiviert wurde, enthält der Hauptnachrichtenfluss einen zweiten Empfangsknoten, der den Inhalt der durch den Musterparameter <span class="msobjprop">Aktualisierungswarteschlange</span> definierten Warteschlange liest. Jede Nachricht, die an diese Warteschlange gesendet wird, löscht den Inhalt der gemeinsamen Variablen <span class="filepath">CacheQueueTable.valid</span>, so dass der Cache vor der nächsten Suche aktualisiert wird.</li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="Back">Zurück zur Spezifikation des Musters 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML))</a>
+</body>
+</html>

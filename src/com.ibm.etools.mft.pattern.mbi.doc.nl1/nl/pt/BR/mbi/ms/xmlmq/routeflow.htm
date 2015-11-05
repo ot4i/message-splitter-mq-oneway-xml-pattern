@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="pt-br">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Use o padrão de Message Splitter para WebSphere MQ: Unidirecional (para XML) para aceitar pedidos de muitos aplicativos clientes em uma única fila e para retornar respostas ao cliente correto usando fluxos transacionais e mensagens do WebSphere MQ persistentes."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Subfluxo de Rota para o Padrão do Message Splitter para WebSphere MQ: Unidirecional (para XML)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.log">
+<div><h1 class="topictitle1">Subfluxo de Rota para o Padrão do <span>Message Splitter para WebSphere MQ: Unidirecional (para XML)</span></h1>
+
+
+<p class="shortdesc">O comportamento do subfluxo de Rota depende do valor do
+parâmetro do padrão de <span class="msobjprop">Roteamento</span>.</p>
+<ul>
+<li> <span class="msobjpropval">Sem Roteamento</span>
+<p>Se <span class="msobjpropval">Sem Roteamento</span> for selecionado, um único nó MQOutput será criado e
+configurado com os valores dos parâmetros padrão de <span class="msobjprop">Gerenciador de filas de saída</span> e
+<span class="msobjprop">Fila de saída</span>. O fluxo de roteamento é um subfluxo que inclui um nó de Passagem. 
+O nó Falha é incluído para que este subfluxo esteja consistente com todos os outros tipos de subfluxo de roteamento.
+</p></li>
+<li><span class="msobjpropval">Especificar Rotas</span>
+<p> Um grupo de quatro parâmetros que definem uma rota:</p>
+<ul>
+<li><span class="msobjprop">Local da chave</span> é uma expressão XPath que define um local de chave no elemento de mensagem atual.</li>
+<li><span class="msobjprop">Valor da chave</span>
+define um valor ao qual o local da chave deve corresponder se esta rota for utilizada.</li>
+<li><span class="msobjprop">Gerenciador de filas</span>
+define a rota como um gerenciador de filas.</li>
+<li><span class="msobjprop">Fila</span>
+define a rota como uma fila.</li>
+</ul>
+<p>Para cada rota que é definida, um terminal de Saída para o subfluxo de Rota e um nó MQOutput
+são criados e conectados. </p>
+<p>O subfluxo de Rota contém um nó Rota que é configurado com um filtro que roteia
+para o terminal de Saída se a condição <tt>KeyLocation = Key Value</tt> for preenchida.
+Se um elemento de mensagem não corresponder a qualquer uma das rotas, o erro será registrado em uma variável de ambiente
+e a mensagem será transmitida para o terminal de Falha.</p>
+<p>Várias rotas podem ser especificadas usando <span class="msobjpropval">Especificar Rotas</span>.</p></li>
+<li><span class="msobjpropval">Consultar rotas</span>
+<p>Se este valor for selecionado, um único terminal de Saída será criado para o subfluxo de Rota
+e este terminal será conectado a um único nó MQOutput que é configurado para obter uma lista de destino.</p>
+<p>O subfluxo de roteamento verifica se o cache requer atualização verificando se o
+valor da variável de linha compartilhada por <span class="filepath">CacheQueueTable.valid</span> está configurado
+como <tt>NULL</tt>. Ele será configurado como <tt>NULL</tt> quando o fluxo iniciar e
+também se <span class="msobjprop">Atualização de Cache</span>
+estiver ativada e uma
+mensagem de atualização tiver sido configurada como <span class="msobjprop">Fila de Atualização</span>.
+As mensagens de atualização configuram o valor como <tt>NULL</tt>.</p>
+<p>Se o cache requerer atualização, a
+tabela ROUTING_TABLE da origem de dados, especificada no parâmetro padrão
+<span class="msobjprop">Origem de Dados de Roteamento</span>, será procurada para localizar
+todas as linhas que correspondem ao contexto de roteamento para este fluxo. 
+O contexto de roteamento é definido pelo parâmetro padrão de
+<span class="msobjprop">Contexto de Roteamento</span> e as linhas em que o campo ROUTING_CONTEXT corresponde a
+este parâmetro são lidas em um cache na memória, o que é feito automaticamente para evitar consultas
+enquanto o cache está em um estado inconsistente.</p>
+<p>A estrutura dos dados em cache é:</p>
+<pre>VARIABLE1, VARIABLE2, QUEUE_MANAGER, QUEUE_NAME </pre>
+<p>A consulta é executada extraindo um ou dois
+valores de chave do elemento de mensagem, usando expressões ESQL que são definidas como
+parâmetros padrão. Defina os parâmetros padrão usando uma instrução no seguinte formato: </p>
+<pre>SET KEY = &lt;pattern parameter&gt;</pre>
+<p>Se uma única chave for especificada para selecionar uma linha, ou linhas,
+dos dados de roteamento, use uma cláusula WHERE: </p>
+<pre>WHERE S.VARIABLE1 = KEY1</pre> 
+<p>Se uma segunda chave for especificada, a cláusula WHERE usada
+para seleção será: </p>
+<pre>WHERE S.VARIABLE1 = KEY1 and S.VARIABLE2 = KEY2</pre>
+<p>Esta seleção configura o gerenciador de filas e a fila no ambiente local
+que é usado no nó MQOutput. Múltiplas linhas podem
+ser retornadas e os dados de destino incluem todos os destinos
+selecionados. Se nenhuma correspondência for localizada, ocorrerá um erro de roteamento e a
+mensagem será transmitida ao terminal de Falha do subfluxo de Rota.</p></li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="Voltar">Voltar para a especificação do padrão do Message Splitter para WebSphere MQ: Unidirecional (para XML)</a>
+</body>
+</html>

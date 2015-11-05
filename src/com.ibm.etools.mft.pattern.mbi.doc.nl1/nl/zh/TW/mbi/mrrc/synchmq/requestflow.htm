@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="使用 Message Correlator for WebSphere MQ: request-response without persistence 型樣，可以接受單一佇列上多個用戶端應用程式的要求，以及使用交易式流程及持續 WebSphere MQ 訊息，將回應傳回給正確的用戶端。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Correlator for WebSphere MQ: request-response without persistence 型樣的要求流程</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.synchmq.overview">
+<div><h1 class="topictitle1"><span>Message Correlator for WebSphere MQ: request-response without persistence</span> 型樣的要求流程</h1>
+<p class="shortdesc">「要求」流程是以交易式流程的形式執行。</p>
+<p> 「要求」流程所接收的訊息是透過下列方法進行處理：</p>
+<ol>
+<li>訊息流程接收到訊息時，會進行檢查以確保 MQMD 標頭包含回覆目的地佇列。如果此欄位為空白，則會產生錯誤。</li>
+<li>訊息流程接收到訊息時，會將相關性 ID 設為訊息 ID，以取得及修改訊息 MQMD 標頭的副本。訊息標頭的內容會儲存至佇列，以保留原始回覆位址。在儲存的標頭中設定相關性 ID，可確保在擷取標頭並將它新增至要求者的回應時，此值正確無誤，並透過相關性 ID 啟用要求者擷取作業。</li>
+<li>訊息流程包括稱為 RequestProcessor 的子流程。此子流程只包含 <span>Passthrough</span> 節點，因此，不會執行任何處理。
+您可以在型樣實例中自訂此子流程，以新增您自己的處理，而不需要變更型樣的結構。</li>
+<li>會修改送入訊息的 MQMD 標頭，以將要求者的回覆目的地佇列管理程式及回覆目的地佇列取代為「回應」訊息流程的輸入節點位址。</li>
+<li>訊息會轉遞至提供者應用程式。</li>
+<li>訊息流程可能包含稱為「日誌」的記載子流程。您可以配置型樣以包括或排除「日誌」子流程。</li>
+	<li>如果不需要記載，則訊息流程會在將訊息寫入提供者佇列之後順利結束，並確定交易。</li>
+	<li>訊息流程也包含稱為「錯誤」的錯誤處理子流程。</li>
+<li>如果要求者應用程式、訊息流程或提供者應用程式中發生逾時，則非持續訊息會逾時。</li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="上一步">回到 Message Correlator for WebSphere MQ: request-response without persistence 型樣規格</a>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<%
+com.ibm.etools.mft.pattern.mbi.plugin.PatternPlugin pattern = com.ibm.etools.mft.pattern.mbi.plugin.PatternPlugin.getInstance();
+com.ibm.etools.mft.pattern.mbi.ms.xmlmq.PatternMessages messages = new com.ibm.etools.mft.pattern.mbi.ms.xmlmq.PatternMessages();
+%>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<title><c:get select="$root/instanceName"/>_summary.html</title>
+	<link rel="stylesheet" href="summary.css" media="screen">
+</head>
+
+<script type="text/javascript">
+	function setStatus(txt){
+		window.status = txt;
+		window.status = "";
+	}
+</script>
+
+<body>
+<a name="NoPlace"></a>
+
+<div id="banner">
+	<h2><%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.33", new Object[] { "$root/instanceName" }) %></h2>
+	<p><%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.1", new Object[] { "$root/instanceName" }) %></p>
+</div>	
+
+<div class="section">
+	<div class="tl">
+		<h2><%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.2") %></h2>
+	</div>
+	<div class="content">
+		<p>
+			<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.3") %>
+			<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.4") %>
+		</p>
+		<p>
+			<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.5", new Object[] { "$root/@projectname" }) %>
+		</p>
+		<ul>
+			<li>
+				<a href="#NoPlace" onclick="setStatus('/<c:get select="$root/instanceName"/>_Flows/<c:get select = "$root/@brokerSchema2"/><c:get select="$root/@messagesplitter"/>.msgflow')">
+					<c:get select="$root/@messagesplitter"/>
+				</a>
+			</li>
+		</ul>
+		<p>
+			<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.6") %>
+		</p>
+		<ul>
+			<li>
+				<a href="#NoPlace" onclick="setStatus('/<c:get select="$root/instanceName"/>_Flows/<c:get select = "$root/@brokerSchema2"/><c:get select="$root/@route"/>.subflow')">
+					<c:get select="$root/@route"/>
+				</a>
+			</li>
+			<li>
+				<a href="#NoPlace" onclick="setStatus('/<c:get select="$root/instanceName"/>_Flows/<c:get select = "$root/@brokerSchema2"/><c:get select="$root/@messageprocessor"/>.subflow')">
+					<c:get select="$root/@messageprocessor"/>
+				</a>
+			</li>
+			<li>
+				<a href="#NoPlace" onclick="setStatus('/<c:get select="$root/instanceName"/>_Flows/<c:get select = "$root/@brokerSchema2"/><c:get select="$root/@error"/>.subflow')">
+					<c:get select="$root/@error"/>
+				</a>
+			</li>
+			<c:if test="$root/loggingRequired='true'">
+				<li>
+					<a href="#NoPlace" onclick="setStatus('/<c:get select="$root/instanceName"/>_Flows/<c:get select = "$root/@brokerSchema2"/><c:get select="$root/@log"/>.subflow')">
+						<c:get select="$root/@log"/>
+					</a>
+				</li>
+			</c:if>
+		</ul>
+	</div>
+</div>
+		
+<div class="section">
+	<div class="tl">
+		<h2><%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.7", new Object[] { "$root/instanceName" }) %></h2>
+	</div>
+	<div class="content">
+		<h3><%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.8") %></h3>
+		<p>
+			<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.9") %>
+		</p>
+		<p>
+			<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.10") %>
+		</p>
+		<ul>
+			<li>
+				<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.11", new Object[] { "$root/queueprefix", "$root/inputQueue", "$root/queuesuffix" }) %>
+			</li>
+		</ul>
+		<p>
+			<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.12") %>
+		</p>
+		<ul>
+			<c:if test="$root/loggingRequired='true'">
+				<li>
+					<c:choose>
+						<c:when test="string-length($root/logQueueManager) > 0">
+							<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.13.queueManager", new Object[] { "$root/queueprefix", "$root/logQueue", "$root/queuesuffix", "$root/logQueueManager" }) %>
+						</c:when>
+						<c:otherwise>
+							<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.13", new Object[] { "$root/queueprefix", "$root/logQueue", "$root/queuesuffix" }) %>
+						</c:otherwise>
+					</c:choose>
+				</li>
+			</c:if>
+			<c:if test="$root/errorMessageRequired='true'">
+				<li>
+					<c:choose>
+						<c:when test="string-length($root/errorQueueManager) > 0">
+							<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.14.queueManager", new Object[] { "$root/queueprefix", "$root/errorQueue", "$root/queuesuffix", "$root/errorQueueManager" }) %> 
+						</c:when>
+						<c:otherwise>
+							<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.14", new Object[] { "$root/queueprefix", "$root/errorQueue", "$root/queuesuffix" }) %> 
+						</c:otherwise>
+					</c:choose>
+				</li>
+			</c:if>
+			<c:if test="$root/badMsgAction='Save'">
+				<li>
+					<c:choose>
+						<c:when test="string-length($root/badMsgQueueManager) > 0">
+							<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.15.queueManager", new Object[] { "$root/queueprefix", "$root/badMsgQueue", "$root/queuesuffix", "$root/badMsgQueueManager" }) %>
+						</c:when>
+						<c:otherwise>
+							<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.15", new Object[] { "$root/queueprefix", "$root/badMsgQueue", "$root/queuesuffix" }) %>
+						</c:otherwise>
+					</c:choose>
+				</li>
+			</c:if>
+
+			<c:choose>
+				<c:when test="$root/routingSubflow = 'routeRoute'" >
+					<c:iterate select ="$root/route/row" var = "currentOutput">
+						<li>
+							<c:choose>
+								<c:when test="string-length($currentOutput/queueManager) > 0">
+									<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.16.queueManager",
+				                      new Object[] {"$root/queueprefix", "$currentOutput/queue", "$root/queuesuffix", "$currentOutput/queueManager" }) %>
+								</c:when>
+								<c:otherwise>
+									<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.16",
+				                      new Object[] {"$root/queueprefix", "$currentOutput/queue", "$root/queuesuffix" }) %>
+								</c:otherwise>
+							</c:choose>
+						</li>
+					</c:iterate>
+		</ul>
+				</c:when>
+
+				<c:when test="$root/routingSubflow = 'destinationCache'">
+					<c:if test ="$root/cacheRefresh = 'true'">
+						<li>
+							<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.19",
+                              new Object[] {"$root/queueprefix", "$root/refreshQueue", "$root/queuesuffix" }) %>
+ 
+						</li>
+					</c:if>
+		</ul>
+					<p>
+						<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.18") %>
+					</p>
+					<h3><%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.20") %></h3>
+					<p>
+						<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.21", new Object[] { "$root/routingDB" }) %>
+					</p>
+				</c:when>
+
+				<c:otherwise>
+					<li>
+						<%= pattern.getMessage(context, "com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.16",
+                           new Object[] {"$root/queueprefix", "root/outputQueue", "$root/queuesuffix", "$root/outputQueueManager" }) %>
+					</li>
+		</ul>
+				</c:otherwise>
+			</c:choose>
+
+			<h3><%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.22") %></h3>
+			<p>
+				<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.32") %>
+			</p>
+	</div>
+</div>
+		
+<div class="section">
+	<div class="tl">
+		<h2><%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.25") %></h2>
+	</div>
+	<div class="content">
+		<c:choose>
+			<c:when test="$root/loggingRequired='true'">
+				<p>
+					<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.26") %>
+				</p>				
+				<br>
+				<p>
+					<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.27") %> 
+				</p>
+			</c:when>
+			<c:otherwise>
+				<p>
+					<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.28") %>
+				</p>
+			</c:otherwise>
+		</c:choose>
+		<br>
+		<c:choose>
+			<c:when test="$root/errorMessageRequired='true'">
+				<p>
+					<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.29") %>
+				</p>				
+				<br>
+				<p>
+					<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.30") %>
+				</p>
+			</c:when>
+			<c:otherwise>
+				<p>
+					<%= pattern.getString("com.ibm.etools.mft.pattern.mbi.ms.xmlmq.summary.31") %>
+				</p>
+			</c:otherwise>
+		</c:choose>
+	</div>
+</div>
+</body>
+</html>

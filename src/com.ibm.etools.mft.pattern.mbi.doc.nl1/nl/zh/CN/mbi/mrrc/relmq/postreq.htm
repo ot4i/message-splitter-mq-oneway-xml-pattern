@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-cn" xml:lang="zh-cn">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="生成 WebSphere MQ: request-response with persistence 模式后要完成的任务"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>生成 WebSphere MQ: request-response with persistence 模式后要完成的任务</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.postreq">
+<h1 class="topictitle1">生成 <span>Message Correlator for WebSphere MQ: request-response with persistence</span> 模式后要完成的任务</h1>
+<div>
+<p class="shortdesc">生成该模式之后必须完成的任务。</p><ol>
+<li>创建代理归档 (BAR) 文件。将生成的消息流添加到 BAR 文件中。在“代理归档”编辑器中，必须先选中<span class="uicontrol">编译并内联资源</span>选项，然后再构建 BAR 文件。另外，还必须添加该流所引用的消息集。</li>
+<li>配置代理归档文件。为 <span>Message Correlator for WebSphere MQ: request-response with persistence</span> 模式实例部署消息流之前，不需要在代理归档文件中进一步配置消息流，但应当针对您的环境复审一些缺省选项并配置更改。
+</li>
+<li>创建队列。应用模式时，将生成一个 WebSphere MQ 队列的列表，其中会列出队列名称和队列管理器名称；如果不存在这些 WebSphere MQ 队列，就必须加以创建。模式所需的所有消息设置都必须明确设置在消息上，且独立于队列的设置。
+<ol>
+		<li>在摘要文件中，查看您必须创建的队列列表。摘要文件位于 <i>InstanceName</i> 模式实例项目的模式配置文件夹中。</li>
+		<li>创建 <span>WebSphere MQ</span> 资源。您可以使用程序和实用程序（如 <span class="cmdname">runmqsc</span>）在命令行上创建 <span>WebSphere MQ</span> 资源，也可以使用 <span>WebSphere MQ</span> Explorer 图形界面来完成创建。有关创建 <span>WebSphere MQ</span> 资源的更多信息，请参阅 <img src="../../../images/external_link.gif" alt="此链接在新窗口中打开" class="external_link" />
+    				<a href="http://www.ibm.com/software/integration/wmq/library/" target="_blank">WebSphere
+    				MQ Library</a> Web 页面上提供的 <cite><span>WebSphere MQ</span> Intercommunication</cite>。
+</li>
+		<li>配置输入队列和响应队列，以便在错误导致消息流回退时，具有用于保存消息的回退队列。</li>
+		</ol>
+</li>
+<li>实现错误监视和纠正的方法。这可能需要监视错误消息的队列，或监视事件日志和回退队列。</li>  
+</ol>
+<a href="overview.htm#anchor1" title="返回">返回至 WebSphere MQ: request-response with persistence 模式规范</a>
+</div></body>
+</html>

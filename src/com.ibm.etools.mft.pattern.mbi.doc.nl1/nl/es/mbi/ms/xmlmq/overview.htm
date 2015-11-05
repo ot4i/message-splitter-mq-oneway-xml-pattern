@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-es" xml:lang="es-es">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Utilice el patrón Divisor de mensajes para WebSphere MQ: unidireccional (para XML) para aceptar solicitudes de muchas aplicaciones clientes en una sola cola y devolver respuestas al cliente correcto mediante flujos transaccionales y mensajes persistentes de WebSphere MQ."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Patrón Divisor de mensajes para WebSphere MQ: unidireccional (para XML)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<h1 class="topictitle1">Patrón <span>Divisor de mensajes para WebSphere MQ: unidireccional (para XML)</span></h1>
+<div><p class="shortdesc">Utilice el patrón <span>Divisor de mensajes para WebSphere MQ: unidireccional (para XML)</span> para dividir un mensaje XML grande en elementos más pequeños para su proceso por uno o más destinos utilizando flujos transaccionales y mensajes de WebSphere MQ persistentes.</p>
+</div>
+<p>Utilice este patrón cuando haya aplicaciones que almacenan información sobre una serie de transacciones empresariales y transmiten esta información a uno o más aplicaciones de destino en lotes.
+Puede utilizarse para manejar mensajes grandes sin excesivo uso de memoria. </p>
+<p>Este patrón puede utilizarse cuando la aplicación de origen o las aplicaciones de destino no pueden hacer o procesar llamadas de servicio en tiempo casi real o cuando se necesita procesar información por lotes por razones comerciales.
+</p>
+<div class="image"><img src="xmlmq.gif" 
+alt="Un diagrama que muestra el comportamiento del patrón. Los mensajes XML se dividen en elementos más pequeños para su proceso por uno o más destinos." />
+<div class="section"><h2 class="sectiontitle">Solución</h2></div>
+<p>La solución es implementar un flujo de mensajes que utiliza un árbol de mensajes variable para que los elementos repetibles puedan suprimirse a medida que se procesen. El análisis parcial habilita que elementos únicos se analicen como necesarios y, dado que estos elementos se suprimen al completarse, se impide que el árbol en memoria crezca linealmente con el número de elementos.
+A medida que se extrae cada elemento, se direcciona a la aplicación de destino adecuada.</p>
+<div><a href="requestflow.htm" title="Información de diseño sobre el flujo de mensajes Request.">Flujo Request </a></div>
+<div><a href="routeflow.htm" title="Información de diseño sobre el subflujo Route.">Subflujo Route</a></div>
+<div><a href="errorflow.htm" title="Información de diseño sobre el subflujo Error.">Subflujo Error</a></div>
+<div><a href="logflow.htm" title="Información de diseño sobre el subflujo Log.">Subflujo Log</a></div><div>
+<a name="anchor1"></a>
+<div class="section"><h2 class="sectiontitle">Tareas relacionadas</h2></div>
+<p>Consulte la sección siguiente para obtener información sobre cómo aplicar y utilizar este patrón.</p>
+<div><a href="constraints.htm" title="Restricciones en el uso del patrón Divisor de mensajes para WebSphere MQ: unidireccional (para XML)">Restricciones en el uso del patrón</a></div>
+<div><a href="prereq.htm" title="Detalles sobre lo que necesita saber y qué recursos debe tener antes de que pueda utilizar el patrón Divisor de mensajes para WebSphere MQ: unidireccional (para XML)">Tareas que deben completarse antes de aplicar el patrón</a></div>
+
+<div><a href="parametertable.htm" title="Parámetros de patrón">Parámetros para el patrón</a></div>
+<div><a href="postreq.htm" title="">Tareas que deben completarse después de generar el patrón</a></div>
+</div>
+</div></body>
+</html>

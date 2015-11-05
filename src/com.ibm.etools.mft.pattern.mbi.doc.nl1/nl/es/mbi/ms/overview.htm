@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-es" xml:lang="es-es">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="copyright" content="Copyright IBM Corporation 2008" />
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008" />
+<meta name="abstract" content="Utilice el patrón Divisor de mensajes para aceptar solicitudes de muchas aplicaciones clientes en una sola cola y devolver respuestas al cliente correcto."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../css/ibmdita.css" />
+<link rel="stylesheet" type="text/css" href="../../css/bip4.css" />
+<title>Patrón Divisor de mensajes</title>
+<script language="JavaScript" src="../../help/LiveHelp.js"> </script></head>
+<body id="mbi.mrrc.overview">
+<h1 class="topictitle1">Patrón Divisor de mensajes</h1>
+<div><p class="shortdesc">Utilice un patrón Divisor de mensajes para dividir un mensaje XML grande en elementos más pequeños para su proceso por uno o más destinos. </p>
+<div class="image"><img src="splitter.gif" alt="Diagrama que muestra el comportamiento del patrón." align="middle"/></div></div>
+<div class="section"><h2 class="sectiontitle">El contexto</h2><p></p>
+<p class="MsoNormal">Desea compartir información que ha acumulado dentro de una aplicación durante un período de tiempo, con otras aplicaciones. 
+Unos ejemplos podrían ser los datos de ventas acumulados a lo largo de un día o actualizaciones de información recibidas de sus socios. Los datos se acumulan durante un periodo de tiempo determinado y se transmiten como un único mensaje grande. El proceso realizado al final del día en la aplicación o aplicaciones de destino requiere que cada elemento se procese individualmente.</p>
+<p class="MsoNormal">De forma alternativa, una aplicación puede generar un mensaje que contenga una cantidad de registros que se deben distribuir; por ejemplo, donde una aplicación mantiene y distribuye datos de referencia.<span
+	style="mso-spacerun:yes"></span></p>
+</div>
+<div class="section"><h2 class="sectiontitle">El problema</h2>
+<p>Los mensajes grandes que contienen estructuras repetitivas y de proceso pueden provocar un uso excesivo de la memoria, lo que tiene un impacto potencial en otros procesos de mensajes y puede causar un error del intermediario. 
+Este patrón responde al problema de direccionar los elementos de un mensaje grande a destinos diferentes según reglas de direccionamiento definidas.</p>
+<div class="section"><h2 class="sectiontitle">Orientación sobre la selección</h2>
+<p>Utilice este patrón para las aplicaciones que almacenan información sobre una serie de transacciones empresariales y transmiten esta información a uno o más aplicaciones de destino en lotes.
+Se puede utilizar para gestionar mensajes grandes, sin un uso excesivo de memoria.</p>
+<p>Este patrón puede utilizarse cuando la aplicación de origen o las aplicaciones de destino no pueden hacer o procesar llamadas de servicio en tiempo casi real o cuando se necesita procesar información por lotes por razones comerciales.
+</p>
+</div>
+<div class="section"><h2 class="sectiontitle">Solución</h2></div>
+<p> La solución es implementar un flujo de mensajes que utiliza un árbol de mensajes variable para que los elementos repetibles puedan suprimirse a medida que se procesen. El análisis parcial habilita que elementos únicos se analicen como necesarios y, dado que estos elementos se suprimen al completarse, se impide que el árbol en memoria crezca linealmente con el número de elementos.
+A medida que se extrae cada elemento, se direcciona a la aplicación de destino adecuada.
+</p>
+<p>El mensaje de entrada y todos los mensajes de salida se procesan en una sola transacción; todos los mensajes de salida son persistentes. No leer el mensaje de entrada XML hace que toda la transacción falle, pero los errores en el proceso de un solo elemento pueden añadir el elemento erróneo a una cola para procesarlo posteriormente, o causar que toda la transacción falle.
+</p>
+</div></body>
+</html>

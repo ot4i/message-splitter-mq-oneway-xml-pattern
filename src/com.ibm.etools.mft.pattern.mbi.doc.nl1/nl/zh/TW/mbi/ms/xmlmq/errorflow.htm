@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="使用 Message Splitter for WebSphere MQ: one-way (for XML) 型樣，可以接受單一佇列上多個用戶端應用程式的要求，以及使用交易式流程及持續 WebSphere MQ 訊息，將回應傳回給正確的用戶端。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Splitter for WebSphere MQ: one-way (for XML) 型樣的錯誤子流程</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.errorflow">
+<div><h1 class="topictitle1"><span>Message Splitter for WebSphere MQ: one-way (for XML)</span> 型樣的錯誤子流程</h1>
+<div>
+<p class="shortdesc">如果發生錯誤，請使用「錯誤」子流程來遞送錯誤訊息。</p>
+<p>若要遞送錯誤訊息，請使用下列其中一項動作：</p>
+<ul>
+<li>儲存無法遞送至不同不正確訊息佇列的任何訊息元素，並繼續處理進一步的元素</li>
+<li>取消交易，並回復輸入訊息</li>
+</ul>
+</div>
+<p>「遞送」流程中的任何失敗都會將傳播的訊息（含有一個訊息元素）導向至路徑子流程的 failure 端。錯誤狀態會記錄在 <span class="filepath">Environment.PatternVariables.FailureStatus</span> 中，而不正確元素的數目會遞增。</p>
+<p>選擇<span class="msobjprop">不正確訊息動作</span>，以判斷失敗後要採取的動作：</p>
+<ul>
+<li><span class="msobjpropval">儲存</span>
+<ol>
+<li>Failure 節點會連接至 MQOutput 節點，並將訊息元素寫入不正確訊息佇列。控制權會傳回給 Message Splitter Compute 節點中的處理迴圈，並繼續執行處理程序。</li>
+<li>處理所有記錄之後，Message Splitter Compute 節點會將控制權傳遞給「錯誤」子流程，而在其中，會進行檢查以判斷是否儲存任何不正確的訊息元素。如果儲存不正確的訊息元素，而且需要錯誤訊息，則會產生錯誤訊息，以指出發生錯誤的元素數目。</li>
+</ol>
+</li>
+<li><span class="msobjpropval">取消</span>
+<ol>
+<li>不會連接路徑子流程的 Failure 節點，而且會將遞送錯誤傳遞回 Message Splitter Compute 節點，以偵測失敗狀態並產生異常狀況。任何異常狀況（非遞送失敗）都會造成<span class="msobjpropval">取消</span>動作。假設所有這些異常狀況都是無法回復的狀況，而且繼續處理並不安全。</li>
+<li>如果需要錯誤訊息，則會準備錯誤訊息，並將它寫入錯誤佇列。異常狀況的明細會寫入為 XML 訊息。明細包括：
+<ul>
+	<li>分配管理系統名稱</li>
+	<li>流程名稱</li>
+	<li>時間戳記</li>
+	<li>異常狀況資料的摘要</li>
+	</ul>
+</li>
+<li>產生使用者錯誤，以回復輸入訊息以及任何已處理的訊息元素。在此情況下，WebSphere MQ 基礎架構內必須要有取消處理；例如，使用取消佇列。
+<p>如果是在順利寫入所有訊息元素之後發生異常狀況，則不會進行取消。這類型的異常狀況可能發生於錯誤訊息或日誌訊息中。</p></li>
+</ol>
+</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="上一步">回到 Message Splitter for WebSphere MQ: one-way (for XML) 型樣規格</a>
+</body></html>

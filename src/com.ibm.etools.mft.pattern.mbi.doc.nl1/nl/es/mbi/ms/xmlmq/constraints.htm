@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es-es" xml:lang="es-es">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Detalles sobre lo que necesita saber y qué recursos debe tener antes de poder utilizar el patrón Divisor de mensajes para WebSphere MQ: unidireccional (para XML)"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Restricciones en el uso del patrón Divisor de mensajes para WebSphere MQ: unidireccional (para XML)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.constraints">
+<h1 class="topictitle1">Restricciones en el uso del patrón <span>Divisor de mensajes para WebSphere MQ: unidireccional (para XML)</span></h1>
+<p class="shortdesc">Se aplican una serie de restricciones cuando se utiliza este patrón.</p>
+<p>Puede utilizar el patrón <span>Divisor de mensajes para WebSphere MQ: unidireccional (para XML)</span> sólo si puede cumplir todas las restricciones siguientes:</p>
+<ul>
+<li>Las aplicaciones de solicitante y proveedor utilizan WebSphere MQ como mecanismo de transporte.</li>
+<li>Los mensajes de entrada están en XML correcto; es decir, XML que analiza pero no necesariamente valida.</li>
+<li>Los mensajes se ajustan a la estructura esperada. Cada mensaje de entrada contiene:
+	<ul>
+	<li>Un sobre cuyo nombre se identifica opcionalmente mediante un parámetro de patrón</li>
+	<li>Una serie de estructuras repetidas, cuyos nombres se identifican opcionalmente mediante un parámetro de patrón</li>
+	</ul></li>
+	
+<li>El mensaje de entrada se procesa automáticamente de una de estas formas:
+	<ul>
+	<li>Todos los elementos se graban en la salida o bien en la cola de mensajes erróneos</li>
+	<li>No se graba ningún elemento, y se retrotrae el mensaje</li>
+	</ul>
+</li>
+</ul>
+<p>Se supone que este patrón es para la distribución de información que no se ha perdido.
+Por consiguiente, el flujo de mensajes se ejecuta como una transacción y utiliza mensajes persistentes que influyen de forma significativa en el rendimiento, pero es necesario porque es un requisito que no haya pérdida de datos.</p>
+<p>Se supone que el número de elementos repetidos es inferior al número máximo de mensajes no comprometidos permitidos en la cola de salida. Puede ser necesario ajustar este límite si se ha previsto un gran número de repeticiones.</p>
+
+<a href="overview.htm#anchor1" title="Volver">Volver a la especificación del patrón Divisor de mensajes para WebSphere MQ: unidireccional (para XML)</a>
+</body>
+</html>

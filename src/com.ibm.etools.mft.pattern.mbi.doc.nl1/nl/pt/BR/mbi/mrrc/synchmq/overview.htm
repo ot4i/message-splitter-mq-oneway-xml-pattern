@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="pt-br">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Use o padrão de Message Correlator para WebSphere MQ: Pedido-Resposta sem Persistência para aceitar pedidos de quaisquer aplicativos clientesem uma única fila e para retornar respostas ao cliente correto usando fluxos transacionais e mensagens do WebSphere MQ persistentes."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Padrão de Message Correlator para WebSphere MQ: Pedido-Resposta sem Persistência</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.synchmq.overview">
+<h1 class="topictitle1">Padrão de <span>Message Correlator para WebSphere MQ: Pedido-Resposta sem Persistência</span></h1>
+<div><p class="shortdesc">Use o padrão de <span>Message Correlator para WebSphere MQ: Pedido-Resposta sem Persistência</span>
+para aceitar pedidos de vários aplicativos clientes em uma única fila e para retornar respostas
+ao cliente correto usando fluxos não transacionais e mensagens do WebSphere MQ não persistentes.</p>
+<p>Como este padrão usa mensagens não persistentes e fluxos não transacionais,
+não é apropriado
+usar este padrão quando a mensagem troca resultados atualizados que não requerem perda de dados.</p>
+<p>Este fluxo deve ser usado para pedidos por informações, onde o desempenho mais rápido
+é mais importante do que assegurar a não perda de dados.</p>
+</div><div class="image"><img src="synchmqmc.gif" 
+alt="Um diagrama mostrando o comportamento do padrão. Vários aplicativos solicitantes enviam mensagens ao broker. O endereço de resposta do solicitante é armazenado antes da mensagem ser encaminhada ao provedor e reencaminhamento quando uma resposta é recebida do provedor." />
+
+
+<div class="section"><h2 class="sectiontitle">Solução</h2></div> 
+<p>A solução é implementar um fluxo de mediação que armazena informações do cabeçalho MQMD
+de cada mensagem de pedido, indexadas pelo identificador de mensagem, antes de encaminhar
+a mensagem, com todos os seus cabeçalhos, ao aplicativo do provedor. 
+Esta mensagem de pedido para o provedor
+especifica a fila de resposta do broker na parte de resposta do cabeçalho da mensagem.
+Espera-se que o aplicativo do provedor, de acordo com a prática convencional,
+copie o identificador de mensagem
+da mensagem de pedido no campo do identificador de correlação da mensagem de resposta. 
+No recebimento de uma mensagem de resposta, o fluxo do broker usa o identificador de correlação para recuperar o
+cabeçalho MQMD armazenado anteriormente e usa o endereço de resposta para atualizar o cabeçalho MQMD recebido. 
+Esta ação assegura que o endereço de resposta original do solicitante seja usado. 
+A mensagem de resposta é, então, retornada ao solicitante com todos os seus cabeçalhos.</p>
+<p>Leia a seção a seguir para obter informações sobre o design dos
+fluxos de mensagens neste padrão.</p>
+<div><a href="requestflow.htm" title="Informações de Design sobre o Fluxo de Mensagens de Pedido.">Fluxo de Pedido</a></div>
+<div><a href="responseflow.htm" title="Informações de Design sobre o Fluxo de Mensagens de Resposta.">Fluxo de Resposta</a></div>
+<div><a href="errorflow.htm" title="Informações de Design sobre o Subfluxo de Erro.">Subfluxo de Erro</a></div>
+<div><a href="logflow.htm" title="Informações de Design sobre o Subfluxo de Log.">Subfluxo de Log</a></div><div>
+<a name="anchor1"></a>
+<div class="section"><h2 class="sectiontitle">Tarefas Relacionadas</h2></div>
+<p>Leia a seção a seguir para obter informações sobre como aplicar e usar este padrão.</p>
+<div><a href="constraints.htm" title="Restrições no Uso do Message Correlator para WebSphere MQ: Pedido-Resposta sem Persistência.">Restrições no uso do padrão</a></div>
+<div><a href="prereq.htm" title="Detalhes Sobre O Que é Necessário Saber e Quais Recursos Você Deve Ter Antes de Poder Usar o Message Correlator para WebSphere MQ: Pedido-Resposta sem Persistência.">Tarefas
+para concluir antes de aplicar o padrão</a></div>
+
+<div><a href="parameters.htm" title="Aplicar o Padrão e Configurar Parâmetros">Parâmetros para o padrão</a></div>
+<div><a href="postreq.htm" title="">Tarefas a concluir após gerar o padrão</a></div>
+</div>
+</div></body>
+</html>

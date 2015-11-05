@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="fr-fr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Tâches à exécuter après avoir généré le modèle Corrélateur de message pour WebSphere MQ : question-réponse avec persistance"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Tâches à exécuter après avoir généré le modèle Corrélateur de message pour WebSphere MQ : question-réponse avec persistance</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.postreq">
+<h1 class="topictitle1">Tâches à exécuter après avoir généré le modèle <span>Corrélateur de message pour WebSphere MQ : question-réponse avec persistance</span></h1>
+<div>
+<p class="shortdesc">Tâches que vous devez exécuter après avoir généré le modèle.</p><ol>
+<li>Créez le fichier archive de courtier (BAR). 
+Ajoutez le flux de messages généré au fichier BAR. Dans l'éditeur d'archives du courtier, vous devez sélectionner l'option <span class="uicontrol">Compiler et intégrer des ressources</span> avant de générer le fichier BAR.
+Vous devez également ajouter les ensembles de messages auxquels le flux fait référence.
+</li>
+<li>Configurez le fichier archive de courtier. Il n'est pas nécessaire d'effectuer d'autres opérations de configuration au niveau du flux de messages dans le fichier archive de courtier avant de déployer les flux de messages de l'instance du modèle <span>Corrélateur de message pour WebSphere MQ : question-réponse</span>. Néanmoins, vous pouvez vérifier certaines options par défaut et configurer des modifications pour votre environnement. 
+</li>
+<li>Créez les files d'attente. Lorsque vous appliquez le modèle, la liste des files d'attente WebSphere MQ est générée, avec les noms de file d'attente et de gestionnaire de file d'attente, que v vous devez créer s'ils n'existent pas. Tous les paramètres de message nécessaires au modèle sont définis explicitement dans les messages et ne dépendent pas des paramètres de file d'attente.
+		<ol>
+		<li>Dans le fichier récapitulatif, consultez la liste des files d'attente que vous devez créer. Ce fichier se trouve dans le dossier Configuration du modèle du projet d'instance de modèle <i>InstanceName</i>.</li>
+		<li>Créez les ressources <span>WebSphere MQ</span>. Vous pouvez créer les ressources <span>WebSphere MQ</span> depuis la ligne de commande en utilisant des programmes et des utilitaires, tels que <span class="cmdname">runmqsc</span>, ou en utilisant l'interface graphique <span>WebSphere MQ</span> Explorer.
+		Pour plus d'informations sur la création des ressources <span>WebSphere MQ</span>, voir <cite><span>WebSphere MQ</span> Intercommunication</cite>, sur la page Web <img src="../../../images/external_link.gif" alt="Ce lien s'ouvre dans une nouvelle fenêtre" class="external_link" />
+<a href="http://www.ibm.com/software/integration/wmq/library/" target="_blank">Bibliothèque WebSphere MQ</a>.</li>
+		<li>Configurez les files d'attente d'entrée et de réponses afin qu'elles aient des files d'attente pour la conservation des messages lorsque des erreurs provoquent l'annulation du flux de messages.</li>
+		</ol>
+</li>
+<li>Implémentez votre approche pour la surveillance et la correction des erreurs.
+Cela peut exiger la surveillance des messages d'erreur de la file d'attente ou la surveillance du journal d'événement et des files d'attente d'annulation.</li>  
+</ol>
+<a href="overview.htm#anchor1" title="Retour">Spécification du modèle Corrélateur de message pour WebSphere MQ : question-réponse avec persistance </a>
+</div></body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja-jp" xml:lang="ja-jp">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="「WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答」パターンを使用する前に知っておくべき事柄や、必要なリソースについての詳細。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>「WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答」パターンを適用する前に完了するタスク</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.prereq">
+<h1 class="topictitle1">「<span>WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答</span>」パターンを適用する前に完了するタスク</h1>
+<div><div class="section">
+<p class="shortdesc">パターン・インスタンスを作成するためにパターンを適用する前に、以下のどのタスクが必要かを判別する必要があります。必要に応じて、以下のタスクを完了します。</p>
+</div>
+<ul><li>パターン・インスタンス用の固有の名前を選択します。
+パターンを複数回使用して、複数の異なるインスタンスを作成できます。これらのインスタンスは固有の名前で区別できます。
+適切な固有の名前または意味のある固有の名前を決定できるように、パターン・インスタンスの目的を確認してください。
+</li>
+<li>例えばプロバイダー・アプリケーションにアクセスするために、パターン・インスタンスで使用する <span>WebSphere MQ</span> キュー・マネージャーとキューを選択します。
+既存のキューを使用する場合、それらは記録済みである必要があります。
+新しいキュー・マネージャーおよびキューを作成する場合、これらのリソースの名前を決定する必要があります。</li>
+<li>このパターンで追加のキュー・マネージャーおよびキューが必要な場合は、それらを特定し、使用する固有の名前を決定します。
+適用する必要があるポリシー、規格、または命名規則を考慮します。
+</li>
+<li>着信要求メッセージまたはプロバイダー応答メッセージの妥当性検査が必要かどうかを決定します。
+要求側およびプロバイダー・アプリケーションが正しいメッセージを生成する場合には、妥当性検査は必要ないでしょう。
+メッセージを妥当性検査する場合には、メッセージ定義を提供するメッセージ・セットが既に存在する必要があります。または、メッセージ定義を提供するためにメッセージ・セットを作成する必要があります。</li>
+<li>要求メッセージ、応答メッセージ (またはその両方) のロギングが必要かどうかを決定します。
+ロギングが必要な場合、ロギング・メッセージがどのキュー・マネージャーおよびキューに送付されるかを決定する必要があります。複数のメッセージ・フローで使われる一般的なログ・キューにロギング・メッセージを送信できます。または、パターン・インスタンス用の固有のキューを使用することもできます。</li>
+<li>パターン・インスタンスのエラー・メッセージを生成するかどうかを決定します。
+このパターン・インスタンスが更新を扱う場合には、データを失わないようにするために、エラー処理を使用してください。
+複数のメッセージ・フローで使われる一般的なエラー・キューにエラー・メッセージを送信できます。
+または、パターン・インスタンス用の固有のキューを使用することもできます。
+パターン・インスタンスでエラー・メッセージを送信することを選択した場合、デプロイメント前にブローカー・アーカイブ (BAR) ファイルを構成することによって、この機能をオンまたはオフにすることができます。</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="戻る">「WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答」パターンの仕様に戻る</a>
+</body>
+</html>

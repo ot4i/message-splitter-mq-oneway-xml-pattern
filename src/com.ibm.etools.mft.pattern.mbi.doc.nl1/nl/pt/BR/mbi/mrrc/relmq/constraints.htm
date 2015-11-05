@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="pt-br">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Detalhes sobre o que é necessário saber e quais recursos você deve ter antes de poder usar o padrão do Message Correlator for WebSphere MQ: Pedido-Resposta com Persistência."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Restrições sobre o Uso do Padrão de Message Correlator para WebSphere MQ: Pedido-Resposta com Persistência</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.constrainsts">
+<h1 class="topictitle1">Restrições sobre o Uso do Padrão de
+<span>Message Correlator para WebSphere MQ: Pedido-Resposta com Persistência</span></h1>
+<div>
+<p class="shortdesc">Várias restrições se aplicam quando este padrão é usado.</p>
+<p>É possível usar o padrão de <span>Message Correlator para WebSphere MQ: Pedido-Resposta com Persistência</span>
+apenas se você atender a todas as seguintes restrições:</p>
+<ul>
+<li>Seus aplicativos de solicitante e provedor devem usar o <span>WebSphere MQ</span>
+como o mecanismo de transporte.</li>
+<li>Seus aplicativos de provedor devem seguir a convenção de cópia do identificador de mensagem
+no identificador de correlação para que
+o broker possa corresponder às respostas para seus pedidos originais.</li>
+<li>Seus aplicativos de solicitante e de provedor devem enviar e aceitar mensagens compatíveis, a menos
+que você inclua o recurso de transformação no subfluxo RequestProcessor customizável.</li>
+<li>Se você escolher ativar a criação de log no padrão, as mensagens de log são enviadas para uma fila.
+O processamento destas mensagens de log está fora do escopo deste padrão
+e é necessário processar as mensagens de criação de log
+da maneira mais apropriada para sua organização. Quando a criação de log é selecionada, as mensagens de log são gravadas
+na fila de log como mensagens persistentes, o que afeta o desempenho. As mensagens persistentes são usadas porque é assumido que a criação de log está sendo usada para
+			propósitos de auditoria. Se a criação de log for apenas para teste ou
+informações, a criação de log poderá ser desativada nos sistemas de produção configurando as
+propriedades definidas pelo usuário (UDPs):
+<span class="msobjprop">RequestLoggingOn</span> e <span class="msobjprop">ResponseLoggingOn</span>.</li>
+<li>Se você escolher ativar mensagens de erro no padrão, as mensagens de erro serão enviadas para uma fila
+			quando uma exceção ocorrer. O monitoramento de erros e a execução da ação corretiva estão fora do escopo do padrão
+e é necessário processar as mensagens de erro da maneira mais apropriada para sua organização.</li>
+<li>O padrão define seu próprio formato para mensagens de criação de log e de erro e é assumido
+que isto é suficiente para atender aos requisitos em seu próprio ambiente.</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="Voltar">Voltar para a especificação padrão de <span>Message Correlator para WebSphere MQ: Pedido-Resposta com Persistência</span></a>
+</body>
+</html>

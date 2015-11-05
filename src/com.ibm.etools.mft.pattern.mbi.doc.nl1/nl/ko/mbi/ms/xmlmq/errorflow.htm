@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko-kr" xml:lang="ko-kr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Message Splitter for WebSphere MQ: 단방향(XML용) 패턴을 사용하면 단일 큐에 있는 많은 클라이언트 애플리케이션의 요청을 승인하고 트랜잭션 플로우와 지속 WebSphere MQ 메시지를 사용하여 올바른 클라이언트로 응답을 리턴할 수 있습니다."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Splitter for WebSphere MQ: 단방향(XML용) 패턴의 오류 서브플로우</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.errorflow">
+<div><h1 class="topictitle1"><span>Message Splitter for WebSphere MQ: 단방향(XML용)</span> 패턴의 오류 서브플로우</h1>
+<div>
+<p class="shortdesc">오류가 발생하면 오류 서브플로우를 사용하여 오류 메시지를 라우팅하십시오.</p>
+<p>오류 메시지를 라우팅하려면 다음 조치 중 하나를 사용하십시오.</p>
+<ul>
+<li>	별도의 잘못된 메시지 큐로 라우팅할 수 없는 메시지 요소를 저장하고
+	다른 요소를 계속 처리합니다.</li>
+<li>트랜잭션을 취소하고 입력 메시지를 롤백합니다.</li>
+</ul>
+</div>
+<p>라우팅 플로우에서 오류가 발생하면 단일 메시지 요소를 포함하는 전파된 메시지를 라우트 서브플로우의
+Failure 터미널로 전달합니다. 오류 상태가
+<span class="filepath">Environment.PatternVariables.FailureStatus</span>에 기록되고
+잘못된 요소 수가 증가합니다.
+</p>
+<p><span class="msobjprop">잘못된 메시지 조치</span>를 선택하여 실패 후 취할 조치를 결정하십시오.</p>
+<ul>
+<li><span class="msobjpropval">저장</span>
+<ol>
+<li>Failure 노드가 MQOutput 노드에 연결되고 메시지 요소가
+잘못된 메시지 큐에 기록됩니다. Message Splitter Compute
+노드의 처리 루프로 제어가 되돌아가고 처리가
+계속됩니다. </li>
+<li>모든 레코드가 처리되면, Message Splitter Compute 노드는 잘못된 메시지 요소가 저장되었는지 여부를 판별하는
+오류 서브플로우로 제어를 전달합니다. 잘못된 메시지 요소가 저장되고 오류 메시지가 필요한 경우,
+오류 상태의 요소 수를 알리는 오류 메시지가 생성됩니다.</li>
+</ol>
+</li>
+<li><span class="msobjpropval">취소</span>
+<ol>
+<li>라우트 서브플로우의 Failure 노드가 연결되지 않고 라우팅 오류가 실패 상태를 감지하고 예외를 생성하는 Message Splitter Compute 노드로 다시 전달됩니다. 라우팅 실패를 제외한 다른 모든 예외로 인해 <span class="msobjpropval">취소</span> 조치가 발생합니다. 이러한 예외는
+모두 복구 불가능한 것으로 가정되므로, 계속 처리하는 것은 안전하지 않습니다.</li>
+<li>오류 메시지가 필요하면, 오류 메시지를 준비하고 오류 큐에 기록됩니다.
+예외 세부사항이 XML 메시지로 기록됩니다. 세부사항은 다음과 같습니다.
+	<ul>
+	<li>브로커 이름</li>
+	<li>플로우 이름</li>
+	<li>시간소인</li>
+	<li>예외 데이터 요약</li>
+	</ul>
+</li>
+<li>이미 처리된
+메시지 요소와 입력 메시지를 롤백하도록
+사용자 오류가 생성됩니다. 이 경우, 백아웃 핸들링이 WebSphere MQ 인프라 내에서 발생한다는 점이
+중요합니다(예: 백아웃 큐 사용).
+<p>모든 메시지 요소가 성공적으로 기록된 후에 발생하는 예외에 대해서는 백아웃이 발생하지 않습니다. 이러한 유형의 예외는 오류 메시지나 로그 메시지에서 발생할 수 있습니다.</p></li>
+</ol>
+</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="이전">Message Splitter for WebSphere MQ: 단방향(XML용) 패턴 스펙으로 돌아가기</a>
+</body></html>

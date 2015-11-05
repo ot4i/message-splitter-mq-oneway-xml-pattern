@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja-jp" xml:lang="ja-jp">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="copyright" content="Copyright IBM Corporation 2008" />
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008" />
+<meta name="abstract" content="メッセージ要求応答相関関係子パターンを使用して、多数のクライアント・アプリケーションからの要求を単一キューで受け入れ、正しいクライアントに応答を返します。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../css/ibmdita.css" />
+<link rel="stylesheet" type="text/css" href="../../css/bip4.css" />
+<title>メッセージ要求応答相関関係子パターン</title>
+<script language="JavaScript" src="../../help/LiveHelp.js"> </script></head>
+<body id="mbi.mrrc.overview">
+<h1 class="topictitle1"><span>メッセージ要求応答相関関係子</span>パターン</h1>
+<div><p class="shortdesc"><span>メッセージ要求応答相関関係子</span>パターンを使用して、多数のクライアント・アプリケーションからの要求を単一キューで受け入れ、正しいクライアントに応答を返します。</p>
+<div class="image"><img src="correlator.gif" alt="パターンの動作を示す図。多数の要求側アプリケーションがブローカーにメッセージを送ります。メッセージがプロバイダーに転送される前に要求側の応答アドレスが保管され、プロバイダーから応答を受け取ったときに復元されます。" /></div></div>
+<div class="section"><h2 class="sectiontitle">コンテキスト</h2>
+<p>多くの場合、クライアント・アプリケーションはサーバー・アプリケーションにアクセスする必要があります。
+中継機能または IBM Integration Bus などのエンタープライズ・サービス・バス (ESB) を通すことにより、クライアント・アプリケーションからの要求とサーバーからの応答を仲介することができます。クライアント・アプリケーションからの要求の中では、応答を受け取るために使われる特定の応答キューが指定されます。</p>
+<p>メッセージング・システムは、要求/応答対話における応答メッセージを元のアプリケーションまたはクライアント・インスタンスに適切にルーティングするためのメカニズムを提供します。
+このソリューションには、通常、「返信先アドレス」がメッセージ・ヘッダーに含まれて渡されます。
+受信側アプリケーションはこの情報を抽出して、適切なキューに応答を送ることができます。
+この対話の中にメディエーションが導入された場合、2 つの別個の要求/応答対話が確立されます。
+それぞれのケースで応答メッセージが正しい宛先に確実に送られるようにする必要があります。</p>
+<p>このような多数のクライアントが 1 つのサーバー・アプリケーションと対話する場合は、通常、1 つのメディエーションだけを使用します。
+標準的な手法として、サーバー・アプリケーションとメディエーションはそれぞれ 1 つの要求キューを提供することができます。
+さらに、メディエーションは、サーバー・アプリケーションからの応答メッセージを処理するための 1 つの応答キューを使用します。
+各クライアントが自身の応答キューを提供する場合、それぞれの応答メッセージを正しいキューに確実に送るためのメカニズムが必要です。</p>
+</div>
+<div class="section"><h2 class="sectiontitle">問題</h2>
+<p>IBM Integration フローは要求側とプロバイダーの間を仲介します。
+着信メッセージには要求側の応答アドレスが含まれますが、プロバイダー・アプリケーションに転送されるメッセージにメッセージ・フローの応答アドレスが含まれる必要があります。
+プロバイダー・アプリケーションがメッセージ・フローに応答するときには、それぞれの応答を、クライアントによって送信された要求に一致させる必要があります。</p>
+</div>
+<div class="section"><h2 class="sectiontitle">選択についてのガイダンス</h2>
+<p>このパターンを使用するのは、多数の要求側が 1 つのプロバイダーにメッセージを送って要求側の固有なキューで応答を受け取る必要がある場合、および要求と応答の両方がブローカーによって仲介される場合です。
+このパターンを使用して任意の種類のメッセージを渡すことができます。また、例えば不適切にフォーマット設定されたメッセージからプロバイダーを保護する目的で、メッセージの妥当性検査を行うこともできます。</p>
+</div>
+<div class="section"><h2 class="sectiontitle">ソリューション</h2></div>
+<p> メディエーション・フロー内の各クライアント要求の返信先情報は、メッセージをプロバイダーに転送する前に保管されます。
+プロバイダーから応答を受け取ったとき、相関情報を使って元の要求側の正しい応答アドレスを取得および復元し、後続の取得操作のためにこの情報を保管します。</p>
+</body>
+</html>

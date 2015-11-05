@@ -1,0 +1,113 @@
+<povs>
+    <simplePov name="instanceName" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.instanceName"/>
+    <simplePov name="readRequestQueue" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.inputInformation"/>
+    <simplePov name="validationofRequest" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.inputInformation">
+        <master>
+            <slave id="inputDataType" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">content</argument>
+                <argument type="master">contentAndValue</argument>
+            </slave>
+        </master>
+    </simplePov>
+    <simplePov name="inputDataType" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.inputInformation">
+        <master>
+            <slave id="inputMessageSet" handler="com.ibm.etools.patterns.dependency.Select"/>
+            <slave id="inputMessageType" handler="com.ibm.etools.patterns.dependency.Select"/>
+            <slave id="inputMessageFormat" handler="com.ibm.etools.patterns.dependency.Select"/>
+        </master>
+    </simplePov>
+    <simplePov name="inputMessageSet" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.inputInformation"
+        povEditorId="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetName">
+        <master>
+            <slave id="inputMessageType" handler="com.ibm.etools.patterns.dependency.Select"/>
+            <slave id="inputMessageFormat" handler="com.ibm.etools.patterns.dependency.Select"/>
+        </master>
+    </simplePov>
+    <simplePov name="inputMessageType" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.inputInformation"
+        povEditorId="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetType"/>
+    <simplePov name="inputMessageFormat" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.inputInformation"
+        povEditorId="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetFormat"/>
+    <simplePov name="responseQueue" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.responseInformation"></simplePov>
+    <simplePov name="validationofResponse" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.responseInformation">
+        <master>
+            <slave id="responseDataType" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">content</argument>
+                <argument type="master">contentAndValue</argument>
+            </slave>
+        </master>
+    </simplePov>
+    <simplePov name="responseDataType" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.responseInformation">
+        <master>
+            <slave id="responseMessageSet" handler="com.ibm.etools.patterns.dependency.Select"/>
+            <slave id="responseMessageType" handler="com.ibm.etools.patterns.dependency.Select"/>
+            <slave id="responseMessageFormat" handler="com.ibm.etools.patterns.dependency.Select"/>
+        </master>
+    </simplePov>
+    <simplePov name="responseMessageSet" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.responseInformation"
+        povEditorId="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetName">
+        <master>
+            <slave id="responseMessageType" handler="com.ibm.etools.patterns.dependency.Select"/>
+            <slave id="responseMessageFormat" handler="com.ibm.etools.patterns.dependency.Select"/>
+        </master>
+    </simplePov>
+    <simplePov name="responseMessageType" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.responseInformation"
+        povEditorId="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetType">
+    </simplePov>
+    <simplePov name="responseMessageFormat" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.responseInformation"
+        povEditorId="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetFormat">
+    </simplePov>
+			
+    <simplePov name="providerRequestQueueManager" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.providerInformation"></simplePov >
+    <simplePov name="providerRequestQueue" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.providerInformation"></simplePov >
+    <simplePov name="maximumResponseTime" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.providerInformation"></simplePov >
+    <simplePov name="storeQueue" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.providerInformation"></simplePov >
+    <simplePov name="loggingRequired" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.log">
+        <master>
+            <slave id="logQueueManager" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">true</argument>
+                <argument type="slave">true</argument>
+            </slave>
+            <slave id="logQueue" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">true</argument>
+                <argument type="slave">true</argument>
+            </slave>
+        </master>
+    </simplePov >
+    <simplePov name="logQueueManager" type="xsd:string" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.log"></simplePov >
+    <simplePov name="logQueue" type="xsd:string" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.log"></simplePov >
+    <simplePov name="errorMessageRequired" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.errorHandling">
+        <master>
+            <slave id="errorQueueManager" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">true</argument>
+                <argument type="slave">true</argument>
+            </slave>
+            <slave id="errorQueue" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">true</argument>
+                <argument type="slave">true</argument>
+            </slave>
+        </master>
+    </simplePov>
+    <simplePov name="errorQueueManager" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.errorHandling"></simplePov >
+    <simplePov name="errorQueue" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.errorHandling"></simplePov>
+    <simplePov name="brokerSchema" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.patternLevel"/>
+    <simplePov name="flowprefix" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.patternLevel"/>
+    <simplePov name="flowsuffix" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.patternLevel"/>
+    <simplePov name="queueprefix" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.patternLevel"/>
+    <simplePov name="queuesuffix" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.patternLevel"/>
+    <simplePov name="shortDescription" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.patternLevel"/>
+    <simplePov name="longDescription" groupId="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.patternLevel"/>
+    <Group id="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.instanceName" visible="false"/>
+    <Group id="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.inputInformation" visible="true" name="inputInformation"
+        description="description" expand="false"/>
+    <Group id="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.providerInformation" visible="true" name="providerInformation"
+        description="description" expand="false"/>
+    <Group id="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.responseInformation" visible="true" name="responseInformation"
+        description="description" expand="false"/>
+    <Group id="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.log" visible="true" name="log"
+        description="description" expand="false"/>
+    <Group id="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.errorHandling" visible="true" name="errorHandling"
+        description="description" expand="false"/>
+    <Group id="com.ibm.etools.mft.pattern.mbi.mrcc.relmq.patternLevel" visible="true" name="patternLevel"
+        description ="description" expand="false"/>
+	<ReferencedProject name="_Flows"/>
+</povs>

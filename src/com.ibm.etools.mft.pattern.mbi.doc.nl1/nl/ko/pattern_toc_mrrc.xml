@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?NLS  TYPE="org.eclipse.help.toc"?>
+<toc link_to="toc.xml#wmb_patterns_mbi" label="메시지 상관자" topic="mbi/mrrc/overview.htm">
+    <topic label="메시지 상관자" href="mbi/mrrc/overview.htm">
+      	<topic label="지속을 사용하는 MQ 요청-응답" href="mbi/mrrc/relmq/overview.htm">
+      		<topic label="요청 플로우" href="mbi/mrrc/relmq/requestflow.htm"/>
+      		<topic label="응답 플로우" href="mbi/mrrc/relmq/responseflow.htm"/>
+      		<topic label="오류 서브플로우" href="mbi/mrrc/relmq/errorflow.htm"/>
+      		<topic label="로그 서브플로우" href="mbi/mrrc/relmq/logflow.htm"/>  
+      		<topic label="제한조건" href="mbi/mrrc/relmq/constraints.htm"/>
+      		<topic label="패턴 적용 전에 완료할 태스크" href="mbi/mrrc/relmq/prereq.htm"/>
+      		<topic label="매개변수
+" href="mbi/mrrc/relmq/parametertable.htm"/>
+      		<topic label="패턴 생성 후에 완료할 태스크" href="mbi/mrrc/relmq/postreq.htm"/>
+      	</topic>
+	  	<topic label="지속을 사용하지 않는 MQ 요청-응답" href="mbi/mrrc/synchmq/overview.htm">
+	  		<topic label="요청 플로우" href="mbi/mrrc/synchmq/requestflow.htm"/>
+	  		<topic label="응답 플로우" href="mbi/mrrc/synchmq/responseflow.htm"/>
+	  		<topic label="오류 서브플로우" href="mbi/mrrc/synchmq/errorflow.htm"/>
+	  		<topic label="로그 서브플로우" href="mbi/mrrc/synchmq/logflow.htm"/>  
+	  		<topic label="제한조건" href="mbi/mrrc/synchmq/constraints.htm"/>
+	  		<topic label="패턴 적용 전에 완료할 태스크" href="mbi/mrrc/synchmq/prereq.htm"/>
+	  		<topic label="매개변수
+" href="mbi/mrrc/synchmq/parameters.htm"/>
+	  		<topic label="패턴 생성 후에 완료할 태스크" href="mbi/mrrc/synchmq/postreq.htm"/>
+	  	</topic>
+	</topic>
+</toc>

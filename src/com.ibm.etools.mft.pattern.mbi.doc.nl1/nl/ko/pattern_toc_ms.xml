@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?NLS  TYPE="org.eclipse.help.toc"?>
+<toc link_to="toc.xml#wmb_patterns_mbi" label="메시지 구분자
+" topic="mbi/ms/overview.htm">
+    <topic label="메시지 구분자
+" href="mbi/ms/overview.htm">
+      	<topic label="MQ 단방향(XML)" href="mbi/ms/xmlmq/overview.htm">
+      		<topic label="요청 플로우" href="mbi/ms/xmlmq/requestflow.htm"/>
+      		<topic label="라우트 서브플로우" href="mbi/ms/xmlmq/routeflow.htm"/>
+      		<topic label="오류 서브플로우" href="mbi/ms/xmlmq/errorflow.htm"/>
+      		<topic label="로그 서브플로우" href="mbi/ms/xmlmq/logflow.htm"/>
+      		<topic label="제한조건" href="mbi/ms/xmlmq/constraints.htm"/>
+      		<topic label="패턴 적용 전에 완료할 태스크" href="mbi/ms/xmlmq/prereq.htm"/>
+      		
+      		<topic label="매개변수
+" href="mbi/ms/xmlmq/parametertable.htm"/>
+      		<topic label="패턴 생성 후에 완료할 태스크" href="mbi/ms/xmlmq/postreq.htm"/>
+      	</topic>
+    </topic>
+</toc>

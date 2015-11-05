@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="de-de" xml:lang="de-de">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Tasks, die nach der Generierung des Musters 'Message Correlator for WebSphere MQ: request-response without persistence' Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz) ausgeführt werden müssen"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Tasks, die nach der Generierung des Musters 'Message Correlator for WebSphere MQ: request-response without persistence' Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz) ausgeführt werden müssen</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.synchmq.postreq">
+<h1 class="topictitle1">Tasks, die nach der Generierung des Musters <span>Message Correlator for WebSphere MQ: request-response without persistence</span> Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz) ausgeführt werden müssen</h1>
+<div>
+<p class="shortdesc">Tasks, die Sie nach der Generierung des Musters ausführen müssen.</p>
+
+<ol>
+<li>Erstellen Sie die Brokerarchivdatei (BAR-Datei). 
+Fügen Sie den generierten Nachrichtenfluss Ihrer BAR-Datei hinzu. Im Brokerarchiveditor müssen Sie die Option <span class="uicontrol">Ressourcen kompilieren und integrieren</span> auswählen, um die BAR-Datei zu erstellen.
+Auch die vom Nachrichtenfluss referenzierten Nachrichtensätze müssen hinzugefügt werden.
+</li>
+<li>Konfigurieren Sie die Brokerarchivdatei. Eine weitere Konfiguration des in der Brokerarchivdatei enthaltenen Nachrichtenflusses ist vor der Implementierung der Nachrichtenflüsse für Ihre Instanz des Musters <span>Message Correlator for WebSphere MQ: request-response without persistence</span> (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz) nicht erforderlich. Eventuell sollten Sie jedoch die Standardoptionen überprüfen und die Konfiguration an Ihre Umgebung anpassen.</li>
+<li>Erstellen Sie Warteschlangen. Wenn Sie das Muster anwenden, wird eine Liste mit WebSphere MQ-Warteschlangen mit Warteschlangennamen und WS-Managernamen generiert, die erstellt werden müssen, wenn sie noch nicht vorhanden sind. Alle Nachrichteneinstellungen, die für das Muster erforderlich sind, werden explizit in den Nachrichten festgelegt und hängen nicht von Warteschlangeneinstellungen ab.
+		<ol>
+		<li>Die zu erstellenden Warteschlangen entnehmen Sie bitte der
+ 				Zusammenfassungsdatei. Die Summendatei befindet sich im Projektverweisordner des Musterinstanzprojektes <i>Instanzname</i>.</li>
+		<li>Erstellen Sie <span>WebSphere MQ</span>-Ressourcen. 
+		<span>WebSphere MQ</span>-Ressourcen können in der Befehlszeile mit Programmen und Dienstprogrammen wie <span class="cmdname">runmqsc</span> oder in der grafischen Benutzerschnittstelle von <span>WebSphere MQ</span> Explorer erstellt werden.
+		Weitere Informationen zur Erstellung von
+    				<span>WebSphere MQ</span>-Ressourcen finden Sie unter <cite><span>WebSphere MQ</span> Intercommunication</cite>,         verfügbar auf der <img src="../../../images/external_link.gif" alt="Dieser Link öffnet sich in einem neuen Fenster" class="external_link" />	<a href="http://www.ibm.com/software/integration/wmq/library/" target="_blank">WebSphere
+    				MQ-Bibliotheks</a>webseite.</li>
+		</ol>
+</li>
+<li>Wenn Sie zur Bereitstellung von Fehlerbenachrichtigungen Fehlernachrichten konfiguriert haben, müssen Sie die Fehlerwarteschlange überwachen und ihren Inhalt löschen.</li> 
+</ol>
+<a href="overview.htm#anchor1" title="Zurück">Zurück zur Spezifikation des Musters 'Message Correlator for WebSphere MQ: request-response without persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz)</a>
+</div></body>
+</html>

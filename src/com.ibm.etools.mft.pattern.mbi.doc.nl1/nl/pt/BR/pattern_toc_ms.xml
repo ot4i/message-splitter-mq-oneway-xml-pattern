@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?NLS  TYPE="org.eclipse.help.toc"?>
+<toc link_to="toc.xml#wmb_patterns_mbi" label="Message Splitter" topic="mbi/ms/overview.htm">
+    <topic label="Message Splitter" href="mbi/ms/overview.htm">
+      	<topic label="MQ Unidirecional (XML)" href="mbi/ms/xmlmq/overview.htm">
+      		<topic label="Fluxo de Pedido" href="mbi/ms/xmlmq/requestflow.htm"/>
+      		<topic label="Subfluxo de Rota" href="mbi/ms/xmlmq/routeflow.htm"/>
+      		<topic label="Subfluxo de Erro" href="mbi/ms/xmlmq/errorflow.htm"/>
+      		<topic label="Subfluxo de Log" href="mbi/ms/xmlmq/logflow.htm"/>
+      		<topic label="Restrições" href="mbi/ms/xmlmq/constraints.htm"/>
+      		<topic label="Tarefas para concluir antes de aplicar o padrão" href="mbi/ms/xmlmq/prereq.htm"/>
+      		
+      		<topic label="Parâmetros" href="mbi/ms/xmlmq/parametertable.htm"/>
+      		<topic label="Tarefas a concluir após gerar o padrão" href="mbi/ms/xmlmq/postreq.htm"/>
+      	</topic>
+    </topic>
+</toc>

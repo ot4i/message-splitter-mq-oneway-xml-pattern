@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-es" xml:lang="es-es">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Utilice el patrón Divisor de mensajes para WebSphere MQ: unidireccional (para XML) para aceptar solicitudes de muchas aplicaciones clientes en una sola cola y devolver respuestas al cliente correcto mediante flujos transaccionales y mensajes persistentes de WebSphere MQ."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Subflujo Error para el patrón Divisor de mensajes para WebSphere MQ: unidireccional (para XML)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.errorflow">
+<div><h1 class="topictitle1">Subflujo Error para el patrón <span>Divisor de mensajes para WebSphere MQ: unidireccional (para XML)</span></h1>
+<div>
+<p class="shortdesc">Si se produce un error, utilice el subflujo Error para direccionar el mensaje de error.</p>
+<p>Para direccionar el mensaje de error, utilice una de las acciones siguientes:</p>
+<ul>
+<li>Guarde los elementos del mensaje que no se puedan redireccionar a una cola de mensajes erróneos distinta y siga procesando elementos adicionales</li>
+<li>Cancele la transacción y retrotraiga el mensaje de entrada</li>
+</ul>
+</div>
+<p>Cualquier anomalía en el flujo Routing dirige el mensaje propagado, que contiene un elemento de mensaje, al terminal Failure del subflujo Route. El estado de error se graba en <span class="filepath">Environment.PatternVariables.FailureStatus</span> y aumenta el número de elementos erróneos.</p>
+<p>Elija una <span class="msobjprop">Acción de mensaje errónea</span> para determinar la acción que se debe emprender después de una anomalía:</p>
+<ul>
+<li><span class="msobjpropval">Guardar</span>
+<ol>
+<li>El nodo Failure está conectado a un nodo MQOutput y el elemento de mensaje se escribe en la cola de mensajes erróneos. Se devuelve el control al bucle de proceso del nodo
+Message Splitter Compute y el proceso continúa.</li>
+<li>Cuando se han procesado todos los registros, el nodo Message Splitter Compute pasa el control al subflujo Error, donde se realiza una comprobación para determinar si se han guardado elementos de mensajes erróneos. Si se han guardado elementos de mensajes erróneos, y son necesarios los mensajes de error, se generará un mensaje de error que indica el número de elementos en el error.</li>
+</ol>
+</li>
+<li><span class="msobjpropval">Cancelar</span>
+<ol>
+<li>El nodo Failure del subflujo Route no está conectado y los errores de direccionamiento vuelven a pasar al nodo
+Message Splitter Compute, que detecta el estado de anomalía y genera una excepción. Las excepciones, distintas de las anomalías de direccionamiento, hacen que se produzca la acción <span class="msobjpropval">Cancel</span>. Se da por supuesto que todas estas excepciones son irrecuperables y no es segura continuar con el proceso.</li>
+<li>Si los mensajes de error son necesarios, se preparará un mensaje de error y se grabará en la cola de errores.
+Los detalles de la excepción se graban como un mensaje XML. Los detalles incluyen:
+	<ul>
+	<li>Nombre del intermediario</li>
+	<li>Nombre de flujo</li>
+	<li>Indicación horaria</li>
+	<li>Resumen de los datos de excepción</li>
+	</ul>
+</li>
+<li>Se genera un error de usuario para retrotraer el mensaje de entrada y los elementos de mensaje que ya se hayan procesado. En este caso, resulta esencial que funcione el manejo de retrotracciones en la infraestructura de WebSphere MQ; por ejemplo, mediante una cola de retrotracción.
+<p>La retrotracción no se produce en las excepciones que se producen después de grabar satisfactoriamente los elementos del mensaje. Este tipo de excepción se puede producir en mensajes de error o en mensajes de registro.</p></li>
+</ol>
+</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="Volver">Volver a la especificación del patrón Divisor de mensajes para WebSphere MQ: unidireccional (para XML)</a>
+</body></html>

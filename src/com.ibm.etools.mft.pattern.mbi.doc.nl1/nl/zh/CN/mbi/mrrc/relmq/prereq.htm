@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-cn" xml:lang="zh-cn">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="有关使用 WebSphere MQ: request-response with persistence 模式之前必须了解的内容和必须具备的资源的详细信息。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>应用 WebSphere MQ: request-response with persistence 模式之前要完成的任务</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.prereq">
+<h1 class="topictitle1">应用 <span>Message Correlator for WebSphere MQ: request-response with persistence</span> 模式之前要完成的任务</h1>
+<div><div class="section">
+<p class="shortdesc">应用模式以生成模式实例之前，您必须确定需要执行以下哪些任务。如果需要，请完成以下任务：</p>
+</div>
+<ul><li>为模式实例选择唯一的名称。您可以多次使用该模式并创建多个不同的实例，这些实例可通过它们的唯一名称进行区分。标识模式实例的用途，以便确定合适或有意义的唯一名称。</li>
+<li>选择想要模式实例使用（例如，用来访问提供者应用程序）的 <span>WebSphere MQ</span> 队列管理器和队列。如果您使用现有队列，那么必须记录。如果想要创建新队列管理器和队列，必须确定这些资源的名称。</li>
+<li>标识此模式所需的任何其他队列管理器和队列，并确定想要使用的唯一名称。考虑必须应用的任何策略、标准或命名约定。</li>
+<li>确定是否需要对入局请求消息或提供者响应消息进行验证。如果请求者和提供者应用程序生成正确消息，那么验证可能不必要。如果想要验证消息，您必须已拥有消息集来提供消息定义，或者必须创建消息集来提供消息定义。</li>
+<li>确定是否需要请求消息和/或响应消息的记录。如果需要记录，那么必须确定将记录消息发送到哪个队列管理器和队列。可以将记录消息发送到由多个消息流使用的常规日志队列，也可以使用特定于模式实例的队列。</li>
+<li>确定是否要为模式实例生成错误消息。如果此模式实例处理更新，请使用错误处理来确保不会丢失任何数据。可以将错误消息发送到由多个消息流使用的常规错误队列，也可以使用特定于模式实例的队列。如果选择在模式实例中发送错误消息，那么可以在部署前配置代理归档 (BAR) 文件来开启或关闭此功能。</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="返回">返回至 WebSphere MQ: request-response with persistence 模式规范</a>
+</body>
+</html>

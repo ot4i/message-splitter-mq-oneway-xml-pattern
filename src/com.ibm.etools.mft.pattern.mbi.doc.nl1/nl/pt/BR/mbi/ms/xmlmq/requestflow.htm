@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="pt-br">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Use o padrão de Message Splitter para WebSphere MQ: Unidirecional (para XML) para aceitar pedidos de muitos aplicativos clientes em uma única fila e para retornar respostas ao cliente correto usando fluxos transacionais e mensagens do WebSphere MQ persistentes."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Fluxo de Pedido para o Padrão de Message Splitter para WebSphere MQ: Unidirecional (para XML)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.requestflow">
+<div><h1 class="topictitle1">Fluxo de Pedido para o Padrão de <span>Message Splitter para WebSphere MQ: Unidirecional (para XML)</span></h1>
+<p class="shortdesc">Este padrão usa um único fluxo de mensagens. </p>
+
+<ol>
+<li>O nó de Entrada espera uma mensagem XML bem formada e é
+configurado para usar o analisador XMLNSC. Se qualquer mensagem recebida contiver um cabeçalho MQRFH2 que
+altera o domínio, ele causará um erro e a mensagem será revertida. </li>
+<li>A validação da mensagem é opcional e é especificada no parâmetro padrão
+<span class="msobjprop">Validação requerida</span>.
+A validação não é imediata e é transportada conforme cada elemento é extraído.
+</li>
+<li>O fluxo de mensagens é executado como uma transação e não é confirmado,
+a menos que todos os elementos necessários sejam extraídos e gravados com êxito em uma fila. </li>
+<li>O controle principal neste fluxo é o nó Propagar Cálculo do Elemento. 
+Este nó cria uma variável local para
+conter uma árvore mutável que seja uma cópia da entrada. 
+Este fluxo faz loop através da árvore de mensagens, movendo para um
+elemento filho em uma tag de contêiner e propagando-o para diante.
+Conforme cada elemento é selecionado, o elemento anterior é excluído para reduzir o uso de memória.</li>
+<li>A estrutura da mensagem é determinada pelos parâmetros padrão e,
+se uma mensagem não estiver em conformidade com esta estrutura, um erro será produzido.</li>
+<li>É feita uma verificação se a mensagem inclui o caminho de contêiner, ou seja, o contêiner para todos os
+elementos a serem	processados. Se este caminho de contêiner for especificado como <span class="msobjpropval">*:*</span>,
+o contêiner será considerado como sendo a tag raiz, qualquer que seja seu nome, e
+os elementos de mensagem que são filhos da raiz são extraídos.</li>
+<li>Se o parâmetro padrão <span class="msobjprop">Nome de Elemento de Mensagem</span> for
+<span class="msobjpropval">*:*</span>, todos os elementos
+que são filhos do contêiner serão processados.
+Se qualquer outro valor for especificado, apenas elementos de mensagens que possuem tags que correspondem ao
+<span class="msobjprop">Nome de Elemento de Mensagem</span> serão extraídos.
+O elemento de mensagem extraído é transmitido para processamento adicional. </li>
+<li>O fluxo de mensagens inclui o subfluxo MessageProcessor, que por padrão não tem impacto
+porque contém apenas um nó de Passagem. O subfluxo é incluído para fornecer um local no qual uma
+instância padrão pode ser customizada usando o conjunto de ferramentas padrão, sem qualquer alteração na estrutura
+do padrão.</li>
+<li>A mensagem é transmitida ao subfluxo Rota, que a direciona à fila do WebSphere MQ correta. 
+A falha em localizar uma rota, ou qualquer exceção, configura o status da falha e
+direciona o controle ao nó de Falha.
+	<ul><li>Se a <span class="msobjprop">Ação da Mensagem Inválida</span> for <span class="msobjpropval">Salvar</span>,
+	o nó de Falha será conectado a um nó MQOutput para salvar
+	a mensagem. O controle retorna ao nó de Cálculo para extrair o próximo elemento.</li>
+	<li>Se a <span class="msobjprop">Ação de Mensagem Inválida</span> for <span class="msobjpropval">Cancelar</span>, o
+	nó de Falha não será conectado e o nó de Cálculo produzirá um erro do usuário
+	causando a reversão do fluxo.</li></ul>
+	</li>
+<li>Quando uma movimentação para o próximo elemento falha, porque todos os elementos foram processados,
+o subfluxo de Log é chamado, se a criação de log é requerida pelos parâmetros padrão. 
+Neste ponto, o fluxo de mensagens sempre para com êxito
+e a transação é confirmada. Quaisquer erros que ocorrem na criação de log são capturados e processados
+gravando em um nó Rastreio.</li>
+<li>Se o parâmetro <span class="msobjprop">Roteamento</span> estiver
+configurado como <span class="msobjpropval">Consultar Rotas</span> e o
+parâmetro padrão <span class="msobjprop">Atualização de Cache</span>
+especificar que uma atualização de cache é necessária, o fluxo principal conterá um segundo nó
+de Entrada que lê a partir da fila que é definida pelo parâmetro padrão
+<span class="msobjprop">Fila de Atualização</span>. Qualquer mensagem que é enviada para esta fila
+limpa a variável compartilhada <span class="filepath">CacheQueueTable.valid</span>, de forma que o cache seja
+atualizado antes da próxima consulta.</li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="Voltar">Voltar para a especificação do padrão do Message Splitter para WebSphere MQ: Unidirecional (para XML)</a>
+</body>
+</html>

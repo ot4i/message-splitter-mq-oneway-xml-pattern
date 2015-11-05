@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?NLS  TYPE="org.eclipse.help.toc"?>
+<toc link_to="toc.xml#wmb_patterns_mbi" label="Divisor de mensajes" topic="mbi/ms/overview.htm">
+    <topic label="Divisor de mensajes" href="mbi/ms/overview.htm">
+      	<topic label="MQ unidireccional (XML)" href="mbi/ms/xmlmq/overview.htm">
+      		<topic label="Flujo Request" href="mbi/ms/xmlmq/requestflow.htm"/>
+      		<topic label="Subflujo Route" href="mbi/ms/xmlmq/routeflow.htm"/>
+      		<topic label="Subflujo Error" href="mbi/ms/xmlmq/errorflow.htm"/>
+      		<topic label="Subflujo Log" href="mbi/ms/xmlmq/logflow.htm"/>
+      		<topic label="Restricciones" href="mbi/ms/xmlmq/constraints.htm"/>
+      		<topic label="Tareas que deben completarse antes de aplicar el patrón" href="mbi/ms/xmlmq/prereq.htm"/>
+      		
+      		<topic label="Parámetros" href="mbi/ms/xmlmq/parametertable.htm"/>
+      		<topic label="Tareas que deben completarse después de generar el patrón" href="mbi/ms/xmlmq/postreq.htm"/>
+      	</topic>
+    </topic>
+</toc>

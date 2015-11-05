@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-es" xml:lang="es-es">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Utilice el patrón Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta con persistencia para aceptar solicitudes de muchas aplicaciones clientes en una sola cola y devolver respuestas al cliente correcto mediante flujos transaccionales y mensajes persistentes de WebSphere MQ."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Subflujo Error para el patrón Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta con persistencia</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<div><h1 class="topictitle1">Subflujo Error para el patrón <span>Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta con persistencia</span></h1></div>
+<p class="shortdesc">Si se detecta un error durante el proceso del flujo de mensajes Request, se llama al subflujo Error.</p>
+<p>Si ha configurado los parámetros de patrón para que incluyan mensajes de error y la propiedad definida por el usuario: se selecciona
+<span class="msobjprop">ErrorLoggingOn</span> y se emprenden las acciones siguientes:</p>
+<ol>
+<li>Si se produce el error durante el proceso de solicitud, se devolverá una respuesta de error al cliente indicando que el mensaje no se ha enviado satisfactoriamente. 
+<p>Si el error se produce durante el proceso de respuesta, no se devolverá ninguna respuesta de error porque no se conoce la dirección de respuesta.</p>
+<p>El mensaje siguiente es un ejemplo de un mensaje de error XML estándar:</p>
+<pre>&lt;Error&gt;&lt;Status&gt;-1&lt;/Status&gt;&lt;Text&gt;No se ha podido enviar el mensaje&lt;/Text&gt;&lt;/Error&gt;</pre>
+</li>
+<li>Se prepara un mensaje de error y se graba en la cola de errores. Los detalles de la excepción se graban como un mensaje XML. Los detalles incluyen:
+	<ul>
+	<li>Nombre del intermediario</li>
+	<li>Nombre de flujo</li>
+	<li>Indicación horaria</li>
+	<li>Resumen de los datos de excepción</li>
+	</ul>
+</li>
+<li>El flujo de mensajes se retrotrae para conservar los datos.</li>
+<li>La información necesaria para la detección y corrección de errores se encuentra en el mensaje de error.</li>
+</ol>
+
+<a href="overview.htm#anchor1" title="Volver">Volver a la especificación del patrón Correlacionador de mensajes para WebSphere MQ: solicitud-respuesta con persistencia</a>
+</body>
+</html>

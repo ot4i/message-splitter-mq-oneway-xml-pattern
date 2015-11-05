@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="pt-br">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Use o padrão de Message Splitter para WebSphere MQ: Unidirecional (para XML) para aceitar pedidos de muitos aplicativos clientes em uma única fila e para retornar respostas ao cliente correto usando fluxos transacionais e mensagens do WebSphere MQ persistentes."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Padrão de Message Splitter para WebSphere MQ: Unidirecional (para XML)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<h1 class="topictitle1">Padrão de <span>Message Splitter para WebSphere MQ: Unidirecional (para XML)</span></h1>
+<div><p class="shortdesc">Use o padrão de <span>Message Splitter para WebSphere MQ: Unidirecional (para XML)</span>
+para dividir uma mensagem XML grande em elementos menores para processamento por um ou mais destinos, usando
+fluxos transacionais e mensagens do WebSphere MQ persistentes.</p>
+</div>
+<p>Use este padrão quando
+você tiver aplicativos que armazenam informações sobre várias transações de negócios e transmitir
+estas informações para um ou mais aplicativos de destino em lotes.
+Isto pode ser usado para manipular mensagens grandes sem uso de memória excessivo. </p>
+<p>Este padrão pode ser usado quando o aplicativo de origem ou aplicativos
+de destino não podem fazer ou processar
+chamadas de serviço quase em tempo real ou quando o armazenamento em lote de informações é necessário por
+motivos comerciais.
+</p>
+<div class="image"><img src="xmlmq.gif" 
+alt="Um diagrama mostrando o comportamento do padrão. Mensagens XML são divididas em elementos menores para processamento por um ou mais destinos." />
+<div class="section"><h2 class="sectiontitle">Solução</h2></div>
+<p>A solução é implementar um fluxo de mensagens que usa uma árvore de mensagens mutável para que elementos repetíveis
+possam ser excluídos conforme são processados. A análise parcial permite que elementos únicos sejam analisados conforme necessário e,
+como estes elementos são excluídos na conclusão, a árvore na memória é impedida de crescer de forma linear
+com o número de elementos.
+Conforme cada elemento é extraído, ele é roteado para o aplicativo de destino apropriado.</p>
+<div><a href="requestflow.htm" title="Informações de Design sobre o Fluxo de Mensagens de Pedido.">Fluxo de Pedido</a></div>
+<div><a href="routeflow.htm" title="Informações de Design sobre o Subfluxo de Rota.">Subfluxo de Rota</a></div>
+<div><a href="errorflow.htm" title="Informações de Design sobre o Subfluxo de Erro.">Subfluxo de Erro</a></div>
+<div><a href="logflow.htm" title="Informações de Design sobre o Subfluxo de Log.">Subfluxo de Log</a></div><div>
+<a name="anchor1"></a>
+<div class="section"><h2 class="sectiontitle">Tarefas Relacionadas</h2></div>
+<p>Leia a seção a seguir para obter informações sobre como aplicar e usar este padrão.</p>
+<div><a href="constraints.htm" title="Restrições no Uso do Padrão de Message Splitter para WebSphere MQ: Unidirecional (para XML)">Restrições no uso do padrão</a></div>
+<div><a href="prereq.htm" title="Detalhes sobre o que é Necessário Saber e Quais Recursos Você Deve Ter Antes de Poder Usar o Padrão do Message Splitter para WebSphere MQ: Unidirecional (para XML)">Tarefas para concluir antes de aplicar o padrão</a></div>
+
+<div><a href="parametertable.htm" title="Parâmetros Padrão">Parâmetros para o padrão</a></div>
+<div><a href="postreq.htm" title="">Tarefas a concluir após gerar o padrão</a></div>
+</div>
+</div></body>
+</html>

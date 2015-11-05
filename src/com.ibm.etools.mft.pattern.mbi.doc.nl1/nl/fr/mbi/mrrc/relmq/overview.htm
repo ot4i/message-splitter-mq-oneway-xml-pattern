@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="fr-fr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Utilisation du modèle d'utilitaire de Corrélation de message pour WebSphere MQ :  demande-réponse avec persistance afin d'accepter les demandes d'un grand nombre d'applications client dans une seule file d'attente et répondre au client approprié via des flux transactionnels et des messages WebSphere MQ persistants."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Modèle d'utilitaire de Corrélation de message pour WebSphere MQ : demande-réponse avec persistance</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<h1 class="topictitle1">Modèle <span>d'utilitaire de Corrélation de message pour WebSphere MQ : demande-réponse avec persistance</span></h1>
+<div><p class="shortdesc">Utilisation du modèle <span>d'utilitaire de Corrélation de message pour WebSphere MQ : demande-réponse avec persistance</span> pour accepter les demandes d'un grand nombre d'applications client dans une seule file d'attente, et répondre au client approprié à l'aide de flux non transactionnels et de messages WebSphere MQ non persistants.</p>
+<p>Dans la mesure où ce modèle utilise des communications fiables avec des messages persistants et des flux transactionnels, il convient de l'utiliser lorsque les échanges de messages génèrent des mises à jour qui n'impliquent aucune perte de données.</p>
+</div><div class="image"><img src="relmq.gif" 
+alt="Diagramme montrant le comportement du modèle. Des applications demandeurs envoient des messages au courtier. L'adresse de réponse du demandeur est stockée avant l'envoi du message au fournisseur et elle est stockée de nouveau lorsque le fournisseur envoie une réponse." />
+<div class="section"><h2 class="sectiontitle">Solution</h2></div> 
+<p>La solution consiste à implémenter un flux de médiation qui stocke l'en-tête MQMD en dehors de chaque message de réponse, indexé par un identificateur de message, avant de transmettre le message, avec tous ses en-têtes, à l'application fournisseur. Le message de demande envoyé au fournisseur spécifie la file d'attente de réponses du courtier dans la partie adresse de réponse de l'en-tête du message.
+L'application fournisseur doit copier, conformément aux pratiques conventionnelles, l'identificateur du message de demande dans la zone d'identificateur de corrélation du message de réponse. 
+Lors de la réception d'un message de réponse, le flux du courtier utilise l'identificateur de corrélation pour extraire l'en-tête MQMD stocké et l'adresse de réponse pour mettre à jour l'en-tête MQMD entrant. 
+Cette action permet d'utiliser l'adresse de réponse d'origine du demandeur. 
+Le message de réponse est alors envoyé au demandeur avec tous ses en-têtes.</p>
+<p>Consultez la section suivante qui contient des informations sur la conception des flux de messages dans ce modèle.</p>
+<div><a href="requestflow.htm" title="Informations de conception sur le flux de messages Demande.">Flux Demande</a></div>
+<div><a href="responseflow.htm" title="Informations de conception sur le flux de messages Réponse.">Flux Réponse</a></div>
+<div><a href="errorflow.htm" title="Informations de conception sur le flux secondaire Erreur.">Flux secondaire Erreur</a></div>
+<div><a href="logflow.htm" title="Informations de conception sur le flux secondaire Journal.">Flux secondaire Journal</a></div>
+<div>
+<a name="anchor1"></a>
+<div class="section"><h2 class="sectiontitle">Tâches connexes</h2></div>
+<p>Consultez la section suivante qui contient des informations sur l'application et l'utilisation de ce modèle.</p>
+<div><a href="constraints.htm" title="Contraintes sur l'utilisation du Corrélateur  de message pour WebSphere MQ : demande-réponse avec persistance.">Contraintes sur l'utilisation du modèle</a></div>
+<div><a href="prereq.htm" title="Informations dont vous devez avoir connaissance et ressources dont vous devez disposer pour pouvoir utiliser le modèle d'utilitaire de Corrélation de message WebSphere MQ : demande-réponse avec persistance.">Tâches à exécuter avant d'appliquer le modèle</a></div>
+
+<div><a href="parametertable.htm" title="Appliquer le modèle et définir les paramètres">Paramètres du modèle</a></div>
+<div><a href="postreq.htm" title="">Tâches à exécuter après avoir généré le modèle</a></div>
+</div>
+</div></body>
+</html>

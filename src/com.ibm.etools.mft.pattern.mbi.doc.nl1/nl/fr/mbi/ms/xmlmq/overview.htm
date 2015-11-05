@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="fr-fr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Utilisez le modèle d'utilitaire de Fractionnement de message pour WebSphere MQ :  unidirectionnel (pour XML) afin d'accepter les demandes d'un grand nombre d'applications client dans une seule file d'attente et répondre au client approprié via des flux transactionnels et des messages WebSphere MQ persistants."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Utilitaire de fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<h1 class="topictitle1">Modèle <span>d'Utilitaire de fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)</span></h1>
+<div><p class="shortdesc">Utilisez le modèle <span>Utilitaire de fractionnement de message pour WebSphere MQ : unidirectionnel (XML)</span> pour diviser un message XML volumineux en plus petits éléments traités par une ou plusieurs cibles en utilisant des flux transactionnels et des messages WebSphere MQ persistants.</p>
+</div>
+<p>Utilisez ce modèle pour les applications qui stockent des informations sur des transactions métier et transmettent ces informations à une ou plusieurs applications cibles dans des lots.
+Vous pouvez l'utiliser pour gérer les messages volumineux sans utiliser excessivement la mémoire. </p>
+<p>Vous pouvez utiliser ce modèle lorsque l'application source ou les applications cible ne peuvent pas créer ou traiter des appels de service quasi temps réel ou lorsque la répartition en lots des informations s'impose pour des raisons professionnelles.
+</p>
+<div class="image"><img src="xmlmq.gif" 
+alt="Diagramme montrant le comportement du modèle. Les messages XML sont divisés en petits éléments pour être traités par une ou plusieurs cibles." />
+<div class="section"><h2 class="sectiontitle">Solution</h2></div>
+<p>La solution consiste à implémenter un flux de messages qui utilise une arborescence de messages modifiable permettant de supprimer les éléments reproductibles au fur et à mesure qu'ils sont traités. L'analyse partielle permet d'analyser des éléments individuels en fonction des besoins et, du fait que ces éléments sont supprimés à la fin, l'arborescence dans la mémoire interne ne croît pas de manière linéaire avec le nombre d'éléments.
+Chaque élément extrait est routé vers l'application cible appropriée.</p>
+<div><a href="requestflow.htm" title="Informations de conception sur le flux de messages Demande.">Flux Demande</a></div>
+<div><a href="routeflow.htm" title="Informations de conception sur le flux secondaire Route.">Flux secondaire Route</a></div>
+<div><a href="errorflow.htm" title="Informations de conception sur le flux secondaire Erreur.">Flux secondaire Erreur</a></div>
+<div><a href="logflow.htm" title="Informations de conception sur le flux secondaire Journal.">Flux secondaire Journal</a></div><div>
+<a name="anchor1"></a>
+<div class="section"><h2 class="sectiontitle">Tâches connexes</h2></div>
+<p>Consultez la section suivante qui contient des informations sur l'application et l'utilisation de ce modèle.</p>
+<div><a href="constraints.htm" title="Contraintes sur l'utilisation de l'utilitaire de Fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML).">Contraintes sur l'utilisation du modèle</a></div>
+<div><a href="prereq.htm" title="Informations dont vous devez avoir connaissance et ressources dont vous devez disposer pour pouvoir utiliser le modèle d'utilitaire de Fractionnement de message WebSphere MQ : unidirectionnel (pour XML).">Tâches à exécuter avant d'appliquer le modèle</a></div>
+
+<div><a href="parametertable.htm" title="Paramètres du modèle">Paramètres du modèle</a></div>
+<div><a href="postreq.htm" title="">Tâches à exécuter après avoir généré le modèle</a></div>
+</div>
+</div></body>
+</html>

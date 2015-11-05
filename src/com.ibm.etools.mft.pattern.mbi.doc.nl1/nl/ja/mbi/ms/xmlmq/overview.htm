@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja-jp" xml:lang="ja-jp">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターンを使用して、多数のクライアント・アプリケーションからの要求を単一のキューで受け入れ、正しいクライアントに応答を返します。その際、トランザクション・フローおよび永続 WebSphere MQ メッセージを使用します。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターン</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<h1 class="topictitle1">「<span>WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)</span>」パターン</h1>
+<div><p class="shortdesc">「<span>WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)</span>」パターンを使用すると、1 つ以上のターゲットで処理するために、大きな XML メッセージを複数の小さなエレメントに分割できます。その際、トランザクション・フローと永続 WebSphere MQ メッセージを使用します。</p>
+</div>
+<p>多数のビジネス・トランザクションに関する情報を保管し、1 つ以上のターゲット・アプリケーションにこの情報を一括して伝送するようなアプリケーションが存在する場合には、このパターンを使用します。
+これを使用すると、メモリーを過度に使用せずに大きなメッセージを扱うことができます。</p>
+<p>ソース・アプリケーションまたはターゲット・アプリケーションが準リアルタイム・サービス呼び出しを発行/処理できない場合や、業務上の理由で情報の一括処理が必要な場合に、このパターンを使用できます。
+</p>
+<div class="image"><img src="xmlmq.gif"
+alt="パターンの動作を示す図。1 つ以上のターゲットで処理するために XML メッセージが小さなエレメントに分割される。" />
+<div class="section"><h2 class="sectiontitle">ソリューション</h2></div>
+<p>ソリューションとして、可変的なメッセージ・ツリーを使用するメッセージ・フローを実装します。これにより、反復するエレメントを処理する際にエレメントを削除できます。
+必要に応じて、部分的な構文解析を使って個々のエレメントを構文解析できます。これらのエレメントは処理が完了すると削除されるため、メモリー内のツリーはエレメント数に比例して大きくなることがありません。
+エレメントが抽出されるごとに、適切なターゲット・アプリケーションにルーティングされます。
+</p>
+<div><a href="requestflow.htm" title="要求メッセージ・フローに関する設計情報。">要求フロー</a>
+</div>
+<div><a href="routeflow.htm" title="経路サブフローに関する設計情報。">経路サブフロー</a>
+</div>
+<div><a href="errorflow.htm" title="エラー・サブフローに関する設計情報。">エラー・サブフロー</a>
+</div>
+<div><a href="logflow.htm" title="ログ・サブフローに関する設計情報。">ログ・サブフロー</a>
+</div><div>
+<a name="anchor1"></a>
+<div class="section"><h2 class="sectiontitle">関連タスク</h2></div>
+<p>このパターンの適用と使用の方法については、以下のセクションをお読みください。</p>
+<div><a href="constraints.htm" title="WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)">パターンの使用に関する制約</a></div>
+<div><a href="prereq.htm" title="「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターンを使用する前に知っておくべき事柄や、必要なリソースについての詳細。">パターンを適用する前に完了するタスク</a></div>
+
+<div><a href="parametertable.htm" title="パターン・パラメーター">パターンのパラメーター</a></div>
+<div><a href="postreq.htm" title="">パターンを生成した後に完了するタスク</a></div>
+</div>
+</div></body>
+</html>

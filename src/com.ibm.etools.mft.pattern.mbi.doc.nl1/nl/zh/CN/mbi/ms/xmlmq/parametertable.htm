@@ -1,0 +1,961 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="copyright" content="Copyright IBM Corporation 2008" />
+	<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008" />
+	<meta name="security" content="public" />
+	<meta name="Robots" content="index,follow" />
+	<meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+	<meta name="DC.Type" content="参考" />
+	<meta name="DC.Title" content="Message Splitter for WebSphere MQ: one-way (for XML) 模式的模式参数" />
+	<meta name="abstract" content="包含 Message Splitter for WebSphere MQ: one-way (for XML) 模式的模式参数详细信息的表。" />
+	<meta name="description" content="包含 Message Splitter for WebSphere MQ: one-way (for XML) 模式的模式参数详细信息的表。" />
+	<meta name="DC.Format" content="XHTML" />
+	<meta name="DC.Identifier" content="ac68090_" />
+	<meta name="DC.Language" content="zh-cn" />
+	<!-- Licensed Materials Property of IBM -->
+	<!-- US Government Users Restricted Rights -->
+	<!-- Use, duplication or disclosure restricted by -->
+	<!-- GSA ADP Schedule Contract with IBM Corp. -->
+	<link rel="stylesheet" type="text/css" href="../../../css/style2.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/bip4.css" />
+	<title>Message Splitter for WebSphere MQ: one-way (for XML) 模式的参数</title>
+	<script language="JavaScript" src="../../../help/LiveHelp.js"></script>
+ <!-- START NON-TRANSLATABLE -->
+	<script language="JavaScript">
+	<!--
+
+	function getParameter(location, name) {
+		name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+		var search = "[\\?&]" + name + "=([^&#]*)";
+		var regex = new RegExp(search);
+		var results = regex.exec(location);
+		return (results == null ? true : (results[1] == "false" ? false : true));
+	}
+	
+	function addStyleSheet() {
+		if (getParameter(window.location.href, "everything") == false) {
+			var headId = document.getElementsByTagName("head")[0];         
+			var cssNode = document.createElement("link");
+			cssNode.type = "text/css";
+			cssNode.rel = "stylesheet";
+			cssNode.href = "../../../css/patterns.css";
+			cssNode.media = "screen";
+			headId.appendChild(cssNode);
+		}
+	}
+		
+	addStyleSheet(); // Depends on the query string!
+	
+	function getElementsByStyleClass (className) {
+  		var all = document.all ? document.all :
+    	document.getElementsByTagName('*');
+  		var elements = new Array();
+  		
+  		for (var e = 0; e < all.length; e++) {
+    		if (all[e].className == className) {
+      			elements[elements.length] = all[e];
+      		}
+      	}
+ 		return elements;
+	}
+	
+	function collapseAll() {
+		var elements = getElementsByStyleClass('twisty');
+		for (var e = 0; e < elements.length; e++) {
+			changeTwisty(elements[e], 'TWISTIE.COLLAPSEALL');
+		}
+	}
+	
+	function expandAll() {
+		var elements = getElementsByStyleClass('twisty');
+		for (var e = 0; e < elements.length; e++) {
+			changeTwisty(elements[e], 'TWISTIE.EXPANDALL');
+		}
+	}
+	
+	function toggleTwisty(group) {
+		changeTwisty(group, 'TWISTIE.TOGGLE');
+	}
+
+	function changeTwisty(group, mode) {		
+		whichGroupId = group.parentNode.id;
+
+		whichGroupContainerId = whichGroupId + "Container";
+		whichGroupTwistyId = whichGroupId + "Twisty";
+		whichGroupTwistyImageId = whichGroupId + "Arrow";
+		groupContainerObj = document.getElementById(whichGroupContainerId);
+		twistyArrowContainerObj = document.getElementById(whichGroupTwistyId);
+		twistyArrowImageObj = document.getElementById(whichGroupTwistyImageId);
+		group.parentNode.style.height = "auto";
+
+		var toShow = false;
+		
+		if (mode == 'TWISTIE.TOGGLE') {
+			if (groupContainerObj.style.display == "none" || groupContainerObj.style.display == "") {
+				toShow = true;
+			} else {
+				toShow = false;
+			}
+		} else if (mode == 'TWISTIE.EXPANDALL') {
+			toShow = true;
+		}
+		
+		if (toShow) {
+			groupContainerObj.style.visibility = "visible";
+			groupContainerObj.style.display = "block";
+			twistyArrowImageObj.src = '../../../images/twisty-open.png'
+			group.parentNode.style.height = (groupContainerObj.offsetHeight + 30) +'px'; 
+	
+		} else {
+			groupContainerObj.style.visibility = "hidden";
+			groupContainerObj.style.display = "none";
+			twistyArrowImageObj.src = '../../../images/twisty-closed.png'
+		}
+	
+	}
+	//-->
+	</script>
+	
+ <!-- END NON-TRANSLATABLE -->
+</head>
+<body id="msxmlq.parametertable">
+<div id="title" class="invisible">
+	<h1 class="patterns-title"><span>Message Splitter for WebSphere MQ: one-way (for XML)</span> 模式的参数</h1>
+</div>
+<div class="box first">
+	<div class="TitleBox"><!-- --></div>
+	<div class="FooterBox"><!-- --></div>
+	<div class="TL"><!-- --></div>
+	<div class="TR"><!-- --></div>
+	<div class="BL"><!-- --></div>
+	<div class="BR"><!-- --></div>
+	<div class="ContentBox">
+		<div class="border">
+			<div class="groupBox" id="inputInformation">
+				<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="inputInformationTwisty">
+					<img src="../../../images/twisty-closed.png" 
+						name="b" id="inputInformationArrow" alt=""/>
+				</div>
+				<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">输入信息
+</div>
+				<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="inputInformationContainer">
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">模式参数</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">缺省值
+</th>
+									<th valign="top" width="*">描述
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">输入队列
+</th>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">
+										<span class="msobjpropval">IN</span></td>
+									<td valign="top" width="*">该模式参数标识从中接收 XML 消息的代理队列。</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">容器名称
+</th>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">
+										<span class="msobjpropval">*:*</span></td>
+									<td valign="top" width="*">保存要抽取的元素的入局 XML 消息中容器元素的路径。该路径使用类似 ESQL 的语法指定，但是仅包含 XML 中的元素；例如，<tt>SalesData.Invoices</tt>。
+										<p>
+										您可以指定完整的名称空间，但除非您需要区分两个名称相同但名称空间不同的容器元素，否则，可以将名称空间指定为通配符；例如，<tt>*:SalesData.*:Invoices</tt>。
+										</p>
+										<p>
+										如果使用缺省值 <span class="msobjpropval">*:*</span>，那么将假定为 XML 消息的根元素，它可以是任何名称。
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">消息元素名称</th>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible"><span class="msobjpropval">*:*</span></td>
+									<td valign="top" width="*">从入局消息抽取的元素名称。
+										<p>
+										如果使用缺省值 <span class="msobjpropval">*:*</span>，那么会接受容器的任何子代。
+										</p>
+										<p>
+										不必指定名称空间，因为假设为无论名称空间如何，指定名称的任何元素都是必需的。
+										</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="box first">
+	<div class="TitleBox"><!-- --></div>
+	<div class="FooterBox"><!-- --></div>
+	<div class="TL"><!-- --></div>
+	<div class="TR"><!-- --></div>
+	<div class="BL"><!-- --></div>
+	<div class="BR"><!-- --></div>
+	<div class="ContentBox">
+		<div class="border">
+			<div class="groupBox" id="routingInformation">
+				<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="routingInformationTwisty">
+					<img src="../../../images/twisty-closed.png" 
+						name="b" id="routingInformationArrow" alt=""/>
+				</div>
+				<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">路由
+</div>
+				<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="routingInformationContainer">
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">模式参数</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">缺省值
+</th>
+									<th valign="top" width="*">描述
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">路由
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">
+										<span class="msobjpropval">无路由</span>
+									</td>
+									<td valign="top" width="*">有效值为：<ul>
+											<li>
+												<span class="msobjpropval">无路由</span>
+											</li>
+											<li>
+												<span class="msobjpropval">指定路由</span>
+											</li>
+											<li>
+												<span class="msobjpropval">查找路由</span>
+											</li>
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="box first">
+	<div class="TitleBox"><!-- --></div>
+	<div class="FooterBox"><!-- --></div>
+	<div class="TL"><!-- --></div>
+	<div class="TR"><!-- --></div>
+	<div class="BL"><!-- --></div>
+	<div class="BR"><!-- --></div>
+	<div class="ContentBox">
+		<div class="border">
+			<div class="groupBox" id="noRoutingInformation">
+				<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="noRoutingInformationTwisty">
+					<img src="../../../images/twisty-closed.png" 
+						name="b" id="noRoutingInformationArrow" alt=""/>
+				</div>
+				<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">无路由
+</div>
+				<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="noRoutingInformationContainer">
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">模式参数</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">缺省值
+</th>
+									<th valign="top" width="*">描述
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">输出队列管理器
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">该参数定义向其发送所有输出消息的队列管理器。如果保留为空，那么缺省值为代理队列管理器。									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">输出队列
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">
+										<span class="msobjpropval">OUT</span>
+									</td>
+									<td valign="top" width="*" >此参数定义目标队列。
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="box first">
+	<div class="TitleBox"><!-- --></div>
+	<div class="FooterBox"><!-- --></div>
+	<div class="TL"><!-- --></div>
+	<div class="TR"><!-- --></div>
+	<div class="BL"><!-- --></div>
+	<div class="BR"><!-- --></div>
+	<div class="ContentBox">
+		<div class="border">
+			<div class="groupBox" id="specifyRoutingInformation">
+				<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="specifyRoutingInformationTwisty">
+					<img src="../../../images/twisty-closed.png" 
+						name="b" id="specifyRoutingInformationArrow" alt=""/>
+				</div>
+				<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">指定路由</div>
+				<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="specifyRoutingInformationContainer">
+					<p>
+					以下可选<span class="msobjprop">名称空间表</span>中的参数定义名称空间前缀和名称空间 URI，您可以使用它们在 XPATH 表达式中定义路由的键位置。如果包含行，那么必须包含这两个参数。您可以添加、编辑和删除值，以及更改值在表中的顺序。
+					</p>
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">模式参数</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">缺省值
+</th>
+									<th valign="top" width="*">描述
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">名称空间前缀
+</th>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">不适用</td>
+									<td valign="top" width="*"><span class="msobjprop">名称空间前缀</span>参数包含在路由定义的 XPath <span class="msobjprop">键位置</span>参数中。</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">名称空间 URI
+</th>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">不适用</td>
+									<td valign="top" width="*"><span class="msobjprop">名称空间 URI</span> 是与指定的前缀关联的名称空间。</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<p>
+					如果<span class="msobjprop">路由</span>参数的值为<span class="msobjpropval">指定路由</span>，那么以下<span class="msobjprop">路由表</span>中的参数定义输出目标和规则。
+					四个参数可用于定义一个路由，并且可以按照需要重复定义更多的路由。您可以添加、编辑和删除值，以及更改值在表中的顺序。
+					</p>
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">模式参数</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">缺省值
+</th>
+									<th valign="top" width="*">描述
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">键位置
+</th>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">不适用</td>
+									<td valign="top" width="*">
+								        <p>键位置是一个 XPath 表达式，该表达式定义正在传播的记录中的某个位置。例如，<tt>$Root/XMLNSC/submitPORequest/partNo</tt>。</p>
+										<p>有关要使用的表达式类型的更多信息，请参阅 IBM Integration 文档中的“Route 节点”和“使用 XPath”。</p>
+										<p>
+										如果名称空间指定于可选的<span class="msobjprop">名称空间表</span>，那么可包括这些名称空间。
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">键值
+</th>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">不适用</td>
+									<td valign="top" width="*">
+										此参数包含的值必须与入局消息中的“<span class="msobjprop">键位置</span>”字段匹配，才能选择此路由。
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">队列管理器
+</th>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">
+										该参数定义此路由目标的队列管理器。如果保留为空，那么缺省值为代理队列管理器。									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">队列
+</th>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">不适用</td>
+									<td valign="top" width="*">
+										该参数定义此路由目标的队列。
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="box first">
+	<div class="TitleBox"><!-- --></div>
+	<div class="FooterBox"><!-- --></div>
+	<div class="TL"><!-- --></div>
+	<div class="TR"><!-- --></div>
+	<div class="BL"><!-- --></div>
+	<div class="BR"><!-- --></div>
+	<div class="ContentBox">
+		<div class="border">
+			<div class="groupBox" id="lookupRoutingInformation">
+				<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="lookupRoutingInformationTwisty">
+					<img src="../../../images/twisty-closed.png"
+						name="b" id="lookupRoutingInformationArrow" alt=""></img>
+				</div>
+				<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">查找路由</div>
+				<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="lookupRoutingInformationContainer">
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">模式参数</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">缺省值
+</th>
+									<th valign="top" width="*">描述
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">路由数据源</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">不适用</td>
+									<td valign="top" width="*">
+										此参数定义可从其中选择路由的数据源。可在 <tt>ROUTING_TABLE</tt> 表中查找路由信息。									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">路由上下文
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">不适用</td>
+									<td valign="top" width="*">
+										该参数定义路由上下文，以便您可以将 <tt>ROUTING_TABLE</tt> 用于多个调解流。
+										<p>只有 <tt>ROUTING_CONTEXT</tt> 字段匹配<span class="msobjprop">路由数据上下文</span>值的行才能被选择用来进行路由查找，并添加到内存高速缓存。
+</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">键位置 1
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">不适用</td>
+									<td valign="top" width="*">
+										此参数定义如何从传播的消息元素中抽取第一个键。此参数定义为 ESQL 表达式。
+										<p>第一个键用于在数据源路由条目中的 <tt>VARIABLE1</tt> 上进行选择。
+										位置必须为 <tt>InputBody</tt> 或 <tt>InputRoot</tt> 格式。
+</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">键位置 2
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">不适用</td>
+									<td valign="top" width="*">
+										此参数定义如何从传播的消息元素中抽取可选的第二个键。此参数定义为 ESQL 字段引用表达式。
+										<p>第二个键用于在数据源路由条目中的 <tt>VARIABLE2</tt> 上进行选择。
+										位置必须为 <tt>InputBody</tt> 或 <tt>InputRoot</tt> 格式。
+</p></td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">高速缓存刷新
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">已清除</td>
+									<td valign="top" width="*">
+										如果选中该参数，那么在收到刷新消息时，将会从数据源刷新路由数据的内存高速缓存。
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">刷新队列
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">
+										<span class="msobjpropval">REFRESH</span>
+									</td>
+									<td valign="top" width="*">
+										如果选中<span class="msobjprop">高速缓存刷新</span>，那么发送到该队列的消息会触发内存路由数据刷新。
+									</td>
+								</tr>
+							</tbody>
+						</table>
+				  	</div>
+			  	</div>
+		  	</div>
+  		</div>
+	</div>
+</div>
+<div class="box first">
+	<div class="TitleBox"><!-- --></div>
+	<div class="FooterBox"><!-- --></div>
+	<div class="TL"><!-- --></div>
+	<div class="TR"><!-- --></div>
+	<div class="BL"><!-- --></div>
+	<div class="BR"><!-- --></div>
+	<div class="ContentBox">
+		<div class="border">
+			<div class="groupBox" id="log">
+				<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="logTwisty">
+					<img src="../../../images/twisty-closed.png"
+						name="b" id="logArrow" alt=""></img>
+				</div>
+				<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">记录
+</div>
+				<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="logContainer">
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">模式参数</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">缺省值
+</th>
+									<th valign="top" width="*">描述
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol" >需要记录
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">已清除</td>
+									<td valign="top" width="*">
+										此模式参数确定模式实例是否包括用于记录的代码。
+										<p>
+										如果已清除，那么不包括记录子流。
+										</p>
+										<p>
+										如果已选中，那么必须设置<span class="msobjprop">日志队列管理器</span>和<span class="msobjprop">日志队列</span>的值。
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol" >日志队列管理器
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">
+										此模式参数定义用于记录的队列管理器。
+										如果将代理队列管理器用于记录，那么此参数可保留为空。
+										<p>
+										仅当选择了<span class="msobjprop">需要记录</span>时才需要此参数。
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol" >日志队列</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible"><span class="msobjpropval">LOG</span></td>
+									<td valign="top" width="*">
+										此模式参数定义用于记录的队列。
+										<p>
+										仅当选择了<span class="msobjprop">需要记录</span>时才需要此参数。
+										</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+				  	</div>
+			  	</div>
+	  		</div>
+  		</div>
+	</div>
+</div>
+<div class="box first">
+	<div class="TitleBox"><!-- --></div>
+	<div class="FooterBox"><!-- --></div>
+	<div class="TL"><!-- --></div>
+	<div class="TR"><!-- --></div>
+	<div class="BL"><!-- --></div>
+	<div class="BR"><!-- --></div>
+	<div class="ContentBox">
+		<div class="border">
+			<div class="groupBox" id="errorInformation">
+				<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="errorInformationTwisty">
+					<img src="../../../images/twisty-closed.png"
+						name="b" id="errorInformationArrow" alt=""></img>
+				</div>
+				<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">错误处理</div>
+				<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="errorInformationContainer">
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">模式参数</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">缺省值
+</th>
+									<th valign="top" width="*">描述
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">需要错误消息
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">已选中</td>
+									<td valign="top" width="*">
+										此模式参数确定模式实例是否包括用于将错误消息放在队列中的代码。
+										<p>
+										如果已选中，那么必须设置<span class="msobjprop">错误队列管理器</span>和<span class="msobjprop">错误队列</span>的值。
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">错误队列管理器
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">
+										此模式参数定义用于错误记录的队列管理器。										<p>
+										仅当选择了<span class="msobjprop">需要错误消息</span>时才需要此参数。
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">错误队列
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible"><span class="msobjpropval">ERROR</span></td>
+									<td valign="top" width="*">
+										此模式参数定义错误消息的队列。
+										<p>
+										仅当选择了<span class="msobjprop">需要错误消息</span>时才需要此参数。
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">不正确消息操作
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">
+										<span class="msobjpropval">保存</span>
+									</td>
+									<td valign="top" width="*">
+										该参数定义在无法路由消息元素时所执行的操作。有效值为：<ul>
+											<li>
+												<span class="msobjpropval">保存</span>
+											</li>
+											<li>
+												<span class="msobjpropval">取消</span>
+											</li>
+										</ul>
+										<p>
+										如果选中<span class="msobjpropval">保存</span>，那么任何无法路由的消息元素都将置于<span class="msobjprop">不正确消息队列</span>中。
+										</p>
+										<p>
+										如果选中<span class="msobjpropval">取消</span>且无法路由消息元素，那么会回滚整个消息流。
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">不正确消息队列管理器
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">
+										此模式参数定义用于保存无法路由的消息元素的队列管理器。
+										如果保留为空，那么缺省值为代理队列管理器。										<p>
+										只有在<span class="msobjprop">不正确消息操作</span>参数值为<span class="msobjpropval">保存</span>时，该参数才是必需的。
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">不正确消息队列
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">是
+</td>
+									<td valign="top" width="*" class="invisible">
+										<span class="msobjpropval">BAD</span>
+									</td>
+									<td valign="top" width="*">
+										此模式参数定义用于保存无法路由的消息元素的队列。
+										<p>
+										只有在<span class="msobjprop">不正确消息操作</span>参数值为<span class="msobjpropval">保存</span>时，该参数才是必需的。
+										</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+				  	</div>
+			  	</div>
+	  		</div>
+  		</div>
+	</div>
+</div>
+<div class="box first">
+	<div class="TitleBox"><!-- --></div>
+	<div class="FooterBox"><!-- --></div>
+	<div class="TL"><!-- --></div>
+	<div class="TR"><!-- --></div>
+	<div class="BL"><!-- --></div>
+	<div class="BR"><!-- --></div>
+	<div class="ContentBox">
+		<div class="border">
+			<div class="groupBox" id="patternLevel">
+				<div class="twisty" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" role="menubar" id="patternLevelTwisty">
+					<img src="../../../images/twisty-closed.png"
+						name="b" id="patternLevelArrow" alt=""></img>
+				</div>
+				<div class="twistyTitle" onmouseup="toggleTwisty(this)" onkeyup="toggleTwisty(this)" tabindex="0" role="menubar">常规
+</div>
+				<div style="visibility: hidden; display: none;" class="groupBoxContainer" id="patternLevelContainer">
+					<div class="tablenoborder">
+						<table cellpadding="4" cellspacing="0" summary="" width="100%" rules="all" frame="border" border="1">
+							<thead align="left">
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">模式参数</th>
+									<th valign="top" width="*" class="invisible">M</th>
+									<th valign="top" width="*" class="invisible">C</th>
+									<th valign="top" width="*" class="invisible">缺省值
+</th>
+									<th valign="top" width="*">描述
+</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">代理模式</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible"><span class="msobjpropval">mqsi</span></td>
+									<td valign="top" width="*">
+										如果设置了此参数，那么将在指定的代理模式中创建所有的消息流和 ESQL 文件。如果未设置此参数，那么将使用缺省模式。</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">流前缀
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">
+										如果设置了此参数，那么会将此前缀添加到所有消息流名称的开始处。</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">流后缀
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">
+										如果设置了此参数，那么会将此后缀添加到所有消息流名称的结尾处。</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">队列前缀
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">
+										如果设置了此参数，那么会将此前缀添加到所有队列名称的开始处。
+										<p>
+										如果使用了缺省队列名称，那么必须设置前缀和/或后缀，以标识每个模式实例的队列名称。
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">队列后缀
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">
+										如果设置了此参数，那么会将此后缀添加到所有队列名称的结尾处。</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">简短描述
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">此描述将被添加到生成的所有消息流的<span class="msobjprop">简短描述</span>属性。</td>
+								</tr>
+								<tr>
+									<th align="left" valign="top" width="*" class="firstcol">详细描述
+</th>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">否
+</td>
+									<td valign="top" width="*" class="invisible">&nbsp;</td>
+									<td valign="top" width="*">此描述将被添加到生成的所有消息流的<span class="msobjprop">详细描述</span>属性。</td>
+								</tr>
+							</tbody>
+						</table>
+				  	</div>
+			  	</div>
+	  		</div>
+  		</div>
+	</div>
+</div>
+<div id="footnotes" class="invisible">
+		<div class="box first">
+		<div class="TitleBox"><!-- --></div>
+		<div class="FooterBox"><!-- --></div>
+		<div class="TL"><!-- --></div>
+		<div class="TR"><!-- --></div>
+		<div class="BL"><!-- --></div>
+		<div class="BR"><!-- --></div>
+		<div class="ContentBox">
+			<div class="invisible" >
+				<p class="shortdesc">
+				列出所有模式参数及其缺省值。
+				</p>
+				<p>
+				标题为 <b>M</b> 的列指示属性是否为<dfn class="term">必需的</dfn>。
+				标题为 <b>C</b> 的列指示属性是否为<dfn class="term">可配置的</dfn>，也就是说，可以在将消息流添加到代理归档 (BAR) 文件时更改值。				</p>
+				<p>
+				未表明缺省值时，缺省值是空字符串。
+				</p>
+			</div>
+			<a href="overview.htm#anchor1" title="返回" class="invisible">返回至 Message Splitter for WebSphere MQ: one-way (for XML) 模式规范</a>
+		</div>
+	</div>
+</div>
+</body>
+</html>

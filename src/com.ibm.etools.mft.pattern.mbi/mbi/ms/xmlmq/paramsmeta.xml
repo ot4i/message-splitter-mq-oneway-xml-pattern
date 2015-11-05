@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<povs xmlns:patterns="http://www.ibm.com/patterns">
+    <simplePov name="instanceName" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.instanceName"/>
+    <simplePov name="brokerSchema" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.patternLevel"/>
+    <simplePov name="flowprefix" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.patternLevel"/>
+    <simplePov name="flowsuffix" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.patternLevel"/>
+    <simplePov name="queueprefix" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.patternLevel"/>
+    <simplePov name="queuesuffix" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.patternLevel"/>
+    <simplePov name="shortDescription" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.patternLevel"/>
+    <simplePov name="longDescription" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.patternLevel"/>
+    <simplePov name="inputQueue" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.inputInformation"/>
+    <simplePov name="containerTag" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.inputInformation"/>
+    <simplePov name="elementName" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.inputInformation"/>
+    <simplePov name="routingSubflow" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.routing">
+        <master>
+            <slave id="outputQueueManager" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">routeDefault</argument>
+            </slave>
+            <slave id="outputQueue" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">routeDefault</argument>
+            </slave>
+            <slave id="badMsgAction" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">routeDefault</argument>
+                <argument type="slave">false</argument>
+            </slave>
+            <slave id="namespaceTable" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">routeRoute</argument>
+            </slave>
+            <slave id="route" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">routeRoute</argument>
+            </slave>
+            <slave id="routingDB" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">destinationCache</argument>
+            </slave>
+            <slave id="routingcontext" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">destinationCache</argument>
+            </slave>
+            <slave id="key1" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">destinationCache</argument>
+            </slave>
+            <slave id="key2" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">destinationCache</argument>
+            </slave>
+            <slave id="cacheRefresh" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">destinationCache</argument>
+            </slave>
+        </master>
+    </simplePov>
+    <patterns:complexTablePov name="route" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.selectRoutes">
+        <columnDescriptor name="keyLocation" width="100"/>
+        <columnDescriptor name="keyValue" style="left"/>
+        <columnDescriptor name="queueManager"/>
+        <columnDescriptor name="queue"/>
+    </patterns:complexTablePov>
+    <patterns:complexTablePov name="namespaceTable" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.selectRoutes">
+        <columnDescriptor name="nsPrefix" width="150"/>
+        <columnDescriptor name="nsURI" style="left"/>
+    </patterns:complexTablePov>
+    <simplePov name="routingDB" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.lookupRoutes"/>
+    <simplePov name="routingcontext" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.lookupRoutes"/>
+    <simplePov name="key1" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.lookupRoutes"/>
+    <simplePov name="key2" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.lookupRoutes"/>
+    <simplePov name="cacheRefresh" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.lookupRoutes">
+        <master>
+            <slave id="refreshQueue" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">true</argument>
+            </slave>
+        </master>
+    </simplePov>
+    <simplePov name="refreshQueue" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.lookupRoutes"/>
+    <simplePov name="outputQueueManager" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.noRouting"/>
+    <simplePov name="outputQueue" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.noRouting"/>
+    <simplePov name="loggingRequired" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.log">
+        <master>
+            <slave id="logQueueManager" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">true</argument>
+                <argument type="slave">true</argument>
+            </slave>
+            <slave id="logQueue" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">true</argument>
+                <argument type="slave">true</argument>
+            </slave>
+        </master>
+    </simplePov >
+    <simplePov name="logQueueManager" type="xsd:string" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.log"></simplePov >
+    <simplePov name="logQueue" type="xsd:string" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.log"></simplePov >
+    <simplePov name="errorMessageRequired" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.errorHandling">
+        <master>
+            <slave id="errorQueueManager" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">true</argument>
+                <argument type="slave">true</argument>
+            </slave>
+            <slave id="errorQueue" handler="com.ibm.etools.patterns.dependency.Enable">
+                <argument type="master">true</argument>
+                <argument type="slave">true</argument>
+            </slave>
+        </master>
+    </simplePov >
+    <simplePov name="errorQueueManager" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.errorHandling"></simplePov >
+    <simplePov name="errorQueue" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.errorHandling"></simplePov>
+    <simplePov name="errorQueue" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.errorHandling"/>
+    <simplePov name="badMsgAction" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.errorHandling">
+        <master>
+            <slave id="badMsgQueueManager" handler="com.ibm.etools.patterns.dependency.AndLogicEnable">
+            </slave>
+            <slave id="badMsgQueue" handler="com.ibm.etools.patterns.dependency.AndLogicEnable">
+             </slave>
+             <slave id="badMsgQueueManager" handler="com.ibm.etools.patterns.dependency.AndLogicEnable">
+                <argument type="master">Save</argument>
+                <argument type="slave">true</argument>	
+            </slave>
+            <slave id="badMsgQueue" handler="com.ibm.etools.patterns.dependency.AndLogicEnable">
+                <argument type="master">Save</argument>
+                <argument type="slave">true</argument>
+             </slave>
+        </master>
+    </simplePov>
+    <simplePov name="badMsgQueueManager" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.errorHandling"/>
+    <simplePov name="badMsgQueue" groupId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.errorHandling"/>
+    <Group id="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.instanceName" visible="false"/>
+    <Group id="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.inputInformation" visible="true" name="inputInformation"
+        description="description" expand="false"/>
+    <Group id="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.routing" visible="false" name="routing"
+        description="description" expand="true"/>
+    <Group id="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.noRouting" visible="true" name="noRouting"
+        description="description" expand="false"/>
+    <Group id="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.selectRoutes" visible="true" name="selectRoutes"
+        description="description" expand="false"/>
+    <Group id="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.lookupRoutes" visible="true" name="lookupRoutes"
+        description="description" expand="false"/>
+    <Group id="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.log" visible="true" name="log"
+        description="description" expand="false"/>
+    <Group id="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.errorHandling" visible="true" name="errorHandling"
+        description="description" expand="false"/>
+    <Group id="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.patternLevel" visible="true" name="patternLevel"
+        description ="description" expand="false"/>
+	<ReferencedProject name="_Flows"/>
+</povs>

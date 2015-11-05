@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja-jp" xml:lang="ja-jp">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="「WebSphere MQ のメッセージ相関関係子: 持続性のない要求/応答」パターンを使用して、多数のクライアント・アプリケーションからの要求を単一のキューで受け入れ、正しいクライアントに応答を返します。その際、トランザクション・フローおよび永続 WebSphere MQ メッセージを使用します。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>「WebSphere MQ のメッセージ相関関係子: 持続性のない要求/応答」パターンのログ・サブフロー</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.synchmq.overview">
+<div><h1 class="topictitle1">「<span>WebSphere MQ のメッセージ相関関係子: 持続性のない要求/応答</span>」パターンのログ・サブフロー</h1>
+<p class="shortdesc">要求フローにログ・サブフローが含まれている場合、要求のロギングはユーザー定義プロパティー	<span class="msobjprop">RequestLoggingOn</span> によって制御されます。
+応答フローにログ・サブフローが含まれている場合、応答のロギングはユーザー定義プロパティー  <span class="msobjprop">ResponseLoggingOn</span> によって制御されます。</p>
+<p><span class="msobjprop">RequestLoggingOn</span> プロパティーを選択した場合、ロギングが必要になり、ログ・サブフローが呼び出されてフローを終了します。ロギングが失敗した場合、フロー内で例外がキャッチされて情報が <span>Trace</span> ノードに書き込まれます。</p>
+<p>応答フローにロギングが含まれる場合、ログ・サブフローが呼び出されます。
+ロギングでのすべてのエラーがキャッチされ、フローが正常に終了して、フロー・トランザクションがコミットされます。</p>
+<p>ログ・メッセージは、永続	WebSphere MQ メッセージとして	<span>WebSphere MQ</span> キューに書き込まれます。
+これらのログ・メッセージは、その後、組織内の標準的な手法に従って個別に処理されます。
+</p>
+メッセージ・ログには、元のメッセージと、MQRFH2 ヘッダー内の以下の情報が入ります。
+<ul>
+<li>タイム・スタンプ</li>
+<li>ブローカー名</li>
+<li>メッセージ・フロー名
+</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="戻る">「<span>WebSphere MQ のメッセージ相関関係子: 持続性のない要求/応答</span>」パターンの仕様に戻る</a>
+</body>
+</html>

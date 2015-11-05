@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ja-jp" xml:lang="ja-jp">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターンを使用する前に知っておくべき事柄や、必要なリソースについての詳細。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターンを適用する前に完了するタスク</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.prereq">
+<h1 class="topictitle1">「<span>WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)</span>」パターンを適用する前に完了するタスク</h1>
+<div>
+<div class="section">
+<p class="shortdesc">パターン・インスタンスを作成するためにパターンを適用する前に、以下のどのタスクが必要かを判別する必要があります。必要に応じて、以下のタスクを完了します。</p>
+</div>
+<ul><li>パターン・インスタンス用の固有の名前を選択します。
+パターンを何度も使用して、多数の異なるインスタンスを作成できます。これらのインスタンスは固有の名前で区別できます。
+適切な固有の名前または意味のある固有の名前を決定できるように、パターン適用の目的を確認してください。
+</li>
+<li>例えば、XML メッセージを受け取るために、パターン・インスタンスで使用する WebSphere MQ キュー・マネージャーとキューを選択します。
+既存のキューを使用する場合、それらは記録済みである必要があります。
+新しいキュー・マネージャーおよびキューを作成する場合、これらのリソースの名前を決定する必要があります。</li>
+<li> 妥当性検査が必要かどうかを決定し、メッセージ・セットを定義するか、あるいはメッセージ・セットの名前を決定します。
+パターンが生成された後、メッセージ・セット作成タスクを完了します。</li>
+<li>このパターンで追加のキュー・マネージャーおよびキューが必要な場合は、それらを特定し、使用する名前を決定します。
+適用する必要があるポリシー、規格、または命名規則を考慮します。
+</li>
+<li>着信メッセージのロギングが必要かどうかを決定します。
+ロギングが必要な場合、ロギング・メッセージがどのキュー・マネージャーおよびキューに送付されるかを決定する必要があります。複数のメッセージ・フローで使われる一般的なログ・キューにロギング・メッセージを送信できます。または、パターン・インスタンス用の固有のキューを使用することもできます。</li>
+<li>考えられる複数の宛先が存在するかどうかを判断し、存在する場合は、使用するルーティング・アプローチを選択します。
+<ul><li>経路の数が限られていて、宛先が頻繁に変更されない場合は、「<span class="msobjprop">ルーティング</span>」パラメーターを「<span class="msobjpropval">経路の指定</span>」に設定します。
+</li>
+	<li>ターゲット経路のセットが完全には決まっていない場合、または頻繁に変更される可能性がある場合には、「<span class="msobjprop"> ルーティング</span>」パラメーターを「<span class="msobjpropval">経路の検索</span>」に設定します。
+この値を選択する場合、データ・ソースの名前が認識される必要があります。</li>
+	</ul></li>
+<li>エラー処理アプローチを決定します。正しくルーティングできないメッセージ・エレメントがあった場合に、完全なロールバックを行うか、それとも失敗したエレメントを例外処理用のキューに書き込むだけで十分かを決定します。
+</li>
+<li>パターン・インスタンスのエラー・メッセージを生成するかどうかを決定します。
+エラー・メッセージなしで、データはすべて保存されます。なぜなら、エラー・アクションにより、それを目的としたキューにエレメントが保存されるか、メッセージ・フローのロールバックが行われるためです。着信メッセージは、着信キューに返されるか、またはバックアウト・キューに送信されます。ただし、これらのキューがモニターされていない場合、通知メカニズムとしてエラー・メッセージが必要な場合があります。
+<p>パターン・インスタンスでエラー・メッセージを送信することを選択した場合、デプロイメント前にブローカー・アーカイブ (BAR) ファイルを構成することによって、この機能をオンまたはオフにすることができます。</p></li>
+</ul>
+<a href="overview.htm#anchor1" title="戻る">「WebSphere MQ のメッセージ・スプリッター: 一方向 (XML 用)」パターンの仕様に戻る</a>
+</div></body>
+</html>

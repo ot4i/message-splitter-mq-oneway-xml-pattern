@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?NLS  TYPE="org.eclipse.help.toc"?>
+<toc link_to="toc.xml#wmb_patterns_mbi" label="Utilitaire de fractionnement de message" topic="mbi/ms/overview.htm">
+    <topic label="Utilitaire de fractionnement de message" href="mbi/ms/overview.htm">
+      	<topic label="MQ unidirectionnel (XML)" href="mbi/ms/xmlmq/overview.htm">
+      		<topic label="Flux Demande" href="mbi/ms/xmlmq/requestflow.htm"/>
+      		<topic label="Flux secondaire Route" href="mbi/ms/xmlmq/routeflow.htm"/>
+      		<topic label="Flux secondaire Erreur" href="mbi/ms/xmlmq/errorflow.htm"/>
+      		<topic label="Flux secondaire Journal" href="mbi/ms/xmlmq/logflow.htm"/>
+      		<topic label="Contraintes" href="mbi/ms/xmlmq/constraints.htm"/>
+      		<topic label="Tâches à exécuter avant d'appliquer le modèle" href="mbi/ms/xmlmq/prereq.htm"/>
+      		
+      		<topic label="Paramètres" href="mbi/ms/xmlmq/parametertable.htm"/>
+      		<topic label="Tâches à exécuter après avoir généré le modèle" href="mbi/ms/xmlmq/postreq.htm"/>
+      	</topic>
+    </topic>
+</toc>

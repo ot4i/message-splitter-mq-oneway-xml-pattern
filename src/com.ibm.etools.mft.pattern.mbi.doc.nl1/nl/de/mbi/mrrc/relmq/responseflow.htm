@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de-de" xml:lang="de-de">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Verwenden Sie das Muster 'Message Correlator for WebSphere MQ: request-response with persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort mit Persistenz) für die Annahme von Anforderungen von vielen Clientanwendungen in einer einzelnen Warteschlange und für die Rückgabe von Antworten an den richtigen Client mithilfe von transaktionsorientierten Nachrichtenflüssen und persistenten WebSphere MQ-Nachrichten."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Antwortnachrichtenfluss für das Muster 'Message Correlator for WebSphere MQ: request-response with persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort mit Persistenz)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<div><h1 class="topictitle1">Antwortnachrichtenfluss für das Muster <span>Message Correlator for WebSphere MQ: request-response with persistence</span> (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort mit Persistenz)</h1>
+<p class="shortdesc">Der Antwortnachrichtenfluss wird als transaktionsorientierter Nachrichtenfluss ausgeführt.</p>
+<p>Wenn eine Antwort von der Provideranwendung empfangen wird, werden folgende Aktionen ausgeführt:</p>
+<ol>
+<li>Der Nachrichtenfluss enthält den untergeordneten Antwortprozessor-Nachrichtenfluss 'ResponseProcessor'.
+Dieser untergeordnete Nachrichtenfluss enthält nur einen <span>Passthrough</span>-Knoten, deshalb wird keine Verarbeitung ausgeführt. 
+Sie können diesen untergeordneten Nachrichtenfluss in Ihrer Musterinstanz anpassen und Ihre eigene Verarbeitung hinzufügen, ohne die Struktur des Musters zu ändern. </li>
+<li>Der gespeicherte MQMD-Header wird aus der Speicherwarteschlange abgerufen und zur
+Antwortnachricht hinzugefügt, sodass sie die richtige Adresse für die Antwort an den Requester
+enthält.</li>
+<li>Die Antwort wird an den Requester zurückgesendet.</li>
+<li>Der Nachrichtenfluss kann den untergeordneten Protokollnachrichtenfluss 'Log' enthalten.
+Sie können das Muster so konfigurieren, dass die Protokollierung eingeschlossen oder ausgeschlossen wird.
+Wenn die Protokollierung eingeschlossen wird, wird der untergeordnete Protokollnachrichtenfluss aufgerufen. 
+		</li>
+<li>Wenn die Protokollierung nicht eingeschlossen wird, wird der Nachrichtenfluss erfolgreich beendet und die Transaktion wird festgeschrieben.</li>
+<li>Der Nachrichtenfluss enthält auch einen untergeordneten Nachrichtenfluss für die Fehlerbehandlung. 
+</li>
+<li>Fehlernachrichten werden in die Fehlerwarteschlange geschrieben, sofern diese Option in der
+Musterinstanz konfiguriert ist.</li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="Zurück">Zurück zur Spezifikation des Musters <span>Message Correlator for WebSphere MQ: request-response with persistence</span> (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort mit Persistenz)</a>
+</body>
+</html>

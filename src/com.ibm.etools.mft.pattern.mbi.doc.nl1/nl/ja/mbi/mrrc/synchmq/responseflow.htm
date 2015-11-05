@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja-jp" xml:lang="ja-jp">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="「WebSphere MQ のメッセージ相関関係子: 持続性のない要求/応答」パターンを使用して、多数のクライアント・アプリケーションからの要求を単一のキューで受け入れ、正しいクライアントに応答を返します。その際、トランザクション・フローおよび永続 WebSphere MQ メッセージを使用します。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>「WebSphere MQ のメッセージ相関関係子: 持続性のない要求/応答」パターンの応答フロー</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.synchmq.overview">
+<div><h1 class="topictitle1">「<span>WebSphere MQ のメッセージ相関関係子: 持続性のない要求/応答</span>」パターンの応答フロー</h1>
+
+<p class="shortdesc">応答フローは非トランザクション・フローとして実行されます。</p>
+<p>プロバイダー・アプリケーションから応答が受信されると、以下のアクションが実行されます。</p>
+<ol>
+<li>メッセージ・フローには ResponseProcessor というサブフローが含まれています。
+このサブフローには <span>Passthrough</span> ノードだけが含まれるため、どんな処理も実行されません。
+パターン・インスタンスでこのサブフローをカスタマイズして、パターンの構造を変えずに独自の処理を追加することができます。</li>
+<li>保存済み MQMD ヘッダーがストレージ・キューから取得されて応答メッセージに追加されます。これにより、要求側への正しい応答先アドレスが応答メッセージで設定されます。</li>
+<li>応答が要求側に返されます。</li>
+<li>ロギング用のログ・サブフローをメッセージ・フローに含めることができます。
+ロギングを含めるように (または除外するように) パターンを構成できます。
+ロギングが含まれる場合、ログ・サブフローが呼び出されます。
+</li>
+<li>ロギングが含まれない場合、メッセージ・フローが正常に終了してトランザクションがコミットされます。</li>
+<li>また、メッセージ・フローには、エラー処理用のエラー・サブフローも含まれます。
+</li>
+<li>エラー・メッセージがエラー・キューに書き込まれます (ただしパターン・インスタンスでこのオプションを構成した場合)。</li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="戻る">「WebSphere MQ のメッセージ相関関係子: 持続性のない要求/応答」パターンの仕様に戻る</a>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?NLS  TYPE="org.eclipse.help.toc"?>
+<toc link_to="toc.xml#wmb_patterns_mbi" label="Corrélateur de message" topic="mbi/mrrc/overview.htm">
+    <topic label="Corrélateur de message" href="mbi/mrrc/overview.htm">
+      	<topic label="Question-réponse MQ avec persistance" href="mbi/mrrc/relmq/overview.htm">
+      		<topic label="Flux Demande" href="mbi/mrrc/relmq/requestflow.htm"/>
+      		<topic label="Flux Réponse" href="mbi/mrrc/relmq/responseflow.htm"/>
+      		<topic label="Flux secondaire Erreur" href="mbi/mrrc/relmq/errorflow.htm"/>
+      		<topic label="Flux secondaire Journal" href="mbi/mrrc/relmq/logflow.htm"/>  
+      		<topic label="Contraintes" href="mbi/mrrc/relmq/constraints.htm"/>
+      		<topic label="Tâches à exécuter avant d'appliquer le modèle" href="mbi/mrrc/relmq/prereq.htm"/>
+      		<topic label="Paramètres" href="mbi/mrrc/relmq/parametertable.htm"/>
+      		<topic label="Tâches à exécuter après avoir généré le modèle" href="mbi/mrrc/relmq/postreq.htm"/>
+      	</topic>
+	  	<topic label="Question-réponse MQ sans persistance" href="mbi/mrrc/synchmq/overview.htm">
+	  		<topic label="Flux Demande" href="mbi/mrrc/synchmq/requestflow.htm"/>
+	  		<topic label="Flux Réponse" href="mbi/mrrc/synchmq/responseflow.htm"/>
+	  		<topic label="Flux secondaire Erreur" href="mbi/mrrc/synchmq/errorflow.htm"/>
+	  		<topic label="Flux secondaire Journal" href="mbi/mrrc/synchmq/logflow.htm"/>  
+	  		<topic label="Contraintes" href="mbi/mrrc/synchmq/constraints.htm"/>
+	  		<topic label="Tâches à exécuter avant d'appliquer le modèle" href="mbi/mrrc/synchmq/prereq.htm"/>
+	  		<topic label="Paramètres" href="mbi/mrrc/synchmq/parameters.htm"/>
+	  		<topic label="Tâches à exécuter après avoir généré le modèle" href="mbi/mrrc/synchmq/postreq.htm"/>
+	  	</topic>
+	</topic>
+</toc>

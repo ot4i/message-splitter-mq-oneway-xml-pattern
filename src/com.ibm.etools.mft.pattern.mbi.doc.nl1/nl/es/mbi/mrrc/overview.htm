@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es-es" xml:lang="es-es">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="copyright" content="Copyright IBM Corporation 2008" />
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008" />
+<meta name="abstract" content="Utilice el patrón Correlacionador de respuestas a solicitudes de mensajes para aceptar solicitudes de muchas aplicaciones cliente en una sola cola y devolver respuestas al cliente correcto."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../css/ibmdita.css" />
+<link rel="stylesheet" type="text/css" href="../../css/bip4.css" />
+<title>Patrón Correlacionador de respuestas a solicitudes de mensajes</title>
+<script language="JavaScript" src="../../help/LiveHelp.js"> </script></head>
+<body id="mbi.mrrc.overview">
+<h1 class="topictitle1">Patrón <span>Correlacionador de respuestas a solicitudes de mensajes</span></h1>
+<div><p class="shortdesc">Utilice el patrón <span>Correlacionador de respuestas a solicitudes de mensajes</span> para aceptar solicitudes de muchas aplicaciones cliente en una sola cola y devolver respuestas al cliente correcto. </p>
+<div class="image"><img src="correlator.gif" alt="Un diagrama que muestra el comportamiento del patrón. Varias aplicaciones de solicitante envían mensajes al intermediario. La dirección de respuesta del solicitante se almacena antes de reenviar el mensaje al proveedor y se vuelve a almacenar cuando se recibe una respuesta del proveedor." /></div></div>
+<div class="section"><h2 class="sectiontitle">El contexto</h2>
+<p>A menudo las aplicaciones cliente tienen que acceder a una aplicación de servidor. Las
+solicitudes de las aplicaciones cliente y las respuestas del servidor pueden mediarse si
+se pasan a través de un intermediario o un Bus de servicio empresarial (ESB), como IBM
+Integration Bus. Las aplicaciones cliente especifican en su solicitud la cola de respuestas específica en la que se espera que se reciba la respuesta.</p>
+<p>Los sistemas de mensajería proporcionan un mecanismo para garantizar que el mensaje de respuesta de una interacción de solicitud-respuesta pueda direccionarse a la aplicación de origen o instancia de cliente correcta. Normalmente, esta solución implica pasar una
+'dirección de respuesta' como parte de la cabecera del mensaje. A continuación, la aplicación receptora puede extraer esta información y enviar la respuesta a la cola correspondiente. Si una mediación se ha introducido en la interacción, se establecen dos interacciones solicitud-respuesta separadas y debe asegurarse de que los mensajes de respuesta se envíen al destino correcto en cada caso.</p>
+<p>Si muchos de esos clientes interactúan con una sola aplicación servidor, normalmente sólo se utiliza una mediación. La práctica estándar es que la aplicación servidor y la mediación proporcionen una sola cola de solicitudes. La mediación también utiliza una sola cola de respuestas para procesar mensajes de respuesta de la aplicación servidor. Si cada cliente proporciona su propia cola de respuestas, es necesario un mecanismo para asegurarse de que cada mensaje de respuesta se envíe a la cola correcta.</p>
+</div>
+<div class="section"><h2 class="sectiontitle">El problema</h2>
+<p>Un flujo de IBM Integration media entre un solicitante y proveedor. El mensaje de entrada contiene la dirección del respuesta del solicitante, pero el mensaje que se reenvía a la aplicación de proveedor debe contener la dirección de respuesta del flujo de mensajes. Cuando la aplicación de proveedor responde al flujo de mensajes, tiene que emparejar cada respuesta con la solicitud enviada por el cliente. </p>
+</div>
+<div class="section"><h2 class="sectiontitle">Orientación sobre la selección</h2>
+<p>Utilice este patrón cuando haya varios solicitantes que tengan que enviar mensajes a un proveedor, recibir respuestas en una cola que sea específica del solicitante; y cuando la mediación entre solicitudes y respuestas se realice a través del intermediario. 
+Puede utilizar el patrón para pasar mensajes de cualquier tipo, y tiene la opción de validar el mensaje; por ejemplo, para proteger a los proveedores de mensajes formateados incorrectamente. </p>
+</div>
+<div class="section"><h2 class="sectiontitle">Solución</h2></div>
+<p> La información de respuesta de cada solicitud de cliente en el flujo de mediación se almacena antes de reenviar el mensaje al proveedor.
+Cuando se reciben las respuestas del proveedor, se utiliza la información de correlación para recuperar y restaurar la dirección de respuesta correcta del solicitante original y para almacenar esta información para su recuperación posterior.</p>
+</body>
+</html>

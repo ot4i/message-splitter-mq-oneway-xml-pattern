@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="使用 Message Splitter for WebSphere MQ: one-way (for XML) 型樣，可以接受單一佇列上多個用戶端應用程式的要求，以及使用交易式流程及持續 WebSphere MQ 訊息，將回應傳回給正確的用戶端。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Splitter for WebSphere MQ：one-way (for XML) 型樣
+</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<h1 class="topictitle1"><span>Message Splitter for WebSphere MQ: one-way (for XML)</span> 型樣</h1>
+<div><p class="shortdesc">使用 <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> 型樣，可以透過交易式流程及持續 WebSphere MQ 訊息，將大型 XML 訊息分割成較小元素，供一個以上的目標進行處理。</p>
+</div>
+<p>如果您的應用程式儲存多個商業交易的資訊，並將此資訊批次傳輸至一個以上的目標應用程式，請使用此型樣。
+它可以用來處理大型訊息，而不需要使用過多的記憶體。</p>
+<p>如果來源應用程式或目標應用程式無法進行或處理接近即時服務呼叫，或基於商業理由而需要批次處理資訊，則可以使用此型樣。</p>
+<div class="image"><img src="xmlmq.gif" 
+alt="顯示型樣行為的圖表。XML 訊息會分割成較小元素，供一個以上的目標進行處理。" />
+<div class="section"><h2 class="sectiontitle">解決方案</h2></div>
+<p>解決方案是實作可使用可變訊息樹狀結構的訊息流程，這樣可以在處理重複元素時刪除它們。局部剖析可視需要剖析單一元素，而且因為這些元素會在完成時加以刪除，所以可避免記憶體內樹狀結構中的元素數目直線成長。
+每一個元素在取出時會遞送至適當的目標應用程式。</p>
+<div><a href="requestflow.htm" title="「要求」訊息流程的相關設計資訊。">要求流程</a></div>
+<div><a href="routeflow.htm" title="「路徑」子流程的相關設計資訊。">路徑子流程</a></div>
+<div><a href="errorflow.htm" title="「錯誤」子流程的相關設計資訊。">錯誤子流程</a></div>
+<div><a href="logflow.htm" title="「日誌」子流程的相關設計資訊。">日誌子流程</a></div><div>
+<a name="anchor1"></a>
+<div class="section"><h2 class="sectiontitle">相關作業</h2></div>
+<p>如需如何套用及使用此型樣的相關資訊，請閱讀下節。</p>
+<div><a href="constraints.htm" title="使用 Message Splitter for WebSphere MQ: one-way (for XML) 型樣的限制">使用型樣的限制</a></div>
+<div><a href="prereq.htm" title="在您可以使用 Message Splitter for WebSphere MQ: one-way (for XML) 型樣之前，必須知道及必須具有的資源的明細。">套用型樣之前要完成的作業</a></div>
+
+<div><a href="parametertable.htm" title="型樣參數">型樣的參數</a></div>
+<div><a href="postreq.htm" title="">產生型樣之後要完成的作業</a></div>
+</div>
+</div></body>
+</html>

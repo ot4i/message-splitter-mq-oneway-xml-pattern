@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de-de" xml:lang="de-de">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Verwenden Sie das Muster 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ: unidirektional (bei XML)) für die Annahme von Anforderungen von vielen Clientanwendungen in einer einzelnen Warteschlange und für die Rückgabe von Antworten an den richtigen Client mithilfe von transaktionsorientierten Nachrichtenflüssen und persistenten WebSphere MQ-Nachrichten."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Untergeordneter Fehlernachrichtenfluss für das Muster 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ: unidirektional (bei XML))</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.errorflow">
+<div><h1 class="topictitle1">Untergeordneter Fehlernachrichtenfluss für das Muster <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML))</h1>
+<div>
+<p class="shortdesc">Bei einem Fehler können Sie die Fehlernachricht über den untergeordneten Fehlernachrichtenfluss weiterleiten.</p>
+<p>Führen Sie zum Weiterleiten der Fehlernachricht eine der folgenden Aktionen aus:</p>
+<ul>
+<li>Alle Nachrichtenelemente speichern, die nicht in eine separate Warteschlange für fehlerhafte Nachrichten weitergeleitet werden können, und alle anderen Elemente weiter verarbeiten</li>
+<li>Transaktion abbrechen und die Eingabenachricht zurücksetzen</li>
+</ul>
+</div>
+<p>Bei einem Fehler im Routing-Nachrichtenfluss wird die weitergegebene Nachricht mit nur einem
+Nachrichtenelement an das Fehlerterminal des untergeordneten Routing-Nachrichtenflusses übertragen. Der Fehlerstatus wird in <span class="filepath">Environment.PatternVariables.FailureStatus</span> aufgezeichnet, und die Anzahl der fehlerhaften Elemente wird erhöht.</p>
+<p>Wählen Sie eine <span class="msobjprop">Aktion für fehlerhafte Nachrichten</span> aus, um die
+Aktion festzulegen, die nach einem Fehler ausgeführt werden soll:</p>
+<ul>
+<li><span class="msobjpropval">Speichern</span>
+<ol>
+<li>Der Failure-Knoten wird mit einem MQOutput-Knoten verbunden und das Nachrichtenelement wird in die Warteschlange für fehlerhafte Nachrichten geschrieben. Die Steuerung wird wieder an die Verarbeitungsschleife des Compute-Knotens des Nachrichtenverteilers übergeben und die Verarbeitung wird fortgesetzt.</li>
+<li>Wenn alle Datensätze verarbeitet sind, übergibt der Compute-Knoten des Nachrichtenverteilers
+die Steuerung an den untergeordneten Fehlernachrichtenfluss, der überprüft, ob fehlerhafte
+Nachrichtenelemente gespeichert sind. Wenn fehlerhafte Nachrichtenelemente gespeichert und
+Fehlernachrichten erforderlich sind, wird eine Fehlernachricht erstellt, die die Anzahl der
+fehlerhaften Elemente angibt.</li>
+</ol>
+</li>
+<li><span class="msobjpropval">Abbrechen</span>
+<ol>
+<li>Der Failure-Knoten des untergeordneten Routing-Nachrichtenflusses wird nicht verbunden und
+Routing-Fehler werden an den Compute-Knoten des Nachrichtenverteilers zurückgegeben, der den
+Fehlerstatus ermittelt und eine Ausnahmebedingung generiert. Ausnahmebedingungen, bei denen es sich
+nicht um Routing-Fehler handelt, haben zur Folge, dass die Aktion
+<span class="msobjpropval">Abbrechen</span> ausgeführt wird. Alle diese Ausnahmebedingungen werden
+als nicht wiederherstellbare Fehler betrachtet, d. h., eine Weiterverarbeitung wäre nicht ratsam.</li>
+<li>Wenn Fehlernachrichten erforderlich sind,	wird eine Fehlernachricht erzeugt und in die
+Fehlerwarteschlange geschrieben.
+Details zur
+Ausnahmebedingung werden als XML-Nachricht geschrieben. Zu den Details gehören:
+	<ul>
+	<li>Brokername</li>
+	<li>Nachrichtenflussname</li>
+	<li>Zeitmarke</li>
+	<li>Zusammenfassung der Ausnahmedaten</li>
+	</ul>
+</li>
+<li>Ein Benutzerfehler wird generiert, durch den die Eingabenachricht und alle bereits
+verarbeiteten Nachrichtenelemente zurückgesetzt werden. In diesem Fall muss innerhalb der WebSphere
+MQ-Infrastruktur ein Zurücksetzungsmechanismus aktiv sein, der zum Beispiel eine
+Zurücksetzungswarteschlange verwendet.
+<p>Rücksetzungen finden nicht für Ausnahmebedingungen statt,
+die auftreten, nachdem alle Nachrichtenelemente erfolgreich geschrieben wurden. Dieser Typ von
+Ausnahmebedingung kann in Fehlernachrichten oder Protokollnachrichten vorkommen.</p></li>
+</ol>
+</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="Back">Zurück zur Spezifikation des Musters 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML))</a>
+</body></html>

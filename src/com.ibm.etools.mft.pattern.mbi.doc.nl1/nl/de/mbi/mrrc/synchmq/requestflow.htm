@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de-de" xml:lang="de-de">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Verwenden Sie das Muster 'Message Correlator for WebSphere MQ: request-response without persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz) für die Annahme von Anforderungen von vielen Clientanwendungen in einer einzelnen Warteschlange und für die Rückgabe von Antworten an den richtigen Client mithilfe von transaktionsorientierten Nachrichtenflüssen und persistenten WebSphere MQ-Nachrichten."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Anforderungsnachrichtenfluss für das Muster 'Message Correlator for WebSphere MQ: request-response without persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.synchmq.overview">
+<div><h1 class="topictitle1">Anforderungsnachrichtenfluss für das Muster <span>Message Correlator
+for WebSphere MQ: request-response without persistence</span> (Nachrichtenkorrelator für WebSphere
+MQ: Anforderung-Antwort ohne Persistenz)</h1>
+<p class="shortdesc">Der Anforderungsnachrichtenfluss wird als transaktionsorientierter Nachrichtenfluss ausgeführt.</p>
+<p> Nachrichten, die vom Anforderungsnachrichtenfluss empfangen werden, werden wie folgt verarbeitet:</p>
+<ol>
+<li>Wenn eine Nachricht vom Nachrichtenfluss empfangen wird, wird eine Überprüfung durchgeführt, um sicherzustellen, dass der MQMD-Header eine Empfangswarteschlange für Antworten enthält.
+Wenn dieses Feld leer ist, wird ein Fehler erzeugt.</li>
+<li>Wenn eine Nachricht vom Nachrichtenfluss empfangen wird, wird eine Kopie des MQMD-Nachrichtenheaders erstellt und geändert, indem als Korrelations-ID die Nachrichten-ID festgelegt wird. Der Inhalt des Nachrichtenheaders wird in einer Warteschlange gespeichert, um die ursprüngliche Antwortadresse beizubehalten. Durch die Festlegung der Korrelations-ID im gespeicherten Header wird gewährleistet, dass der Wert korrekt ist, wenn der Header abgerufen wird und zur Antwort an den Requester hinzugefügt wird, und es wird der Requesterabruf über die Korrelations-ID ermöglicht. 
+</li>
+<li>Der Nachrichtenfluss enthält den untergeordneten Anforderungsprozessor-Nachrichtenfluss 'RequestProcessor'.
+Dieser untergeordnete Nachrichtenfluss enthält nur einen <span>Passthrough</span>-Knoten, deshalb wird keine Verarbeitung ausgeführt. 
+Sie können diesen untergeordneten Nachrichtenfluss in Ihrer Musterinstanz anpassen und Ihre eigene Verarbeitung hinzufügen, ohne die Struktur des Musters zu ändern. </li>
+<li>Der MQMD-Header der eingehenden Nachricht wird dahingehend geändert, dass der Ziel-WS-Manager für Antwortnachrichten und die Empfangswarteschlange für Antworten des Requesters durch die Adresse des Empfangsknotens des Antwortnachrichtenflusses ersetzt wird.</li>
+<li>Die Nachricht wird an die Provideranwendung weitergeleitet.</li>
+<li>Der Nachrichtenfluss kann den untergeordneten Protokollnachrichtenfluss 'Log' enthalten.
+Sie können das Muster so konfigurieren, dass der untergeordnete Protokollnachrichtenfluss eingeschlossen oder ausgeschlossen wird.
+</li>
+	<li>Wenn keine Protokollierung erforderlich ist, wird der Nachrichtenfluss erfolgreich beendet, nachdem die Nachricht in die Providerwarteschlange geschrieben wurde, und die Transaktion wird festgeschrieben.</li>
+	<li>Der Nachrichtenfluss enthält auch den untergeordneten Fehlernachrichtenfluss 'Error' für die Fehlerbehandlung.
+</li>
+<li>Wenn Zeitlimitüberschreitungen in der Requesteranwendung, in Nachrichtenflüssen oder in der Provideranwendung auftreten, haben die nicht persistenten Nachrichten das zulässige Zeitlimit überschritten. </li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="Zurück">Zurück zur Spezifikation des Musters 'Message Correlator for WebSphere MQ: request-response without persistence' (Nachrichtenkorrelator für WebSphere MQ: Anforderung-Antwort ohne Persistenz)</a>
+</body>
+</html>

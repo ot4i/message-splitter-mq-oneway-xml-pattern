@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-tw" xml:lang="zh-tw">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="在您可以使用 Message Splitter for WebSphere MQ: one-way (for XML) 型樣之前，必須知道及必須具有的資源的明細"/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>使用 Message Splitter for WebSphere MQ: one-way (for XML) 型樣的限制</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.constraints">
+<h1 class="topictitle1">使用 <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> 型樣的限制</h1>
+<p class="shortdesc">當您使用此型樣時，將適用一些限制。</p>
+<p>只有在可符合下列所有限制時，才能使用 <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> 型樣：</p>
+<ul>
+<li>您的要求者及提供者應用程式使用 WebSphere MQ 作為傳輸機制。</li>
+<li>送入訊息是形式完整的 XML；亦即，可剖析但不需要驗證的 XML。</li>
+<li>訊息符合預期的結構。每一則輸入訊息都包含：
+<ul>
+	<li>含括封套，即透過型樣參數選擇性識別的名稱</li>
+	<li>一系列重複的結構，具有透過型樣參數選擇性識別的名稱</li>
+	</ul></li>
+	
+<li>您可以使用下列一種方法來自動處理送入訊息：
+<ul>
+	<li>所有元素都會寫入輸出或不正確訊息佇列</li>
+	<li>不會寫入任何元素，並會回復訊息</li>
+	</ul>
+</li>
+</ul>
+<p>假設此型樣是用來配送不得遺失的資訊。
+因此，此訊息流程會以交易形式執行，並且使用持續訊息，而這對效能有重大影響，但這是必要項目，因為不得遺失資料。</p>
+<p>假設重複元素的數目小於輸出佇列上容許的未確定訊息數目上限。如果預期會有大量的重複項目，則可能需要調整此限制。</p>
+
+<a href="overview.htm#anchor1" title="上一步">回到 Message Splitter for WebSphere MQ: one-way (for XML) 型樣規格</a>
+</body>
+</html>

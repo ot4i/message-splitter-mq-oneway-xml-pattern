@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="fr-fr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Informations dont vous devez avoir connaissance et ressources dont vous devez disposer pour pouvoir utiliser le modèle Corrélateur de message pour WebSphere MQ : question-réponse sans persistance."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Tâches à exécuter avant d'appliquer le modèle Corrélateur de message pour WebSphere MQ : question-réponse sans persistance</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.synchmq.prereq">
+<h1 class="topictitle1">Tâches à exécuter avant d'appliquer le modèle <span>Corrélateur de message pour WebSphere MQ : question-réponse sans persistance</span></h1>
+<div><div class="section">
+<p class="shortdesc">Avant d'appliquer le modèle pour produire une instance du modèle, vous devez déterminer les tâches à exécuter parmi les tâches suivantes. Si nécessaire, exécutez les tâches suivantes :</p>
+</div>
+<ul>
+<li>Sélectionnez un nom unique pour l'instance du modèle.
+Vous pouvez utiliser le modèle plusieurs fois et créer plusieurs instances différentes, qui se distinguent par leur nom unique. Identifiez l'objectif de l'instance de modèle, afin de déterminer un nom unique approprié ou significatif.</li>
+<li>Sélectionnez les gestionnaires de files d'attente et les files d'attente <span>WebSphere MQ</span> que doit utiliser l'instance du modèle, par exemple, pour accéder à l'application fournisseur. Si vous utilisez des files d'attente existantes, vous devez les enregistrer. 
+Si vous voulez créer des gestionnaires de files d'attente et des files d'attente, vous devez définir le nom de ces ressources.</li>
+<li>Identifiez les gestionnaires de files d'attente et les files d'attente supplémentaires nécessaires aux modèles et définissez les noms à utiliser. Tenez compte des règles, des normes ou des conventions de dénomination qui s'appliquent.</li>
+<li>Déterminez si la validation des messages de demande entrants ou des messages de réponse du fournisseur est nécessaire. 
+Si les applications demandeur et fournisseur génèrent des messages corrects, la validation n'est pas nécessaire. 
+Si vous voulez valider les messages, vous devez déjà disposer d'un ensemble de messages pour fournir les définitions de message ou créer un ensemble de messages pour fournir ces définitions de message.</li>
+<li>Déterminez s'il est nécessaire de consigner les messages de demande, les messages de réponse ou les messages de demande et de réponse. 
+Si vous devez les consigner, vous devez définir le gestionnaire de files d'attente et la file d'attente auxquels les messages de consignation sont envoyés.
+Vous pouvez envoyer les messages de consignation vers une file d'attente de consignation générale utilisée par plusieurs flux de messages ou utiliser une file d'attente spécifique pour l'instance du modèle.</li>
+<li>Déterminez si vous voulez générer des messages d'erreur pour l'instance du modèle.  
+Si l'instance du modèle gère les mises à jour, utilisez la gestion des erreurs pour ne pas perdre des données. 
+Vous pouvez envoyer les messages d'erreur vers une file d'attente des erreurs générale utilisée par plusieurs flux de messages ou utiliser une file d'attente spécifique pour l'instance du modèle. Si vous décider d'envoyer les messages d'erreur dans l'instance du modèle, vous pouvez activer ou désactiver cette fonction en configurant le fichier archive de courtier (BAR) avant le déploiement.</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="Retour">Spécification du modèle Corrélateur de message pour WebSphere MQ : question-réponse sans persistance </a>
+</body>
+</html>

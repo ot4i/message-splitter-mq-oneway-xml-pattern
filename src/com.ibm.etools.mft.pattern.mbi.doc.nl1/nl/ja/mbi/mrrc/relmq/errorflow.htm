@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja-jp" xml:lang="ja-jp">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="「WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答」パターンを使用して、多数のクライアント・アプリケーションからの要求を 1 つのキューで受け入れ、正しいクライアントに応答を返します。その際、トランザクション・フローと永続的 WebSphere MQ メッセージを使用します。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>「WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答」パターンのエラー・サブフロー</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<div><h1 class="topictitle1">「<span>WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答</span>」パターンのエラー・サブフロー</h1></div>
+<p class="shortdesc">Request メッセージ・フローの処理中にエラーがキャッチされた場合、Error サブフローが呼び出されます。</p>
+<p>エラー・メッセージを含めるようにパターン・パラメーターを構成し、ユーザー定義プロパティー <span class="msobjprop">ErrorLoggingOn</span> を選択している場合には、以下のアクションが実行されます。</p>
+<ol>
+<li>要求の処理中にエラーが発生した場合、メッセージが正常に送信されなかったことを示すエラー応答がクライアントに返されます。<p>応答の処理中にエラーが発生した場合、応答アドレスが不明なためエラー応答が返されません。</p>
+<p>以下のメッセージは、標準的な XML エラー・メッセージの例です。</p>
+<pre>&lt;Error&gt;&lt;Status&gt;-1&lt;/Status&gt;&lt;Text&gt;Failed to send message&lt;/Text&gt;&lt;/Error&gt;</pre>
+</li>
+<li>エラー・メッセージが作成され、エラー・キューに書き込まれます。例外の詳細は XML メッセージとして書き込まれます。この詳細には、以下の内容が含まれます。<ul>
+	<li>ブローカー名</li>
+	<li>フロー名</li>
+	<li>タイム・スタンプ</li>
+	<li>例外データの要約</li>
+	</ul>
+</li>
+<li>データを保持するために、メッセージ・フローがロールバックされます。</li>
+<li>エラーの検出および修正に必要な情報が、エラー・メッセージ内に含められます。</li>
+</ol>
+
+<a href="overview.htm#anchor1" title="戻る">「WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答」パターンの仕様に戻る</a>
+</body>
+</html>

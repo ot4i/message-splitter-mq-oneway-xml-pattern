@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="fr-fr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Utilisation du Corrélateur  de message pour WebSphere MQ :  modèle de demande-réponse sans persistance afin d'accepter les demandes d'un grand nombre d'applications client dans une seule file d'attente et répondre au client approprié via des flux transactionnels et des messages WebSphere MQ persistants."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Flux secondaire Réponse pour le modèle Corrélateur de message pour WebSphere MQ : question-réponse sans persistance</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.synchmq.overview">
+<div><h1 class="topictitle1">Flux Réponse pour le modèle <span>Corrélateur de message pour WebSphere MQ : question-réponse sans persistance</span></h1>
+
+<p class="shortdesc">Le flux Réponse est exécuté sous la forme d'un flux non transactionnel.</p>
+<p>Lorsqu'une réponse est reçue de l'application fournisseur, les actions suivantes sont exécutées :</p>
+<ol>
+<li>Le flux de messages inclut le flux secondaire Processeur de réponses.
+Ce flux contient uniquement un noeud <span>Passthrough</span> ; par conséquent aucun traitement n'est exécuté. 
+Vous pouvez personnaliser le flux secondaire dans l'instance du modèle pour ajouter votre propre traitement sans changer la structure du modèle. </li>
+<li>L'en-tête MQMD enregistré est extrait de la file d'attente de stockage et ajouté au message de réponse pour qu'il dispose de l'adresse appropriée pour répondre au demandeur.</li>
+<li>La réponse est envoyée au demandeur.</li>
+<li>Le flux de messages peut contenir un flux secondaire pour la consignation, appelé Journal.
+Vous pouvez configurer le modèle pour inclure ou exclure la consignation.
+Si la consignation est incluse, le flux secondaire Journal est appelé.</li>
+<li>Si la consignation est exclue, le flux de messages se termine correctement et la transaction est validée.</li>
+<li>Le flux de messages peut également contenir un flux secondaire, appelé Erreur, pour traiter les erreurs. 
+</li>
+<li>Les messages d'erreur sont écrits dans la file d'attente des erreurs si vous avez défini cette option pour l'instance du modèle.</li>
+</ol>
+</div>
+<a href="overview.htm#anchor1" title="Retour">Spécification du modèle Corrélateur de message pour WebSphere MQ : question-réponse sans persistance </a>
+</body>
+</html>

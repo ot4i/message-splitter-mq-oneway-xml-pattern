@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="fr-fr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Informations dont vous devez avoir connaissance et ressources dont vous devez disposer pour pouvoir utiliser le modèle d'utilitaire de Fractionnement de message WebSphere MQ : unidirectionnel (pour XML)."/>
+<meta name="description" content=""/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Contraintes sur l'utilisation du modèle d'utilitaire de Fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.constraints">
+<h1 class="topictitle1">Contraintes sur l'utilisation du modèle <span>d'utilitaire de Fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)</span></h1>
+<p class="shortdesc">Il existe certaines contraintes lorsque vous utilisez le modèle.</p>
+<p>Vous ne pouvez utiliser le modèle
+<span>Utilitaire de fractionnement de message Message WebSphere MQ : unidirectionnel (pour XML)</span> que si toutes les contraintes suivantes sont respectées :</p>
+<ul>
+<li>Vos applications demandeur et fournisseur doivent utiliser WebSphere MQ comme mécanisme de transport.</li>
+<li>Les messages entrants doivent avoir le format XML adéquat, à savoir que le code XML analyse, mais ne valide pas nécessairement.</li>
+<li>Les messages doivent être conformes à la structure attendue. Chaque message d'entrée contient :
+	<ul>
+	<li>Une enveloppe fermée dont le nom est identifié facultativement par un paramètre du modèle.</li>
+	<li>Une série de structures répétées, les noms étant identifiés facultativement par un paramètre du modèle.</li>
+	</ul></li>
+	
+<li>Le message entrant doit être traité de manière atomique d'une des deux manières suivantes :
+	<ul>
+	<li>Tous les éléments sont écrits sur la file d'attente de sortie ou des messages erronés</li>
+	<li>Aucun élément n'est écrit et le message est annulé</li>
+	</ul>
+</li>
+</ul>
+<p>Ce modèle est conçu pour distribuer de informations qui ne doivent pas être perdues.
+Par conséquent, le flux de messages est exécuté sous la forme d'une transaction et utilise des messages persistants, ce qui a un impact significatif sur les performances, mais est nécessaire, car aucune donnée ne doit être perdue.</p>
+<p>Le nombre d'éléments répétés doit être inférieur au nombre maximum de messages non validés autorisés dans la file d'attente de sortie. Il peut être nécessaire d'ajuster cette limite si de nombreuses répétitions sont prévues.</p>
+
+<a href="overview.htm#anchor1" title="Retour">Spécification du modèle d'utilitaire de Fractionnement de message pour WebSphere MQ : unidirectionnel (pour XML)</a>
+</body>
+</html>

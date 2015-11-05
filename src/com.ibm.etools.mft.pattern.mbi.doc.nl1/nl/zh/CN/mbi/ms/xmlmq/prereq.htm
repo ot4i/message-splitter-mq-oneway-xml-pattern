@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-cn" xml:lang="zh-cn">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="有关使用 Message Splitter for WebSphere MQ: one-way (for XML) 模式之前必须了解的内容和必须具备的资源的详细信息。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>应用 Message Splitter for WebSphere MQ: one-way (for XML) 模式之前要完成的任务</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.prereq">
+<h1 class="topictitle1">应用 <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> 模式之前要完成的任务</h1>
+<div>
+<div class="section">
+<p class="shortdesc">应用模式以生成模式实例之前，您必须确定需要执行以下哪些任务。如果需要，请完成以下任务：</p>
+</div>
+<ul><li>为模式实例选择唯一的名称。您可以多次使用该模式并创建多个不同的实例，这些实例可通过它们的唯一名称进行区分。识别模式应用程序的用途，以便确定合适或有意义的唯一名称。</li>
+<li>选择想要模式实例使用（例如，用来接收 XML 消息）的 WebSphere MQ 队列管理器和队列。如果您使用现有队列，那么必须记录。如果想要创建新队列管理器和队列，必须确定这些资源的名称。</li>
+<li> 确定是否需要验证，并定义消息集或确定消息集名称。生成模式后，请完成消息集创建任务。</li>
+<li>标识此模式所需的任何其他队列管理器和队列，并确定想要使用的名称。考虑必须应用的任何策略、标准或命名约定。</li>
+<li>确定是否需要入局消息记录。
+如果需要记录，那么必须确定将记录消息发送到哪个队列管理器和队列。可以将记录消息发送到由多个消息流使用的常规日志队列，也可以使用特定于模式实例的队列。</li>
+<li>确定是否存在多个可能的目标，如果存在，请选择要使用的路由方法。<ul><li>如果路由数量有限且目标不会频繁更改，那么请将“<span class="msobjprop">路由</span>”参数设置为“<span class="msobjpropval">指定路由</span>”。</li>
+	<li>如果目标路由集未完全确定或可能频繁更改，那么请将“<span class="msobjprop">路由</span>”参数设置为“<span class="msobjpropval">查找路由</span>”。如果选择此值，那么数据源名称必须是已知的。</li>
+	</ul></li>
+<li>确定错误处理方法。确定是否希望无法正确路由的消息元素引发完全回滚，或者是否能够将失败的元素写入队列以进行异常处理。</li>
+<li>确定是否要为模式实例生成错误消息。
+将保留所有数据，但不保留错误消息，因为错误操作或者为此用途在队列上保留元素，或者回滚消息流。入局消息将返回到入局队列，或者发送到回退队列。然而，如果未监视这些队列，那么可能需要错误消息作为通知机制。
+<p>如果选择在模式实例中发送错误消息，那么可以在部署前配置代理归档 (BAR) 文件来开启或关闭此功能。</p></li>
+</ul>
+<a href="overview.htm#anchor1" title="返回">返回至 Message Splitter for WebSphere MQ: one-way (for XML) 模式规范</a>
+</div></body>
+</html>

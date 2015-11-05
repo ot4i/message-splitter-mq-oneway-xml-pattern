@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja-jp" xml:lang="ja-jp">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="「WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答」パターンを使用して、多数のクライアント・アプリケーションからの要求を 1 つのキューで受け入れ、正しいクライアントに応答を返します。その際、トランザクション・フローと永続的 WebSphere MQ メッセージを使用します。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>「WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答」パターン</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<h1 class="topictitle1">「<span>WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答</span>」パターン</h1>
+<div><p class="shortdesc">「<span>WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答</span>」パターンを使用して、多数のクライアント・アプリケーションからの要求を 1 つのキューで受け入れ、正しいクライアントに応答を返します。その際、トランザクション・フローと永続的 WebSphere MQ メッセージを使用します。</p>
+<p>このパターンは永続メッセージおよびトランザクション・フローとの信頼される通信を使用するため、データを喪失すべきでないような更新がメッセージ交換の結果として発生する場合に、これを使用するのが適切です。</p>
+</div><div class="image"><img src="relmq.gif"
+alt="パターンの動作を示す図。多数の要求側アプリケーションがブローカーにメッセージを送ります。メッセージがプロバイダーに転送される前に要求側の応答アドレスが保管され、プロバイダーから応答を受け取ったときに復元されます。" />
+<div class="section"><h2 class="sectiontitle">ソリューション</h2></div> 
+<p>ソリューションとしてメディエーション・フローを実装します。その中で、(メッセージ ID で索引付けされた) 各要求メッセージの MQMD ヘッダー情報を保管し、その後、メッセージとそのすべてのヘッダーをプロバイダー・アプリケーションに転送します。
+プロバイダーに対するこの要求メッセージは、メッセージ・ヘッダーの応答先部分でブローカーの応答キューを指定します。
+標準的な手法に従い、プロバイダー・アプリケーションは、要求メッセージのメッセージ ID を応答メッセージの相関 ID フィールドにコピーすることが想定されています。
+応答メッセージを受け取ると、ブローカー・フローは相関 ID を使って保管済み MQMD ヘッダーを取り出し、応答アドレスを使って着信 MQMD ヘッダーを更新します。
+このアクションにより、要求側からの最初の返信先アドレスが確実に使用されます。
+その後、応答メッセージとそのすべてのヘッダーが要求側に返されます。
+</p>
+<p>このパターンのメッセージ・フローの設計については、以下のセクションをお読みください。
+</p>
+<div>		<a href="requestflow.htm" title="要求メッセージ・フローに関する設計情報。">要求フロー
+</a>
+</div>
+<div>		<a href="responseflow.htm" title="応答メッセージ・フローに関する設計情報。">応答フロー
+</a>
+</div>
+<div>		<a href="errorflow.htm" title="エラー・サブフローに関する設計情報。">エラー・サブフロー
+</a>
+</div>
+<div>		<a href="logflow.htm" title="ログ・サブフローに関する設計情報。">ログ・サブフロー
+</a>
+</div>
+<div>
+<a name="anchor1"></a>
+<div class="section"><h2 class="sectiontitle">関連タスク</h2></div>
+<p>このパターンの適用と使用の方法については、以下のセクションをお読みください。</p>
+<div><a href="constraints.htm" title="WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答">パターンの使用に関する制約</a>
+</div>
+<div><a href="prereq.htm" title="「WebSphere MQ のメッセージ相関関係子: 持続性のある要求/応答」を使用する前に知っておくべき事柄や、必要なリソースについての詳細。">パターンを適用する前に完了するタスク</a></div>
+
+<div><a href="parametertable.htm" title="パターンの適用とパラメーターの構成">パターンのパラメーター</a>
+</div>
+<div><a href="postreq.htm" title="">パターンを生成した後に完了するタスク</a></div>
+</div>
+</div></body>
+</html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns="com.ibm.etools.mft.pattern.mbi.mrrc.relmq" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="com.ibm.etools.mft.pattern.mbi.mrrc.relmq">
+	
+	<xsd:simpleType name="validationEnum">
+    	<xsd:restriction base="xsd:token">
+    		<xsd:enumeration value="None"/> 
+			<xsd:enumeration value="content"/>    		    		
+			<xsd:enumeration value="contentAndValue"/>    		
+  		</xsd:restriction>    
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="mdtypeEnum">
+    	<xsd:restriction base="xsd:token">
+    		<xsd:enumeration value="XML"/> 
+			<xsd:enumeration value="binaryData"/>    		    		
+			<xsd:enumeration value="textData"/>    		
+  		</xsd:restriction>    
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="responseTimeEnum">
+      <xsd:union>
+        <xsd:simpleType>
+    		<xsd:restriction base="xsd:token">
+    		<xsd:enumeration value="MQEI_UNLIMITED"/> 
+	  	</xsd:restriction>    
+        </xsd:simpleType>
+        <xsd:simpleType>
+        	<xsd:restriction base="xsd:positiveInteger">
+        	</xsd:restriction>
+        </xsd:simpleType>
+      </xsd:union>
+	</xsd:simpleType>
+
+	<xsd:element name="root" type="Root"/>
+
+	<xsd:complexType name="Root">
+		<xsd:sequence>
+		    <!-- Pattern level -->
+			<xsd:element default="default" maxOccurs="1" minOccurs="1" name="instanceName" type="xsd:string"/>
+		
+		    <!-- Input Information -->			
+			<xsd:element default="IN" minOccurs="1" name="readRequestQueue" type="xsd:string"/>
+			<xsd:element default="None" maxOccurs="1" minOccurs="0" name="validationofRequest" type="validationEnum"/>
+            <xsd:element default="XML" maxOccurs="1" minOccurs="0" name="inputDataType" type="mdtypeEnum"/>
+			<xsd:element maxOccurs="1" minOccurs="1" name="inputMessageSet" type="xsd:string"/>			
+			<xsd:element maxOccurs="1" minOccurs="1" name="inputMessageType" type="xsd:string"/>			
+			<xsd:element maxOccurs="1" minOccurs="1" name="inputMessageFormat" type="xsd:string"/>			
+			
+		    <!-- Response Information -->	
+   			<xsd:element default="RESPONSE" minOccurs="1" name="responseQueue" type="xsd:string"/>
+			<xsd:element default="None" maxOccurs="1" minOccurs="0" name="validationofResponse" type="validationEnum"/>
+			<xsd:element default="XML" maxOccurs="1" minOccurs="0" name="responseDataType" type="mdtypeEnum"/>
+			<xsd:element maxOccurs="1" minOccurs="1" name="responseMessageSet" type="xsd:string"/>			
+			<xsd:element maxOccurs="1" minOccurs="1" name="responseMessageType" type="xsd:string"/>			
+			<xsd:element maxOccurs="1" minOccurs="1" name="responseMessageFormat" type="xsd:string"/>	    
+		    
+		    <!-- Provider Information -->			
+			<xsd:element default="" minOccurs="0" name="providerRequestQueueManager" type="xsd:string"/>
+			<xsd:element default="PROVIDER" minOccurs="1" name="providerRequestQueue" type="xsd:string"/>			
+			<xsd:element default="MQEI_UNLIMITED" minOccurs="1" name="maximumResponseTime" type="responseTimeEnum"/>
+			<xsd:element default="STORE" minOccurs="1" name="storeQueue" type="xsd:string"/>			
+			
+		    <!-- Logging and Error Handling -->
+			<xsd:element default="false" minOccurs="1" name="loggingRequired" type="xsd:boolean"/>			
+			<xsd:element default="" maxOccurs="1" minOccurs="0" name="logQueueManager" type="xsd:string"/>			
+			<xsd:element default="LOG" maxOccurs="1" minOccurs="1" name="logQueue" type="xsd:string"/>
+			<xsd:element default="true" minOccurs="1" name="errorMessageRequired" type="xsd:boolean"/>			
+			<xsd:element default="" maxOccurs="1" minOccurs="0" name="errorQueueManager" type="xsd:string"/>
+			<xsd:element default="ERROR" maxOccurs="1" minOccurs="1" name="errorQueue" type="xsd:string"/>		
+			
+			<!--  General -->
+			<xsd:element default="mqsi" maxOccurs="1" minOccurs="0" name="brokerSchema" type="xsd:string"/>				
+			<xsd:element default="" minOccurs="0" name="flowprefix" type="xsd:string"/>
+			<xsd:element default="" minOccurs="0" name="flowsuffix" type="xsd:string"/>
+			<xsd:element default="" minOccurs="0" name="queueprefix" type="xsd:string"/>
+			<xsd:element default="" minOccurs="0" name="queuesuffix" type="xsd:string"/>					
+			<xsd:element minOccurs="0" name="shortDescription" type="xsd:string"/>
+			<xsd:element minOccurs="0" name="longDescription" type="xsd:string"/>
+			
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

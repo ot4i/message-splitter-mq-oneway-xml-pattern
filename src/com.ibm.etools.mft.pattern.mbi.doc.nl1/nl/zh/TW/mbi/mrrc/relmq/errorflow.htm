@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="使用 Message Correlator for WebSphere MQ: request-response with persistence 型樣，可以接受單一佇列上多個用戶端應用程式的要求，以及使用交易式流程及持續 WebSphere MQ 訊息，將回應傳回給正確的用戶端。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Correlator for WebSphere MQ: request-response with persistence 型樣的錯誤子流程</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<div><h1 class="topictitle1"><span>Message Correlator for WebSphere MQ: request-response with persistence</span> 型樣的錯誤子流程</h1></div>
+<p class="shortdesc">如果在「要求」訊息流程處理期間捕捉到錯誤，則會呼叫「錯誤」子流程。</p>
+<p>如果您已將型樣參數配置成包括錯誤訊息，並選取使用者定義的內容 <span class="msobjprop">ErrorLoggingOn</span>，則會採取下列動作：</p>
+<ol>
+<li>如果在要求處理期間發生錯誤，則會將錯誤回應傳回給用戶端，指出訊息未順利傳送。
+<p>如果在回應處理期間發生錯誤，則因為回覆位址不明，所以不會傳回錯誤回應。</p>
+<p>下列訊息是標準 XML 錯誤訊息的範例：</p>
+<pre>&lt;Error&gt;&lt;Status&gt;-1&lt;/Status&gt;&lt;Text&gt;無法傳送訊息&lt;/Text&gt;&lt;/Error&gt;</pre>
+</li>
+<li>會準備錯誤訊息，並將它寫入錯誤佇列。異常狀況的明細會寫入為 XML 訊息。明細包括：
+<ul>
+	<li>分配管理系統名稱</li>
+	<li>流程名稱</li>
+	<li>時間戳記</li>
+	<li>異常狀況資料的摘要</li>
+	</ul>
+</li>
+<li>會回復訊息流程，以保留資料。</li>
+<li>錯誤偵測及更正所需的資訊包含在錯誤訊息內。</li>
+</ol>
+
+<a href="overview.htm#anchor1" title="上一步">回到 Message Correlator for WebSphere MQ: request-response with persistence 型樣規格</a>
+</body>
+</html>

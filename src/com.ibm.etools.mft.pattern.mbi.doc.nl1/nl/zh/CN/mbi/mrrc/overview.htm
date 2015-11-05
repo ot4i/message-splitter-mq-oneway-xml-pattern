@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="copyright" content="Copyright IBM Corporation 2008" />
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008" />
+<meta name="abstract" content="使用 Message Request Response Correlator 模式可在单个队列上接受来自多个客户机应用程序的请求，并将响应返回到正确的客户机。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../css/ibmdita.css" />
+<link rel="stylesheet" type="text/css" href="../../css/bip4.css" />
+<title>Message Request Response Correlator 模式</title>
+<script language="JavaScript" src="../../help/LiveHelp.js"> </script></head>
+<body id="mbi.mrrc.overview">
+<h1 class="topictitle1"><span>Message Request Response Correlator</span> 模式</h1>
+<div><p class="shortdesc">使用 <span>Message Request Response Correlator</span> 模式可在单个队列上接受来自多个客户机应用程序的请求，并将响应返回到正确的客户机。</p>
+<div class="image"><img src="correlator.gif" alt="此图显示此模式的行为。多个请求者应用程序将消息发送到代理。请求者的应答地址在将消息转发给提供者之前存储，并且在从提供者收到响应时恢复。" /></div></div>
+<div class="section"><h2 class="sectiontitle">上下文</h2>
+<p>客户机应用程序通常必须访问服务器应用程序。来自客户机应用程序的请求和来自服务器的响应可通过调解器或
+IBM Integration Bus 等企业服务总线（ESB）进行调解。客户机应用程序在请求中指定特定响应队列，可在其中接收响应。</p>
+<p>消息传递系统提供一种机制，以确保请求/应答交互中的响应消息可路由到正确的起始应用程序或客户机实例。通常，此解决方案会将“回复地址”作为消息头的一部分进行传递。这样接收应用程序就能够抽取此信息，并将响应发送到适当的队列。如果在交互中引入调解，将建立两个单独的请求/应答交互，并且您必须确保在每一种情况下都将响应消息发送到正确的目标。</p>
+<p>如果多个此类客户机正在与单个服务器应用程序交互，那么通常仅使用一个调解。标准做法支持服务器应用程序，并且针对每个交互的调解都提供单个请求队列。调解还使用单个响应队列来处理来自服务器应用程序的应答消息。如果每个客户机都提供自己的响应队列，那么需要一种机制来确保将每个应答消息发送到正确的队列。</p>
+</div>
+<div class="section"><h2 class="sectiontitle">问题</h2>
+<p>IBM Integration 流在请求者和提供者之间进行调解。入局消息包含请求者的应答地址，但是转发至提供者应用程序的消息必须包含消息流的应答地址。当提供者应用程序响应消息流时，该程序必须将每个响应与客户机发送的请求相匹配。</p>
+</div>
+<div class="section"><h2 class="sectiontitle">选择指导信息</h2>
+<p>在以下情况下使用此模式：有多个必须向提供者发送消息并在特定于请求者的队列上接收响应的请求者时，以及通过代理同时对请求和响应进行调解时。
+您可以使用该模式传递任何类型的消息，还可以对消息进行验证。例如，保护提供者远离未正确格式化的消息。</p>
+</div>
+<div class="section"><h2 class="sectiontitle">解决方案</h2></div>
+<p> 在将消息转发给提供者之前，存储调解流中各个客户机请求的应答信息。
+从提供者收到响应时，使用相关信息检索和恢复原始请求者的正确应答地址，并存储此信息供以后检索。</p>
+</body>
+</html>

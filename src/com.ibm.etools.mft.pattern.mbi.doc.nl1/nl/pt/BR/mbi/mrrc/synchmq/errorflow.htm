@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="pt-br">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Use o padrão de Message Correlator para WebSphere MQ: Pedido-Resposta sem Persistência para aceitar pedidos de quaisquer aplicativos clientesem uma única fila e para retornar respostas ao cliente correto usando fluxos transacionais e mensagens do WebSphere MQ persistentes."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Subfluxo de Erro para o Padrão de Message Correlator para WebSphere MQ: Pedido-Resposta sem Persistência</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.synchmq.overview">
+<div><h1 class="topictitle1">Subfluxo de Erro para o Padrão de <span>Message Correlator para WebSphere MQ:
+Pedido-Resposta sem Persistência</span></h1></div>
+<p class="shortdesc">Se erros forem capturados durante o processamento de fluxo de mensagens de Pedido, o subfluxo de Erro
+será chamado.</p>
+<p>Se você tiver configurado os parâmetros padrão para incluir mensagens de erro e a propriedade definida pelo usuário:
+<span class="msobjprop">ErrorLoggingOn</span> for selecionada, as seguintes ações serão executadas:</p>
+<ol>
+<li>Se o erro ocorrer durante o processamento do pedido, uma resposta de erro será retornada ao cliente indicando
+que a mensagem não foi enviada com êxito. 
+<p>Se o erro ocorrer durante o processamento da resposta, uma resposta de erro não será retornada porque o
+endereço de resposta não é conhecido.</p>
+<p>A mensagem a seguir é um exemplo de uma mensagem de erro XML padrão:</p>
+<pre>&lt;Error&gt;&lt;Status&gt;-1&lt;/Status&gt;&lt;Text&gt;Failed to send message&lt;/Text&gt;&lt;/Error&gt;</pre>
+</li>
+<li>Uma mensagem de erro é preparada e gravada na fila de erros. Detalhes da exceção são gravadas como uma mensagem XML. Os detalhes incluem:
+	<ul>
+	<li>Nome do broker</li>
+	<li>Nome do fluxo</li>
+	<li>Registro de data e hora</li>
+	<li>Resumo dos dados da exceção</li>
+	</ul>
+</li>
+</ol>
+<a href="overview.htm#anchor1" title="Voltar">Voltar para a especificação de padrão de Message Correlator para WebSphere MQ: Pedido-Resposta sem Persistência</a>
+</body>
+</html>

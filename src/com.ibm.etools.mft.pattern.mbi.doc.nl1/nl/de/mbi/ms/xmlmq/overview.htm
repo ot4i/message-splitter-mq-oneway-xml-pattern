@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de-de" xml:lang="de-de">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Verwenden Sie das Muster 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ: unidirektional (bei XML)) für die Annahme von Anforderungen von vielen Clientanwendungen in einer einzelnen Warteschlange und für die Rückgabe von Antworten an den richtigen Client mithilfe von transaktionsorientierten Nachrichtenflüssen und persistenten WebSphere MQ-Nachrichten."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Muster 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML))</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.overview">
+<h1 class="topictitle1">Muster <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML))</h1>
+<div><p class="shortdesc">Verwenden Sie das Muster <span>Message Splitter for WebSphere MQ: one-way
+(for XML)</span> (Nachrichtenverteiler für WebSphere MQ: unidirektional (bei XML)), um eine große
+XML-Nachricht in kleinere Elemente aufzuteilen, die mittels transaktionsorientierter
+Nachrichtenflüsse und persistenter WebSphere MQ-Nachrichten von einem oder mehreren Zielen
+verarbeitet werden.</p>
+</div>
+<p>Dieses Muster sollten Sie verwenden, wenn Ihre Anwendungen Informationen über mehrere Geschäftstransaktionen speichern und diese Informationen in Batches an eine oder mehrere Zielanwendungen übertragen.
+Dieses Muster beansprucht den Arbeitsspeicher auch bei der Verarbeitung großer Nachrichten nicht übermäßig. </p>
+<p>Dieses Muster kann verwendet werden, wenn die Quellenanwendung oder die Zielanwendungen echtzeitnahe Serviceaufrufe nicht ausführen oder verarbeiten können oder wenn die Verarbeitung von Informationen im Stapelbetrieb aus geschäftlichen Gründen erforderlich ist.
+</p>
+<div class="image"><img src="xmlmq.gif" 
+alt="Diagramm zur Veranschaulichung des Verhaltens dieses Musters. XML-Nachrichten werden zur Verarbeitung durch ein oder mehrere Ziele in kleinere Elemente aufgeteilt." />
+<div class="section"><h2 class="sectiontitle">Lösung</h2></div>
+<p>Die Lösung besteht in der Implementierung eines Nachrichtenflusses, der eine veränderliche Nachrichtenbaumstruktur verwendet, sodass wiederholt anwendbare Elemente gelöscht werden können, wenn sie verarbeitet wurden. Mithilfe des partiellen Parsings können einzelne Elemente bei Bedarf syntaktisch analysiert werden und da diese Elemente nach Abschluss gelöscht werden, wird verhindert, dass die speicherinterne Baumstruktur linear mit der Anzahl der Elemente anwächst.
+Nach der Extraktion eines Elements wird dieses sofort an die entsprechende Zielanwendung weitergeleitet.</p>
+<div><a href="requestflow.htm" title="Gestaltungsinformationen zum Anforderungsnachrichtenfluss">Anforderungsnachrichtenfluss</a></div>
+<div><a href="routeflow.htm" title="Informationen zur Gestaltung des untergeordneten Routing-Nachrichtenflusses ">Untergeordneter Routing-Nachrichtenfluss</a></div>
+<div><a href="errorflow.htm" title="Gestaltungsinformationen zum untergeordneten Fehlernachrichtenfluss">Untergeordneter Fehlernachrichtenfluss</a></div>
+<div><a href="logflow.htm" title="Gestaltungsinformationen zum untergeordneten Protokollnachrichtenfluss">Untergeordneter Protokollnachrichtenfluss</a></div><div>
+<a name="anchor1"></a>
+<div class="section"><h2 class="sectiontitle">Verwandte Tasks</h2></div>
+<p>Im folgenden Abschnitt finden Sie Informationen zur Anwendung und Verwendung dieses Musters.</p>
+<div><a href="constraints.htm" title="Vorgaben für die Verwendung des Musters 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ: unidirektional (bei XML))">Vorgaben für die Verwendung des Musters</a></div>
+<div><a href="prereq.htm" title="Details zum notwendigen Know-how und den erforderlichen Ressourcen für die Verwendung des Musters 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ: unidirektional (bei XML))">Erforderliche Tasks vor der Anwendung des Musters</a></div>
+
+<div><a href="parametertable.htm" title="Musterparameter">Parameter des Musters</a></div>
+<div><a href="postreq.htm" title="">Erforderliche Tasks nach der Generierung des Musters</a></div>
+</div>
+</div></body>
+</html>

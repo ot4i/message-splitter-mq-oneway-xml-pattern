@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="de-de" xml:lang="de-de">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Details zum notwendigen Know-how und den erforderlichen Ressourcen für die Verwendung des Musters 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ: unidirektional (bei XML))."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Tasks, die vor der Anwendung des Musters 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML)) ausgeführt werden müssen</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.prereq">
+<h1 class="topictitle1">Tasks, die vor der Anwendung des Musters <span>Message Splitter for WebSphere MQ: one-way (for XML)</span> (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML)) ausgeführt werden müssen</h1>
+<div>
+<div class="section">
+<p class="shortdesc">Bevor Sie das Muster für die Erstellung einer Musterinstanz anwenden, müssen Sie bestimmen, welche der folgenden Tasks erforderlich sind. Führen Sie folgende Tasks aus, falls erforderlich:</p>
+</div>
+<ul><li>Wählen Sie einen eindeutigen Namen für die Musterinstanz aus.
+Sie können das Muster mehrmals verwenden und verschiedene Instanzen davon erstellen, die sich durch ihre eindeutigen Namen unterscheiden. Legen Sie einen aussagekräftigen eindeutigen Namen fest, der auf den Zweck der Musteranwendung hinweist.</li>
+<li>Wählen Sie die Warteschlangenmanager und Warteschlangen von WebSphere MQ aus, die die Musterinstanz zum Beispiel für den Empfang von XML-Nachrichten verwenden soll. Wenn Sie vorhandene Warteschlangen verwenden, müssen diese erfasst werden. 
+Wenn Sie neue WS-Manager und Warteschlangen erstellen möchten, müssen Sie für diese Ressourcen Namen festlegen.</li>
+<li> Entscheiden Sie, ob eine Validierung erforderlich ist, und definieren Sie einen Nachrichtensatz oder legen Sie den Namen für den Nachrichtensatz fest. Beenden Sie die Task für
+die Nachrichtensatzerstellung, nachdem das Muster generiert wurde.</li>
+<li>Ermitteln Sie alle weiteren für dieses Muster erforderlichen Warteschlangenmanager und Warteschlangen und überlegen Sie sich geeignete Namen. Berücksichtigen Sie alle Richtlinien, Standards oder Namenskonventionen, die beachtet werden müssen.</li>
+<li>Entscheiden Sie, ob eine Protokollierung der eingehenden Nachrichten erforderlich ist. 
+Falls ja, bestimmen Sie den Warteschlangenmanager und die Warteschlange für die Protokollnachrichten.
+Die Protokollnachrichten können an eine allgemeine Protokollwarteschlange gesendet werden, die von mehreren Nachrichtenflüssen verwendet wird, oder an eine speziell für die Musterinstanz eingerichtete Warteschlange.</li>
+<li>Ermitteln Sie, ob mehrere mögliche Ziele vorliegen, und entscheiden Sie sich in diesem Fall
+für eine Routing-Lösung.
+	<ul><li>Setzen Sie den Parameter <span class="msobjprop">Routing</span> auf
+<span class="msobjpropval">Routen angeben</span>, wenn nur eine eingeschränkte Anzahl an Routen
+vorhanden ist und sich die Ziele nur selten ändern.</li>
+	<li>Setzen Sie den Parameter <span class="msobjprop">Routing</span> auf
+<span class="msobjpropval">Routen suchen</span>, wenn Sie den Satz der Zielrouten nicht genau
+bestimmen können oder sich die Zielrouten häufig ändern. Bei dieser Einstellung muss der Name der Datenquelle bekannt sein.</li>
+	</ul></li>
+<li>Bestimmen Sie die Fehlerbehandlungsmethode. Entscheiden Sie, ob Nachrichtenelemente, die nicht korrekt weitergeleitet werden können, zu einem vollständigen Rollback führen sollen, oder ob es ausreicht, das fehlgeschlagene Element an eine Warteschlange zur Ausnahmeverarbeitung weiterzuleiten.</li>
+<li>Entscheiden Sie, ob Sie Fehlernachrichten für die Musterinstanz erstellen möchten. 
+Auch ohne Fehlernachrichten bleiben alle Daten erhalten, da Nachrichtenelemente bei einem Fehler
+durch die Fehlerbehandlungsaktionen entweder in eine spezielle Warteschlange für diesen Zweck
+eingereiht werden oder der Nachrichtenfluss zurückgesetzt wird. Die eingehende Nachricht wird entweder
+an die Eingangswarteschlange zurückgesendet oder an eine Rücksetzwarteschlange weitergeleitet. Falls diese Warteschlangen jedoch nicht ständig überwacht werden, empfiehlt es sich, Fehlernachrichten als Benachrichtigungsmechanismus zu aktivieren.
+<p>Wenn Sie Fehlernachrichten in der Musterinstanz senden möchten, können Sie diese Funktion aktivieren oder inaktivieren, indem Sie die Brokerarchivdatei (BAR-Datei) vor der Implementierung konfigurieren.</p></li>
+</ul>
+<a href="overview.htm#anchor1" title="Back">Zurück zur Spezifikation des Musters 'Message Splitter for WebSphere MQ: one-way (for XML)' (Nachrichtenverteiler für WebSphere MQ:
+unidirektional (bei XML))</a>
+</div></body>
+</html>

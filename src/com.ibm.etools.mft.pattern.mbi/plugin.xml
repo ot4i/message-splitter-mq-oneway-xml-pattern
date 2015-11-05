@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+    <extension
+        point="org.eclipse.jet.transform">
+        <transform
+            modelLoader="org.eclipse.jet.emf"
+            startTemplate="mbi/templates/main.jet"
+            templateLoaderClass="org.eclipse.jet.compiled._jet_transformation">
+            <description>%Plugin.description</description>
+            <tagLibraries>
+                <importLibrary id="org.eclipse.jet.controlTags" usePrefix="c" autoImport="true"/>
+                <importLibrary id="org.eclipse.jet.javaTags" usePrefix="java" autoImport="true"/>
+                <importLibrary id="org.eclipse.jet.formatTags" usePrefix="f" autoImport="true"/>
+                <importLibrary id="org.eclipse.jet.workspaceTags" usePrefix="ws" autoImport="false"/>
+            </tagLibraries>
+        </transform>
+    </extension>
+	<extension point="com.ibm.etools.patterns.ui.Pattern">
+    	<POVEditor 
+    		editor="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetName"
+            id="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetName">
+      	</POVEditor>
+		<POVEditor
+			editor="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetFormat"
+			id="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetFormat">
+  		</POVEditor>
+		<POVEditor
+        	editor="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetType"
+            id="com.ibm.etools.mft.pattern.mbi.edit.EditorAdapterMessageSetType">
+      	</POVEditor>
+   	</extension>
+    <extension point="com.ibm.etools.patterns.Pattern">
+        <resourceloader id = "com.ibm.etools.mft.pattern.mbi.mrrc.relmq" class="com.ibm.etools.mft.pattern.mbi.mrrc.relmq.PatternMessages"/>
+        <resourceloader id = "com.ibm.etools.mft.pattern.mbi.mrrc.synchmq" class="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq.PatternMessages"/>
+        <resourceloader id = "com.ibm.etools.mft.pattern.mbi.ms.xmlmq" class="com.ibm.etools.mft.pattern.mbi.ms.xmlmq.PatternMessages"/>
+          <pattern
+            doc="com.ibm.etools.mft.pattern.mbi.doc/mbi/mrrc/relmq/overview.htm"
+            id="com.ibm.etools.mft.pattern.mbi.mrrc.relmq"
+            name="%com.ibm.etools.mft.pattern.mbi.mrrc.relmq"
+            parentPatternId="com.ibm.etools.mft.pattern.mbi.mrrc"
+            povMetaXML="mbi/mrrc/relmq/paramsmeta.xml"
+            povSchema="mbi/mrrc/relmq/pov.xsd"
+            povdoc="com.ibm.etools.mft.pattern.mbi.doc/mbi/mrrc/relmq/parametertable.htm"
+            productId="com.ibm.etools.msgbroker.tooling.ide"
+            resourceLoaderId="com.ibm.etools.mft.pattern.mbi.mrrc.relmq"
+            transformId="com.ibm.etools.mft.pattern.mbi"/>
+        <pattern
+            doc="com.ibm.etools.mft.pattern.mbi.doc/mbi/mrrc/synchmq/overview.htm"
+            id="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq"
+            name="%com.ibm.etools.mft.pattern.mbi.mrrc.synchmq"
+            parentPatternId="com.ibm.etools.mft.pattern.mbi.mrrc"
+            povMetaXML="mbi/mrrc/synchmq/paramsmeta.xml"
+            povSchema="mbi/mrrc/synchmq/params.xsd"
+            povdoc="com.ibm.etools.mft.pattern.mbi.doc/mbi/mrrc/synchmq/parameters.htm"
+            productId="com.ibm.etools.msgbroker.tooling.ide"
+            resourceLoaderId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq"
+            transformId="com.ibm.etools.mft.pattern.mbi"/>
+        <pattern
+            id="com.ibm.etools.mft.pattern.mbi.mrrc"
+            productId="com.ibm.etools.msgbroker.tooling.ide"
+            parentPatternId="com.ibm.etools.mft.pattern.mbi"
+            name="%com.ibm.etools.mft.pattern.mbi.mrrc.category"
+            doc="com.ibm.etools.mft.pattern.mbi.doc/mbi/mrrc/overview.htm"/>
+        <pattern
+            doc="com.ibm.etools.mft.pattern.mbi.doc/mbi/ms/xmlmq/overview.htm"
+            id="com.ibm.etools.mft.pattern.mbi.ms.xmlmq"
+            name="%com.ibm.etools.mft.pattern.mbi.ms.xmlmq"
+            parentPatternId="com.ibm.etools.mft.pattern.mbi.ms"
+            povMetaXML="mbi/ms/xmlmq/paramsmeta.xml"
+            povSchema="mbi/ms/xmlmq/params.xsd"
+            povdoc="com.ibm.etools.mft.pattern.mbi.doc/mbi/ms/xmlmq/parametertable.htm"
+            productId="com.ibm.etools.msgbroker.tooling.ide"
+            resourceLoaderId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq"
+            transformId="com.ibm.etools.mft.pattern.mbi"/>
+        <pattern
+            id="com.ibm.etools.mft.pattern.mbi.ms"
+            productId="com.ibm.etools.msgbroker.tooling.ide"
+            parentPatternId="com.ibm.etools.mft.pattern.mbi"
+            name="%com.ibm.etools.mft.pattern.mbi.ms.category"
+            doc="com.ibm.etools.mft.pattern.mbi.doc/mbi/ms/overview.htm"/>
+        <pattern
+            id="com.ibm.etools.mft.pattern.mbi"
+            productId="com.ibm.etools.msgbroker.tooling.ide"
+            parentPatternId="com.ibm.etools.pattern"
+            name="%com.ibm.etools.mft.pattern.mbi.category"
+            doc="com.ibm.etools.mft.pattern.mbi.doc/mbi/wmb_patterns_mbi.htm"/>		
+    </extension>
+    <extension point="org.eclipse.wst.xml.core.catalogContributions">
+        <catalogContribution id="default">
+            <public publicId="com.ibm.etools.mft.pattern.mbi.mrrc.relmq" uri="mbi/mrrc/relmq/pov.xsd"/>
+            <public publicId="com.ibm.etools.mft.pattern.mbi.ms.xmlmq" uri="mbi/ms/xmlmq/params.xsd"/>
+            <public publicId="com.ibm.etools.mft.pattern.mbi.mrrc.synchmq" uri="mbi/mrrc/synchmq/params.xsd"/>            
+        </catalogContribution>
+    </extension>
+</plugin>

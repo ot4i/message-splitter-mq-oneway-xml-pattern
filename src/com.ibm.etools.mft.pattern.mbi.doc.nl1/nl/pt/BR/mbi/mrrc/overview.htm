@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="pt-br">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="copyright" content="Copyright IBM Corporation 2008" />
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008" />
+<meta name="abstract" content="Use o padrão do Message Request Response Correlator para aceitar pedidos de vários aplicativos clientes em uma única fila e para retornar respostas ao cliente correto."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../css/ibmdita.css" />
+<link rel="stylesheet" type="text/css" href="../../css/bip4.css" />
+<title>Padrão do Message Request Response Correlator</title>
+<script language="JavaScript" src="../../help/LiveHelp.js"> </script></head>
+<body id="mbi.mrrc.overview">
+<h1 class="topictitle1">Padrão do <span>Message Request Response Correlator</span></h1>
+<div><p class="shortdesc">Use o padrão de <span>Message Request Response Correlator</span> para aceitar pedidos
+de vários aplicativos clientes em uma única fila e para retornar respostas
+ao cliente correto. </p>
+<div class="image"><img src="correlator.gif" alt="Um diagrama mostrando o comportamento do padrão. Vários aplicativos do solicitante enviam mensagens ao broker. O endereço de resposta do solicitante é armazenado antes da mensagem ser encaminhada ao provedor e restaurado quando uma resposta é recebida do provedor." /></div></div>
+<div class="section"><h2 class="sectiontitle">O Contexto</h2>
+<p>Os aplicativos clientes geralmente precisam acessar um aplicativo do servidor. As
+solicitações dos aplicativos clientes e as respostas do servidor podem ser mediadas sendo
+transmitidos por um intermediário ou Enterprise Service Bus (ESB) tal como o IBM
+Integration Bus. Os aplicativos clientes especificam em seus pedidos a
+fila de resposta específica na qual espera-se que a resposta seja recebida.</p>
+<p>Os sistemas de mensagens fornecem um mecanismo para assegurar que a mensagem de resposta em uma interação de
+pedido-resposta possa ser roteada ao aplicativo de origem ou instância do cliente correto. Geralmente esta
+solução envolve a transmissão de um 'endereço de resposta' como parte do cabeçalho da mensagem. O aplicativo de recebimento
+pode, então, extrair estas informações e enviar a resposta à fila apropriada. Se uma mediação
+for introduzida na interação, duas interações de pedido-resposta separadas serão estabelecidas e será
+necessário assegurar que as mensagens de resposta sejam enviadas ao destino correto em cada caso.</p>
+<p>Se vários clientes desse tipo estiverem interagindo com um único aplicativo do
+servidor, geralmente apenas uma única mediação será usada. A prática padrão
+é para o aplicativo do servidor e a mediação para cada um fornecerem uma
+única fila de pedidos. A mediação também usa uma única fila de resposta
+para processar mensagens de resposta do aplicativo do servidor. Se cada
+cliente fornecer sua própria fila de resposta, um mecanismo será necessário
+para assegurar que cada mensagem de resposta seja enviada à fila correta.</p>
+</div>
+<div class="section"><h2 class="sectiontitle">O Problema</h2>
+<p>Um fluxo do IBM Integration media entre um solicitante e um provedor. 
+A mensagem recebida contém o endereço de resposta do solicitante, mas a mensagem
+que é encaminhada ao aplicativo do provedor deve conter o endereço de resposta do
+fluxo de mensagens. Quando o aplicativo do provedor responde ao fluxo de mensagens, ele precisa corresponder
+cada resposta ao pedido enviado pelo cliente. </p>
+</div>
+<div class="section"><h2 class="sectiontitle">Orientação de Seleção</h2>
+<p>Use este padrão quando tiver vários solicitantes que precisam enviar mensagens
+a um provedor; receba respostas em uma fila que seja específica para o solicitante; e
+quando pedidos e respostas forem mediados através do broker. 
+É possível usar o padrão para transmitir mensagens de qualquer tipo e você tem a opção para validar
+a mensagem, por exemplo, para proteger provedores contra mensagens formatadas incorretamente. </p>
+</div>
+<div class="section"><h2 class="sectiontitle">Solução</h2></div>
+<p> As informações de resposta de cada pedido do cliente no fluxo de mediação são
+armazenadas antes de encaminhar a mensagem ao provedor.
+Quando respostas são recebidas do provedor, as informações de correlação são usadas para recuperar e
+restaurar o endereço de resposta correto do solicitante original e para armazenar estas informações
+para recuperação subsequente.</p>
+</body>
+</html>

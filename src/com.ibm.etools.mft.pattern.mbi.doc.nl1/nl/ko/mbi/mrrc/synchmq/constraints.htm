@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="ko-kr" xml:lang="ko-kr">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="Message Correlator for WebSphere MQ: 지속을 사용하지 않는 요청-응답 패턴을 사용하기 전에 알아야 하는 내용과 필요한 자원 세부사항입니다."/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Correlator for WebSphere MQ: 지속을 사용하지 않는 요청-응답 패턴의 사용 제한조건</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.synchmq.constrainsts">
+<h1 class="topictitle1"><span>Message Correlator for WebSphere MQ: 지속을 사용하지 않는 요청-응답</span> 패턴의 사용 제한조건</h1>
+<div>
+<p class="shortdesc">이 패턴을 사용할 때는 많은 제한조건이 존재합니다. </p>
+<p>다음 제한조건을 모두 충족하는 경우에만 <span>Message Correlator for WebSphere MQ: 지속을 사용하지 않는 요청-응답</span> 패턴을 사용할 수 있습니다.</p>
+<ul>
+<li>요청자 및 제공자 애플리케이션이 <span>WebSphere MQ</span>를
+전송 메커니즘으로 사용해야 합니다.</li>
+<li>브로커가 응답을 원본 요청과 일치시킬 수 있도록 제공자 애플리케이션이
+메시지 ID를 상관 ID에 복사하는 규칙을 따라야 합니다. </li>
+<li>사용자 정의 가능한 RequestProcessor 서브플로우에 변환 기능을 포함하지 않는 한
+요청자 및 제공자 애플리케이션이 호환 가능한 메시지를 송신 및 승인해야 합니다.</li>
+<li>이 패턴을 사용하는 비즈니스 목적이 제한시간 초과와 그에 따른 응답 수신
+실패를 허용할 수 있어야 합니다.</li>
+<li>패턴에 로그 기록을 사용하도록 선택하는 경우 로그 메시지를 큐로 송신합니다.
+이 로그 메시지는 이 패턴 범위 밖에서 처리되며 조직에 가장 적합한 방식으로
+로그 기록 메시지를 처리해야 합니다.
+로그 기록이 선택되면, 로그 메시지가 로그 큐에 기록되며, 이는 성능에 영향을 줍니다.
+로그 기록이 감사용으로 사용된다고 가정하므로
+지속 메시지가 사용됩니다.
+테스트 또는 정보용으로만 로그 기록을 사용할 때는
+사용자 정의 특성(UDP) <span class="msobjprop">RequestLoggingOn</span> 및 <span class="msobjprop">ResponseLoggingOn</span>을 구성하여
+프로덕션 시스템에서 로그 기록을 끄도록 전환할 수 있습니다.</li>
+<li>패턴에 오류 메시지를 사용하도록 선택하는 경우 예외가 발생하면
+오류 메시지를 큐로 송신합니다.
+오류 모니터링과 올바른 조치 수행은 패턴 범위 밖에서 수행되며
+조직에 가장 적합한 방식으로
+오류 메시지를 처리해야 합니다. </li>
+<li>패턴은 로그 기록과 오류 메시지의 형식을 정의하며 사용자 고유 환경의
+요구사항을 충족하기에 충분하다고 가정합니다.</li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="이전">Message Correlator for WebSphere MQ: 지속을 사용하지 않는 요청-응답 패턴 스펙으로 돌아가기</a>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="copyright" content="Copyright IBM Corporation 2008"/>
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008"/>
+<meta name="abstract" content="使用 Message Splitter for WebSphere MQ: one-way (for XML) 型樣，可以接受單一佇列上多個用戶端應用程式的要求，以及使用交易式流程及持續 WebSphere MQ 訊息，將回應傳回給正確的用戶端。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../../css/ibmdita.css"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bip4.css"/>
+<title>Message Splitter for WebSphere MQ: one-way (for XML) 型樣的路徑子流程</title>
+<script language="JavaScript" src="../../../help/LiveHelp.js"></script></head>
+<body id="mbi.mrrc.relmq.log">
+<div><h1 class="topictitle1"><span>Message Splitter for WebSphere MQ: one-way (for XML)</span> 型樣的路徑子流程</h1>
+
+
+<p class="shortdesc">路徑子流程的行為是視<span class="msobjprop">遞送</span>型樣參數的值而定。</p>
+<ul>
+<li> <span class="msobjpropval">不遞送</span>
+<p>如果選取<span class="msobjpropval">不遞送</span>，則會建立單一 MQOutput 節點，並為其配置<span class="msobjprop">輸出佇列管理程式</span>及<span class="msobjprop">輸出佇列</span>型樣參數的值。遞送流程是包括 Passthrough 節點的子流程。
+包括 Failure 節點，讓此子流程與所有其他類型的遞送子流程一致。</p></li>
+<li><span class="msobjpropval">指定路徑</span>
+<p> 定義路徑的四個參數群組：</p>
+<ul>
+<li><span class="msobjprop">索引鍵位置</span>是 XPATH 表示式，用來定義現行訊息元素內的索引鍵位置。</li>
+<li><span class="msobjprop">索引鍵值</span>定義採用此路徑時，索引鍵位置必須符合的值。</li>
+<li><span class="msobjprop">佇列管理程式</span>將路徑定義為佇列管理程式。</li>
+<li><span class="msobjprop">佇列</span>將路徑定義為佇列。</li>
+</ul>
+<p>針對定義的每一個路徑，會建立及連接路徑子流程的「輸出」端及 MQOutput 節點。</p>
+<p>路徑子流程包含已配置過濾器的 Route 節點，而過濾器會在滿足條件 <tt>KeyLocation = Key Value</tt> 時遞送給「輸出」端。
+如果訊息元素不符合任何路徑，則會在環境變數中記錄錯誤，並將訊息傳遞給 failure 端。</p>
+<p>使用<span class="msobjpropval">指定路徑</span>可以指定一些路徑。</p></li>
+<li><span class="msobjpropval">查閱路徑</span>
+<p>如果選取此值，則會建立路徑子流程的單一「輸出」端，而且此端會連接至單一 MQOutput 節點，而此節點已配置成採用目的地清單。</p>
+<p>遞送子流程會檢查快取是否需要重新整理，方法是檢查 <span class="filepath">CacheQueueTable.valid</span> 共用列變數的值是否設為 <tt>NULL</tt>。在流程開始時，以及如果已啟用<span class="msobjprop">快取重新整理</span>且已將重新整理訊息傳送給<span class="msobjprop">重新整理佇列</span>時，它會設為 <tt>NULL</tt>。重新整理訊息會將此值設為 <tt>NULL</tt>。</p>
+<p>如果快取需要重新整理，則會搜尋資料來源的 ROUTING_TABLE 表格（指定於<span class="msobjprop">遞送資料來源</span>型樣參數），以尋找所有符合此流程的遞送環境定義的列。遞送環境定義是透過<span class="msobjprop">遞送環境定義</span>型樣參數所定義，而且會將 ROUTING_CONTEXT 欄位符合此參數的列讀入記憶體內快取中，這是自動完成的作業，以避免在快取處於不一致狀態時進行查閱。</p>
+<p>已快取資料的結構為：</p>
+<pre>VARIABLE1, VARIABLE2, QUEUE_MANAGER, QUEUE_NAME </pre>
+<p>查閱的執行是使用定義為型樣參數的 ESQL 表示式，從訊息元素中取出一或兩個索引鍵值。透過使用下列形式的陳述式來定義型樣參數：</p>
+<pre>SET KEY = &lt;型樣參數&gt;</pre>
+<p>如果指定單一索引鍵以從遞送資料選取一個以上的列，請使用 WHERE 子句：</p>
+<pre>WHERE S.VARIABLE1 = KEY1</pre> 
+<p>如果指定第二個索引鍵，則用於選擇的 WHERE 子句為：</p>
+<pre>WHERE S.VARIABLE1 = KEY1 and S.VARIABLE2 = KEY2</pre>
+<p>此選擇會將佇列管理程式及佇列設定至用於 MQOutput 節點的區域環境中。可以傳回多列，而且目的地資料包括所有選取的目的地。如果找不到相符項，則會發生遞送錯誤，而且會將訊息傳遞給路徑子流程的 failure 端。</p></li>
+</ul>
+</div>
+<a href="overview.htm#anchor1" title="上一步">回到 Message Splitter for WebSphere MQ: one-way (for XML) 型樣規格</a>
+</body>
+</html>

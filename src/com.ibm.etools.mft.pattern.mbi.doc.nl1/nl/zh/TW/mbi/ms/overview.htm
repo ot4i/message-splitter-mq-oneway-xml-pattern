@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-tw" xml:lang="zh-tw">
+<head><!-- 
+
+(C) COPYRIGHT International Business Machines Corp., 2009
+
+All Rights Reserved * Licensed Materials - Property of IBM
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="copyright" content="Copyright IBM Corporation 2008" />
+<meta name="DC.Rights.Owner" content="Copyright IBM Corporation 2008" />
+<meta name="abstract" content="使用 Message Splitter 型樣，可以接受單一佇列上多個用戶端應用程式的要求，以及將回應傳回給正確的用戶端。"/>
+<!-- Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="../../css/ibmdita.css" />
+<link rel="stylesheet" type="text/css" href="../../css/bip4.css" />
+<title>Message Splitter 型樣</title>
+<script language="JavaScript" src="../../help/LiveHelp.js"> </script></head>
+<body id="mbi.mrrc.overview">
+<h1 class="topictitle1">Message Splitter 型樣</h1>
+<div><p class="shortdesc">使用 Message Splitter 型樣，可以將大型 XML 訊息分割成較小元素，供一個以上的目標進行處理。</p>
+<div class="image"><img src="splitter.gif" alt="顯示型樣行為的圖表。" align="middle"/></div></div>
+<div class="section"><h2 class="sectiontitle">環境定義</h2><p></p>
+<p class="MsoNormal">您想要與其他應用程式共用應用程式在一段時間內累積的資訊。
+一般範例可能是已累積一天的銷售資料，或從友機接收的資訊更新。會累積給定的時段內的資料，並將其傳輸為單一大型訊息。在一個以上目標應用程式上的當日結束處理，需要個別處理每一個元素。</p>
+<p class="MsoNormal">或者，應用程式可能會產生含有必須配送的大量記錄的訊息；例如，一個應用程式可能會維護及配送參照資料。<span
+	style="mso-spacerun:yes"></span></p>
+</div>
+<div class="section"><h2 class="sectiontitle">問題</h2>
+<p>含有重複及處理結構的大型訊息可能會導致使用過多的記憶體，這可能會影響其他訊息處理程序，而且可能會導致分配管理系統失敗。
+此型樣會根據定義的遞送規則，解決將大型訊息的元素遞送至不同目標的問題。</p>
+<div class="section"><h2 class="sectiontitle">選擇指引</h2>
+<p>將此型樣用於應用程式，而這類應用程式會儲存多個商業交易的相關資訊，並將此資訊批次傳輸至一個以上的目標應用程式。
+它可以用來處理大型訊息，而不需要使用過多的記憶體。</p>
+<p>如果來源應用程式或目標應用程式無法進行或處理接近即時服務呼叫，或基於商業理由而需要批次處理資訊，則可以使用此型樣。</p>
+</div>
+<div class="section"><h2 class="sectiontitle">解決方案</h2></div>
+<p> 解決方案是實作可使用可變訊息樹狀結構的訊息流程，這樣可以在處理重複元素時刪除它們。局部剖析可視需要剖析單一元素，而且因為這些元素會在完成時加以刪除，所以可避免記憶體內樹狀結構中的元素數目直線成長。
+每一個元素在取出時會遞送至適當的目標應用程式。</p>
+<p>輸入訊息及所有輸出訊息都是在單一交易中處理；所有輸出訊息都是持續訊息。無法讀取 XML 輸入訊息會導致整個交易失敗，但是處理單一元素所發生的錯誤可能會將失敗的元素新增至佇列，以供稍後進行處理，或導致整個交易失敗。</p>
+</div></body>
+</html>
